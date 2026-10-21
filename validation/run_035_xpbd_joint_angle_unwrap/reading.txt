@@ -1,0 +1,18 @@
+S off against run 032: 4 of 4 byte-identical
+C1 on, limits -1 and 4, 0.0025 s, byte-identical to run 032's play without limits: yes
+C1 on, limits -1 and 4, 0.000625 s, byte-identical to run 032's play without limits: yes
+C2 off limits -1 and 3.5, 0.0025 s | angle1_urad 5950612 speed1_urads 327785750000
+C2 off limits -1 and 3.5, 0.000625 s | angle1_urad -5173743 speed1_urads 3052985250000
+C2 on limits -1 and 3.5, 0.0025 s | angle1_urad 3470214 speed1_urads 42206
+C2 on limits -1 and 3.5, 0.000625 s | angle1_urad 3465657 speed1_urads 616447
+turn lim off 0.0025 s | angle1_urad 5950612 speed1_urads 327785750000
+turn free off 0.0025 s | angle1_urad 3762397 speed1_urads 1967482
+turn lim off 0.000625 s | angle1_urad -5173743 speed1_urads 3052985250000
+turn free off 0.000625 s | angle1_urad 3790977 speed1_urads 1990626
+turn lim on 0.0025 s | angle1_urad 3762397 speed1_urads 1967482
+turn free on 0.0025 s | angle1_urad 3762397 speed1_urads 1967482
+turn lim on 0.000625 s | angle1_urad 3790977 speed1_urads 1990626
+turn free on 0.000625 s | angle1_urad 3790977 speed1_urads 1990626
+N on, run 014's XPBD chains: 8 of 8 byte-identical
+N on, the suite against run 007's XPBD suite: 39 of 39 byte-identical
+K plays that stopped being a number: 0

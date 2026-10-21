@@ -1,0 +1,12 @@
+STATS contact dt 0.000125 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 8000 most_tilt_urad 216838 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=1.0
+STATS contact dt 3.125e-05 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 32000 most_tilt_urad 217683 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=1.0
+STATS contact dt 3.125e-05 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 64000 most_tilt_urad 7689 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=1.0
+STATS contact dt 0.000125 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 8000 most_tilt_urad 550350 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.1
+STATS contact dt 3.125e-05 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 32000 most_tilt_urad 552362 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.1
+STATS contact dt 3.125e-05 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 64000 most_tilt_urad 7689 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.1
+STATS contact dt 0.000125 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 8000 most_tilt_urad 621358 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.01
+STATS contact dt 3.125e-05 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 32000 most_tilt_urad 626131 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.01
+STATS contact dt 3.125e-05 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 64000 most_tilt_urad 7689 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.01
+STATS contact dt 0.000125 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 8000 most_tilt_urad 634295 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.001
+STATS contact dt 3.125e-05 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 32000 most_tilt_urad 637759 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.001
+STATS contact dt 3.125e-05 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 64000 most_tilt_urad 7689 engine newton 1.6.1 solver featherstone extra opt.friction_smoothing=0.001

@@ -1,0 +1,36 @@
+stock semi hold | CREEP dt_ns 125000 steps 8000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+stock semi rest | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+stock semi bounce | BOUNCE dt_ns 125000 speed_in_ums 1400170 steps_to_turn 67 rebound_nm 1892876 drop_nm 100000000 rebound_per_10000 189
+stock semi oblique | IMPACT dt_ns 125000 steps 64 horizontal_lost_ums 463739 vertical_given_ums 1069415 ratio_per_10000 4336 friction_per_10000 3000 still_sliding_ums 1536261
+stock semi slide | STOP dt_ns 125000 first_stopped_at_step 981 largest_speed_last_third_ums 0 slid_um 43330 came_back_um 11860
+stock semi settled | slid_um 43756 came_back_um 26646 | 310-320 ms mean_acceleration_mm_s2 -18137
+stock semi plate 1.0 | slid_um 42315 came_back_um 24 | 302-305 ms mean_acceleration_mm_s2 -8504 | 310-320 ms mean_acceleration_mm_s2 -8869 | 330-350 ms mean_acceleration_mm_s2 -13124
+stock semi plate 0.01 | slid_um 690 came_back_um 61 | 302-305 ms mean_acceleration_mm_s2 -3921 | 310-320 ms mean_acceleration_mm_s2 -47 | 330-350 ms mean_acceleration_mm_s2 0
+stock featherstone hold | CREEP dt_ns 125000 steps 8000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+stock featherstone rest | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+stock featherstone bounce | BOUNCE dt_ns 125000 speed_in_ums 1400170 steps_to_turn 67 rebound_nm 1892876 drop_nm 100000000 rebound_per_10000 189
+stock featherstone oblique | IMPACT dt_ns 125000 steps 64 horizontal_lost_ums 463743 vertical_given_ums 1069421 ratio_per_10000 4336 friction_per_10000 3000 still_sliding_ums 1536257
+stock featherstone slide | STOP dt_ns 125000 first_stopped_at_step 982 largest_speed_last_third_ums 0 slid_um 43339 came_back_um 11871
+stock featherstone settled | slid_um 43801 came_back_um 26697 | 310-320 ms mean_acceleration_mm_s2 -18151
+stock featherstone plate 1.0 | slid_um 42315 came_back_um 24 | 302-305 ms mean_acceleration_mm_s2 -8504 | 310-320 ms mean_acceleration_mm_s2 -8869 | 330-350 ms mean_acceleration_mm_s2 -13124
+stock featherstone plate 0.01 | slid_um 690 came_back_um 61 | 302-305 ms mean_acceleration_mm_s2 -3921 | 310-320 ms mean_acceleration_mm_s2 -47 | 330-350 ms mean_acceleration_mm_s2 0
+stock xpbd: hold and slide byte-identical to stock: yes
+stock mujoco: hold and slide byte-identical to stock: yes
+on semi hold | CREEP dt_ns 125000 steps 8000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+on semi rest | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+on semi bounce | BOUNCE dt_ns 125000 speed_in_ums 1400170 steps_to_turn 67 rebound_nm 1892876 drop_nm 100000000 rebound_per_10000 189
+on semi oblique | IMPACT dt_ns 125000 steps 69 horizontal_lost_ums 322748 vertical_given_ums 1075827 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1677252
+on semi slide | STOP dt_ns 125000 first_stopped_at_step 2041 largest_speed_last_third_ums 0 slid_um 127860 came_back_um 411
+on semi settled | slid_um 127467 came_back_um 412 | 310-320 ms mean_acceleration_mm_s2 -3752
+on semi plate 1.0 | slid_um 127467 came_back_um 2 | 302-305 ms mean_acceleration_mm_s2 -4019 | 310-320 ms mean_acceleration_mm_s2 -3886 | 330-350 ms mean_acceleration_mm_s2 -3924
+on semi plate 0.01 | slid_um 127467 came_back_um 2 | 302-305 ms mean_acceleration_mm_s2 -4019 | 310-320 ms mean_acceleration_mm_s2 -3886 | 330-350 ms mean_acceleration_mm_s2 -3924
+on featherstone hold | CREEP dt_ns 125000 steps 8000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+on featherstone rest | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+on featherstone bounce | BOUNCE dt_ns 125000 speed_in_ums 1400170 steps_to_turn 67 rebound_nm 1892876 drop_nm 100000000 rebound_per_10000 189
+on featherstone oblique | IMPACT dt_ns 125000 steps 69 horizontal_lost_ums 322748 vertical_given_ums 1075828 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1677252
+on featherstone slide | STOP dt_ns 125000 first_stopped_at_step 2041 largest_speed_last_third_ums 0 slid_um 127860 came_back_um 411
+on featherstone settled | slid_um 127467 came_back_um 412 | 310-320 ms mean_acceleration_mm_s2 -3752
+on featherstone plate 1.0 | slid_um 127467 came_back_um 2 | 302-305 ms mean_acceleration_mm_s2 -4019 | 310-320 ms mean_acceleration_mm_s2 -3886 | 330-350 ms mean_acceleration_mm_s2 -3924
+on featherstone plate 0.01 | slid_um 127467 came_back_um 2 | 302-305 ms mean_acceleration_mm_s2 -4019 | 310-320 ms mean_acceleration_mm_s2 -3886 | 330-350 ms mean_acceleration_mm_s2 -3924
+on xpbd: hold and slide byte-identical to stock: yes
+on mujoco: hold and slide byte-identical to stock: yes

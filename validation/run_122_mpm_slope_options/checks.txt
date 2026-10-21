@@ -1,0 +1,10 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C0_as_run_120 eq 1 0 : FAILED
+RULE P1_slides_at_32_substeps ge 281986 10000 : HELD
+RULE P2_tol_holds_at_both all_le 10000 20888 281433 : FAILED
+RULE P2_iter_holds_at_both all_le 10000 21622 280063 : FAILED
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+checks: 9, held: 2

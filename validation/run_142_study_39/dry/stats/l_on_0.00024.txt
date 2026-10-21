@@ -1,0 +1,1 @@
+STATS contact dt 0.00024 h0 0 vx0 0.8 mu 0.4 mass 1 radius 0.04 steps 83 most_tilt_urad 0 engine newton 1.7.0 solver vbd extra opt.rigid_compliant_alm=False opt.rigid_avbd_joint_alpha=0.0

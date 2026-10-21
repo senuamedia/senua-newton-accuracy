@@ -1,0 +1,5 @@
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/rec99/tools/nwt_loop.py:83: UserWarning: Adding a REVOLUTE joint between parent -1 and child 0 (label: 'arm'), but another joint already connects these bodies. Parallel joints between the same pair of bodies have undefined semantics and may not behave as expected.
+  builder.add_joint_revolute(parent=-1, child=link, axis=(0.0, 0.0, 1.0), parent_xform=wp.transform_identity(),
+~/work/e110s/on/src/newton/_src/solvers/mujoco/solver_mujoco.py:7770: UserWarning: SolverMuJoCo converts loop joint 'b' to MuJoCo equality constraints, which ignore these configured joint properties: limits (including limit stiffness/damping), drive. Loop-joint joint_q and joint_qd entries are also not synchronized, and Control targets/joint_f have no effect.
+  warn_ignored_loop_joint_properties(int(j))

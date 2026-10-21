@@ -1,0 +1,15 @@
+mu05_half_it32_0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 1500 friction_limit_per_10000 5000 | most_tilt_urad 0
+mu05_half_it32_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 401 friction_over_normal_per_10000 1500 friction_limit_per_10000 5000 | most_tilt_urad 0
+mu05_it32_0.000125 | CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+mu05_it32_0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums 380 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000 | most_tilt_urad 0
+mu05_it32_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1531 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000 | most_tilt_urad 0
+mu05_it64_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1531 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000 | most_tilt_urad 0
+mu1_it32_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 10000 | most_tilt_urad 0
+mu5_it32_0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 50000 | most_tilt_urad 0
+mu5_it32_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 50000 | most_tilt_urad 0
+plate_it32_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+relax05_it32_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1457 friction_over_normal_per_10000 2999 friction_limit_per_10000 5000 | most_tilt_urad 0
+relax1_it32_0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1592 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000 | most_tilt_urad 0
+CHECK friction 0.5, 32 iterations, 0.002 s, byte-identical to run 027's: yes
+CHECK friction 0.5, 32 iterations, 0.0005 s, byte-identical to run 027's: yes
+plays that stopped being a number: 0

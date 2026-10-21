@@ -1,0 +1,1 @@
+STATS joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 out_of_range_at_step 1418 engine newton 1.7.0 solver semi extra opt.joint_attach_kd=0 lo=-1 hi=1

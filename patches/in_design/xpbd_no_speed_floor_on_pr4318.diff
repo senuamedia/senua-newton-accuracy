@@ -1,0 +1,115 @@
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py
+@@ -1,6 +1,7 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
+ import warnings
+ from typing import ClassVar
+ 
+@@ -230,6 +231,13 @@
+             "deterministic_max_records": 0,
+         }
+         self._set_module_options(module_options, module=kernels)
++        # Senua AI patch, in design: the body update without its speed floor, read once here
++        self._apply_body_deltas_kernel = apply_body_deltas
++        if os.environ.get("NEWTON_XPBD_NO_SPEED_FLOOR") == "1":
++            from . import speed_floor_kernels  # noqa: PLC0415
++
++            self._set_module_options(module_options, module=speed_floor_kernels)
++            self._apply_body_deltas_kernel = speed_floor_kernels.apply_body_deltas_no_speed_floor
+         self._restitution_module_options = module_options
+ 
+         self.iterations = iterations
+@@ -571,7 +579,7 @@
+                 self._body_delta_counter = 1 - self._body_delta_counter
+ 
+             wp.launch(
+-                kernel=apply_body_deltas,
++                kernel=self._apply_body_deltas_kernel,
+                 dim=model.body_count,
+                 inputs=[
+                     body_q,
+--- a/newton/_src/solvers/xpbd/speed_floor_kernels.py
++++ b/newton/_src/solvers/xpbd/speed_floor_kernels.py
+@@ -0,0 +1,79 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: XPBD's body update without its speed floor.
++#
++# After every correction XPBD's apply_body_deltas (kernels.py) sets a body's linear velocity to zero when it is under
++# 1e-4 m/s, and its angular velocity when under 1e-4 rad/s ("this improves gradient stability"). A body moving or
++# turning slower than that is held still: a slow slide or creep, a slow turn, the first steps of a body a small force
++# sets moving from rest (findings F17). Here the same update without those lines; every other line is the stock
++# kernel's. Launched in its place only when the solver was made with NEWTON_XPBD_NO_SPEED_FLOOR=1 (read once, when the
++# solver is made); otherwise never imported.
++
++import warp as wp
++
++
++@wp.kernel
++def apply_body_deltas_no_speed_floor(
++    q_in: wp.array[wp.transform],
++    qd_in: wp.array[wp.spatial_vector],
++    body_com: wp.array[wp.vec3],
++    body_I: wp.array[wp.mat33],
++    body_inv_m: wp.array[float],
++    body_inv_I: wp.array[wp.mat33],
++    deltas: wp.array[wp.spatial_vector],
++    constraint_inv_weights: wp.array[float],
++    dt: float,
++    # outputs
++    q_out: wp.array[wp.transform],
++    qd_out: wp.array[wp.spatial_vector],
++):
++    tid = wp.tid()
++    inv_m = body_inv_m[tid]
++    if inv_m == 0.0:
++        q_out[tid] = q_in[tid]
++        qd_out[tid] = qd_in[tid]
++        return
++    inv_I = body_inv_I[tid]
++
++    tf = q_in[tid]
++    delta = deltas[tid]
++
++    v0 = wp.spatial_top(qd_in[tid])
++    w0 = wp.spatial_bottom(qd_in[tid])
++
++    p0 = wp.transform_get_translation(tf)
++    q0 = wp.transform_get_rotation(tf)
++
++    weight = 1.0
++    if constraint_inv_weights:
++        inv_weight = constraint_inv_weights[tid]
++        if inv_weight > 0.0:
++            weight = 1.0 / inv_weight
++
++    dp = wp.spatial_top(delta) * (inv_m * weight)
++    dq = wp.spatial_bottom(delta) * weight
++
++    wb = wp.quat_rotate_inv(q0, w0)
++    dwb = inv_I * wp.quat_rotate_inv(q0, dq)
++    # coriolis forces delta from dwb = (wb + dwb) I (wb + dwb) - wb I wb
++    tb = wp.cross(dwb, body_I[tid] * (wb + dwb)) + wp.cross(wb, body_I[tid] * dwb)
++    dw1 = wp.quat_rotate(q0, dwb - dt * inv_I * tb)
++
++    # update orientation
++    q1 = q0 + 0.5 * wp.quat(dw1 * dt, 0.0) * q0
++    q1 = wp.normalize(q1)
++
++    # update position
++    com = body_com[tid]
++    x_com = p0 + wp.quat_rotate(q0, com)
++    p1 = x_com + dp * dt
++    p1 -= wp.quat_rotate(q1, com)
++
++    q_out[tid] = wp.transform(p1, q1)
++
++    # update linear and angular velocity
++    v1 = v0 + dp
++    w1 = w0 + dw1
++
++    qd_out[tid] = wp.spatial_vector(v1, w1)

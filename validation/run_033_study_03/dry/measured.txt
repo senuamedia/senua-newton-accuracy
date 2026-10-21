@@ -1,0 +1,23 @@
+on semi drop 0.005 rebound_per_10000 0
+on semi drop 0.00125 rebound_per_10000 0
+on semi drop 0.01 rebound_per_10000 16936
+on semi slide 0.005 friction_over_normal_per_10000 4000
+on semi rest 0.005 mean_ground_force_mN 19600
+on semi lift 0.005 lowest_ground_force_mN 0
+on semi slide 0.00125 friction_over_normal_per_10000 3999
+on semi rest 0.00125 mean_ground_force_mN 19600
+on semi lift 0.00125 lowest_ground_force_mN 0
+on semi hold 0.00125 mean_speed_ums 5828
+on semi hold 0.005 mean_speed_ums 30135
+on featherstone drop 0.005 rebound_per_10000 0
+on featherstone drop 0.00125 rebound_per_10000 0
+on featherstone drop 0.01 rebound_per_10000 16936
+on featherstone slide 0.005 friction_over_normal_per_10000 4000
+on featherstone rest 0.005 mean_ground_force_mN 19600
+on featherstone lift 0.005 lowest_ground_force_mN 0
+on featherstone slide 0.00125 friction_over_normal_per_10000 3999
+on featherstone rest 0.00125 mean_ground_force_mN 19600
+on featherstone lift 0.00125 lowest_ground_force_mN 0
+on featherstone hold 0.00125 mean_speed_ums 5828
+on featherstone hold 0.005 mean_speed_ums 30461
+on nan_plays 0

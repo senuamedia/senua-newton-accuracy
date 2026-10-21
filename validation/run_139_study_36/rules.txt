@@ -1,0 +1,16 @@
+RULE R1_safe_when_off eq 39 39 : HELD
+RULE R2_far_grows_off_x15 ge 5762 880 : HELD
+RULE R2_far_grows_off_x60 ge 33900 880 : HELD
+RULE R3_far_as_origin_0.0004 all_within 7957 10 7969 7987 : HELD
+RULE R3_far_as_origin_0.0002 all_within 4042 10 4102 4047 : HELD
+RULE R3_far_as_origin_0.0001 all_within 2015 10 2035 2058 : HELD
+RULE R3_far_as_origin_0.00005 all_within 999 10 1000 995 : HELD
+RULE R3_far_as_origin_0.000025 all_within 462 10 470 454 : HELD
+RULE R4_falls_x0 falls 7957 4042 2015 999 462 : HELD
+RULE R4_falls_x15 falls 7969 4102 2035 1000 470 : HELD
+RULE R4_falls_x60 falls 7987 4047 2058 995 454 : HELD
+RULE R5_spin_centre_still all_in -3 3 0 0 0 : HELD
+RULE R5_slide_settles all_within 152022 200 151905 152004 : HELD
+RULE R5_hold_kept all_in -10 10 0 0 : HELD
+RULE R6_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 15, held: 15

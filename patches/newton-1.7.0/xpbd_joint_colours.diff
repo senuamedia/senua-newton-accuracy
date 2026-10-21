@@ -1,0 +1,184 @@
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py	2026-10-21 16:25:06
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py	2026-10-21 16:25:06
+@@ -1,10 +1,19 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
+ import warnings
+ 
+ import warp as wp
+ 
++# Senua AI patch, in design: with NEWTON_XPBD_JOINT_COLOURS=1 (read once, here) the joint pass is a Gauss-Seidel
++# sweep over colours: the joints are coloured so that no two of one colour act on the same dynamic body, and each
++# colour is solved and its corrections applied before the next is solved, so every joint sees its neighbours' latest
++# poses (graph colouring, as in Fratarcangeli, Tibaldo and Pellacini 2016). As released every joint is solved from the
++# same state and two joints sharing a link each move it by its whole correction, which only under-relaxation keeps
++# stable.
++_JOINT_COLOURS = os.environ.get("NEWTON_XPBD_JOINT_COLOURS") == "1"
++
+ from ...core.types import override
+ from ...sim import Contacts, Control, Model, ModelFlags, State
+ from ...sim.joint_mimic import has_supported_joint_mimics
+@@ -216,6 +225,37 @@
+ 
+         self._init_kinematic_state()
+ 
++        # Senua AI patch, in design: the joint pass's colours, each an enabled mask over the joints; None leaves the
++        # pass as released (one launch over every joint)
++        self._joint_colour_masks = None
++        if _JOINT_COLOURS and model.joint_count > 0:
++            import numpy as np  # noqa: PLC0415
++
++            from ...sim import JointType  # noqa: PLC0415
++
++            parent = model.joint_parent.numpy()
++            child = model.joint_child.numpy()
++            enabled = model.joint_enabled.numpy()
++            jtype = model.joint_type.numpy()
++            inv_m = model.body_inv_mass.numpy() if model.body_count > 0 else np.zeros(0)
++            colour = np.full(model.joint_count, -1, dtype=np.int64)
++            body_colours = [set() for _ in range(model.body_count)]
++            for j in range(model.joint_count):
++                if not enabled[j] or jtype[j] == int(JointType.FREE):
++                    continue
++                bodies = [bd for bd in (parent[j], child[j]) if bd >= 0 and inv_m[bd] > 0.0]
++                c = 0
++                while any(c in body_colours[bd] for bd in bodies):
++                    c += 1
++                colour[j] = c
++                for bd in bodies:
++                    body_colours[bd].add(c)
++            ncol = int(colour.max()) + 1 if (colour >= 0).any() else 0
++            if ncol > 0:
++                self._joint_colour_masks = [
++                    wp.array(enabled & (colour == c), dtype=bool, device=model.device) for c in range(ncol)
++                ]
++
+         # helper variables to track constraint resolution vars
+         self._particle_delta_counter = 0
+         self._body_delta_counter = 0
+@@ -833,66 +873,40 @@
+                         )
+ 
+                     if model.joint_count:
+-                        if requires_grad:
+-                            body_deltas = wp.zeros_like(body_deltas)
+-                        else:
+-                            body_deltas.zero_()
++                        jmasks = self._joint_colour_masks if self._joint_colour_masks is not None else [model.joint_enabled]
++                        for jmask in jmasks:
++                            if requires_grad:
++                                body_deltas = wp.zeros_like(body_deltas)
++                            else:
++                                body_deltas.zero_()
+ 
+-                        wp.launch(
+-                            kernel=solve_body_joints,
+-                            dim=model.joint_count,
+-                            inputs=[
+-                                body_q,
+-                                body_qd,
+-                                model.body_com,
+-                                self.body_inv_mass_effective,
+-                                self.body_inv_inertia_effective,
+-                                model.joint_type,
+-                                model.joint_enabled,
+-                                model.joint_parent,
+-                                model.joint_child,
+-                                model.joint_X_p,
+-                                model.joint_X_c,
+-                                model.joint_limit_lower,
+-                                model.joint_limit_upper,
+-                                model.joint_qd_start,
+-                                model.joint_target_q_start,
+-                                model.joint_dof_dim,
+-                                model.joint_axis,
+-                                control.joint_target_q,
+-                                control.joint_target_qd,
+-                                model.joint_target_ke,
+-                                model.joint_target_kd,
+-                                self.joint_linear_compliance,
+-                                self.joint_angular_compliance,
+-                                self.joint_angular_relaxation,
+-                                self.joint_linear_relaxation,
+-                                dt,
+-                            ],
+-                            outputs=[body_deltas, joint_impulse],
+-                            device=model.device,
+-                        )
+-
+-                        if self._has_joint_mimics:
+-                            wp.launch(
+-                                kernel=solve_joint_mimics,
++                            wp.launch(
++                                kernel=solve_body_joints,
+                                 dim=model.joint_count,
+                                 inputs=[
+                                     body_q,
++                                    body_qd,
+                                     model.body_com,
+                                     self.body_inv_mass_effective,
+                                     self.body_inv_inertia_effective,
+                                     model.joint_type,
+-                                    model.joint_enabled,
++                                    jmask,
+                                     model.joint_parent,
+                                     model.joint_child,
+                                     model.joint_X_p,
+                                     model.joint_X_c,
++                                    model.joint_limit_lower,
++                                    model.joint_limit_upper,
+                                     model.joint_qd_start,
++                                    model.joint_target_q_start,
+                                     model.joint_dof_dim,
+                                     model.joint_axis,
+-                                    model.joint_mimic_joint,
+-                                    model.joint_mimic_coeffs,
++                                    control.joint_target_q,
++                                    control.joint_target_qd,
++                                    model.joint_target_ke,
++                                    model.joint_target_kd,
++                                    self.joint_linear_compliance,
++                                    self.joint_angular_compliance,
+                                     self.joint_angular_relaxation,
+                                     self.joint_linear_relaxation,
+                                     dt,
+@@ -901,8 +915,36 @@
+                                 device=model.device,
+                             )
+ 
+-                        body_q, body_qd = self._apply_body_deltas(model, state_in, state_out, body_deltas, dt)
++                            if self._has_joint_mimics and jmask is jmasks[-1]:
++                                wp.launch(
++                                    kernel=solve_joint_mimics,
++                                    dim=model.joint_count,
++                                    inputs=[
++                                        body_q,
++                                        model.body_com,
++                                        self.body_inv_mass_effective,
++                                        self.body_inv_inertia_effective,
++                                        model.joint_type,
++                                        model.joint_enabled,
++                                        model.joint_parent,
++                                        model.joint_child,
++                                        model.joint_X_p,
++                                        model.joint_X_c,
++                                        model.joint_qd_start,
++                                        model.joint_dof_dim,
++                                        model.joint_axis,
++                                        model.joint_mimic_joint,
++                                        model.joint_mimic_coeffs,
++                                        self.joint_angular_relaxation,
++                                        self.joint_linear_relaxation,
++                                        dt,
++                                    ],
++                                    outputs=[body_deltas, joint_impulse],
++                                    device=model.device,
++                                )
+ 
++                            body_q, body_qd = self._apply_body_deltas(model, state_in, state_out, body_deltas, dt)
++
+             self._contact_impulse = contact_impulse
+             self._contact_impulse_capacity = contacts.rigid_contact_max if contacts is not None else 0
+             self._last_dt = dt

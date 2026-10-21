@@ -1,0 +1,126 @@
+DETERMINISM xpbd hold played twice: byte-identical
+xpbd hold 0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 10862 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+xpbd rest 0.002 | REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+xpbd bounce 0.002 | BOUNCE dt_ns 2000000 speed_in_ums 1372000 steps_to_turn 4 rebound_nm 10099255 drop_nm 100000000 rebound_per_10000 1009
+xpbd oblique 0.002 | IMPACT dt_ns 2000000 steps 3 horizontal_lost_ums 360058 vertical_given_ums 1200192 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1639942
+xpbd slide 0.002 | STOP dt_ns 2000000 first_stopped_at_step 129 largest_speed_last_third_ums 0 slid_um 126594 came_back_um 12
+xpbd hold 0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums 2715 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+xpbd rest 0.0005 | REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+xpbd bounce 0.0005 | BOUNCE dt_ns 500000 speed_in_ums 1396496 steps_to_turn 3 rebound_nm 10745689 drop_nm 100000000 rebound_per_10000 1074
+xpbd oblique 0.0005 | IMPACT dt_ns 500000 steps 4 horizontal_lost_ums 377002 vertical_given_ums 1256673 ratio_per_10000 3000 friction_per_10000 3000 still_sliding_ums 1622998
+xpbd slide 0.0005 | STOP dt_ns 500000 first_stopped_at_step 512 largest_speed_last_third_ums 0 slid_um 127293 came_back_um 0
+xpbd hold 0.000125 | CREEP dt_ns 125000 steps 8000 mean_speed_ums 680 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+xpbd rest 0.000125 | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+xpbd bounce 0.000125 | BOUNCE dt_ns 125000 speed_in_ums 1398945 steps_to_turn 3 rebound_nm 11060026 drop_nm 100000000 rebound_per_10000 1106
+xpbd oblique 0.000125 | IMPACT dt_ns 125000 steps 4 horizontal_lost_ums 369833 vertical_given_ums 1232776 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1630167
+xpbd slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 2042 largest_speed_last_third_ums 0 slid_um 127468 came_back_um 0
+xpbd hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 174 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+xpbd rest 0.00003125 | REST dt_ns 31250 mean_ground_force_mN 9800 weight_mN 9800
+xpbd bounce 0.00003125 | BOUNCE dt_ns 31250 speed_in_ums 1399557 steps_to_turn 4 rebound_nm 11822756 drop_nm 100000000 rebound_per_10000 1182
+xpbd oblique 0.00003125 | IMPACT dt_ns 31250 steps 4 horizontal_lost_ums 350956 vertical_given_ums 1169854 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1649044
+xpbd slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 8162 largest_speed_last_third_ums 0 slid_um 126460 came_back_um 0
+DETERMINISM featherstone hold played twice: byte-identical
+featherstone hold 0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 172252 friction_over_normal_per_10000 3078 friction_limit_per_10000 5000
+featherstone rest 0.002 | REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+featherstone bounce 0.002 | BOUNCE dt_ns 2000000 the cube was still moving down at the end
+featherstone oblique 0.002 | IMPACT dt_ns 2000000 steps 2 horizontal_lost_ums 503194 vertical_given_ums 1155141 ratio_per_10000 4355 friction_per_10000 3000 still_sliding_ums 1496806
+featherstone slide 0.002 | STOP dt_ns 2000000 first_stopped_at_step 54 largest_speed_last_third_ums 841614 slid_um 247177 came_back_um 11126
+featherstone hold 0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums -6138 friction_over_normal_per_10000 2960 friction_limit_per_10000 5000
+featherstone rest 0.0005 | REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+featherstone bounce 0.0005 | BOUNCE dt_ns 500000 speed_in_ums 1401396 steps_to_turn 16 rebound_nm 1757167 drop_nm 100000000 rebound_per_10000 175
+featherstone oblique 0.0005 | IMPACT dt_ns 500000 steps 15 horizontal_lost_ums 459465 vertical_given_ums 1063395 ratio_per_10000 4320 friction_per_10000 3000 still_sliding_ums 1540535
+featherstone slide 0.0005 | STOP dt_ns 500000 first_stopped_at_step 240 largest_speed_last_third_ums 52758 slid_um 44204 came_back_um 8493
+featherstone hold 0.000125 | CREEP dt_ns 125000 steps 8000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+featherstone rest 0.000125 | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+featherstone bounce 0.000125 | BOUNCE dt_ns 125000 speed_in_ums 1400170 steps_to_turn 67 rebound_nm 1892876 drop_nm 100000000 rebound_per_10000 189
+featherstone oblique 0.000125 | IMPACT dt_ns 125000 steps 64 horizontal_lost_ums 463743 vertical_given_ums 1069421 ratio_per_10000 4336 friction_per_10000 3000 still_sliding_ums 1536257
+featherstone slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 982 largest_speed_last_third_ums 0 slid_um 43339 came_back_um 11871
+featherstone hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+featherstone rest 0.00003125 | REST dt_ns 31250 mean_ground_force_mN 9800 weight_mN 9800
+featherstone bounce 0.00003125 | BOUNCE dt_ns 31250 speed_in_ums 1399863 steps_to_turn 270 rebound_nm 1927443 drop_nm 100000000 rebound_per_10000 192
+featherstone oblique 0.00003125 | IMPACT dt_ns 31250 steps 258 horizontal_lost_ums 463986 vertical_given_ums 1069144 ratio_per_10000 4339 friction_per_10000 3000 still_sliding_ums 1536014
+featherstone slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 3930 largest_speed_last_third_ums 0 slid_um 42982 came_back_um 11804
+DETERMINISM semi hold played twice: byte-identical
+semi hold 0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 115435 friction_over_normal_per_10000 3264 friction_limit_per_10000 5000
+semi rest 0.002 | REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+semi bounce 0.002 | BOUNCE dt_ns 2000000 the cube was still moving down at the end
+semi oblique 0.002 | IMPACT dt_ns 2000000 steps 2 horizontal_lost_ums 503178 vertical_given_ums 1155122 ratio_per_10000 4355 friction_per_10000 3000 still_sliding_ums 1496822
+semi slide 0.002 | STOP dt_ns 2000000 first_stopped_at_step 107 largest_speed_last_third_ums 862262 slid_um 133029 came_back_um 164675
+semi hold 0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums -6601 friction_over_normal_per_10000 2996 friction_limit_per_10000 5000
+semi rest 0.0005 | REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+semi bounce 0.0005 | BOUNCE dt_ns 500000 speed_in_ums 1401396 steps_to_turn 16 rebound_nm 1757167 drop_nm 100000000 rebound_per_10000 175
+semi oblique 0.0005 | IMPACT dt_ns 500000 steps 15 horizontal_lost_ums 459460 vertical_given_ums 1063388 ratio_per_10000 4320 friction_per_10000 3000 still_sliding_ums 1540540
+semi slide 0.0005 | STOP dt_ns 500000 first_stopped_at_step 240 largest_speed_last_third_ums 54608 slid_um 44657 came_back_um 6067
+semi hold 0.000125 | CREEP dt_ns 125000 steps 8000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+semi rest 0.000125 | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+semi bounce 0.000125 | BOUNCE dt_ns 125000 speed_in_ums 1400170 steps_to_turn 67 rebound_nm 1892876 drop_nm 100000000 rebound_per_10000 189
+semi oblique 0.000125 | IMPACT dt_ns 125000 steps 64 horizontal_lost_ums 463739 vertical_given_ums 1069415 ratio_per_10000 4336 friction_per_10000 3000 still_sliding_ums 1536261
+semi slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 981 largest_speed_last_third_ums 0 slid_um 43330 came_back_um 11860
+semi hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+semi rest 0.00003125 | REST dt_ns 31250 mean_ground_force_mN 9800 weight_mN 9800
+semi bounce 0.00003125 | BOUNCE dt_ns 31250 speed_in_ums 1399863 steps_to_turn 270 rebound_nm 1927443 drop_nm 100000000 rebound_per_10000 192
+semi oblique 0.00003125 | IMPACT dt_ns 31250 steps 258 horizontal_lost_ums 463983 vertical_given_ums 1069138 ratio_per_10000 4339 friction_per_10000 3000 still_sliding_ums 1536017
+semi slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 3929 largest_speed_last_third_ums 0 slid_um 42974 came_back_um 11796
+DETERMINISM mujoco hold played twice: byte-identical
+mujoco hold 0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+mujoco rest 0.002 | REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+mujoco bounce 0.002 | the file is missing or not whole
+mujoco oblique 0.002 | IMPACT dt_ns 2000000 steps 5 horizontal_lost_ums 351173 vertical_given_ums 1170572 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1648827
+mujoco slide 0.002 | STOP dt_ns 2000000 first_stopped_at_step 235 largest_speed_last_third_ums 0 slid_um 126772 came_back_um 0
+mujoco hold 0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+mujoco rest 0.0005 | REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+mujoco bounce 0.0005 | the file is missing or not whole
+mujoco oblique 0.0005 | IMPACT dt_ns 500000 steps 20 horizontal_lost_ums 330080 vertical_given_ums 1100267 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1669920
+mujoco slide 0.0005 | STOP dt_ns 500000 first_stopped_at_step 771 largest_speed_last_third_ums 0 slid_um 127508 came_back_um 0
+mujoco hold 0.000125 | CREEP dt_ns 125000 steps 8000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+mujoco rest 0.000125 | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+mujoco bounce 0.000125 | the file is missing or not whole
+mujoco oblique 0.000125 | IMPACT dt_ns 125000 steps 80 horizontal_lost_ums 326800 vertical_given_ums 1089333 ratio_per_10000 3000 friction_per_10000 3000 still_sliding_ums 1673200
+mujoco slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 2922 largest_speed_last_third_ums 0 slid_um 127675 came_back_um 0
+mujoco hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+mujoco rest 0.00003125 | REST dt_ns 31250 mean_ground_force_mN 9800 weight_mN 9800
+mujoco bounce 0.00003125 | the file is missing or not whole
+mujoco oblique 0.00003125 | IMPACT dt_ns 31250 steps 321 horizontal_lost_ums 326632 vertical_given_ums 1088771 ratio_per_10000 2999 friction_per_10000 3000 still_sliding_ums 1673368
+mujoco slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 9218 largest_speed_last_third_ums 0 slid_um 126703 came_back_um 0
+DETERMINISM vbd hold played twice: byte-identical
+vbd hold 0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 12396 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+vbd rest 0.002 | REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+vbd bounce 0.002 | BOUNCE dt_ns 2000000 speed_in_ums 686087 steps_to_turn 43 rebound_nm -1771979 drop_nm 100000000 rebound_per_10000 0
+vbd oblique 0.002 | IMPACT dt_ns 2000000 the cube started on the ground
+vbd slide 0.002 | STOP dt_ns 2000000 first_stopped_at_step 165 largest_speed_last_third_ums 142 slid_um 180192 came_back_um 447
+vbd hold 0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums 58208 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+vbd rest 0.0005 | REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+vbd bounce 0.0005 | BOUNCE dt_ns 500000 the cube started on the ground
+vbd oblique 0.0005 | IMPACT dt_ns 500000 steps 31 horizontal_lost_ums 71615 vertical_given_ums 1137604 ratio_per_10000 629 friction_per_10000 3000 still_sliding_ums 1928359
+vbd slide 0.0005 | STOP dt_ns 500000 first_stopped_at_step 721 largest_speed_last_third_ums 685 slid_um 193096 came_back_um 603
+vbd hold 0.000125 | CREEP dt_ns 125000 steps 8000 mean_speed_ums 223151 friction_over_normal_per_10000 2989 friction_limit_per_10000 5000
+vbd rest 0.000125 | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+vbd bounce 0.000125 | BOUNCE dt_ns 125000 the cube started on the ground
+vbd oblique 0.000125 | IMPACT dt_ns 125000 steps 210 horizontal_lost_ums 48637 vertical_given_ums 1122471 ratio_per_10000 433 friction_per_10000 3000 still_sliding_ums 1951337
+vbd slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step -1 largest_speed_last_third_ums 35048 slid_um 224276 came_back_um 0
+vbd hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 613739 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+vbd rest 0.00003125 | REST dt_ns 31250 mean_ground_force_mN 9800 weight_mN 9800
+vbd bounce 0.00003125 | BOUNCE dt_ns 31250 speed_in_ums 873089 steps_to_turn 2502 rebound_nm -1263958 drop_nm 100000000 rebound_per_10000 0
+vbd oblique 0.00003125 | IMPACT dt_ns 31250 the cube started on the ground
+vbd slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step -1 largest_speed_last_third_ums 892639 slid_um 890568 came_back_um 0
+DETERMINISM vbd_alm hold played twice: byte-identical
+vbd_alm hold 0.002 | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+vbd_alm rest 0.002 | REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+vbd_alm bounce 0.002 | BOUNCE dt_ns 2000000 speed_in_ums 686087 steps_to_turn 42 rebound_nm 976510 drop_nm 100000000 rebound_per_10000 97
+vbd_alm oblique 0.002 | IMPACT dt_ns 2000000 the cube started on the ground
+vbd_alm slide 0.002 | STOP dt_ns 2000000 first_stopped_at_step 147 largest_speed_last_third_ums 7 slid_um 164027 came_back_um 406
+vbd_alm hold 0.0005 | CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+vbd_alm rest 0.0005 | REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+vbd_alm bounce 0.0005 | BOUNCE dt_ns 500000 the cube started on the ground
+vbd_alm oblique 0.0005 | IMPACT dt_ns 500000 steps 21 horizontal_lost_ums 51260 vertical_given_ums 1094557 ratio_per_10000 467 friction_per_10000 3000 still_sliding_ums 1948714
+vbd_alm slide 0.0005 | STOP dt_ns 500000 first_stopped_at_step 591 largest_speed_last_third_ums 0 slid_um 164882 came_back_um 407
+vbd_alm hold 0.000125 | CREEP dt_ns 125000 steps 8000 mean_speed_ums 74 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+vbd_alm rest 0.000125 | REST dt_ns 125000 mean_ground_force_mN 9800 weight_mN 9800
+vbd_alm bounce 0.000125 | BOUNCE dt_ns 125000 the cube started on the ground
+vbd_alm oblique 0.000125 | IMPACT dt_ns 125000 steps 180 horizontal_lost_ums 47684 vertical_given_ums 1085751 ratio_per_10000 438 friction_per_10000 3000 still_sliding_ums 1952290
+vbd_alm slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 2383 largest_speed_last_third_ums 477 slid_um 165269 came_back_um 409
+vbd_alm hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 406 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+vbd_alm rest 0.00003125 | REST dt_ns 31250 mean_ground_force_mN 9800 weight_mN 9800
+vbd_alm bounce 0.00003125 | BOUNCE dt_ns 31250 speed_in_ums 873089 steps_to_turn 2403 rebound_nm 1266167 drop_nm 100000000 rebound_per_10000 126
+vbd_alm oblique 0.00003125 | IMPACT dt_ns 31250 the cube started on the ground
+vbd_alm slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 5618 largest_speed_last_third_ums 715 slid_um 106341 came_back_um 1405

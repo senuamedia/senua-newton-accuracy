@@ -1,0 +1,16 @@
+strike_stock_m5_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1053083 swing_per_10000 3351 turn_urad -228092 swing_per_10000
+strike_stock_m5_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1053044 swing_per_10000 3351 turn_urad -230839 swing_per_10000
+strike_stock_m2_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1031677 swing_per_10000 3283 turn_urad -348000 swing_per_10000
+strike_stock_m2_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1031781 swing_per_10000 3283 turn_urad -341270 swing_per_10000
+strike_limit_m5_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1053083 swing_per_10000 3351 turn_urad -223073 swing_per_10000
+strike_limit_m5_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1053044 swing_per_10000 3351 turn_urad -224298 swing_per_10000
+strike_limit_m2_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1031677 swing_per_10000 3283 turn_urad -329721 swing_per_10000
+strike_limit_m2_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1031781 swing_per_10000 3283 turn_urad -327122 swing_per_10000
+strike_fs_m5_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1053984 swing_per_10000 3354 turn_urad -241521 swing_per_10000
+strike_fs_m5_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1054013 swing_per_10000 3354 turn_urad -241193 swing_per_10000
+strike_fs_m2_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1032305 swing_per_10000 3285 turn_urad -359652 swing_per_10000
+strike_fs_m2_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1032353 swing_per_10000 3285 turn_urad -360355 swing_per_10000
+strike_fs1_m5_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1053984 swing_per_10000 3354 turn_urad -234267 swing_per_10000
+strike_fs1_m5_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1054013 swing_per_10000 3354 turn_urad -234162 swing_per_10000
+strike_fs1_m2_0.00025 stops -1 SWING dt_ns 250000 released_at_urad 0 turn_urad -1032305 swing_per_10000 3285 turn_urad -345221 swing_per_10000
+strike_fs1_m2_0.0000625 stops -1 SWING dt_ns 62500 released_at_urad 0 turn_urad -1032353 swing_per_10000 3285 turn_urad -344885 swing_per_10000

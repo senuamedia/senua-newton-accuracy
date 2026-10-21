@@ -1,0 +1,23 @@
+featherstone centre of mass off the origin, 0.01 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+featherstone centre of mass off the origin, 0.0025 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 1 slid_um 0
+featherstone centre of mass off the origin, 0.000625 s | creep mean_speed_ums -2 | stop largest_speed_last_third_ums 3 slid_um 0
+featherstone centre of mass at the origin, 0.01 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+featherstone centre of mass at the origin, 0.0025 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+featherstone centre of mass at the origin, 0.000625 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+semi centre of mass off the origin, 0.01 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+semi centre of mass off the origin, 0.0025 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+semi centre of mass off the origin, 0.000625 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+xpbd centre of mass off the origin, 0.01 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+xpbd centre of mass off the origin, 0.0025 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+xpbd centre of mass off the origin, 0.000625 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 0 slid_um 0
+mujoco centre of mass off the origin, 0.01 s | creep mean_speed_ums 5754 | stop largest_speed_last_third_ums 12498 slid_um 13216
+mujoco centre of mass off the origin, 0.0025 s | creep mean_speed_ums 1431 | stop largest_speed_last_third_ums 3117 slid_um 3288
+mujoco centre of mass off the origin, 0.000625 s | creep mean_speed_ums 336 | stop largest_speed_last_third_ums 734 slid_um 783
+vbd_alm centre of mass off the origin, 0.01 s | creep mean_speed_ums 0 | stop largest_speed_last_third_ums 2 slid_um 0
+vbd_alm centre of mass off the origin, 0.0025 s | creep mean_speed_ums 3 | stop largest_speed_last_third_ums 13 slid_um 6
+vbd_alm centre of mass off the origin, 0.000625 s | creep mean_speed_ums -201 | stop largest_speed_last_third_ums 352 slid_um 1
+CHECK check_hold_semi byte-identical to validation/run_001_design_probes/runs/hold_semi_0.000125.txt: yes
+CHECK check_slide_vbd_alm byte-identical to validation/run_001_design_probes/runs/slide_vbd_alm_0.000125.txt: yes
+CHECK check_plate_xpbd byte-identical to validation/run_004_plate/runs/plate_xpbd_0.000125.txt: yes
+CHECK check_drop_xpbd byte-identical to suites/1/xpbd/drop_4.txt: yes
+plays that stopped being a number: 0

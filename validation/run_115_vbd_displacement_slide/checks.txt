@@ -1,0 +1,7 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C0_as_study_22 eq 4 4 : HELD
+RULE P1_l1_released_moves all_ge 0 -14197 : FAILED
+RULE P2_l1_patch_settles all_within 101924 200 101786 101903 : HELD
+RULE P1_l2_released_moves all_ge 0 516739 : HELD
+RULE P2_l2_patch_settles all_within 290932 200 290746 290904 : HELD
+checks: 6, held: 5

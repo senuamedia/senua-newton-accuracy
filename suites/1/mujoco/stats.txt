@@ -1,0 +1,39 @@
+STATS run free_1 contact dt 0.01 h0 10 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 100 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run drop_1 contact dt 0.01 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 50 most_tilt_urad 0 nan_at_step 16 engine newton 1.6.1 solver mujoco extra none
+STATS run oblique_1 contact dt 0.01 h0 0.08 vx0 4 mu 0.4 mass 2 radius 0.04 steps 30 most_tilt_urad 21138 engine newton 1.6.1 solver mujoco extra none
+STATS run chain_1 contact dt 0.01 h0 0.08 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 100 most_tilt_urad 24473 engine newton 1.6.1 solver mujoco extra none
+STATS run free_2 contact dt 0.005 h0 10 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 200 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run drop_2 contact dt 0.005 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 100 most_tilt_urad 0 nan_at_step 28 engine newton 1.6.1 solver mujoco extra none
+STATS run oblique_2 contact dt 0.005 h0 0.08 vx0 4 mu 0.4 mass 2 radius 0.04 steps 60 most_tilt_urad 6020 engine newton 1.6.1 solver mujoco extra none
+STATS run chain_2 contact dt 0.005 h0 0.08 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 200 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run free_4 contact dt 0.0025 h0 10 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 400 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run drop_4 contact dt 0.0025 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 200 most_tilt_urad 0 nan_at_step 51 engine newton 1.6.1 solver mujoco extra none
+STATS run oblique_4 contact dt 0.0025 h0 0.08 vx0 4 mu 0.4 mass 2 radius 0.04 steps 120 most_tilt_urad 6623 engine newton 1.6.1 solver mujoco extra none
+STATS run chain_4 contact dt 0.0025 h0 0.08 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 400 most_tilt_urad 8789 engine newton 1.6.1 solver mujoco extra none
+STATS run free_8 contact dt 0.00125 h0 10 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 800 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run drop_8 contact dt 0.00125 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 400 most_tilt_urad 0 nan_at_step 102 engine newton 1.6.1 solver mujoco extra none
+STATS run oblique_8 contact dt 0.00125 h0 0.08 vx0 4 mu 0.4 mass 2 radius 0.04 steps 240 most_tilt_urad 13759 engine newton 1.6.1 solver mujoco extra none
+STATS run chain_8 contact dt 0.00125 h0 0.08 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 800 most_tilt_urad 5940 engine newton 1.6.1 solver mujoco extra none
+STATS run free_16 contact dt 0.000625 h0 10 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 1600 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run drop_16 contact dt 0.000625 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 800 most_tilt_urad 0 nan_at_step 204 engine newton 1.6.1 solver mujoco extra none
+STATS run oblique_16 contact dt 0.000625 h0 0.08 vx0 4 mu 0.4 mass 2 radius 0.04 steps 480 most_tilt_urad 6404 engine newton 1.6.1 solver mujoco extra none
+STATS run chain_16 contact dt 0.000625 h0 0.08 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 1600 most_tilt_urad 3654 engine newton 1.6.1 solver mujoco extra none
+STATS run free_32 contact dt 0.0003125 h0 10 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 3200 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run drop_32 contact dt 0.0003125 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 1600 most_tilt_urad 0 nan_at_step 449 engine newton 1.6.1 solver mujoco extra none
+STATS run oblique_32 contact dt 0.0003125 h0 0.08 vx0 4 mu 0.4 mass 2 radius 0.04 steps 960 most_tilt_urad 33970 engine newton 1.6.1 solver mujoco extra none
+STATS run chain_32 contact dt 0.0003125 h0 0.08 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 3200 most_tilt_urad 6291 engine newton 1.6.1 solver mujoco extra none
+STATS run free_64 contact dt 0.00015625 h0 10 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 6400 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run drop_64 contact dt 0.00015625 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 3200 most_tilt_urad 0 nan_at_step 822 engine newton 1.6.1 solver mujoco extra none
+STATS run oblique_64 contact dt 0.00015625 h0 0.08 vx0 4 mu 0.4 mass 2 radius 0.04 steps 1920 most_tilt_urad 13897 engine newton 1.6.1 solver mujoco extra none
+STATS run chain_64 contact dt 0.00015625 h0 0.08 vx0 1.5 mu 0.4 mass 2 radius 0.04 steps 6400 most_tilt_urad 1691 engine newton 1.6.1 solver mujoco extra none
+STATS run slide_1 contact dt 0.01 h0 0 vx0 5 mu 0.4 mass 2 radius 0.04 steps 50 most_tilt_urad 51362 engine newton 1.6.1 solver mujoco extra none
+STATS run rest_1 contact dt 0.01 h0 0 vx0 0 mu 0 mass 2 radius 0.04 steps 200 most_tilt_urad 0 nan_at_step 3 engine newton 1.6.1 solver mujoco extra none
+STATS run hold_1 contact dt 0.01 h0 0 vx0 0 mu 0.5 mass 2 radius 0.04 steps 200 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run slip_1 contact dt 0.01 h0 0 vx0 0 mu 0.5 mass 2 radius 0.04 steps 200 most_tilt_urad 263604 engine newton 1.6.1 solver mujoco extra none
+STATS run lift_1 contact dt 0.01 h0 0 vx0 0 mu 0 mass 2 radius 0.04 steps 40 most_tilt_urad 0 nan_at_step 3 engine newton 1.6.1 solver mujoco extra none
+STATS run slide_16 contact dt 0.000625 h0 0 vx0 5 mu 0.4 mass 2 radius 0.04 steps 800 most_tilt_urad 61475 engine newton 1.6.1 solver mujoco extra none
+STATS run rest_16 contact dt 0.000625 h0 0 vx0 0 mu 0 mass 2 radius 0.04 steps 3200 most_tilt_urad 0 nan_at_step 1 engine newton 1.6.1 solver mujoco extra none
+STATS run hold_16 contact dt 0.000625 h0 0 vx0 0 mu 0.5 mass 2 radius 0.04 steps 3200 most_tilt_urad 0 engine newton 1.6.1 solver mujoco extra none
+STATS run slip_16 contact dt 0.000625 h0 0 vx0 0 mu 0.5 mass 2 radius 0.04 steps 3200 most_tilt_urad 46205 engine newton 1.6.1 solver mujoco extra none
+STATS run lift_16 contact dt 0.000625 h0 0 vx0 0 mu 0 mass 2 radius 0.04 steps 640 most_tilt_urad 0 nan_at_step 1 engine newton 1.6.1 solver mujoco extra none
+STATS run rebound_16 contact dt 0.000625 h0 0.3 vx0 0 mu 0 mass 2 radius 0.04 steps 800 most_tilt_urad 0 nan_at_step 396 engine newton 1.6.1 solver mujoco extra none

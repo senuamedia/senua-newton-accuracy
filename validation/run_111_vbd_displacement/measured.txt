@@ -1,0 +1,51 @@
+spin_vbd_stock_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 19 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_stock_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 133 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_stock_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums -3751 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_stock_0.0000625 stops -1 CREEP dt_ns 62500 steps 16000 mean_speed_ums 12994 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_stock_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 19 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_stock_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 133 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_stock_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums -3751 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_stock_0.0000625 stops -1 CREEP dt_ns 62500 steps 16000 mean_speed_ums 12994 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+chain_vbd_stock_0.002 stops -1 energy_drift_ppm -39602 momentum_drift_ppm -13490
+chain_vbd_stock_0.0005 stops -1 energy_drift_ppm -7920 momentum_drift_ppm -1163
+chain_vbd_stock_0.000125 stops -1 energy_drift_ppm -311550 momentum_drift_ppm -173360
+hold_alm_stock_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+holdc_alm_stock_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+slide_alm_stock_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step 122 largest_speed_last_third_ums 775 slid_um 138121 came_back_um 494
+hold_alm_stock_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 74 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+holdc_alm_stock_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+slide_alm_stock_0.000125 stops -1 STOP dt_ns 125000 first_stopped_at_step 1972 largest_speed_last_third_ums 1907 slid_um 139426 came_back_um 488
+spin_vbd_off_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 19 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_off_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 133 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_off_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums -3751 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_off_0.0000625 stops -1 CREEP dt_ns 62500 steps 16000 mean_speed_ums 12994 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_off_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 19 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_off_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 133 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_off_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums -3751 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_off_0.0000625 stops -1 CREEP dt_ns 62500 steps 16000 mean_speed_ums 12994 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+chain_vbd_off_0.002 stops -1 energy_drift_ppm -39602 momentum_drift_ppm -13490
+chain_vbd_off_0.0005 stops -1 energy_drift_ppm -7920 momentum_drift_ppm -1163
+chain_vbd_off_0.000125 stops -1 energy_drift_ppm -311550 momentum_drift_ppm -173360
+hold_alm_off_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+holdc_alm_off_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+slide_alm_off_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step 122 largest_speed_last_third_ums 775 slid_um 138121 came_back_um 494
+hold_alm_off_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 74 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+holdc_alm_off_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+slide_alm_off_0.000125 stops -1 STOP dt_ns 125000 first_stopped_at_step 1972 largest_speed_last_third_ums 1907 slid_um 139426 came_back_um 488
+spin_vbd_on_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_on_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_on_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_on_0.0000625 stops -1 CREEP dt_ns 62500 steps 16000 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_on_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_on_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_on_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+spin_vbd_alm_on_0.0000625 stops -1 CREEP dt_ns 62500 steps 16000 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+chain_vbd_on_0.002 stops -1 energy_drift_ppm -39653 momentum_drift_ppm -13533
+chain_vbd_on_0.0005 stops -1 energy_drift_ppm -10787 momentum_drift_ppm -3463
+chain_vbd_on_0.000125 stops -1 energy_drift_ppm -2463 momentum_drift_ppm -680
+hold_alm_on_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+holdc_alm_on_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+slide_alm_on_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step 122 largest_speed_last_third_ums 769 slid_um 138123 came_back_um 494
+hold_alm_on_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 63 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+holdc_alm_on_0.000125 stops -1 CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+slide_alm_on_0.000125 stops -1 STOP dt_ns 125000 first_stopped_at_step 1965 largest_speed_last_third_ums 1322 slid_um 139340 came_back_um 497

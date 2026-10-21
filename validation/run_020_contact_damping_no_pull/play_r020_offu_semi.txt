@@ -1,0 +1,2 @@
+played 39 files under: solver=semi
+runner rc 0

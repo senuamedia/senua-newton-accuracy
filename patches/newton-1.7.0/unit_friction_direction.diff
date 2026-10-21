@@ -1,0 +1,314 @@
+diff -ruN a/newton/_src/solvers/featherstone/solver_featherstone.py b/newton/_src/solvers/featherstone/solver_featherstone.py
+--- a/newton/_src/solvers/featherstone/solver_featherstone.py	2026-10-19 14:35:25
++++ b/newton/_src/solvers/featherstone/solver_featherstone.py	2026-10-19 14:35:26
+@@ -1,6 +1,8 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
++
+ import numpy as np
+ import warp as wp
+ 
+@@ -715,8 +717,13 @@
+                 )
+ 
+                 if contacts is not None and contacts.rigid_contact_max:
++                    kernel = eval_body_contact
++                    if os.environ.get("NEWTON_UNIT_FRICTION_DIRECTION") == "1":  # Senua AI patch, in design
++                        from ..semi_implicit.kernels_contact_unit import eval_body_contact_unit  # noqa: PLC0415
++
++                        kernel = eval_body_contact_unit
+                     wp.launch(
+-                        kernel=eval_body_contact,
++                        kernel=kernel,
+                         dim=contacts.rigid_contact_max,
+                         inputs=[
+                             state_in.body_q,
+diff -ruN a/newton/_src/solvers/semi_implicit/kernels_contact.py b/newton/_src/solvers/semi_implicit/kernels_contact.py
+--- a/newton/_src/solvers/semi_implicit/kernels_contact.py	2026-10-19 14:35:25
++++ b/newton/_src/solvers/semi_implicit/kernels_contact.py	2026-10-19 14:35:26
+@@ -1,6 +1,8 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
++
+ import warp as wp
+ 
+ from ...geometry import ParticleFlags
+@@ -677,8 +679,13 @@
+             body_q = state.body_q
+         if body_qd is None:
+             body_qd = state.body_qd
++        kernel = eval_body_contact
++        if os.environ.get("NEWTON_UNIT_FRICTION_DIRECTION") == "1":  # Senua AI patch, in design
++            from .kernels_contact_unit import eval_body_contact_unit  # noqa: PLC0415
++
++            kernel = eval_body_contact_unit
+         wp.launch(
+-            kernel=eval_body_contact,
++            kernel=kernel,
+             dim=contacts.rigid_contact_max,
+             inputs=[
+                 body_q,
+diff -ruN a/newton/_src/solvers/semi_implicit/kernels_contact_unit.py b/newton/_src/solvers/semi_implicit/kernels_contact_unit.py
+--- a/newton/_src/solvers/semi_implicit/kernels_contact_unit.py	1970-01-01 10:00:00
++++ b/newton/_src/solvers/semi_implicit/kernels_contact_unit.py	2026-10-19 14:35:26
+@@ -0,0 +1,256 @@
++# SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: Newton's body contact function (kernels_contact._eval_body_contact, launched by the kernel
++# eval_body_contact) with one change, in its friction. The stock function gives friction the direction
++# vt / norm_huber(vt, friction_smoothing), and Warp's Huber norm is not divided by its width, so that vector is
++# |vt| / H(vt) long, not 1: 2 / |vt| below the width and about 1 / width above it, and friction is that many times
++# Coulomb's (measured: a 1 m/s slide stops at a third of Coulomb's distance at the default width, and in 0.69 mm at a
++# width of 0.01). Here friction has a unit direction and its size is min(kf |vt|, mu N) at every speed: Coulomb's
++# limit, with the stock function's viscous branch below it. Every other line is the stock function's, and
++# eval_body_contact_unit is the stock kernel eval_body_contact launching it. Launched in the stock kernel's place only
++# when NEWTON_UNIT_FRICTION_DIRECTION=1; otherwise never imported. (Rebased onto Newton 1.7.0, whose contact kernel
++# moved into _eval_body_contact and subtracts a contact's surface velocity from the slip.)
++
++import warp as wp
++
++
++@wp.func
++def _eval_body_contact_unit(
++    body_q: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_com: wp.array[wp.vec3],
++    shape_material_ke: wp.array[float],
++    shape_material_kd: wp.array[float],
++    shape_material_kf: wp.array[float],
++    shape_material_ka: wp.array[float],
++    shape_material_mu: wp.array[float],
++    shape_body: wp.array[int],
++    contact_count: wp.array[int],
++    contact_point0: wp.array[wp.vec3],
++    contact_point1: wp.array[wp.vec3],
++    contact_surface_velocity: wp.vec3,
++    contact_normal: wp.array[wp.vec3],
++    contact_shape0: wp.array[int],
++    contact_shape1: wp.array[int],
++    contact_margin0: wp.array[float],
++    contact_margin1: wp.array[float],
++    rigid_contact_stiffness: wp.array[float],
++    rigid_contact_damping: wp.array[float],
++    rigid_contact_friction_scale: wp.array[float],
++    force_in_world_frame: bool,
++    friction_smoothing: float,
++    body_f: wp.array[wp.spatial_vector],
++    tid: int,
++):
++
++    count = contact_count[0]
++    if tid >= count:
++        return
++
++    # retrieve contact margins, compute average contact material properties
++    ke = 0.0  # contact normal force stiffness
++    kd = 0.0  # damping coefficient
++    kf = 0.0  # contact friction gain
++    ka = 0.0  # adhesion distance
++    mu = 0.0  # friction coefficient
++    mat_nonzero = 0
++    margin_a = contact_margin0[tid]
++    margin_b = contact_margin1[tid]
++    shape_a = contact_shape0[tid]
++    shape_b = contact_shape1[tid]
++    if shape_a == shape_b:
++        return
++    body_a = -1
++    body_b = -1
++    if shape_a >= 0:
++        mat_nonzero += 1
++        ke += shape_material_ke[shape_a]
++        kd += shape_material_kd[shape_a]
++        kf += shape_material_kf[shape_a]
++        ka += shape_material_ka[shape_a]
++        mu += shape_material_mu[shape_a]
++        body_a = shape_body[shape_a]
++    if shape_b >= 0:
++        mat_nonzero += 1
++        ke += shape_material_ke[shape_b]
++        kd += shape_material_kd[shape_b]
++        kf += shape_material_kf[shape_b]
++        ka += shape_material_ka[shape_b]
++        mu += shape_material_mu[shape_b]
++        body_b = shape_body[shape_b]
++    if mat_nonzero > 0:
++        ke /= float(mat_nonzero)
++        kd /= float(mat_nonzero)
++        kf /= float(mat_nonzero)
++        ka /= float(mat_nonzero)
++        mu /= float(mat_nonzero)
++
++    # per-contact stiffness/damping/friction
++    if rigid_contact_stiffness:
++        contact_ke = rigid_contact_stiffness[tid]
++        ke = contact_ke if contact_ke > 0.0 else ke
++        contact_kd = rigid_contact_damping[tid]
++        kd = contact_kd if contact_kd > 0.0 else kd
++        contact_mu = rigid_contact_friction_scale[tid]
++        mu = mu * contact_mu if contact_mu > 0.0 else mu
++
++    # contact normal stored as A-to-B; this spring-damper kernel uses B-to-A
++    # internally so that the existing force-application signs are preserved.
++    n = -contact_normal[tid]
++    bx_a = contact_point0[tid]
++    bx_b = contact_point1[tid]
++    r_a = wp.vec3(0.0)
++    r_b = wp.vec3(0.0)
++    if body_a >= 0:
++        X_wb_a = body_q[body_a]
++        X_com_a = body_com[body_a]
++        bx_a = wp.transform_point(X_wb_a, bx_a) - margin_a * n
++        r_a = bx_a - wp.transform_point(X_wb_a, X_com_a)
++
++    if body_b >= 0:
++        X_wb_b = body_q[body_b]
++        X_com_b = body_com[body_b]
++        bx_b = wp.transform_point(X_wb_b, bx_b) + margin_b * n
++        r_b = bx_b - wp.transform_point(X_wb_b, X_com_b)
++
++    d = wp.dot(n, bx_a - bx_b)
++
++    if d >= ka:
++        return
++
++    # compute contact point velocity
++    bv_a = wp.vec3(0.0)
++    bv_b = wp.vec3(0.0)
++    if body_a >= 0:
++        body_v_s_a = body_qd[body_a]
++        body_w_a = wp.spatial_bottom(body_v_s_a)
++        body_v_a = wp.spatial_top(body_v_s_a)
++        if force_in_world_frame:
++            bv_a = body_v_a + wp.cross(body_w_a, bx_a)
++        else:
++            bv_a = body_v_a + wp.cross(body_w_a, r_a)
++
++    if body_b >= 0:
++        body_v_s_b = body_qd[body_b]
++        body_w_b = wp.spatial_bottom(body_v_s_b)
++        body_v_b = wp.spatial_top(body_v_s_b)
++        if force_in_world_frame:
++            bv_b = body_v_b + wp.cross(body_w_b, bx_b)
++        else:
++            bv_b = body_v_b + wp.cross(body_w_b, r_b)
++
++    # relative velocity
++    v = bv_a - bv_b
++    surface_velocity_t = contact_surface_velocity - n * wp.dot(n, contact_surface_velocity)
++    v -= surface_velocity_t
++
++    # print(v)
++
++    # decompose relative velocity
++    vn = wp.dot(n, v)
++    vt = v - n * vn
++
++    # contact elastic
++    fn = d * ke
++
++    # contact damping
++    fd = wp.min(vn, 0.0) * kd * wp.step(d)
++
++    # viscous friction
++    # ft = vt*kf
++
++    # Coulomb friction (box)
++    # lower = mu * d * ke
++    # upper = -lower
++
++    # vx = wp.clamp(wp.dot(wp.vec3(kf, 0.0, 0.0), vt), lower, upper)
++    # vz = wp.clamp(wp.dot(wp.vec3(0.0, 0.0, kf), vt), lower, upper)
++
++    # ft = wp.vec3(vx, 0.0, vz)
++
++    # Coulomb friction (smooth, but gradients are numerically unstable around |vt| = 0)
++    ft = wp.vec3(0.0)
++    if d < 0.0:
++        # the patch: a unit direction, and a size of at most mu N at every speed (friction_smoothing is not used)
++        vtl = wp.length(vt)
++        if vtl > 0.0:
++            ft = vt / vtl * wp.min(kf * vtl, -mu * (fn + fd))
++
++    f_total = n * (fn + fd) + ft
++    # f_total = n * (fn + fd)
++    # f_total = n * fn
++
++    if body_a >= 0:
++        if force_in_world_frame:
++            wp.atomic_add(body_f, body_a, wp.spatial_vector(f_total, wp.cross(bx_a, f_total)))
++        else:
++            wp.atomic_sub(body_f, body_a, wp.spatial_vector(f_total, wp.cross(r_a, f_total)))
++
++    if body_b >= 0:
++        if force_in_world_frame:
++            wp.atomic_sub(body_f, body_b, wp.spatial_vector(f_total, wp.cross(bx_b, f_total)))
++        else:
++            wp.atomic_add(body_f, body_b, wp.spatial_vector(f_total, wp.cross(r_b, f_total)))
++
++
++@wp.kernel
++def eval_body_contact_unit(
++    body_q: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_com: wp.array[wp.vec3],
++    shape_material_ke: wp.array[float],
++    shape_material_kd: wp.array[float],
++    shape_material_kf: wp.array[float],
++    shape_material_ka: wp.array[float],
++    shape_material_mu: wp.array[float],
++    shape_body: wp.array[int],
++    contact_count: wp.array[int],
++    contact_point0: wp.array[wp.vec3],
++    contact_point1: wp.array[wp.vec3],
++    contact_surface_velocity: wp.array[wp.vec3],
++    contact_normal: wp.array[wp.vec3],
++    contact_shape0: wp.array[int],
++    contact_shape1: wp.array[int],
++    contact_margin0: wp.array[float],
++    contact_margin1: wp.array[float],
++    rigid_contact_stiffness: wp.array[float],
++    rigid_contact_damping: wp.array[float],
++    rigid_contact_friction_scale: wp.array[float],
++    force_in_world_frame: bool,
++    friction_smoothing: float,
++    body_f: wp.array[wp.spatial_vector],
++):
++    tid = wp.tid()
++    surface_velocity = wp.vec3(0.0)
++    if contact_surface_velocity:
++        surface_velocity = contact_surface_velocity[tid]
++    _eval_body_contact_unit(
++        body_q,
++        body_qd,
++        body_com,
++        shape_material_ke,
++        shape_material_kd,
++        shape_material_kf,
++        shape_material_ka,
++        shape_material_mu,
++        shape_body,
++        contact_count,
++        contact_point0,
++        contact_point1,
++        surface_velocity,
++        contact_normal,
++        contact_shape0,
++        contact_shape1,
++        contact_margin0,
++        contact_margin1,
++        rigid_contact_stiffness,
++        rigid_contact_damping,
++        rigid_contact_friction_scale,
++        force_in_world_frame,
++        friction_smoothing,
++        body_f,
++        tid,
++    )
++
++

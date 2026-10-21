@@ -1,0 +1,6 @@
+RULE R1_safe_when_off eq 24 24 : HELD
+RULE R2_defect_there all_ge 100000 1003631 4633985 1003631 4633985 : HELD
+RULE R3_fall eq 4 4 : HELD
+RULE R4_what_passes_still_passes eq 0 0 : HELD
+RULE R5_no_nan eq 0 0 : HELD
+rules: 5, held: 5

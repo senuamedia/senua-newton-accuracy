@@ -1,0 +1,228 @@
+--- a/newton/_src/solvers/xpbd/friction_total_kernels.py
++++ b/newton/_src/solvers/xpbd/friction_total_kernels.py
+@@ -16,6 +16,8 @@
+ 
+ import os
+ 
++import os
++
+ import warp as wp
+ 
+ # Senua AI patch, in design: stick within the static cone on the step's totals, slide at the dynamic coefficient beyond it
+@@ -26,6 +28,83 @@
+ from ...sim.contacts import contact_surface_point, contact_surface_separation
+ from .kernels import compute_contact_constraint_delta
+ 
++# Senua AI patch, in design: with NEWTON_XPBD_FRICTION_SLIP=1 (read once, here) the friction above measures a step's
++# slip as the two contact points' separation at the step's start plus each point's motion over the step, carried per
++# body (the integrator's v dt and w dt, and every correction since), not as the difference of the two points' 32-bit
++# world positions now, which cannot see a slip under one spacing of those coordinates: a body held by friction
++# slips by about that spacing a step, unseen (Study 27: 12 um/s at 0.25 ms, 3.7 nm a step at 0.04 m from the
++# origin).
++FRICTION_SLIP = os.environ.get("NEWTON_XPBD_FRICTION_SLIP") == "1"
++
++
++@wp.func
++def _turn_of(th: wp.vec3, w: wp.vec3) -> wp.vec3:
++    """How far a lever w moves under a turn th (its rotation vector): Rodrigues' formula, its two factors by series."""
++    t2 = wp.dot(th, th)
++    a = 1.0 - t2 / 6.0 + t2 * t2 / 120.0
++    b = 0.5 - t2 / 24.0 + t2 * t2 / 720.0
++    c = wp.cross(th, w)
++    return a * c + b * wp.cross(th, c)
++
++
++@wp.func
++def _carried_motion(body: int, X0: wp.transform, com: wp.vec3, p0: wp.vec3, step_dp: wp.array[wp.vec3],
++                    step_dth: wp.array[wp.vec3]) -> wp.vec3:
++    """A body point's motion over the step, from the body's carried motion: the centre's, and the turn on the lever."""
++    if body < 0:
++        return wp.vec3(0.0)
++    return step_dp[body] + _turn_of(step_dth[body], p0 - wp.transform_point(X0, com))
++
++
++@wp.kernel
++def start_carried_motion(body_qd: wp.array[wp.spatial_vector], body_inv_m: wp.array[float], dt: float,
++                         step_dp: wp.array[wp.vec3], step_dth: wp.array[wp.vec3]):
++    """The integrator's motion over the step: x1 = x0 + v1 dt, the turn w1 dt."""
++    tid = wp.tid()
++    if body_inv_m[tid] == 0.0:
++        step_dp[tid] = wp.vec3(0.0)
++        step_dth[tid] = wp.vec3(0.0)
++        return
++    step_dp[tid] = wp.spatial_top(body_qd[tid]) * dt
++    step_dth[tid] = wp.spatial_bottom(body_qd[tid]) * dt
++
++
++@wp.kernel
++def carry_body_deltas(
++    q_in: wp.array[wp.transform],
++    qd_in: wp.array[wp.spatial_vector],
++    body_I: wp.array[wp.mat33],
++    body_inv_m: wp.array[float],
++    body_inv_I: wp.array[wp.mat33],
++    deltas: wp.array[wp.spatial_vector],
++    constraint_inv_weights: wp.array[float],
++    dt: float,
++    step_dp: wp.array[wp.vec3],
++    step_dth: wp.array[wp.vec3],
++):
++    """The correction apply_body_deltas makes to the centre (dp dt) and the turn (dw1 dt), its arithmetic, added on."""
++    tid = wp.tid()
++    inv_m = body_inv_m[tid]
++    if inv_m == 0.0:
++        return
++    inv_I = body_inv_I[tid]
++    delta = deltas[tid]
++    q0 = wp.transform_get_rotation(q_in[tid])
++    w0 = wp.spatial_bottom(qd_in[tid])
++    weight = 1.0
++    if constraint_inv_weights:
++        inv_weight = constraint_inv_weights[tid]
++        if inv_weight > 0.0:
++            weight = 1.0 / inv_weight
++    dp = wp.spatial_top(delta) * (inv_m * weight)
++    dq = wp.spatial_bottom(delta) * weight
++    wb = wp.quat_rotate_inv(q0, w0)
++    dwb = inv_I * wp.quat_rotate_inv(q0, dq)
++    tb = wp.cross(dwb, body_I[tid] * (wb + dwb)) + wp.cross(wb, body_I[tid] * dwb)
++    dw1 = wp.quat_rotate(q0, dwb - dt * inv_I * tb)
++    step_dp[tid] = step_dp[tid] + dp * dt
++    step_dth[tid] = step_dth[tid] + dw1 * dt
++
+ 
+ @wp.func
+ def _solve_body_contact_positions_total(
+@@ -58,6 +137,9 @@
+     contact_impulse: wp.array[wp.spatial_vector],
+     contact_lambda_n_sum: wp.array[float],
+     contact_lambda_f_sum: wp.array[float],
++    body_q_start: wp.array[wp.transform],
++    body_step_dp: wp.array[wp.vec3],
++    body_step_dth: wp.array[wp.vec3],
+     tid: int,
+ ):
+ 
+@@ -190,6 +272,18 @@
+ 
+         # update delta
+         delta = bx_b - bx_a
++        if wp.static(FRICTION_SLIP):  # Senua AI patch, in design: the separation at the start, plus the carried motion
++            X0_a = wp.transform_identity()
++            X0_b = wp.transform_identity()
++            if body_a >= 0:
++                X0_a = body_q_start[body_a]
++            if body_b >= 0:
++                X0_b = body_q_start[body_b]
++            p0_a = contact_surface_point(X0_a, contact_point0[tid], offset_a)
++            p0_b = contact_surface_point(X0_b, contact_point1[tid], offset_b)
++            delta = (p0_b - p0_a) + _carried_motion(body_b, X0_b, com_b, p0_b, body_step_dp, body_step_dth) - _carried_motion(
++                body_a, X0_a, com_a, p0_a, body_step_dp, body_step_dth
++            )
+         friction_delta = delta - wp.dot(n, delta) * n
+ 
+         r_a = bx_a - wp.transform_point(X_wb_a, com_a)
+@@ -327,6 +421,9 @@
+     contact_impulse: wp.array[wp.spatial_vector],
+     contact_lambda_n_sum: wp.array[float],
+     contact_lambda_f_sum: wp.array[float],
++    body_q_start: wp.array[wp.transform],
++    body_step_dp: wp.array[wp.vec3],
++    body_step_dth: wp.array[wp.vec3],
+ ):
+     tid = wp.tid()
+     surface_velocity = wp.vec3(0.0)
+@@ -362,6 +459,9 @@
+         contact_impulse,
+         contact_lambda_n_sum,
+         contact_lambda_f_sum,
++        body_q_start,
++        body_step_dp,
++        body_step_dth,
+         tid,
+     )
+ 
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py
+@@ -186,6 +186,12 @@
+         self._set_module_options(module_options, module=kernels)
+         # Senua AI patch, in design: contact friction bounded on the step's totals, read once here
+         self._friction_total = os.environ.get("NEWTON_XPBD_FRICTION_TOTAL") == "1"
++        # Senua AI patch, in design: the friction's slip from each body's carried motion over the step
++        # (friction_total_kernels.FRICTION_SLIP, NEWTON_XPBD_FRICTION_SLIP=1, with the friction on the totals)
++        self._friction_slip = self._friction_total and os.environ.get("NEWTON_XPBD_FRICTION_SLIP") == "1"
++        self._slip_q_start = None
++        self._slip_dp = None
++        self._slip_dth = None
+         if self._friction_total:
+             from . import friction_total_kernels  # noqa: PLC0415
+ 
+@@ -409,6 +415,25 @@
+                 ],
+                 device=model.device,
+             )
++            if self._friction_slip and self._slip_dp is not None:  # Senua AI patch, in design: carry the correction
++                from .friction_total_kernels import carry_body_deltas  # noqa: PLC0415
++
++                wp.launch(
++                    kernel=carry_body_deltas,
++                    dim=model.body_count,
++                    inputs=[
++                        body_q,
++                        body_qd,
++                        model.body_inertia,
++                        self.body_inv_mass_effective,
++                        self.body_inv_inertia_effective,
++                        body_deltas,
++                        rigid_contact_inv_weight,
++                        dt,
++                    ],
++                    outputs=[self._slip_dp, self._slip_dth],
++                    device=model.device,
++                )
+ 
+             if state_in.requires_grad:
+                 state_out.body_q = new_body_q
+@@ -560,6 +585,8 @@
+                     body_q_step_start = wp.clone(state_in.body_q)
+ 
+                 body_deltas = wp.empty_like(state_out.body_qd)
++                if self._friction_slip:  # Senua AI patch, in design: the step's start pose, before the iterations move it
++                    self._slip_q_start = wp.clone(state_in.body_q)
+ 
+                 body_f_tmp = state_in.body_f
+                 if model.joint_count:
+@@ -601,6 +628,19 @@
+                     state_in.body_f = body_f_tmp
+                     self.integrate_bodies(model, state_in, state_out, dt, self.angular_damping)
+                     state_in.body_f = body_f_prev
++                if self._friction_slip:  # Senua AI patch, in design: the integrator's motion, the carried motion's start
++                    from .friction_total_kernels import start_carried_motion  # noqa: PLC0415
++
++                    if self._slip_dp is None or self._slip_dp.shape[0] != model.body_count:
++                        self._slip_dp = wp.zeros(model.body_count, dtype=wp.vec3, device=model.device)
++                        self._slip_dth = wp.zeros(model.body_count, dtype=wp.vec3, device=model.device)
++                    wp.launch(
++                        kernel=start_carried_motion,
++                        dim=model.body_count,
++                        inputs=[state_out.body_qd, self.body_inv_mass_effective, dt],
++                        outputs=[self._slip_dp, self._slip_dth],
++                        device=model.device,
++                    )
+ 
+                 if self.enable_restitution:
+                     body_q_pre_solve = wp.clone(state_out.body_q)
+@@ -823,7 +863,12 @@
+                                 body_deltas,
+                                 rigid_contact_inv_weight,
+                                 contact_impulse_iter,
+-                            ] + ([self._friction_lambda_n, self._friction_lambda_f] if self._friction_total else []),
++                            ] + (
++                                [self._friction_lambda_n, self._friction_lambda_f]
++                                + ([self._slip_q_start, self._slip_dp, self._slip_dth] if self._friction_slip else [None, None, None])
++                                if self._friction_total
++                                else []
++                            ),
+                             device=model.device,
+                         )
+ 

@@ -1,0 +1,213 @@
+--- a/newton/_src/solvers/featherstone/rk4.py
++++ b/newton/_src/solvers/featherstone/rk4.py
+@@ -0,0 +1,171 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: Featherstone's step as the classic fourth-order Runge-Kutta scheme.
++#
++# Featherstone integrates the joints by semi-implicit Euler (kernels.jcalc_integrate): the joint-space inertia depends
++# on the configuration, so the scheme is not symplectic and a free chain's energy drifts in proportion to the step
++# (issue 11: 9.7% gained in 2 s at 10 ms). Here the step is made in four stages as MuJoCo's own RK4 makes it
++# (mj_RungeKutta; the configuration a free chain keeps its energy under on the MuJoCo solver): each stage's joint
++# accelerations are the stock step's own, evaluated at the stage's coordinates and speeds; a stage's coordinates are the
++# step's start moved along a weighted sum of the stages' speeds (kernels.integrate_generalized_joints with no
++# acceleration), its speeds the start's plus the weighted accelerations; the step ends at the start moved along the sum
++# weighted 1/6, 1/3, 1/3, 1/6. Contacts are those given for the step, as in the stock step. Used only when the solver is
++# made with NEWTON_FEATHERSTONE_RK4=1 (read once), and only for steps with no gradients, no observables, no particles,
++# no kinematic joints and no free or distance joints below another joint; otherwise the stock step.
++
++import warp as wp
++
++from ...sim import Contacts, Control, State
++from .kernels import (
++    convert_free_distance_joint_qd_internal_to_public,
++    eval_fk_with_velocity_conversion,
++    integrate_generalized_joints,
++)
++
++# the classic scheme's tableau, as MuJoCo's (engine_forward.c, mj_RungeKutta with N = 4)
++_RK4_A = ((0.0, 0.0, 0.0, 0.0), (0.5, 0.0, 0.0, 0.0), (0.0, 0.5, 0.0, 0.0), (0.0, 0.0, 1.0, 0.0))
++_RK4_B = (1.0 / 6.0, 1.0 / 3.0, 1.0 / 3.0, 1.0 / 6.0)
++
++
++@wp.kernel
++def rk_combine(
++    base: wp.array[float],
++    h: float,
++    c0: float,
++    x0: wp.array[float],
++    c1: float,
++    x1: wp.array[float],
++    c2: float,
++    x2: wp.array[float],
++    c3: float,
++    x3: wp.array[float],
++    # output
++    out: wp.array[float],
++):
++    i = wp.tid()
++    out[i] = base[i] + h * (c0 * x0[i] + c1 * x1[i] + c2 * x2[i] + c3 * x3[i])
++
++
++class FeatherstoneRK4Scratch:
++    """The stages' states and their speeds and accelerations, sized from the model."""
++
++    def __init__(self, model):
++        n = model.joint_dof_count
++        self.stage = model.state()
++        self.scratch = model.state()
++        with wp.ScopedDevice(model.device):
++            self.v = [wp.zeros(n, dtype=float) for _ in range(4)]
++            self.a = [wp.zeros(n, dtype=float) for _ in range(4)]
++            self.w = wp.zeros(n, dtype=float)
++            self.zero = wp.zeros(n, dtype=float)
++            self.qd_junk = wp.zeros(n, dtype=float)
++
++
++def can_step_rk4(solver, state_in: State, state_out: State, observables) -> bool:
++    model = solver.model
++    return (
++        model.joint_count > 0
++        and state_in is not state_out
++        and not state_in.requires_grad
++        and observables is None
++        and model.particle_count == 0
++        and not solver.has_kinematic_joints
++        and solver.descendant_free_distance_joint_indices is None
++        and not solver._has_joint_mimics
++    )
++
++
++def _combine(model, base, h, coeffs, xs, out):
++    wp.launch(
++        rk_combine,
++        dim=model.joint_dof_count,
++        inputs=[base, h, coeffs[0], xs[0], coeffs[1], xs[1], coeffs[2], xs[2], coeffs[3], xs[3]],
++        outputs=[out],
++        device=model.device,
++    )
++
++
++def _move(model, q_from, w, dt, q_to, junk, zero):
++    # q_to = q_from moved along the joint speeds w for dt, no acceleration
++    wp.launch(
++        kernel=integrate_generalized_joints,
++        dim=model.joint_count,
++        inputs=[
++            model.joint_type,
++            model.joint_parent,
++            model.joint_child,
++            model.joint_q_start,
++            model.joint_qd_start,
++            model.joint_dof_dim,
++            model.joint_X_c,
++            model.body_com,
++            q_from,
++            w,
++            zero,
++            dt,
++        ],
++        outputs=[q_to, junk],
++        device=model.device,
++    )
++
++
++def _public_speeds(model, joint_q, qd_internal, state: State):
++    # the bodies' poses and twists from the joints, then the joints' public speeds from them
++    eval_fk_with_velocity_conversion(model, joint_q, qd_internal, state)
++    wp.launch(
++        convert_free_distance_joint_qd_internal_to_public,
++        dim=model.joint_count,
++        inputs=[
++            model.joint_type,
++            model.joint_parent,
++            model.joint_child,
++            model.joint_qd_start,
++            model.joint_X_p,
++            state.body_q,
++            model.body_com,
++            qd_internal,
++        ],
++        outputs=[state.joint_qd],
++        device=model.device,
++    )
++
++
++def step_rk4(solver, state_in: State, state_out: State, control: Control, contacts: Contacts, dt: float):
++    model = solver.model
++    if solver._rk4_scratch is None:
++        solver._rk4_scratch = FeatherstoneRK4Scratch(model)
++    sc = solver._rk4_scratch
++    stage, scratch = sc.stage, sc.scratch
++    step0 = solver._step
++    solver._rk4_inside = True
++    try:
++        # the first stage, at the step's start
++        wp.copy(stage.joint_q, state_in.joint_q)
++        wp.copy(stage.joint_qd, state_in.joint_qd)
++        wp.copy(stage.body_q, state_in.body_q)
++        wp.copy(stage.body_qd, state_in.body_qd)
++        wp.copy(stage.body_f, state_in.body_f)
++        solver.step(stage, scratch, control, contacts, dt)
++        wp.copy(sc.v[0], solver.joint_qd_internal_in)
++        wp.copy(sc.a[0], solver.joint_qdd)
++        if state_out.body_parent_f is not None and scratch.body_parent_f is not None:
++            # the joints' wrenches at the step's start, as the stock step reports them
++            wp.copy(state_out.body_parent_f, scratch.body_parent_f)
++        for i in range(1, 4):
++            # the stage's coordinates, its speeds, then its accelerations from the stock step
++            _combine(model, sc.zero, 1.0, _RK4_A[i], sc.v, sc.w)
++            _move(model, state_in.joint_q, sc.w, dt, stage.joint_q, sc.qd_junk, sc.zero)
++            _combine(model, sc.v[0], dt, _RK4_A[i], sc.a, sc.v[i])
++            _public_speeds(model, stage.joint_q, sc.v[i], stage)
++            wp.copy(stage.body_f, state_in.body_f)
++            solver.step(stage, scratch, control, contacts, dt)
++            wp.copy(sc.a[i], solver.joint_qdd)
++        # the step: the start moved along the weighted speeds, its speeds the start's plus the weighted accelerations
++        _combine(model, sc.zero, 1.0, _RK4_B, sc.v, sc.w)
++        _move(model, state_in.joint_q, sc.w, dt, state_out.joint_q, sc.qd_junk, sc.zero)
++        _combine(model, sc.v[0], dt, _RK4_B, sc.a, solver.joint_qd_internal_out)
++        _public_speeds(model, state_out.joint_q, solver.joint_qd_internal_out, state_out)
++    finally:
++        solver._rk4_inside = False
++        solver._step = step0 + 1
+--- a/newton/_src/solvers/featherstone/solver_featherstone.py
++++ b/newton/_src/solvers/featherstone/solver_featherstone.py
+@@ -1,6 +1,8 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
++
+ import numpy as np
+ import warp as wp
+ 
+@@ -215,6 +217,14 @@
+         self.angular_damping = angular_damping
+         self.update_mass_matrix_interval = update_mass_matrix_interval
+         self.friction_smoothing = friction_smoothing
++        # Senua AI patch, in design: the step as the classic fourth-order Runge-Kutta scheme, read once here
++        self._rk4 = os.environ.get("NEWTON_FEATHERSTONE_RK4") == "1"
++        self._rk4_inside = False
++        self._rk4_scratch = None
++        if self._rk4:
++            from . import rk4  # noqa: PLC0415
++
++            self._set_module_options(borrowed_options, module=rk4)
+         self.use_tile_gemm = use_tile_gemm
+         self.fuse_cholesky = fuse_cholesky
+ 
+@@ -512,6 +522,12 @@
+         *,
+         observables: SolverBase.Observables | None = None,
+     ) -> None:
++        if self._rk4 and not self._rk4_inside:  # Senua AI patch, in design
++            from . import rk4  # noqa: PLC0415
++
++            if rk4.can_step_rk4(self, state_in, state_out, observables):
++                rk4.step_rk4(self, state_in, state_out, control, contacts, dt)
++                return
+         self._apply_module_options()
+         self.validate_observables(observables)
+         requires_grad = state_in.requires_grad

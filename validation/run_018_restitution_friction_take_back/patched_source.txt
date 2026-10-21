@@ -1,0 +1,5 @@
+713fecd Backport Kamino test stabilization to 1.6 (#4523)
+ M newton/_src/solvers/xpbd/solver_xpbd.py
+?? newton/_src/solvers/xpbd/restitution_friction_kernels.py
+834fef849ea9e404e30c29b325982b0e5217ac20a07aeb036cb783ba57c26a44  newton/_src/solvers/xpbd/solver_xpbd.py
+3a9a0a201af99516f2c30211329db16d28fa92c9511f8671079b081e6998e036  newton/_src/solvers/xpbd/restitution_friction_kernels.py

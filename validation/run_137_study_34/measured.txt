@@ -1,0 +1,60 @@
+xpbd_in_d4_rel stops -1 end_vz_ums -56665880 FINAL dt_ns 4000000 angle_urad -5569548288 speed_urads 0
+xpbd_in_d4_cfg stops -1 end_vz_ums 7 FINAL dt_ns 4000000 angle_urad -7 speed_urads 0
+xpbd_out_d4_rel stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+xpbd_out_d4_cfg stops -1 end_vz_ums 7 FINAL dt_ns 4000000 angle_urad -7 speed_urads 0
+xpbd_in_d15_rel stops -1 end_vz_ums -30663534 FINAL dt_ns 1500000 angle_urad -3033207040 speed_urads 0
+xpbd_in_d15_cfg stops -1 end_vz_ums 27 FINAL dt_ns 1500000 angle_urad -7 speed_urads 0
+xpbd_out_d15_rel stops -1 end_vz_ums -49588804 FINAL dt_ns 1500000 angle_urad -4821080576 speed_urads 0
+xpbd_out_d15_cfg stops -1 end_vz_ums 27 FINAL dt_ns 1500000 angle_urad -7 speed_urads 0
+semi_in_d4_rel stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+semi_in_d4_cfg stops -1 end_vz_ums -13440800 FINAL dt_ns 4000000 angle_urad -1247040128 speed_urads 0
+semi_in_d4_off stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+semi_in_d4_chs stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+semi_out_d4_rel stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+semi_out_d4_cfg stops -1 end_vz_ums 47670316 FINAL dt_ns 4000000 angle_urad 4619626496 speed_urads 0
+semi_out_d4_off stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+semi_out_d4_chs stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+semi_in_d15_rel stops -1 end_vz_ums -81401320 FINAL dt_ns 1500000 angle_urad -8081448448 speed_urads 0
+semi_in_d15_cfg stops -1 end_vz_ums 52173 FINAL dt_ns 1500000 angle_urad -2849150 speed_urads 0
+semi_in_d15_off stops -1 end_vz_ums -80985024 FINAL dt_ns 1500000 angle_urad -8040235520 speed_urads 0
+semi_in_d15_chs stops -1 end_vz_ums -80985024 FINAL dt_ns 1500000 angle_urad -8040235520 speed_urads 0
+semi_out_d15_rel stops -1 end_vz_ums -101733920 FINAL dt_ns 1500000 angle_urad -9923254272 speed_urads 0
+semi_out_d15_cfg stops -1 end_vz_ums -1968 FINAL dt_ns 1500000 angle_urad -807811 speed_urads 0
+semi_out_d15_off stops -1 end_vz_ums -100985024 FINAL dt_ns 1500000 angle_urad -9850233856 speed_urads 0
+semi_out_d15_chs stops -1 end_vz_ums -100985024 FINAL dt_ns 1500000 angle_urad -9850233856 speed_urads 0
+featherstone_in_d4_rel stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+featherstone_in_d4_cfg stops -1 end_vz_ums -13440800 FINAL dt_ns 4000000 angle_urad -1247040128 speed_urads 0
+featherstone_in_d4_off stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+featherstone_in_d4_chs stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+featherstone_out_d4_rel stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+featherstone_out_d4_cfg stops -1 end_vz_ums 47670324 FINAL dt_ns 4000000 angle_urad 4619628032 speed_urads 0
+featherstone_out_d4_off stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+featherstone_out_d4_chs stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+featherstone_in_d15_rel stops -1 end_vz_ums -81401320 FINAL dt_ns 1500000 angle_urad -8081448448 speed_urads 0
+featherstone_in_d15_cfg stops -1 end_vz_ums 52173 FINAL dt_ns 1500000 angle_urad -2849150 speed_urads 0
+featherstone_in_d15_off stops -1 end_vz_ums -80985024 FINAL dt_ns 1500000 angle_urad -8040235520 speed_urads 0
+featherstone_in_d15_chs stops -1 end_vz_ums -80985024 FINAL dt_ns 1500000 angle_urad -8040235520 speed_urads 0
+featherstone_out_d15_rel stops -1 end_vz_ums -101733920 FINAL dt_ns 1500000 angle_urad -9923254272 speed_urads 0
+featherstone_out_d15_cfg stops -1 end_vz_ums -1968 FINAL dt_ns 1500000 angle_urad -807807 speed_urads 0
+featherstone_out_d15_off stops -1 end_vz_ums -100985024 FINAL dt_ns 1500000 angle_urad -9850233856 speed_urads 0
+featherstone_out_d15_chs stops -1 end_vz_ums -100985024 FINAL dt_ns 1500000 angle_urad -9850233856 speed_urads 0
+mujoco_in_d4_rel stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+mujoco_in_d4_cfg stops -1 end_vz_ums -80979992 FINAL dt_ns 4000000 angle_urad -8000960512 speed_urads 0
+mujoco_out_d4_rel stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+mujoco_out_d4_cfg stops -1 end_vz_ums -100979992 FINAL dt_ns 4000000 angle_urad -9800961024 speed_urads 0
+mujoco_in_d15_rel stops -1 end_vz_ums -80985024 FINAL dt_ns 1500000 angle_urad -8040235520 speed_urads 0
+mujoco_in_d15_cfg stops -1 end_vz_ums -80985024 FINAL dt_ns 1500000 angle_urad -8040235520 speed_urads 0
+mujoco_out_d15_rel stops -1 end_vz_ums -100985024 FINAL dt_ns 1500000 angle_urad -9850233856 speed_urads 0
+mujoco_out_d15_cfg stops -1 end_vz_ums -100985024 FINAL dt_ns 1500000 angle_urad -9850233856 speed_urads 0
+xpbd_slide_cfg stops -1 end_vz_ums 119 STOP dt_ns 500000 first_stopped_at_step 544 largest_speed_last_third_ums 333 slid_um 162966 came_back_um 0
+xpbd_slide_chn stops -1 end_vz_ums 119 STOP dt_ns 500000 first_stopped_at_step 544 largest_speed_last_third_ums 333 slid_um 162966 came_back_um 0
+xpbd_hold_cfg stops -1 end_vz_ums 14 CREEP dt_ns 500000 steps 1200 mean_speed_ums 6 friction_over_normal_per_10000 2699 friction_limit_per_10000 4500
+xpbd_hold_chn stops -1 end_vz_ums 14 CREEP dt_ns 500000 steps 1200 mean_speed_ums 6 friction_over_normal_per_10000 2699 friction_limit_per_10000 4500
+semi_slide_cfg stops -1 end_vz_ums -2 STOP dt_ns 500000 first_stopped_at_step 544 largest_speed_last_third_ums 381 slid_um 163362 came_back_um 406
+semi_slide_chn stops -1 end_vz_ums -2 STOP dt_ns 500000 first_stopped_at_step 544 largest_speed_last_third_ums 381 slid_um 163362 came_back_um 406
+semi_hold_cfg stops -1 end_vz_ums -3 CREEP dt_ns 500000 steps 1200 mean_speed_ums 0 friction_over_normal_per_10000 2699 friction_limit_per_10000 4500
+semi_hold_chn stops -1 end_vz_ums -3 CREEP dt_ns 500000 steps 1200 mean_speed_ums 0 friction_over_normal_per_10000 2699 friction_limit_per_10000 4500
+featherstone_slide_cfg stops -1 end_vz_ums -2 STOP dt_ns 500000 first_stopped_at_step 544 largest_speed_last_third_ums 381 slid_um 163364 came_back_um 406
+featherstone_slide_chn stops -1 end_vz_ums -2 STOP dt_ns 500000 first_stopped_at_step 544 largest_speed_last_third_ums 381 slid_um 163364 came_back_um 406
+featherstone_hold_cfg stops -1 end_vz_ums -3 CREEP dt_ns 500000 steps 1200 mean_speed_ums 0 friction_over_normal_per_10000 2699 friction_limit_per_10000 4500
+featherstone_hold_chn stops -1 end_vz_ums -3 CREEP dt_ns 500000 steps 1200 mean_speed_ums 0 friction_over_normal_per_10000 2699 friction_limit_per_10000 4500

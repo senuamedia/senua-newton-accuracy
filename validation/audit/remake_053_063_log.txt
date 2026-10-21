@@ -1,0 +1,24 @@
+05:12:06 run_053_study_08 cleared
+05:12:06 run_054_joint_torque_drive cleared
+05:12:06 run_055_featherstone_limit_light_link cleared
+05:12:06 run_056_joint_velocity_effort_limits cleared
+05:12:06 run_057_vbd_limit_torque cleared
+05:12:06 run_058_drive_past_a_turn cleared
+05:12:06 run_059_friction_combination cleared
+05:12:06 run_060_tunnelling cleared
+05:12:06 run_061_xpbd_limit_full cleared
+05:12:06 run_062_rest_reports_scenes cleared
+05:12:06 run_063_loop_joint cleared
+05:30:42 run_053_study_08 played, exit 0
+05:33:07 run_054_joint_torque_drive played, exit 0
+05:33:27 run_059_friction_combination played, exit 0
+05:34:16 run_055_featherstone_limit_light_link played, exit 0
+05:37:51 run_060_tunnelling played, exit 0
+05:38:38 run_056_joint_velocity_effort_limits played, exit 0
+05:40:36 run_061_xpbd_limit_full played, exit 0
+05:42:23 run_058_drive_past_a_turn played, exit 0
+05:42:42 run_057_vbd_limit_torque played, exit 0
+05:43:50 run_062_rest_reports_scenes played, exit 0
+05:49:07 run_063_loop_joint played, exit 0
+05:49:07 home folder written as ~ in the re-made outputs
+05:49:09 compared: 1514 same, 109 differ, 2 missing, 0 new

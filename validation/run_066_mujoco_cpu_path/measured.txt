@@ -1,0 +1,24 @@
+k1_drop_warp_0.002 stops -1 REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+k2_push_warp_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 999999936 speed_urads 50000
+k3_slide_warp_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step 113 largest_speed_last_third_ums 83 slid_um 101354 came_back_um 60
+k4_hold_warp_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+k5_torque_warp_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 5166 speed_urads 198675
+k6_chain_warp_0.002 stops -1 CHAIN dt_ns 2000000 gravity 0 steps 1000 kinetic_start_nj 1251830216 kinetic_end_nj 1263609901 kinetic_most_nj 1263612261 kinetic_end_per_million_of_start 1009410 energy_drift_ppm_of_most_kinetic 9322 energy_largest_drift_ppm 9324 energy_lost_ppm_of_most_kinetic -9322 momentum_start_u 1318278150 momentum_end_u 1326460032 momentum_drift_ppm 6206 momentum_largest_drift_ppm 6206 angle1_urad 3540694 speed1_urads 2452323 angle2_urad 324712 speed2_urads -2012066
+k1_drop_cpu_0.002 stops -1 REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+k2_push_cpu_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 999999936 speed_urads 50000
+k3_slide_cpu_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step 113 largest_speed_last_third_ums 83 slid_um 101354 came_back_um 60
+k4_hold_cpu_0.002 stops -1 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+k5_torque_cpu_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 5166 speed_urads 198675
+k6_chain_cpu_0.002 stops -1 CHAIN dt_ns 2000000 gravity 0 steps 1000 kinetic_start_nj 1251830216 kinetic_end_nj 1263607351 kinetic_most_nj 1263609477 kinetic_end_per_million_of_start 1009408 energy_drift_ppm_of_most_kinetic 9320 energy_largest_drift_ppm 9321 energy_lost_ppm_of_most_kinetic -9320 momentum_start_u 1318278150 momentum_end_u 1326458721 momentum_drift_ppm 6205 momentum_largest_drift_ppm 6205 angle1_urad 3540690 speed1_urads 2452307 angle2_urad 324716 speed2_urads -2012013
+k1_drop_warp_0.0005 stops -1 REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+k2_push_warp_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 999999936 speed_urads 50001
+k3_slide_warp_0.0005 stops -1 STOP dt_ns 500000 first_stopped_at_step 446 largest_speed_last_third_ums 108 slid_um 102176 came_back_um 90
+k4_hold_warp_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+k5_torque_warp_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 5017 speed_urads 198676
+k6_chain_warp_0.0005 stops -1 CHAIN dt_ns 500000 gravity 0 steps 4000 kinetic_start_nj 1251830216 kinetic_end_nj 1254813421 kinetic_most_nj 1254813421 kinetic_end_per_million_of_start 1002383 energy_drift_ppm_of_most_kinetic 2377 energy_largest_drift_ppm 2377 energy_lost_ppm_of_most_kinetic -2377 momentum_start_u 1318278150 momentum_end_u 1320357979 momentum_drift_ppm 1577 momentum_largest_drift_ppm 1577 angle1_urad 3523808 speed1_urads 2357387 angle2_urad 361927 speed2_urads -1680543
+k1_drop_cpu_0.0005 stops -1 REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+k2_push_cpu_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 999999936 speed_urads 50001
+k3_slide_cpu_0.0005 stops -1 STOP dt_ns 500000 first_stopped_at_step 446 largest_speed_last_third_ums 108 slid_um 102176 came_back_um 90
+k4_hold_cpu_0.0005 stops -1 CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+k5_torque_cpu_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 5017 speed_urads 198676
+k6_chain_cpu_0.0005 stops -1 CHAIN dt_ns 500000 gravity 0 steps 4000 kinetic_start_nj 1251830216 kinetic_end_nj 1254813380 kinetic_most_nj 1254813380 kinetic_end_per_million_of_start 1002383 energy_drift_ppm_of_most_kinetic 2377 energy_largest_drift_ppm 2377 energy_lost_ppm_of_most_kinetic -2377 momentum_start_u 1318278150 momentum_end_u 1320357920 momentum_drift_ppm 1577 momentum_largest_drift_ppm 1577 angle1_urad 3523810 speed1_urads 2357395 angle2_urad 361926 speed2_urads -1680574

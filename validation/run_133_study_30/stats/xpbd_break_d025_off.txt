@@ -1,0 +1,1 @@
+STATS contact dt 0.00025 h0 0 vx0 0 mu 0.35 mass 0.75 radius 0.045 steps 4800 most_tilt_urad 0 engine newton 1.7.0 solver xpbd extra iterations=64 mus=0.75 groundmus=0.75

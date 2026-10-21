@@ -1,0 +1,59 @@
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py	2026-10-21 14:16:39
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py	2026-10-21 14:41:30
+@@ -1,10 +1,17 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
+ import warnings
+ 
+ import warp as wp
+ 
++# Senua AI patch, in design: with NEWTON_XPBD_JOINT_AVERAGING=1 (read once, here) the joint pass divides each body's
++# summed joint corrections by the number of joints acting on it before applying them, as the rigid contact pass
++# already does with its contacts (constraint averaging, mass splitting). As released two joints sharing a link each
++# push it by its whole correction, computed from the same state, which only under-relaxation keeps stable.
++_JOINT_AVERAGING = os.environ.get("NEWTON_XPBD_JOINT_AVERAGING") == "1"
++
+ from ...core.types import override
+ from ...sim import Contacts, Control, Model, ModelFlags, State
+ from ...sim.joint_mimic import has_supported_joint_mimics
+@@ -215,6 +222,27 @@
+             self._set_module_options(module_options, module=solve_joint_mimics.module)
+ 
+         self._init_kinematic_state()
++
++        # Senua AI patch, in design: each body's count of the joints acting on it (enabled, not free), for the joint
++        # pass's averaging; None leaves the pass as released
++        self._joint_inv_weight = None
++        if _JOINT_AVERAGING and model.joint_count > 0 and model.body_count > 0:
++            import numpy as np  # noqa: PLC0415
++
++            from ...sim import JointType  # noqa: PLC0415
++
++            parent = model.joint_parent.numpy()
++            child = model.joint_child.numpy()
++            enabled = model.joint_enabled.numpy()
++            jtype = model.joint_type.numpy()
++            counts = np.zeros(model.body_count, dtype=np.float32)
++            for j in range(model.joint_count):
++                if not enabled[j] or jtype[j] == int(JointType.FREE):
++                    continue
++                for b in (parent[j], child[j]):
++                    if b >= 0:
++                        counts[b] += 1.0
++            self._joint_inv_weight = wp.array(counts, dtype=float, device=model.device)
+ 
+         # helper variables to track constraint resolution vars
+         self._particle_delta_counter = 0
+@@ -901,7 +929,9 @@
+                                 device=model.device,
+                             )
+ 
+-                        body_q, body_qd = self._apply_body_deltas(model, state_in, state_out, body_deltas, dt)
++                        body_q, body_qd = self._apply_body_deltas(
++                            model, state_in, state_out, body_deltas, dt, self._joint_inv_weight
++                        )
+ 
+             self._contact_impulse = contact_impulse
+             self._contact_impulse_capacity = contacts.rigid_contact_max if contacts is not None else 0

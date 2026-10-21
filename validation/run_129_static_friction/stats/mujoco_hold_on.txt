@@ -1,0 +1,1 @@
+STATS contact dt 0.0005 h0 0 vx0 0 mu 0.4 mass 1 radius 0.05 steps 2400 most_tilt_urad 12314 engine newton 1.7.0 solver mujoco extra groundmu=0.4 mus=0.8 groundmus=0.8

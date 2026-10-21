@@ -1,0 +1,87 @@
+a1_free_stock FINAL dt_ns 1000000 angle_urad 999999936 speed_urads 0 CREEP dt_ns 1000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a2_push_stock_0.001 FINAL dt_ns 1000000 angle_urad 999999936 speed_urads 0 CREEP dt_ns 1000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a2_push_stock_0.004 FINAL dt_ns 4000000 angle_urad 999999936 speed_urads 50000 CREEP dt_ns 4000000 steps 125 mean_speed_ums 37600 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a3_turn_stock FINAL dt_ns 1000000 angle_urad 0 speed_urads 0
+a4_hold_stock_0.000125 FINAL dt_ns 125000 angle_urad -4 speed_urads 0 CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+a4_half_stock_0.0005 FINAL dt_ns 500000 angle_urad 0 speed_urads 0 CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 1500 friction_limit_per_10000 5000
+a4_hold_stock_0.002 FINAL dt_ns 2000000 angle_urad 212 speed_urads 1532 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1531 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+a1_free_off FINAL dt_ns 1000000 angle_urad 999999936 speed_urads 0 CREEP dt_ns 1000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a2_push_off_0.001 FINAL dt_ns 1000000 angle_urad 999999936 speed_urads 0 CREEP dt_ns 1000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a2_push_off_0.004 FINAL dt_ns 4000000 angle_urad 999999936 speed_urads 50000 CREEP dt_ns 4000000 steps 125 mean_speed_ums 37600 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a3_turn_off FINAL dt_ns 1000000 angle_urad 0 speed_urads 0
+a4_hold_off_0.000125 FINAL dt_ns 125000 angle_urad -4 speed_urads 0 CREEP dt_ns 125000 steps 8000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+a4_half_off_0.0005 FINAL dt_ns 500000 angle_urad 0 speed_urads 0 CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 1500 friction_limit_per_10000 5000
+a4_hold_off_0.002 FINAL dt_ns 2000000 angle_urad 212 speed_urads 1532 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1531 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+a1_free_on FINAL dt_ns 1000000 angle_urad 999999936 speed_urads 50 CREEP dt_ns 1000000 steps 500 mean_speed_ums 50 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a2_push_on_0.001 FINAL dt_ns 1000000 angle_urad 999999936 speed_urads 50001 CREEP dt_ns 1000000 steps 500 mean_speed_ums 37525 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a2_push_on_0.004 FINAL dt_ns 4000000 angle_urad 999999936 speed_urads 50000 CREEP dt_ns 4000000 steps 125 mean_speed_ums 37600 friction_over_normal_per_10000 -1 friction_limit_per_10000 0
+a3_turn_on FINAL dt_ns 1000000 angle_urad 50 speed_urads 50
+a4_hold_on_0.000125 FINAL dt_ns 125000 angle_urad -7 speed_urads 16 CREEP dt_ns 125000 steps 8000 mean_speed_ums 68 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+a4_half_on_0.0005 FINAL dt_ns 500000 angle_urad 0 speed_urads 104 CREEP dt_ns 500000 steps 2000 mean_speed_ums 104 friction_over_normal_per_10000 1499 friction_limit_per_10000 5000
+a4_hold_on_0.002 FINAL dt_ns 2000000 angle_urad 212 speed_urads 1531 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1531 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+b_torque_stock_0.0001 FINAL dt_ns 100000 angle_urad 8670 speed_urads 345339
+b_gravity_stock_0.0001 FINAL dt_ns 100000 angle_urad -24265 speed_urads -970256
+b_torque_on_0.0001 FINAL dt_ns 100000 angle_urad 8670 speed_urads 345340
+b_gravity_on_0.0001 FINAL dt_ns 100000 angle_urad -24265 speed_urads -970256
+b_torque_4317_0.0001 FINAL dt_ns 100000 angle_urad 4964 speed_urads 200354
+b_gravity_4317_0.0001 FINAL dt_ns 100000 angle_urad -24385 speed_urads -974545
+b_torque_4317on_0.0001 FINAL dt_ns 100000 angle_urad 4979 speed_urads 197457
+b_gravity_4317on_0.0001 FINAL dt_ns 100000 angle_urad -24385 speed_urads -974545
+b_torque_4318_0.0001 FINAL dt_ns 100000 angle_urad 4964 speed_urads 200354
+b_gravity_4318_0.0001 FINAL dt_ns 100000 angle_urad -24385 speed_urads -974545
+b_torque_4318on_0.0001 FINAL dt_ns 100000 angle_urad 4979 speed_urads 197457
+b_gravity_4318on_0.0001 FINAL dt_ns 100000 angle_urad -24385 speed_urads -974545
+c_drive_compliance_it1_0.0001 FINAL dt_ns 100000 angle_urad 173011 speed_urads -519813
+c_drive_pd_it1_0.0001 FINAL dt_ns 100000 angle_urad 161520 speed_urads -740032
+c_drive_implicit_it1_0.0001 FINAL dt_ns 100000 angle_urad 161526 speed_urads -733411
+c_drive_compliance_it2_0.0001 FINAL dt_ns 100000 angle_urad 147266 speed_urads -1007415
+c_drive_pd_it2_0.0001 FINAL dt_ns 100000 angle_urad 161524 speed_urads -735505
+c_drive_implicit_it2_0.0001 FINAL dt_ns 100000 angle_urad 161529 speed_urads -736744
+c_drive_compliance_it4_0.0001 FINAL dt_ns 100000 angle_urad 99348 speed_urads -1818752
+c_drive_pd_it4_0.0001 FINAL dt_ns 100000 angle_urad 161522 speed_urads -732462
+c_drive_implicit_it4_0.0001 FINAL dt_ns 100000 angle_urad 161526 speed_urads -752472
+c_drive_compliance_it8_0.0001 FINAL dt_ns 100000 angle_urad 16921 speed_urads -2956084
+c_drive_pd_it8_0.0001 FINAL dt_ns 100000 angle_urad 161527 speed_urads -743905
+c_drive_implicit_it8_0.0001 FINAL dt_ns 100000 angle_urad 161533 speed_urads -736662
+c_drive_compliance_it16_0.0001 FINAL dt_ns 100000 angle_urad -100950 speed_urads -3624737
+c_drive_pd_it16_0.0001 FINAL dt_ns 100000 angle_urad 161529 speed_urads -731273
+c_drive_implicit_it16_0.0001 FINAL dt_ns 100000 angle_urad 161533 speed_urads -746098
+c_effort_compliance_0.0001 FINAL dt_ns 100000 angle_urad 147266 speed_urads -1007415
+c_effort_pd_0.0001 FINAL dt_ns 100000 angle_urad 190058 speed_urads -196275
+b_torque_stock_0.00005 FINAL dt_ns 50000 angle_urad 8648 speed_urads 342116
+b_gravity_stock_0.00005 FINAL dt_ns 50000 angle_urad -24241 speed_urads -968387
+b_torque_on_0.00005 FINAL dt_ns 50000 angle_urad 8659 speed_urads 347205
+b_gravity_on_0.00005 FINAL dt_ns 50000 angle_urad -24241 speed_urads -968387
+b_torque_4317_0.00005 FINAL dt_ns 50000 angle_urad 11 speed_urads 200
+b_gravity_4317_0.00005 FINAL dt_ns 50000 angle_urad -24361 speed_urads -971823
+b_torque_4317on_0.00005 FINAL dt_ns 50000 angle_urad 4972 speed_urads 195691
+b_gravity_4317on_0.00005 FINAL dt_ns 50000 angle_urad -24361 speed_urads -971823
+b_torque_4318_0.00005 FINAL dt_ns 50000 angle_urad 11 speed_urads 200
+b_gravity_4318_0.00005 FINAL dt_ns 50000 angle_urad -24361 speed_urads -971823
+b_torque_4318on_0.00005 FINAL dt_ns 50000 angle_urad 4972 speed_urads 195691
+b_gravity_4318on_0.00005 FINAL dt_ns 50000 angle_urad -24361 speed_urads -971823
+c_drive_compliance_it1_0.00005 FINAL dt_ns 50000 angle_urad 173024 speed_urads -522891
+c_drive_pd_it1_0.00005 FINAL dt_ns 50000 angle_urad 161547 speed_urads -740874
+c_drive_implicit_it1_0.00005 FINAL dt_ns 50000 angle_urad 161551 speed_urads -748314
+c_drive_compliance_it2_0.00005 FINAL dt_ns 50000 angle_urad 147279 speed_urads -1007008
+c_drive_pd_it2_0.00005 FINAL dt_ns 50000 angle_urad 161549 speed_urads -751584
+c_drive_implicit_it2_0.00005 FINAL dt_ns 50000 angle_urad 161551 speed_urads -740379
+c_drive_compliance_it4_0.00005 FINAL dt_ns 50000 angle_urad 99360 speed_urads -1831644
+c_drive_pd_it4_0.00005 FINAL dt_ns 50000 angle_urad 161543 speed_urads -738722
+c_drive_implicit_it4_0.00005 FINAL dt_ns 50000 angle_urad 161545 speed_urads -744700
+c_drive_compliance_it8_0.00005 FINAL dt_ns 50000 angle_urad 16904 speed_urads -2957628
+c_drive_pd_it8_0.00005 FINAL dt_ns 50000 angle_urad 161540 speed_urads -755028
+c_drive_implicit_it8_0.00005 FINAL dt_ns 50000 angle_urad 161543 speed_urads -754126
+c_drive_compliance_it16_0.00005 FINAL dt_ns 50000 angle_urad -101087 speed_urads -3616650
+c_drive_pd_it16_0.00005 FINAL dt_ns 50000 angle_urad 161542 speed_urads -743503
+c_drive_implicit_it16_0.00005 FINAL dt_ns 50000 angle_urad 161545 speed_urads -754775
+c_effort_compliance_0.00005 FINAL dt_ns 50000 angle_urad 147279 speed_urads -1007008
+c_effort_pd_0.00005 FINAL dt_ns 50000 angle_urad 190067 speed_urads -217948
+d_none_4318_0.0016 FINAL dt_ns 1600000 angle_urad 4739404 speed_urads 2925281
+d_inside_4318_0.0016 FINAL dt_ns 1600000 angle_urad 4739404 speed_urads 2925281
+d_reach_4318_0.0016 FINAL dt_ns 1600000 angle_urad 2818965 speed_urads -2485123
+d_below_4318_0.0016 FINAL dt_ns 1600000 angle_urad 1284056 speed_urads -2509867
+d_none_4318_0.00032 FINAL dt_ns 320000 angle_urad 4788918 speed_urads 2984823
+d_inside_4318_0.00032 FINAL dt_ns 320000 angle_urad 4788918 speed_urads 2984823
+d_reach_4318_0.00032 FINAL dt_ns 320000 angle_urad 2624467 speed_urads -2547980
+d_below_4318_0.00032 FINAL dt_ns 320000 angle_urad 1060263 speed_urads -2615852

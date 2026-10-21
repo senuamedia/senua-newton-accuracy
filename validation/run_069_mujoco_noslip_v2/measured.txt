@@ -1,0 +1,23 @@
+n1_hold_pyramid_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n1_hold_elliptic_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 765 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n1_hold_pyramid_noslip_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n1_hold_elliptic_noslip_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_pyramid_off_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_elliptic_off_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 765 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_warp_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_warp_off_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n4_slide_elliptic_0.002 STOP dt_ns 2000000 first_stopped_at_step 214 largest_speed_last_third_ums 14 slid_um 101354 came_back_um 0
+n4_slide_elliptic_noslip_0.002 STOP dt_ns 2000000 first_stopped_at_step 202 largest_speed_last_third_ums 6 slid_um 101339 came_back_um 0
+n5_drop_elliptic_noslip_0.002 REST dt_ns 2000000 mean_ground_force_mN 9800 weight_mN 9800
+n1_hold_pyramid_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n1_hold_elliptic_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 765 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n1_hold_pyramid_noslip_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n1_hold_elliptic_noslip_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_pyramid_off_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_elliptic_off_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 765 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_warp_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n3_hold_warp_off_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+n4_slide_elliptic_0.0005 STOP dt_ns 500000 first_stopped_at_step 543 largest_speed_last_third_ums 3 slid_um 102037 came_back_um 0
+n4_slide_elliptic_noslip_0.0005 STOP dt_ns 500000 first_stopped_at_step 504 largest_speed_last_third_ums 11 slid_um 102026 came_back_um 3
+n5_drop_elliptic_noslip_0.0005 REST dt_ns 500000 mean_ground_force_mN 9800 weight_mN 9800
+n2_warp_noslip_0.002 refused 1

@@ -1,0 +1,36 @@
+e1_hold_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+e1_hold_off_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+e1_hold_noslip_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 0 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+e2_slide_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 352 largest_speed_last_third_ums 0 slid_um 54499 came_back_um 0
+e2_slide_noslip_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 323 largest_speed_last_third_ums 0 slid_um 54488 came_back_um 0
+e3_drop_noslip_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+e4_drop_warp_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+e4_drop_cpu_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+e4_push_warp_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 1000000000 speed_urads 60001
+e4_push_cpu_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 1000000000 speed_urads 60001
+e4_torque_warp_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 2903 speed_urads 141624
+e4_torque_cpu_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 2903 speed_urads 141624
+e1_hold_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+e1_hold_off_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+e1_hold_noslip_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 0 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+e2_slide_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 40 largest_speed_last_third_ums 0 slid_um 53085 came_back_um 18
+e2_slide_noslip_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 40 largest_speed_last_third_ums 0 slid_um 53077 came_back_um 24
+e3_drop_noslip_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+e4_drop_warp_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+e4_drop_cpu_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+e4_push_warp_0.004 stops -1 FINAL dt_ns 4000000 angle_urad 1000000000 speed_urads 60000
+e4_push_cpu_0.004 stops -1 FINAL dt_ns 4000000 angle_urad 1000000000 speed_urads 60000
+e4_torque_warp_0.004 stops -1 FINAL dt_ns 4000000 angle_urad 3116 speed_urads 141624
+e4_torque_cpu_0.004 stops -1 FINAL dt_ns 4000000 angle_urad 3116 speed_urads 141624
+e5_strike_stock_m0.3_0.0002 stops -1 back_urad -630349
+e5_strike_off_m0.3_0.0002 stops -1 back_urad -630349
+e5_strike_one_m0.3_0.0002 stops -1 back_urad -569985
+e5_strike_stock_m0.3_0.00005 stops -1 back_urad -630731
+e5_strike_off_m0.3_0.00005 stops -1 back_urad -630731
+e5_strike_one_m0.3_0.00005 stops -1 back_urad -578979
+e5_strike_stock_m2_0.0002 stops -1 back_urad -349005
+e5_strike_off_m2_0.0002 stops -1 back_urad -349005
+e5_strike_one_m2_0.0002 stops -1 back_urad -330839
+e5_strike_stock_m2_0.00005 stops -1 back_urad -351133
+e5_strike_off_m2_0.00005 stops -1 back_urad -351133
+e5_strike_one_m2_0.00005 stops -1 back_urad -333957

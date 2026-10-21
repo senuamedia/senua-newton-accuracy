@@ -1,0 +1,12 @@
+cup_v008_s8_none stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_v008_s8_quarter stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_v008_s8_half stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_v008_s32_none stops -1 FINAL dt_ns 1302083 angle_urad 0 speed_urads 0
+cup_v008_s32_quarter stops -1 FINAL dt_ns 1302083 angle_urad 0 speed_urads 0
+cup_v008_s32_half stops -1 FINAL dt_ns 1302083 angle_urad 0 speed_urads 0
+cup_v012_s8_none stops -1 FINAL dt_ns 5208333 angle_urad 5 speed_urads 0
+cup_v012_s8_quarter stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_v012_s8_half stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_v012_s32_none stops -1 FINAL dt_ns 1302083 angle_urad 0 speed_urads 0
+cup_v012_s32_quarter stops -1 FINAL dt_ns 1302083 angle_urad 0 speed_urads 0
+cup_v012_s32_half stops -1 FINAL dt_ns 1302083 angle_urad 0 speed_urads 0

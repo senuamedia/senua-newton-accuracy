@@ -1,0 +1,86 @@
+ref_0.0005 t 1.7 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5218438
+ref_0.0005 t 1.9 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5218438
+ref_0.0005 t 2.05 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5218438
+ref_0.0005 t 2.3 stops -1 j1_urad 2316317 j1_urads -887684 j2_urads 4477001
+ref_0.0005 t 2.6 stops -1 j1_urad 1854220 j1_urads -2720233 j2_urads 9142319
+ref_0.0002 t 1.7 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5218622
+ref_0.0002 t 1.9 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5218623
+ref_0.0002 t 2.05 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5218622
+ref_0.0002 t 2.3 stops -1 j1_urad 2316315 j1_urads -887723 j2_urads 4477160
+ref_0.0002 t 2.6 stops -1 j1_urad 1854185 j1_urads -2720551 j2_urads 9143411
+c_stock_0.0025 t 1.7 stops -1 j1_urad 2372741 j1_urads 427581 j2_urads 4388867
+c_stock_0.0025 t 1.9 stops -1 j1_urad 2376662 j1_urads -115614 j2_urads 5163774
+c_stock_0.0025 t 2.05 stops -1 j1_urad 2400205 j1_urads -295161 j2_urads 3991570
+c_stock_0.0025 t 2.3 stops -1 j1_urad 2236058 j1_urads -931355 j2_urads 3871004
+c_stock_0.0025 t 2.6 stops -1 j1_urad 1860170 j1_urads -1697439 j2_urads 5330822
+c_stock_0.000625 t 1.7 stops -1 j1_urad 2362335 j1_urads 639312 j2_urads 4053665
+c_stock_0.000625 t 1.9 stops -1 j1_urad 2362802 j1_urads 280822 j2_urads 5325706
+c_stock_0.000625 t 2.05 stops -1 j1_urad 2352476 j1_urads -541237 j2_urads 4375192
+c_stock_0.000625 t 2.3 stops -1 j1_urad 2189441 j1_urads -982854 j2_urads 4080499
+c_stock_0.000625 t 2.6 stops -1 j1_urad 1762834 j1_urads -2109169 j2_urads 6733626
+c_stock_0.00015625 t 1.7 stops -1 j1_urad 2359674 j1_urads 685423 j2_urads 4001178
+c_stock_0.00015625 t 1.9 stops -1 j1_urad 2360888 j1_urads 377269 j2_urads 5385011
+c_stock_0.00015625 t 2.05 stops -1 j1_urad 2342244 j1_urads -499850 j2_urads 4451193
+c_stock_0.00015625 t 2.3 stops -1 j1_urad 2177341 j1_urads -1007956 j2_urads 4124917
+c_stock_0.00015625 t 2.6 stops -1 j1_urad 1734706 j1_urads -2254826 j2_urads 7235522
+c_stock64_0.0025 t 1.7 stops -1 j1_urad 2400070 j1_urads 908 j2_urads 5023906
+c_stock64_0.0025 t 1.9 stops -1 j1_urad 2400064 j1_urads 354 j2_urads 4966229
+c_stock64_0.0025 t 2.05 stops -1 j1_urad 2400026 j1_urads 0 j2_urads 4922520
+c_stock64_0.0025 t 2.3 stops -1 j1_urad 2351072 j1_urads -656425 j2_urads 4244856
+c_stock64_0.0025 t 2.6 stops -1 j1_urad 1997771 j1_urads -1810007 j2_urads 6105310
+c_stock64_0.000625 t 1.7 stops -1 j1_urad 2400004 j1_urads -303 j2_urads 5103107
+c_stock64_0.000625 t 1.9 stops -1 j1_urad 2400005 j1_urads 0 j2_urads 5081655
+c_stock64_0.000625 t 2.05 stops -1 j1_urad 2400002 j1_urads 0 j2_urads 5073551
+c_stock64_0.000625 t 2.3 stops -1 j1_urad 2334018 j1_urads -779814 j2_urads 4391409
+c_stock64_0.000625 t 2.6 stops -1 j1_urad 1922968 j1_urads -2266855 j2_urads 7612404
+c_stock64_0.00015625 t 1.7 stops -1 j1_urad 2399981 j1_urads -660 j2_urads 5122573
+c_stock64_0.00015625 t 1.9 stops -1 j1_urad 2399984 j1_urads 0 j2_urads 5139854
+c_stock64_0.00015625 t 2.05 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5130067
+c_stock64_0.00015625 t 2.3 stops -1 j1_urad 2329048 j1_urads -809065 j2_urads 4436836
+c_stock64_0.00015625 t 2.6 stops -1 j1_urad 1902606 j1_urads -2400883 j2_urads 8040170
+c_off_0.0025 t 1.7 stops -1 j1_urad 2372741 j1_urads 427581 j2_urads 4388867
+c_off_0.0025 t 1.9 stops -1 j1_urad 2376662 j1_urads -115614 j2_urads 5163774
+c_off_0.0025 t 2.05 stops -1 j1_urad 2400205 j1_urads -295161 j2_urads 3991570
+c_off_0.0025 t 2.3 stops -1 j1_urad 2236058 j1_urads -931355 j2_urads 3871004
+c_off_0.0025 t 2.6 stops -1 j1_urad 1860170 j1_urads -1697439 j2_urads 5330822
+c_off_0.000625 t 1.7 stops -1 j1_urad 2362335 j1_urads 639312 j2_urads 4053665
+c_off_0.000625 t 1.9 stops -1 j1_urad 2362802 j1_urads 280822 j2_urads 5325706
+c_off_0.000625 t 2.05 stops -1 j1_urad 2352476 j1_urads -541237 j2_urads 4375192
+c_off_0.000625 t 2.3 stops -1 j1_urad 2189441 j1_urads -982854 j2_urads 4080499
+c_off_0.000625 t 2.6 stops -1 j1_urad 1762834 j1_urads -2109169 j2_urads 6733626
+c_off_0.00015625 t 1.7 stops -1 j1_urad 2359674 j1_urads 685423 j2_urads 4001178
+c_off_0.00015625 t 1.9 stops -1 j1_urad 2360888 j1_urads 377269 j2_urads 5385011
+c_off_0.00015625 t 2.05 stops -1 j1_urad 2342244 j1_urads -499850 j2_urads 4451193
+c_off_0.00015625 t 2.3 stops -1 j1_urad 2177341 j1_urads -1007956 j2_urads 4124917
+c_off_0.00015625 t 2.6 stops -1 j1_urad 1734706 j1_urads -2254826 j2_urads 7235522
+c_on_0.0025 t 1.7 stops -1 j1_urad 2400001 j1_urads 168 j2_urads 5041739
+c_on_0.0025 t 1.9 stops -1 j1_urad 2400001 j1_urads -148 j2_urads 4982012
+c_on_0.0025 t 2.05 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 4937740
+c_on_0.0025 t 2.3 stops -1 j1_urad 2350184 j1_urads -663433 j2_urads 4254253
+c_on_0.0025 t 2.6 stops -1 j1_urad 1993716 j1_urads -1831092 j2_urads 6172359
+c_on_0.000625 t 1.7 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5099260
+c_on_0.000625 t 1.9 stops -1 j1_urad 2400000 j1_urads 749 j2_urads 5079745
+c_on_0.000625 t 2.05 stops -1 j1_urad 2400000 j1_urads 0 j2_urads 5071488
+c_on_0.000625 t 2.3 stops -1 j1_urad 2333567 j1_urads -780699 j2_urads 4388079
+c_on_0.000625 t 2.6 stops -1 j1_urad 1922943 j1_urads -2257824 j2_urads 7583841
+c_on_0.00015625 t 1.7 stops -1 j1_urad 2400000 j1_urads 1354 j2_urads 5157017
+c_on_0.00015625 t 1.9 stops -1 j1_urad 2399998 j1_urads -7135 j2_urads 5171646
+c_on_0.00015625 t 2.05 stops -1 j1_urad 2399999 j1_urads 3841 j2_urads 5166410
+c_on_0.00015625 t 2.3 stops -1 j1_urad 2324986 j1_urads -840496 j2_urads 4470596
+c_on_0.00015625 t 2.6 stops -1 j1_urad 1882855 j1_urads -2528069 j2_urads 8537725
+a1_stock_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 911810 speed_urads -1931201
+a2_stock_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 636297 speed_urads -2675941
+a1_stock_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 828836 speed_urads -1932844
+a2_stock_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 627415 speed_urads -2589085
+a1_stock64_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 1709688 speed_urads -693600
+a2_stock64_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 2323534 speed_urads -661599
+a1_stock64_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 1686131 speed_urads -721009
+a2_stock64_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 2317348 speed_urads -655871
+a1_off_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 911810 speed_urads -1931201
+a2_off_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 636297 speed_urads -2675941
+a1_off_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 828836 speed_urads -1932844
+a2_off_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 627415 speed_urads -2589085
+a1_on_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 2199462 speed_urads -1139
+a2_on_0.002 t end stops -1 FINAL dt_ns 2000000 angle_urad 2899999 speed_urads 0
+a1_on_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 2199999 speed_urads 0
+a2_on_0.0004 t end stops -1 FINAL dt_ns 400000 angle_urad 2898397 speed_urads -4343

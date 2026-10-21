@@ -1,0 +1,5 @@
+ M newton/_src/solvers/vbd/solver_vbd.py
+?? newton/_src/solvers/vbd/rigid_velocity_carried.py
+37e3cc8ac7443c4af7b4a55f3a6aa011464a5e081c453518c6f0e510f8b8bb35  newton/_src/solvers/vbd/solver_vbd.py
+41a45e794c1fac3ba76b5008e4b60420a362dd6e4e18e6aa87966e427bec5e68  newton/_src/solvers/vbd/rigid_velocity_carried.py
+c88eb7b4357e0f36d563ffd0ffe29b780543acfacbb2c17a2dc33f0f5026bdf3  newton/_src/solvers/vbd/rigid_vbd_kernels.py

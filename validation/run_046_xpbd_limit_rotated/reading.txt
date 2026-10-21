@@ -1,0 +1,24 @@
+on_a-1_0.00032 | plays | FINAL dt_ns 320000 angle_urad 34317 speed_urads -2657781
+on_a-1_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 212522 speed_urads -2615272
+on_a0.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1528070 speed_urads -2641218
+on_a0.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1402167 speed_urads -3017355
+on_a0_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1169757 speed_urads -2393952
+on_a0_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1328257 speed_urads -2293820
+on_a1_0.00032 | plays | FINAL dt_ns 320000 angle_urad 2175972 speed_urads -2384079
+on_a1_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 2306819 speed_urads -2348133
+on_a2_0.00032 | plays | FINAL dt_ns 320000 angle_urad 3056128 speed_urads -2613354
+on_a2_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 3227754 speed_urads -2572771
+stock_a-1_0.00032 | plays | FINAL dt_ns 320000 angle_urad 34317 speed_urads -2657781
+stock_a-1_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 212522 speed_urads -2615272
+stock_a0.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1528070 speed_urads -2641218
+stock_a0.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1402167 speed_urads -3017355
+stock_a0_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1169757 speed_urads -2393952
+stock_a0_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1328257 speed_urads -2293820
+stock_a1_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1961769 speed_urads 23622482000000
+stock_a1_0.0016 | plays | FINAL dt_ns 1600000 angle_urad -3711007 speed_urads 2025196125000
+stock_a2_0.00032 | plays | FINAL dt_ns 320000 angle_urad 5501916 speed_urads 122799664000000
+stock_a2_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 3232904 speed_urads 4343868000000
+CHECK stock, a0 = 0, 0.0016 s, byte-identical to run 037's below: yes
+CHECK stock, a0 = 0, 0.00032 s, byte-identical to run 037's below: yes
+CHECK on, a0 = 0, 0.0016 s, byte-identical to run 037's below: yes
+CHECK on, a0 = 0, 0.00032 s, byte-identical to run 037's below: yes

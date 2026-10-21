@@ -1,0 +1,16 @@
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Traceback (most recent call last):
+  File "~/work/r069/rec/tools/nwt_contact.py", line 209, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "~/work/r069/rec/tools/nwt_contact.py", line 141, in main
+    solver = solvers[solver_name](model, **kw)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/work/r069/e/noslip/src/newton/_src/solvers/mujoco/solver_mujoco.py", line 4488, in __init__
+    self._convert_to_mjc(
+  File "~/work/r069/e/noslip/src/newton/_src/solvers/mujoco/solver_mujoco.py", line 8094, in _convert_to_mjc
+    self.mjw_model = mujoco_warp.put_model(self.mj_model, batch_sizes=batch_sizes)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/work/venv170/lib/python3.12/site-packages/mujoco_warp/_src/io.py", line 352, in put_model
+    raise NotImplementedError(f"noslip solver not implemented.")
+NotImplementedError: noslip solver not implemented.

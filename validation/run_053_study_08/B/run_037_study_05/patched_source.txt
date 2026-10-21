@@ -1,0 +1,2 @@
+42c1943d8b5f657ba84369f3f55deb08b1314e227ca12707ffc759d04e59e686  newton/_src/solvers/xpbd/solver_xpbd.py
+cf84b3f79e6a529ece2502425fd483118c59c0ebec739d293fe771c910fe6337  newton/_src/solvers/xpbd/kernels.py

@@ -1,0 +1,13 @@
+on vbd fall 0.00125 gap_to_semi_um 0
+on vbd slide 0.00125 friction_over_normal_per_10000 3257
+on vbd rest 0.00125 mean_ground_force_mN 19692
+on vbd lift 0.00125 lowest_ground_force_mN 0
+on vbd hold 0.00125 mean_speed_ums 50072
+on vbd chain 0.00125 kinetic_end_per_million_of_start 989915
+on vbd_alm fall 0.00125 gap_to_semi_um 0
+on vbd_alm slide 0.00125 friction_over_normal_per_10000 3858
+on vbd_alm rest 0.00125 mean_ground_force_mN 19612
+on vbd_alm lift 0.00125 lowest_ground_force_mN 0
+on vbd_alm hold 0.00125 mean_speed_ums -552
+on vbd_alm chain 0.00125 kinetic_end_per_million_of_start 989521
+on nan_plays 0

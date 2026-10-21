@@ -1,0 +1,85 @@
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_light_featherstone_0.0041666667_number eq 0 1 : FAILED
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_light_featherstone_0.001_number eq 0 1 : FAILED
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_light_featherstone_0.00025_number eq 0 1 : FAILED
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_light_featherstone_0.0001_number eq 0 1 : FAILED
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_light_featherstone_0.00002_number eq 0 1 : FAILED
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_light_featherstone_0.00001_number eq 0 1 : FAILED
+RULE H_light_featherstone_0.000005_angle all_within -500000 100 -270572 : FAILED
+RULE H_light_featherstone_0.000005_still all_le 10000 18754787 : FAILED
+RULE H_light_featherstone_0.000005_number eq 1 1 : HELD
+RULE H_light_featherstone_0.000002_angle all_within -500000 100 -500015 : HELD
+RULE H_light_featherstone_0.000002_still all_le 10000 14280 : FAILED
+RULE H_light_featherstone_0.000002_number eq 1 1 : HELD
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_lightkd0_featherstone_0.00025_number eq 0 1 : FAILED
+RULE H_lightkd0_featherstone_0.0001_angle all_within -500000 100 -323764 : FAILED
+RULE H_lightkd0_featherstone_0.0001_still all_le 10000 19231014 : FAILED
+RULE H_lightkd0_featherstone_0.0001_number eq 1 1 : HELD
+RULE H_lightkd0_featherstone_0.00005_angle all_within -500000 100 -436729 : FAILED
+RULE H_lightkd0_featherstone_0.00005_still all_le 10000 18692970 : FAILED
+RULE H_lightkd0_featherstone_0.00005_number eq 1 1 : HELD
+RULE H_lightkd0_featherstone_0.00002_angle all_within -500000 100 -419134 : FAILED
+RULE H_lightkd0_featherstone_0.00002_still all_le 10000 18307793 : FAILED
+RULE H_lightkd0_featherstone_0.00002_number eq 1 1 : HELD
+RULE H_heavy_featherstone_0.0041666667_angle all_within -500000 100 -181778 : FAILED
+RULE H_heavy_featherstone_0.0041666667_still all_le 10000 1217266 : FAILED
+RULE H_heavy_featherstone_0.0041666667_number eq 1 1 : HELD
+RULE H_heavy_featherstone_0.001_angle all_within -500000 100 -278011 : FAILED
+RULE H_heavy_featherstone_0.001_still all_le 10000 1550144 : FAILED
+RULE H_heavy_featherstone_0.001_number eq 1 1 : HELD
+RULE H_light_mujoco_0.0041666667_angle all_within -500000 100 -524533 : FAILED
+RULE H_light_mujoco_0.0041666667_still all_le 10000 208816 : FAILED
+RULE H_light_mujoco_0.0041666667_number eq 1 1 : HELD
+RULE H_light_mujoco_0.001_angle all_within -500000 100 -500579 : HELD
+RULE H_light_mujoco_0.001_still all_le 10000 1197 : HELD
+RULE H_light_mujoco_0.001_number eq 1 1 : HELD
+RULE H_light_mujoco_0.00025_angle all_within -500000 100 -500055 : HELD
+RULE H_light_mujoco_0.00025_still all_le 10000 113 : HELD
+RULE H_light_mujoco_0.00025_number eq 1 1 : HELD
+RULE H_light_mujoco_0.0001_angle all_within -500000 100 -500009 : HELD
+RULE H_light_mujoco_0.0001_still all_le 10000 273 : HELD
+RULE H_light_mujoco_0.0001_number eq 1 1 : HELD
+RULE H_light_mujoco_0.00002_angle all_within -500000 100 -500003 : HELD
+RULE H_light_mujoco_0.00002_still all_le 10000 1403 : HELD
+RULE H_light_mujoco_0.00002_number eq 1 1 : HELD
+RULE H_light_mujoco_0.00001_angle all_within -500000 100 -500005 : HELD
+RULE H_light_mujoco_0.00001_still all_le 10000 2758 : HELD
+RULE H_light_mujoco_0.00001_number eq 1 1 : HELD
+RULE H_light_mujoco_0.000005_angle all_within -500000 100 -500006 : HELD
+RULE H_light_mujoco_0.000005_still all_le 10000 4114 : HELD
+RULE H_light_mujoco_0.000005_number eq 1 1 : HELD
+RULE H_light_mujoco_0.000002_angle all_within -500000 100 -500004 : HELD
+RULE H_light_mujoco_0.000002_still all_le 10000 2024 : HELD
+RULE H_light_mujoco_0.000002_number eq 1 1 : HELD
+RULE H_lightkd0_mujoco_0.00025_angle all_within -500000 100 -519622 : FAILED
+RULE H_lightkd0_mujoco_0.00025_still all_le 10000 493529 : FAILED
+RULE H_lightkd0_mujoco_0.00025_number eq 1 1 : HELD
+RULE H_lightkd0_mujoco_0.0001_angle all_within -500000 100 -519737 : FAILED
+RULE H_lightkd0_mujoco_0.0001_still all_le 10000 499875 : FAILED
+RULE H_lightkd0_mujoco_0.0001_number eq 1 1 : HELD
+RULE H_lightkd0_mujoco_0.00005_angle all_within -500000 100 -519777 : FAILED
+RULE H_lightkd0_mujoco_0.00005_still all_le 10000 502068 : FAILED
+RULE H_lightkd0_mujoco_0.00005_number eq 1 1 : HELD
+RULE H_lightkd0_mujoco_0.00002_angle all_within -500000 100 -519801 : FAILED
+RULE H_lightkd0_mujoco_0.00002_still all_le 10000 503364 : FAILED
+RULE H_lightkd0_mujoco_0.00002_number eq 1 1 : HELD
+RULE H_heavy_mujoco_0.0041666667_angle all_within -500000 100 -54747 : FAILED
+RULE H_heavy_mujoco_0.0041666667_still all_le 10000 262515 : FAILED
+RULE H_heavy_mujoco_0.0041666667_number eq 1 1 : HELD
+RULE H_heavy_mujoco_0.001_angle all_within -500000 100 -62622 : FAILED
+RULE H_heavy_mujoco_0.001_still all_le 10000 230837 : FAILED
+RULE H_heavy_mujoco_0.001_number eq 1 1 : HELD
+checks: 84, held: 36

@@ -1,0 +1,9 @@
+stock semi slide slid_um 43324 most_tilt_urad 215561
+stock semi plate_1.0 slid_um 42314 decel_260_300 0
+stock semi plate_0.05 slid_um 3590 decel_260_300 0
+stock semi impact ratio_per_10000 4332
+stock featherstone slide slid_um 43310 most_tilt_urad 215931
+stock featherstone plate_1.0 slid_um 42314 decel_260_300 0
+stock featherstone plate_0.05 slid_um 3590 decel_260_300 0
+stock featherstone impact ratio_per_10000 4332
+stock nan_plays 0

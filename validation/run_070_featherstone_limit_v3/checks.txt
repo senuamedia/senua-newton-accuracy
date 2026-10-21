@@ -1,0 +1,9 @@
+RULE G0_safe_when_off eq 11 11 : HELD
+RULE G1_first_form_unchanged eq 4 4 : HELD
+RULE G2_held_numbers all_eq -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE G2_held_angle all_within -500000 100 -500001 -500001 -500001 -500002 -500007 -500016 : HELD
+RULE G2_held_no_bounce all_within -500000 100 -342056 -473977 -497700 -500000 -500000 -500000 : FAILED
+RULE G4_no_pull_0.1kg all_within -815000 40 -836205 : FAILED
+RULE G4_no_pull_1kg all_within -450000 22 -517140 -474045 : FAILED
+RULE G5_no_limit_unchanged eq 1 1 : HELD
+checks: 8, held: 5

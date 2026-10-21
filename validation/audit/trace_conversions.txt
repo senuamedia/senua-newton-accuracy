@@ -1,0 +1,1463 @@
+CONVERSION	README.md:19	0.156	156 / 10^3 in run 033
+CONVERSION	README.md:22	0.125	125 / 10^3 in run 024
+BY HAND	README.md:25	327786	[runs  071 109]
+CONVERSION	README.md:25	32.7	32668 / 10^3 in run 071
+CONVERSION	README.md:28	1.75	1745 / 10^3 in run 054
+CONVERSION	README.md:28	1.75	1745 / 10^3 in run 054
+CONVERSION	README.md:28	11.1	11050 / 10^3 in run 054
+CONVERSION	README.md:30	92.5	92454 / 10^3 in run 128
+CONVERSION	README.md:30	56.9	56860 / 10^3 in run 128
+BY HAND	README.md:38	4316	[runs ]
+BY HAND	README.md:42	4317	[runs ]
+BY HAND	README.md:42	4318	[runs ]
+BY HAND	README.md:49	139	[runs ]
+BY HAND	README.md:49	4698	[runs ]
+CONVERSION	docs/findings.md:13	127.6	127550 / 10^3 in run 001
+CONVERSION	docs/findings.md:17	0.156	156 / 10^3 in run 001
+CONVERSION	docs/findings.md:18	1.25	1245 / 10^3 in run 001
+CONVERSION	docs/findings.md:22	98.9	98852 / 10^3 in run 024
+CONVERSION	docs/findings.md:23	0.156	156250 / 10^6 in run 017
+CONVERSION	docs/findings.md:24	0.156	156 / 10^3 in run 031
+BY HAND	docs/findings.md:25	327786	[runs  048 035 037 050 032 037 071]
+BY HAND	docs/findings.md:25	3052985	[runs  048 035 037 050 032 037 071]
+CONVERSION	docs/findings.md:27	1.14	1135 / 10^3 in run 039
+CONVERSION	docs/findings.md:28	0.913	913 / 10^3 in run 042
+CONVERSION	docs/findings.md:28	0.815	815 / 10^3 in run 042
+CONVERSION	docs/findings.md:30	1.75	1745 / 10^3 in run 054
+CONVERSION	docs/findings.md:31	1.39	1385 / 10^3 in run 054
+CONVERSION	docs/findings.md:31	2.78	2775 / 10^3 in run 054
+CONVERSION	docs/findings.md:31	5.56	5555 / 10^3 in run 054
+CONVERSION	docs/findings.md:31	11.1	11050 / 10^3 in run 054
+BY HAND	docs/findings.md:32	2.333e-5	[runs  055 055 078]
+CONVERSION	docs/findings.md:32	96.6	96552 / 10^3 in run 055
+CONVERSION	docs/findings.md:32	31.5	31450 / 10^3 in run 055
+CONVERSION	docs/findings.md:33	3.97	3966 / 10^3 in run 056
+BY HAND	docs/findings.md:53	765	[runs ]
+CONVERSION	docs/fixes-in-the-wild.md:23	2.37	2365 / 10^3 in run 054
+BY HAND	docs/fixes-in-the-wild.md:27	4721	[runs ]
+BY HAND	docs/fixes-in-the-wild.md:28	4306	[runs ]
+BY HAND	docs/fixes-in-the-wild.md:30	3554	[runs ]
+CONVERSION	docs/issues.md:16	32.7	32668 / 10^3 in run 071
+CONVERSION	docs/issues.md:19	99.87	99866 / 10^3 in run 064
+CONVERSION	docs/issues.md:20	0.125	125 / 10^3 in run 100
+CONVERSION	docs/issues.md:30	1.73	1728897 / 10^6 in run 120
+CONVERSION	docs/issues.md:34	1.75	1745 / 10^3 in run 071
+BY HAND	docs/issues.md:50	4698	[runs ]
+BY HAND	docs/issues.md:50	4712	[runs ]
+CONVERSION	docs/known-issues.md:10	127.6	127550 / 10^3 in run 001
+BY HAND	docs/known-issues.md:13	2119	[runs ]
+CONVERSION	docs/known-issues.md:14	1.14	1135 / 10^3 in run 036
+BY HAND	docs/known-issues.md:15	327786	[runs  032 071]
+BY HAND	docs/known-issues.md:22	4698	[runs ]
+BY HAND	docs/known-issues.md:22	4712	[runs ]
+BY HAND	docs/known-issues.md:24	3091	[runs ]
+CONVERSION	docs/known-issues.md:25	1.36	1356 / 10^3 in run 054
+CONVERSION	docs/known-issues.md:25	1.75	1745 / 10^3 in run 054
+CONVERSION	docs/known-issues.md:28	31.5	31450 / 10^3 in run 055
+CONVERSION	docs/known-issues.md:35	0.125	125 / 10^3 in run 034
+BY HAND	docs/known-issues.md:49	3.16	[runs ]
+BY HAND	docs/patches.md:6	256	[runs ]
+BY HAND	docs/patches.md:6	4042	[runs ]
+BY HAND	docs/patches.md:6	2894458	[runs ]
+BY HAND	docs/patches.md:51	256	[runs ]
+BY HAND	docs/patches.md:52	572	[runs ]
+BY HAND	docs/patches.md:52	966	[runs ]
+BY HAND	docs/patches.md:52	46067e1	[runs ]
+BY HAND	docs/patches.md:85	3499	[runs  018]
+CONVERSION	docs/patches.md:85	0.156	156250 / 10^6 in run 018
+BY HAND	docs/patches.md:110	256	[runs ]
+BY HAND	docs/patches.md:110	7489e80	[runs ]
+CONVERSION	docs/patches.md:112	0.375	375 / 10^3 in run 008
+BY HAND	docs/patches.md:126	0.625	[runs ]
+BY HAND	docs/patches.md:129	218	[runs ]
+BY HAND	docs/patches.md:129	10000	[runs ]
+BY HAND	docs/patches.md:130	0.15625	[runs ]
+BY HAND	docs/patches.md:137	256	[runs ]
+BY HAND	docs/patches.md:137	4e33692	[runs ]
+BY HAND	docs/patches.md:137	4797541	[runs ]
+BY HAND	docs/patches.md:173	256	[runs ]
+BY HAND	docs/patches.md:173	969131	[runs ]
+BY HAND	docs/patches.md:173	65879	[runs ]
+BY HAND	docs/patches.md:178	3.05	[runs ]
+BY HAND	docs/patches.md:184	256	[runs ]
+BY HAND	docs/patches.md:184	89335	[runs ]
+BY HAND	docs/patches.md:184	616	[runs ]
+BY HAND	docs/patches.md:184	628	[runs ]
+BY HAND	docs/patches.md:198	256	[runs ]
+BY HAND	docs/patches.md:198	348	[runs ]
+BY HAND	docs/patches.md:198	677	[runs ]
+BY HAND	docs/patches.md:201	3.63	[runs ]
+BY HAND	docs/patches.md:233	99.87	[runs ]
+BY HAND	docs/patches.md:234	0.125	[runs ]
+BY HAND	docs/patches.md:243	256	[runs ]
+BY HAND	docs/patches.md:244	5e09	[runs ]
+BY HAND	docs/patches.md:248	4318	[runs ]
+BY HAND	docs/patches.md:249	4318	[runs ]
+CONVERSION	docs/patches.md:257	1.75	1745 / 10^3 in run 071
+BY HAND	docs/patches.md:260	4318	[runs ]
+BY HAND	docs/patches.md:265	3.15	[runs ]
+BY HAND	docs/patches.md:274	1241	[runs ]
+BY HAND	docs/patches.md:286	240	[runs ]
+BY HAND	docs/patches.md:298	1998	[runs ]
+BY HAND	docs/patches.md:301	240	[runs ]
+BY HAND	docs/patches.md:307	256	[runs ]
+BY HAND	docs/patches.md:307	103222	[runs ]
+BY HAND	docs/patches.md:311	4316	[runs ]
+BY HAND	docs/patches.md:328	3415	[runs ]
+BY HAND	docs/patches.md:328	854	[runs ]
+BY HAND	docs/patches.md:352	1.25	[runs ]
+BY HAND	docs/patches.md:368	100	[runs ]
+BY HAND	docs/patches.md:393	3552	[runs ]
+BY HAND	docs/patches.md:397	3552	[runs ]
+BY HAND	docs/patches.md:407	4721	[runs ]
+BY HAND	docs/patches.md:419	4698	[runs ]
+BY HAND	docs/patches.md:423	4698	[runs ]
+BY HAND	docs/patches.md:424	4698	[runs ]
+BY HAND	docs/patches.md:427	4698	[runs ]
+BY HAND	docs/patches.md:430	168	[runs  112]
+BY HAND	docs/patches.md:431	4698	[runs ]
+BY HAND	docs/patches.md:440	430	[runs ]
+BY HAND	docs/patches.md:445	3.15	[runs ]
+BY HAND	docs/patches.md:472	4306	[runs ]
+BY HAND	docs/patches.md:476	4306	[runs ]
+BY HAND	docs/patches.md:493	0.0625	[runs ]
+BY HAND	docs/patches.md:493	115	[runs ]
+BY HAND	docs/patches.md:514	540	[runs ]
+BY HAND	docs/reproduce.md:3	1.18	[runs ]
+BY HAND	docs/reproduce.md:16	1.18	[runs ]
+BY HAND	docs/reproduce.md:16	3.12	[runs ]
+BY HAND	docs/reproduce.md:16	3.12	[runs ]
+BY HAND	docs/runs.md:24	117	[runs  016]
+BY HAND	docs/runs.md:24	117	[runs  016]
+CONVERSION	docs/runs.md:32	98.9	98852 / 10^3 in run 024
+CONVERSION	docs/runs.md:36	70.7	70651 / 10^3 in run 028
+CONVERSION	docs/runs.md:36	70.6	70566 / 10^3 in run 028
+CONVERSION	docs/runs.md:39	0.156	156 / 10^3 in run 031
+BY HAND	docs/runs.md:40	327786	[runs  032]
+CONVERSION	docs/runs.md:54	2.29	2285 / 10^3 in run 046
+CONVERSION	docs/runs.md:54	3.02	3015 / 10^3 in run 046
+CONVERSION	docs/runs.md:56	2.86	2855 / 10^3 in run 048
+CONVERSION	docs/runs.md:58	2.57	2565 / 10^3 in run 050
+CONVERSION	docs/runs.md:58	2.03	2025 / 10^3 in run 050
+CONVERSION	docs/runs.md:62	1.75	1745 / 10^3 in run 054
+CONVERSION	docs/runs.md:63	4.66	4655 / 10^3 in run 055
+CONVERSION	docs/runs.md:63	31.5	31450 / 10^3 in run 055
+CONVERSION	docs/runs.md:67	92.5	92475 / 10^3 in run 059
+CONVERSION	docs/runs.md:67	56.9	56856 / 10^3 in run 059
+CONVERSION	docs/runs.md:69	3.63	3625 / 10^3 in run 061
+CONVERSION	docs/runs.md:82	31.6	31551 / 10^3 in run 074
+CONVERSION	docs/runs.md:99	62.5	62500 / 10^3 in run 091
+CONVERSION	docs/runs.md:100	0.125	125 / 10^3 in run 092
+CONVERSION	docs/runs.md:104	0.125	125 / 10^3 in run 096
+CONVERSION	docs/runs.md:113	2.79	2785 / 10^3 in run 105
+CONVERSION	docs/runs.md:113	2.37	2365 / 10^3 in run 105
+CONVERSION	docs/runs.md:115	0.166	166 / 10^3 in run 107
+CONVERSION	docs/runs.md:119	0.0625	62450 / 10^6 in run 111
+CONVERSION	docs/runs.md:119	0.125	125 / 10^3 in run 111
+BY HAND	docs/runs.md:120	168	[runs  112]
+BY HAND	docs/runs.md:126	1200	[runs  118 116]
+CONVERSION	docs/studies/03-normal-contact.md:19	0.625	625 / 10^3 in run 033
+CONVERSION	docs/studies/03-normal-contact.md:30	0.375	375 / 10^3 in run 033
+CONVERSION	docs/studies/03-normal-contact.md:31	0.375	375 / 10^3 in run 033
+BY HAND	docs/studies/03-normal-contact.md:44	7489e80	[runs 033]
+BY HAND	docs/studies/04-vbd-carried-velocity.md:38	537677	[runs 034]
+BY HAND	docs/studies/04-vbd-carried-velocity.md:42	4e33692	[runs 034]
+BY HAND	docs/studies/05-xpbd-joint-angle.md:25	1284321	[runs 037]
+BY HAND	docs/studies/05-xpbd-joint-angle.md:25	19643442	[runs 037]
+BY HAND	docs/studies/06-mujoco-limit.md:35	77925587	[runs 043]
+BY HAND	docs/studies/06-mujoco-limit.md:35	1591155	[runs 043]
+BY HAND	docs/studies/07-newton-1.7.0.md:5	4470	[runs 052]
+BY HAND	docs/studies/07-newton-1.7.0.md:33	984500	[runs 052]
+BY HAND	docs/studies/07-newton-1.7.0.md:34	88300	[runs 052 043]
+BY HAND	docs/studies/07-newton-1.7.0.md:36	1334	[runs 052]
+BY HAND	docs/studies/07-newton-1.7.0.md:36	1334	[runs 052]
+BY HAND	docs/studies/07-newton-1.7.0.md:41	84061	[runs 052 030]
+BY HAND	docs/studies/07-newton-1.7.0.md:41	83859	[runs 052 030]
+CONVERSION	docs/studies/08-upstream-fixes.md:22	2.37	2365 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:22	2.43	2426 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:22	2.82	2815 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:22	2.66	2656 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:22	1.28	1276 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:22	1.33	1326 / 10^3 in run 053
+BY HAND	docs/studies/08-upstream-fixes.md:28	191800	[runs 053]
+BY HAND	docs/studies/08-upstream-fixes.md:29	83244	[runs 053]
+BY HAND	docs/studies/08-upstream-fixes.md:30	83244	[runs 053]
+CONVERSION	docs/studies/08-upstream-fixes.md:35	6.28	6275 / 10^3 in run 053
+BY HAND	docs/studies/08-upstream-fixes.md:35	1.3e6	[runs 053]
+CONVERSION	docs/studies/08-upstream-fixes.md:36	2.82	2815 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:36	2.37	2365 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:36	2.88	2875 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:36	2.14	2136 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:37	1.33	1326 / 10^3 in run 053
+CONVERSION	docs/studies/08-upstream-fixes.md:37	1.28	1276 / 10^3 in run 053
+CONVERSION	docs/studies/09-newtons-own-options.md:29	0.125	125 / 10^3 in run 064
+CONVERSION	docs/studies/09-newtons-own-options.md:34	10.8	10750 / 10^3 in run 064
+CONVERSION	docs/studies/09-newtons-own-options.md:35	1.25	1245 / 10^3 in run 064
+CONVERSION	docs/studies/09-newtons-own-options.md:35	0.3125	312450 / 10^6 in run 064
+CONVERSION	docs/studies/09-newtons-own-options.md:45	99.87	99866 / 10^3 in run 064
+CONVERSION	docs/studies/09-newtons-own-options.md:52	1.25	1245 / 10^3 in run 064
+CONVERSION	docs/studies/10-xpbd-joints-floor.md:19	1.75	1745 / 10^3 in run 071
+BY HAND	docs/studies/10-xpbd-joints-floor.md:36	797855	[runs 071]
+CONVERSION	docs/studies/10-xpbd-joints-floor.md:36	32.7	32668 / 10^3 in run 071
+CONVERSION	docs/studies/11-mujoco-noslip-cpu-featherstone-limit.md:35	3.15	3145 / 10^3 in run 072
+CONVERSION	docs/studies/12-semi-angle-featherstone-implicit-limit.md:24	0.2495	249458 / 10^6 in run 078
+CONVERSION	docs/studies/12-semi-angle-featherstone-implicit-limit.md:24	0.2498	249788 / 10^6 in run 078
+CONVERSION	docs/studies/12-semi-angle-featherstone-implicit-limit.md:24	1.08	1076 / 10^3 in run 078
+CONVERSION	docs/studies/12-semi-angle-featherstone-implicit-limit.md:24	1.10	1096 / 10^3 in run 078
+CONVERSION	docs/studies/12-semi-angle-featherstone-implicit-limit.md:25	0.200000	200 / 10^3 in run 078
+CONVERSION	docs/studies/12-semi-angle-featherstone-implicit-limit.md:25	0.400000	400 / 10^3 in run 078
+CONVERSION	docs/studies/13-semi-joint-angle.md:14	0.558	558 / 10^3 in run 080
+CONVERSION	docs/studies/13-semi-joint-angle.md:14	1.044	1044 / 10^3 in run 080
+BY HAND	docs/studies/13-semi-joint-angle.md:21	4316	[runs 080]
+CONVERSION	docs/studies/20-xpbd-limit-arm-chain.md:22	1.93	1925 / 10^3 in run 109
+CONVERSION	docs/studies/20-xpbd-limit-arm-chain.md:22	2.68	2676 / 10^3 in run 109
+CONVERSION	docs/studies/20-xpbd-limit-arm-chain.md:28	0.140	140 / 10^3 in run 109
+CONVERSION	docs/studies/22-vbd-displacement.md:25	0.09375	93745 / 10^6 in run 114
+CONVERSION	docs/studies/24-cloth-box-coupling.md:21	10.9	10851 / 10^3 in run 119
+BY HAND	docs/studies/24-cloth-box-coupling.md:24	2900	[runs 119]
+BY HAND	docs/studies/24-cloth-box-coupling.md:33	4712	[runs 119]
+CONVERSION	docs/studies/26-friction-combination.md:12	92.5	92454 / 10^3 in run 128
+CONVERSION	docs/studies/26-friction-combination.md:12	56.9	56860 / 10^3 in run 128
+CONVERSION	docs/studies/27-static-friction.md:24	2.36	2355 / 10^3 in run 130
+CONVERSION	docs/studies/27-static-friction.md:25	4.41	4405 / 10^3 in run 130
+CONVERSION	docs/studies/28-transfer-mujoco-c.md:13	92.5	92466 / 10^3 in run 131
+CONVERSION	docs/studies/28-transfer-mujoco-c.md:13	56.9	56852 / 10^3 in run 131
+CONVERSION	docs/studies/28-transfer-mujoco-c.md:20	1.8955	1895544 / 10^6 in run 131
+CONVERSION	docs/studies/28-transfer-mujoco-c.md:20	1.9845	1984500 / 10^6 in run 131
+CONVERSION	docs/studies/28-transfer-mujoco-c.md:20	1.9943	1994328 / 10^6 in run 131
+CONVERSION	docs/studies/30-static-friction-xpbd-slip.md:25	2.26	2255 / 10^3 in run 133
+CONVERSION	docs/studies/30-static-friction-xpbd-slip.md:26	4.41	4405 / 10^3 in run 133
+BY HAND	docs/studies/README.md:20	4010	[runs ]
+BY HAND	docs/studies/README.md:20	4316	[runs ]
+BY HAND	docs/studies/README.md:22	4317	[runs ]
+BY HAND	docs/studies/README.md:22	4318	[runs ]
+BY HAND	docs/studies/README.md:33	3552	[runs ]
+BY HAND	docs/studies/README.md:36	4698	[runs ]
+BY HAND	docs/studies/README.md:42	4306	[runs ]
+BY HAND	docs/studies/README.md:43	4712	[runs ]
+BY HAND	docs/studies/README.md:44	4712	[runs ]
+BY HAND	docs/studies/README.md:45	204	[runs ]
+CONVERSION	validation/run_001_design_probes/README.md:25	0.125	125 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:33	0.125	125 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:43	0.125	125 / 10^3 in run 001
+BY HAND	validation/run_001_design_probes/README.md:52	127551	[runs 001]
+CONVERSION	validation/run_001_design_probes/README.md:54	0.125	125 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:70	0.125	125 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:88	17.08	17075 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:88	17.06	17055 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:99	1.65	1645 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:100	10.9	10850 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:102	0.125	125 / 10^3 in run 001
+CONVERSION	validation/run_001_design_probes/README.md:105	14.9	14850 / 10^3 in run 001
+CONVERSION	validation/run_002_friction_smoothing/README.md:4	0.125	125 / 10^3 in run 002
+BY HAND	validation/run_002_friction_smoothing/README.md:24	127551	[runs 002]
+CONVERSION	validation/run_002_friction_smoothing/README.md:27	0.125	125 / 10^3 in run 002
+CONVERSION	validation/run_002_friction_smoothing/README.md:28	0.999	999 / 10^3 in run 002
+CONVERSION	validation/run_002_friction_smoothing/README.md:28	0.993	993 / 10^3 in run 002
+CONVERSION	validation/run_002_friction_smoothing/README.md:28	0.628	628 / 10^3 in run 002
+CONVERSION	validation/run_002_friction_smoothing/README.md:28	0.577	577 / 10^3 in run 002
+CONVERSION	validation/run_004_plate/README.md:21	11.8	11750 / 10^3 in run 004
+CONVERSION	validation/run_004_plate/README.md:21	14.4	14350 / 10^3 in run 004
+BY HAND	validation/run_004_plate/README.md:37	127.6	[runs 004]
+BY HAND	validation/run_005_unit_friction_direction/README.md:9	2894458	[runs 005 002 004]
+BY HAND	validation/run_007_contact_suite/README.md:18	0.625	[runs 007]
+BY HAND	validation/run_007_contact_suite/README.md:19	0.625	[runs 007]
+BY HAND	validation/run_007_contact_suite/README.md:43	0.625	[runs 007]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:19	0.156	[runs 009]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:19	102	[runs 009]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:19	204	[runs 009]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:19	449	[runs 009]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:19	822	[runs 009]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:20	0.625	[runs 009]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:21	396	[runs 009]
+BY HAND	validation/run_009_mujoco_solver_suite/README.md:24	9.99999975e-6	[runs 009]
+BY HAND	validation/run_014_chain/README.md:15	1e32	[runs 014]
+CONVERSION	validation/run_014_chain/README.md:24	0.625	625 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:24	0.156	156 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:26	9.72	9715 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:26	2.48	2475 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:27	6.60	6595 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:27	1.81	1806 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:28	9.72	9715 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:28	2.48	2475 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:29	6.60	6595 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:29	1.81	1806 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:32	30.1	30050 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:32	11.0	10950 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:33	11.3	11250 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:34	46.0	45950 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:34	11.3	11250 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:35	22.8	22750 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:36	45.9	45850 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:36	11.2	11150 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:37	22.8	22750 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:40	9.72	9715 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:40	6.60	6595 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:49	0.625	625 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:49	0.156	156 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:51	12.2	12150 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:51	17.0	16950 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:52	12.2	12150 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:52	17.0	16950 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:54	117.3	117250 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:54	49.5	49450 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:54	21.1	21050 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:55	72.1	72050 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:55	58.2	58151 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:55	24.0	23950 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:56	71.5	71450 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:56	58.2	58151 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:56	27.6	27550 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:56	11.3	11250 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:59	12.2	12150 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:59	17.0	16950 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:65	0.625	625 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:65	0.156	156 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:80	0.625	625 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:81	0.156	156 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:81	0.156	156 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:81	0.625	625 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:82	69.9	69851 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:82	88.7	88650 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:83	70.0	69950 / 10^3 in run 014
+CONVERSION	validation/run_014_chain/README.md:83	88.4	88351 / 10^3 in run 014
+CONVERSION	validation/run_015_xpbd_restitution/README.md:21	1.25	1249496 / 10^6 in run 015
+CONVERSION	validation/run_015_xpbd_restitution/README.md:21	0.625	625000 / 10^6 in run 015
+CONVERSION	validation/run_015_xpbd_restitution/README.md:21	0.3125	312500 / 10^6 in run 015
+CONVERSION	validation/run_015_xpbd_restitution/README.md:21	0.156	156250 / 10^6 in run 015
+BY HAND	validation/run_015_xpbd_restitution/README.md:27	673	[runs 015]
+CONVERSION	validation/run_016_restitution_friction/README.md:16	1.33	1326 / 10^3 in run 016
+BY HAND	validation/run_016_restitution_friction/README.md:22	745	[runs 016]
+BY HAND	validation/run_016_restitution_friction/README.md:22	296	[runs 016]
+CONVERSION	validation/run_016_restitution_friction/README.md:45	1.25	1249496 / 10^6 in run 016
+CONVERSION	validation/run_016_restitution_friction/README.md:45	0.625	625000 / 10^6 in run 016
+CONVERSION	validation/run_016_restitution_friction/README.md:45	0.3125	312500 / 10^6 in run 016
+CONVERSION	validation/run_016_restitution_friction/README.md:45	0.156	156250 / 10^6 in run 016
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:24	1.25	1249497 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:24	0.625	625000 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:24	0.3125	312500 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:24	0.156	156250 / 10^6 in run 017
+BY HAND	validation/run_017_refinement_chain_trace/README.md:26	830	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:26	1258	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:26	2140	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:27	688	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:27	1482	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:27	2210	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:27	3565	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:27	3779	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:28	1.78	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:28	1.76	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:28	1.77	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:28	1.77	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:29	1111	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:29	17936	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:29	18918	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:29	19134	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:29	18931	[runs 017]
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:34	1.25	1249497 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:34	0.625	625000 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:35	0.3125	312500 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:37	1.26	1257975 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:37	2.01	2011090 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:37	2.14	2140116 / 10^6 in run 017
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:38	1.25	1249497 / 10^6 in run 017
+BY HAND	validation/run_017_refinement_chain_trace/README.md:38	1.76	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:38	1.78	[runs 017]
+CONVERSION	validation/run_017_refinement_chain_trace/README.md:44	0.156	156250 / 10^6 in run 017
+BY HAND	validation/run_017_refinement_chain_trace/README.md:50	360	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:51	420	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:55	465	[runs 017]
+BY HAND	validation/run_017_refinement_chain_trace/README.md:55	469	[runs 017]
+BY HAND	validation/run_018_restitution_friction_take_back/README.md:19	572	[runs 018]
+BY HAND	validation/run_018_restitution_friction_take_back/README.md:19	966	[runs 018]
+BY HAND	validation/run_018_restitution_friction_take_back/README.md:19	46067e1	[runs 018]
+CONVERSION	validation/run_018_restitution_friction_take_back/README.md:41	1.25	1249496 / 10^6 in run 018
+CONVERSION	validation/run_018_restitution_friction_take_back/README.md:41	0.625	625000 / 10^6 in run 018
+CONVERSION	validation/run_018_restitution_friction_take_back/README.md:41	0.3125	312500 / 10^6 in run 018
+CONVERSION	validation/run_018_restitution_friction_take_back/README.md:41	0.156	156250 / 10^6 in run 018
+CONVERSION	validation/run_018_restitution_friction_take_back/README.md:58	10.3	10335 / 10^3 in run 018
+CONVERSION	validation/run_019_study_02/README.md:42	10.7	10710 / 10^3 in run 019
+BY HAND	validation/run_020_contact_damping_no_pull/README.md:16	7489e80	[runs 020 008]
+BY HAND	validation/run_020_contact_damping_no_pull/README.md:20	465	[runs 020]
+BY HAND	validation/run_020_contact_damping_no_pull/README.md:20	469	[runs 020]
+CONVERSION	validation/run_020_contact_damping_no_pull/README.md:31	0.625	625000 / 10^6 in run 020
+CONVERSION	validation/run_020_contact_damping_no_pull/README.md:32	0.625	625000 / 10^6 in run 020
+BY HAND	validation/run_020_contact_damping_no_pull/README.md:32	1019200	[runs 020 008 008]
+CONVERSION	validation/run_020_contact_damping_no_pull/README.md:32	0.625	625000 / 10^6 in run 020
+BY HAND	validation/run_020_contact_damping_no_pull/README.md:32	1679900	[runs 020 008 008]
+CONVERSION	validation/run_020_contact_damping_no_pull/README.md:32	0.625	625000 / 10^6 in run 020
+BY HAND	validation/run_020_contact_damping_no_pull/README.md:45	1.41	[runs 020]
+CONVERSION	validation/run_020_contact_damping_no_pull/README.md:55	0.625	625000 / 10^6 in run 020
+CONVERSION	validation/run_021_explicit_limits/README.md:73	1.25	1245 / 10^3 in run 021
+CONVERSION	validation/run_021_explicit_limits/README.md:100	1.25	1245 / 10^3 in run 021
+CONVERSION	validation/run_021_explicit_limits/README.md:100	1.25	1245 / 10^3 in run 021
+BY HAND	validation/run_022_vbd_carried_velocity/README.md:27	7e55	[runs 022]
+CONVERSION	validation/run_022_vbd_carried_velocity/README.md:43	0.625	625 / 10^3 in run 022
+CONVERSION	validation/run_022_vbd_carried_velocity/README.md:43	0.625	625 / 10^3 in run 022
+CONVERSION	validation/run_023_mujoco_solver_regularization/README.md:22	0.156	156 / 10^3 in run 023
+CONVERSION	validation/run_023_mujoco_solver_regularization/README.md:33	0.156	156 / 10^3 in run 023
+CONVERSION	validation/run_023_mujoco_solver_regularization/README.md:33	0.128	128 / 10^3 in run 023
+CONVERSION	validation/run_024_semi_chain_penalty/README.md:54	98.93	98926 / 10^3 in run 024
+CONVERSION	validation/run_024_semi_chain_penalty/README.md:55	98.94	98936 / 10^3 in run 024
+CONVERSION	validation/run_024_semi_chain_penalty/README.md:56	99.76	99757 / 10^3 in run 024
+BY HAND	validation/run_025_vbd_chain_carried_velocity/README.md:20	1000000	[runs 025]
+CONVERSION	validation/run_025_vbd_chain_carried_velocity/README.md:44	11.3	11250 / 10^3 in run 025
+CONVERSION	validation/run_025_vbd_chain_carried_velocity/README.md:44	13.0	12950 / 10^3 in run 025
+BY HAND	validation/run_026_vbd_carried_velocity_v2/README.md:18	4e33692	[runs 026]
+BY HAND	validation/run_026_vbd_carried_velocity_v2/README.md:18	4797541	[runs 026]
+BY HAND	validation/run_026_vbd_carried_velocity_v2/README.md:34	1000000	[runs 026]
+BY HAND	validation/run_027_xpbd_creep_iterations/README.md:44	4.03	[runs 027]
+BY HAND	validation/run_028_xpbd_chain_iterations/README.md:20	1000000	[runs 028]
+CONVERSION	validation/run_028_xpbd_chain_iterations/README.md:29	70.6	70566 / 10^3 in run 028
+CONVERSION	validation/run_028_xpbd_chain_iterations/README.md:30	0.375	375 / 10^3 in run 028
+BY HAND	validation/run_028_xpbd_chain_iterations/README.md:37	100000	[runs 028]
+CONVERSION	validation/run_028_xpbd_chain_iterations/README.md:38	0.375	375 / 10^3 in run 028
+CONVERSION	validation/run_028_xpbd_chain_iterations/README.md:39	0.366	366 / 10^3 in run 028
+CONVERSION	validation/run_028_xpbd_chain_iterations/README.md:39	0.300	300 / 10^3 in run 028
+CONVERSION	validation/run_028_xpbd_chain_iterations/README.md:39	0.276	276 / 10^3 in run 028
+CONVERSION	validation/run_030_com_offset_spin/README.md:38	13.1	13050 / 10^3 in run 030
+CONVERSION	validation/run_031_spin_drift_integrator/README.md:21	0.156	156 / 10^3 in run 031
+CONVERSION	validation/run_031_spin_drift_integrator/README.md:40	12.5	12450 / 10^3 in run 031
+CONVERSION	validation/run_031_spin_drift_integrator/README.md:43	0.156	156 / 10^3 in run 031
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:30	3.76	3755 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:30	1.97	1965 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:30	5.95	5945 / 10^3 in run 032
+BY HAND	validation/run_032_joint_limit_past_pi/README.md:30	327786	[runs 032]
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:31	3.79	3785 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:31	1.99	1985 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:31	5.17	5165 / 10^3 in run 032
+BY HAND	validation/run_032_joint_limit_past_pi/README.md:31	3052985	[runs 032]
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:32	3.76	3755 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:32	1.96	1955 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:33	3.79	3785 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:33	1.99	1985 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:34	3.80	3795 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:34	2.00	1995 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:35	3.80	3795 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:35	2.00	1995 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:36	3.79	3785 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:36	1.99	1985 / 10^3 in run 032
+BY HAND	validation/run_032_joint_limit_past_pi/README.md:49	327786	[runs 032]
+BY HAND	validation/run_032_joint_limit_past_pi/README.md:49	3052985	[runs 032]
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:49	1.97	1965 / 10^3 in run 032
+CONVERSION	validation/run_032_joint_limit_past_pi/README.md:49	1.99	1985 / 10^3 in run 032
+CONVERSION	validation/run_033_study_03/README.md:15	0.375	375 / 10^3 in run 033
+CONVERSION	validation/run_033_study_03/README.md:16	0.375	375 / 10^3 in run 033
+CONVERSION	validation/run_033_study_03/README.md:24	0.375	375 / 10^3 in run 033
+BY HAND	validation/run_035_xpbd_joint_angle_unwrap/README.md:29	327786	[runs 035 032]
+CONVERSION	validation/run_035_xpbd_joint_angle_unwrap/README.md:30	3.470	3470 / 10^3 in run 035
+CONVERSION	validation/run_035_xpbd_joint_angle_unwrap/README.md:30	3.466	3466 / 10^3 in run 035
+BY HAND	validation/run_035_xpbd_joint_angle_unwrap/README.md:30	327786	[runs 035]
+BY HAND	validation/run_035_xpbd_joint_angle_unwrap/README.md:30	3052985	[runs 035]
+CONVERSION	validation/run_035_xpbd_joint_angle_unwrap/README.md:31	0.156	156 / 10^3 in run 035
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:34	0.890	890 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:34	0.484	484 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:34	0.191	191 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:34	0.269	269 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:35	0.938	938 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:35	0.553	553 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:35	0.226	226 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:35	0.261	261 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:36	0.351	351 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:36	0.135	135 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:36	0.110	110 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:36	0.360	360 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:36	1.144	1144 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:37	0.258	258 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:37	0.258	258 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:37	0.258	258 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:37	0.258	258 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:41	0.842	842 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:42	1.151	1151 / 10^3 in run 036
+CONVERSION	validation/run_036_limit_damping_inertia/README.md:56	1.14	1135 / 10^3 in run 036
+BY HAND	validation/run_037_study_05/README.md:15	1284321	[runs 037]
+BY HAND	validation/run_037_study_05/README.md:15	19643442	[runs 037]
+CONVERSION	validation/run_037_study_05/README.md:25	4.742	4742 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:25	2.93	2926 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:25	4.789	4789 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:25	2.99	2986 / 10^3 in run 037
+BY HAND	validation/run_037_study_05/README.md:26	1284321	[runs 037]
+BY HAND	validation/run_037_study_05/README.md:26	19643442	[runs 037]
+CONVERSION	validation/run_037_study_05/README.md:27	4.742	4742 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:27	2.93	2926 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:27	4.789	4789 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:27	2.99	2986 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:29	2.882	2882 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:29	2.14	2136 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:29	2.758	2758 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:29	2.17	2165 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:30	1.328	1328 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:30	2.29	2285 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:30	1.170	1170 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:30	2.39	2386 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:38	2.29	2285 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:38	2.39	2386 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:39	2.14	2136 / 10^3 in run 037
+CONVERSION	validation/run_037_study_05/README.md:40	2.17	2165 / 10^3 in run 037
+BY HAND	validation/run_039_mujoco_limit_force_space/README.md:22	77925587	[runs 039]
+BY HAND	validation/run_039_mujoco_limit_force_space/README.md:22	1591155	[runs 039]
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:29	0.269	269 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:30	0.110	110 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:30	0.360	360 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:30	1.144	1144 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:31	0.253	253 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:33	0.351	351 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:33	0.135	135 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:34	0.804	804 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:34	0.448	448 / 10^3 in run 039
+CONVERSION	validation/run_039_mujoco_limit_force_space/README.md:34	0.183	183 / 10^3 in run 039
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:23	1.328	1328 / 10^3 in run 040
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:23	1.170	1170 / 10^3 in run 040
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:24	1.416	1416 / 10^3 in run 040
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:24	2.02	2016 / 10^3 in run 040
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:24	1.340	1340 / 10^3 in run 040
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:24	2.07	2065 / 10^3 in run 040
+BY HAND	validation/run_040_xpbd_limit_return/README.md:25	933890	[runs 040]
+BY HAND	validation/run_040_xpbd_limit_return/README.md:25	30221332	[runs 040]
+BY HAND	validation/run_040_xpbd_limit_return/README.md:26	3344188	[runs 040]
+BY HAND	validation/run_040_xpbd_limit_return/README.md:26	64697024	[runs 040]
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:38	2.02	2016 / 10^3 in run 040
+CONVERSION	validation/run_040_xpbd_limit_return/README.md:38	2.07	2065 / 10^3 in run 040
+BY HAND	validation/run_041_vbd_joint_stiffness/README.md:11	1000000	[runs 041 014]
+CONVERSION	validation/run_042_mujoco_limit_damping_step/README.md:17	0.824	824 / 10^3 in run 042
+CONVERSION	validation/run_042_mujoco_limit_damping_step/README.md:17	0.454	454 / 10^3 in run 042
+CONVERSION	validation/run_042_mujoco_limit_damping_step/README.md:19	0.913	913 / 10^3 in run 042
+CONVERSION	validation/run_042_mujoco_limit_damping_step/README.md:21	0.815	815 / 10^3 in run 042
+CONVERSION	validation/run_042_mujoco_limit_damping_step/README.md:21	0.450	450 / 10^3 in run 042
+CONVERSION	validation/run_042_mujoco_limit_damping_step/README.md:34	0.815	815 / 10^3 in run 042
+CONVERSION	validation/run_042_mujoco_limit_damping_step/README.md:34	0.450	450 / 10^3 in run 042
+CONVERSION	validation/run_043_study_06/README.md:15	0.220	220 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:15	0.219	219 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:15	0.573	573 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:15	0.282	282 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:16	0.595	595 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:16	0.585	585 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:16	0.289	289 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:16	0.287	287 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:16	0.573	573 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:16	0.282	282 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:22	0.220	220 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:22	0.219	219 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:22	0.168	168 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:22	0.168	168 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:23	0.595	595 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:23	0.585	585 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:23	0.289	289 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:23	0.287	287 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:24	0.573	573 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:24	0.282	282 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:27	0.290	290 / 10^3 in run 043
+CONVERSION	validation/run_043_study_06/README.md:27	0.305	305 / 10^3 in run 043
+CONVERSION	validation/run_045_vbd_chain_float32/README.md:13	8.44	8435 / 10^3 in run 045
+CONVERSION	validation/run_045_vbd_chain_float32/README.md:13	4.88	4875 / 10^3 in run 045
+CONVERSION	validation/run_045_vbd_chain_float32/README.md:65	0.551	551 / 10^3 in run 045
+CONVERSION	validation/run_045_vbd_chain_float32/README.md:65	5.17	5165 / 10^3 in run 045
+CONVERSION	validation/run_045_vbd_chain_float32/README.md:66	0.649	649 / 10^3 in run 045
+CONVERSION	validation/run_045_vbd_chain_float32/README.md:66	4.31	4305 / 10^3 in run 045
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:23	2.62	2615 / 10^3 in run 046
+BY HAND	validation/run_046_xpbd_limit_rotated/README.md:23	27.7	[runs 046]
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:23	2.66	2656 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:24	2.29	2285 / 10^3 in run 046
+BY HAND	validation/run_046_xpbd_limit_rotated/README.md:24	18.5	[runs 046 037]
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:24	2.39	2386 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:25	3.02	3015 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:25	2.64	2636 / 10^3 in run 046
+BY HAND	validation/run_046_xpbd_limit_rotated/README.md:26	2025196	[runs 046]
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:26	2.35	2345 / 10^3 in run 046
+BY HAND	validation/run_046_xpbd_limit_rotated/README.md:26	20.6	[runs 046]
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:26	2.38	2375 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:27	2.57	2565 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:27	26.1	26063 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:27	2.61	2605 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:33	2.29	2285 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:33	3.02	3015 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:42	2.62	2615 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:42	2.29	2285 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:42	3.02	3015 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:46	2.35	2345 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:46	2.61	2605 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:46	2.29	2285 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:46	3.02	3015 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:47	2.39	2386 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:47	2.66	2656 / 10^3 in run 046
+CONVERSION	validation/run_046_xpbd_limit_rotated/README.md:47	2.38	2375 / 10^3 in run 046
+CONVERSION	validation/run_047_vbd_chain_spacing/README.md:44	0.156	156 / 10^3 in run 047
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:17	2.86	2855 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:18	2.41	2406 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:19	2.41	2406 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:28	1.32	1316 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:28	2.18	2176 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:28	2.20	2196 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:29	1.66	1655 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:29	2.37	2365 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:29	2.41	2406 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:30	2.27	2265 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:30	2.44	2435 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:30	2.49	2486 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:31	2.82	2815 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:31	2.93	2926 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:31	2.72	2716 / 10^3 in run 048
+BY HAND	validation/run_048_xpbd_limit_gain/README.md:32	553966	[runs 048]
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:32	2.89	2886 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:33	1.14	1135 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:33	2.39	2386 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:33	2.43	2426 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:34	1.41	1405 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:34	2.43	2426 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:34	2.47	2466 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:35	2.86	2855 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:35	3.25	3245 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:36	2.42	2415 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:36	2.48	2475 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:37	2.48	2475 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:37	2.46	2455 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:37	2.45	2446 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:38	1.78	1776 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:38	2.57	2565 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:38	2.61	2605 / 10^3 in run 048
+CONVERSION	validation/run_048_xpbd_limit_gain/README.md:51	2.86	2855 / 10^3 in run 048
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:34	32090	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:34	6643	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:34	2.56	2555 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:34	2.60	2595 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:35	32629	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:35	6541	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:35	2.57	2565 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:35	2.62	2615 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:36	33666	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:36	6824	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:36	2.60	2595 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:36	2.64	2636 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:37	32979	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:37	6734	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:37	2.61	2605 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:37	2.65	2645 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:38	33000	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:38	6673	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:38	2.63	2625 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:38	2.67	2665 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:39	33369	[runs 050 048]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:39	6681	[runs 050 048]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:39	2.66	2656 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:40	37501	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:40	7507	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:40	2.59	2585 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:40	2.60	2595 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:41	33298	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:41	6789	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:41	2.61	2605 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:41	2.65	2645 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:42	34002	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:42	6885	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:42	2.59	2585 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:42	2.63	2625 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:43	33284	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:43	6801	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:43	2.60	2595 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:43	2.64	2636 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:44	33246	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:44	6724	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:44	2.62	2615 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:44	2.66	2656 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:51	36191	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:51	7421	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:51	1.266	1266 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:51	1.080	1080 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:51	2.49	2486 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:51	2.57	2565 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:52	11236	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:52	1.418	1418 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:52	1.358	1358 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:52	2.00	1995 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:52	2.03	2025 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:53	2.190	2190 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:53	2.233	2233 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:54	2.49991	2499905 / 10^6 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:54	2.49979	2499794 / 10^6 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:55	1.8e5	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:55	1.7e6	[runs 050]
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:60	5411	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:61	2.56	2555 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:61	2.67	2665 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:62	2.49	2486 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:62	2.00	1995 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:62	2.57	2565 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:62	2.03	2025 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:81	1.32	1316 / 10^3 in run 050
+BY HAND	validation/run_050_xpbd_swing_gradient/README.md:81	5066	[runs 050]
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:81	1.14	1135 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:85	2.56	2555 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:86	2.67	2665 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:86	2.57	2565 / 10^3 in run 050
+CONVERSION	validation/run_050_xpbd_swing_gradient/README.md:86	2.03	2025 / 10^3 in run 050
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:34	0.447	447 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:34	0.504	504 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:34	19.2	19150 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:35	0.431	431 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:35	0.499	499 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:35	25.2	25176 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:36	0.421	421 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:36	0.496	496 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:36	29.0	28958 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:37	0.422	422 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:37	0.493	493 / 10^3 in run 051
+BY HAND	validation/run_051_xpbd_limit_anchor_held/README.md:37	25.6	[runs 051]
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:38	0.436	436 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:38	0.492	492 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:38	11.5	11451 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:39	0.557	557 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:39	0.501	501 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:39	56.3	56251 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:39	10.1	10050 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:39	0.102	102 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:40	0.469	469 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:40	0.503	503 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:40	18.7	18674 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:41	0.421	421 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:41	0.494	494 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:41	27.0	27037 / 10^3 in run 051
+BY HAND	validation/run_051_xpbd_limit_anchor_held/README.md:43	32090	[runs 051 050]
+BY HAND	validation/run_051_xpbd_limit_anchor_held/README.md:43	37501	[runs 051 050]
+BY HAND	validation/run_051_xpbd_limit_anchor_held/README.md:43	6541	[runs 051 050]
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:51	0.465	465 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:51	0.506	506 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:52	0.515	515 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:52	0.585	585 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:53	0.551	551 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:53	0.472	472 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:53	0.206	206 / 10^3 in run 051
+BY HAND	validation/run_051_xpbd_limit_anchor_held/README.md:54	36191	[runs 051 050]
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:54	2.49	2486 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:58	0.113	113 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:58	12.6	12550 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:58	13.0	12950 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:60	56.3	56251 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:60	0.102	102 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:69	2.987	2987 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:69	2.938	2938 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:70	2.988	2988 / 10^3 in run 051
+CONVERSION	validation/run_051_xpbd_limit_anchor_held/README.md:70	2.938	2938 / 10^3 in run 051
+BY HAND	validation/run_052_study_07/README.md:33	1334	[runs 052]
+BY HAND	validation/run_052_study_07/README.md:34	1334	[runs 052]
+BY HAND	validation/run_053_study_08/README.md:9	1e300	[runs 053]
+CONVERSION	validation/run_053_study_08/README.md:19	2.37	2365 / 10^3 in run 053
+CONVERSION	validation/run_053_study_08/README.md:19	2.43	2426 / 10^3 in run 053
+BY HAND	validation/run_053_study_08/README.md:21	1.3e6	[runs 053]
+BY HAND	validation/run_053_study_08/README.md:21	1.9e7	[runs 053]
+CONVERSION	validation/run_053_study_08/README.md:23	2.54	2535 / 10^3 in run 053
+BY HAND	validation/run_054_joint_torque_drive/README.md:12	0.2516667	[runs 054]
+BY HAND	validation/run_054_joint_torque_drive/README.md:23	38437	[runs 054]
+CONVERSION	validation/run_054_joint_torque_drive/README.md:31	1.36	1356 / 10^3 in run 054
+CONVERSION	validation/run_054_joint_torque_drive/README.md:50	1.75	1745 / 10^3 in run 054
+CONVERSION	validation/run_054_joint_torque_drive/README.md:51	1.74	1735 / 10^3 in run 054
+BY HAND	validation/run_054_joint_torque_drive/README.md:56	9.9e-5	[runs 054]
+CONVERSION	validation/run_054_joint_torque_drive/README.md:59	1.39	1385 / 10^3 in run 054
+CONVERSION	validation/run_054_joint_torque_drive/README.md:59	2.78	2775 / 10^3 in run 054
+CONVERSION	validation/run_054_joint_torque_drive/README.md:59	5.56	5555 / 10^3 in run 054
+CONVERSION	validation/run_054_joint_torque_drive/README.md:59	11.1	11050 / 10^3 in run 054
+BY HAND	validation/run_055_featherstone_limit_light_link/README.md:16	1.6e-4	[runs 055]
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:16	31.5	31450 / 10^3 in run 055
+BY HAND	validation/run_055_featherstone_limit_light_link/README.md:27	2.333e-5	[runs 055]
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:27	4.66	4655 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:28	96.6	96552 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:29	0.2517	251652 / 10^6 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:29	9.08	9075 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:38	4.66	4655 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:40	96.6	96552 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:41	9.08	9075 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:51	4.66	4655 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:52	18.8	18750 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:53	96.6	96552 / 10^3 in run 055
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:56	31.5	31450 / 10^3 in run 055
+BY HAND	validation/run_055_featherstone_limit_light_link/README.md:56	1.6e-4	[runs 055]
+CONVERSION	validation/run_055_featherstone_limit_light_link/README.md:62	24.5	24450 / 10^3 in run 055
+BY HAND	validation/run_056_joint_velocity_effort_limits/README.md:16	0.2516667	[runs 056]
+CONVERSION	validation/run_056_joint_velocity_effort_limits/README.md:52	1.74	1735 / 10^3 in run 056
+BY HAND	validation/run_057_vbd_limit_torque/README.md:18	0.2516667	[runs 057]
+BY HAND	validation/run_057_vbd_limit_torque/README.md:19	2.333e-5	[runs 057]
+BY HAND	validation/run_059_friction_combination/README.md:29	254264	[runs 059]
+BY HAND	validation/run_059_friction_combination/README.md:29	255102	[runs 059]
+BY HAND	validation/run_059_friction_combination/README.md:30	53202	[runs 059]
+BY HAND	validation/run_059_friction_combination/README.md:30	56689	[runs 059]
+CONVERSION	validation/run_059_friction_combination/README.md:60	92.5	92475 / 10^3 in run 059
+CONVERSION	validation/run_059_friction_combination/README.md:60	56.9	56856 / 10^3 in run 059
+CONVERSION	validation/run_060_tunnelling/README.md:24	17.6	17550 / 10^3 in run 060
+CONVERSION	validation/run_060_tunnelling/README.md:46	12.3	12267 / 10^3 in run 060
+CONVERSION	validation/run_060_tunnelling/README.md:47	19.6	19560 / 10^3 in run 060
+CONVERSION	validation/run_060_tunnelling/README.md:59	19.6	19560 / 10^3 in run 060
+CONVERSION	validation/run_061_xpbd_limit_full/README.md:30	0.625	625 / 10^3 in run 061
+CONVERSION	validation/run_061_xpbd_limit_full/README.md:54	3.63	3625 / 10^3 in run 061
+CONVERSION	validation/run_061_xpbd_limit_full/README.md:54	2.38	2375 / 10^3 in run 061
+CONVERSION	validation/run_061_xpbd_limit_full/README.md:54	2.51	2505 / 10^3 in run 061
+CONVERSION	validation/run_061_xpbd_limit_full/README.md:54	12.3	12250 / 10^3 in run 061
+CONVERSION	validation/run_061_xpbd_limit_full/README.md:54	1.75	1745 / 10^3 in run 061
+CONVERSION	validation/run_061_xpbd_limit_full/README.md:54	2.44	2435 / 10^3 in run 061
+CONVERSION	validation/run_062_rest_reports_scenes/README.md:23	0.200003	200003 / 10^6 in run 062
+CONVERSION	validation/run_062_rest_reports_scenes/README.md:29	0.0251	25051 / 10^6 in run 062
+CONVERSION	validation/run_063_loop_joint/README.md:36	1.500	1500 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:36	1.500	1500 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:37	1.500	1500 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:37	1.500	1500 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:38	1.500	1500 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:38	0.377	377 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:38	0.300	300 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:39	1.632	1632 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:39	1.631	1631 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:39	0.237	237 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:39	0.299	299 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:49	1.631	1631 / 10^3 in run 063
+CONVERSION	validation/run_063_loop_joint/README.md:49	1.035	1035 / 10^3 in run 063
+BY HAND	validation/run_064_study_09/README.md:7	62e4	[runs 064 052]
+CONVERSION	validation/run_064_study_09/README.md:18	0.125	125 / 10^3 in run 064
+CONVERSION	validation/run_064_study_09/README.md:24	1.25	1245 / 10^3 in run 064
+CONVERSION	validation/run_064_study_09/README.md:24	0.3125	312450 / 10^6 in run 064
+CONVERSION	validation/run_064_study_09/README.md:30	0.125	125 / 10^3 in run 064
+CONVERSION	validation/run_064_study_09/README.md:72	1.25	1245 / 10^3 in run 064
+CONVERSION	validation/run_064_study_09/README.md:73	0.3125	312450 / 10^6 in run 064
+CONVERSION	validation/run_064_study_09/README.md:74	1.25	1245 / 10^3 in run 064
+CONVERSION	validation/run_064_study_09/README.md:75	0.3125	312450 / 10^6 in run 064
+CONVERSION	validation/run_064_study_09/README.md:77	10.8	10750 / 10^3 in run 064
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:18	1.75	1745 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:21	11.1	11050 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:34	0.125	125 / 10^3 in run 065
+BY HAND	validation/run_065_xpbd_floor_relaxation_drive/README.md:42	0.25167	[runs 065]
+BY HAND	validation/run_065_xpbd_floor_relaxation_drive/README.md:70	34e82	[runs 065]
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:79	0.125	125 / 10^3 in run 065
+BY HAND	validation/run_065_xpbd_floor_relaxation_drive/README.md:108	742960	[runs 065]
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:112	2.49	2486 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:112	2.55	2545 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:112	2.82	2815 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:112	2.62	2615 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:113	2.37	2365 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:113	2.43	2426 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:113	1.28	1276 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:113	1.06	1056 / 10^3 in run 065
+CONVERSION	validation/run_065_xpbd_floor_relaxation_drive/README.md:123	1.74	1735 / 10^3 in run 065
+CONVERSION	validation/run_066_mujoco_cpu_path/README.md:5	3.15	3145 / 10^3 in run 066
+BY HAND	validation/run_066_mujoco_cpu_path/README.md:11	4612	[runs 066]
+CONVERSION	validation/run_067_mujoco_noslip/README.md:12	3.15	3145 / 10^3 in run 067
+BY HAND	validation/run_067_mujoco_noslip/README.md:36	70653	[runs 067]
+BY HAND	validation/run_068_featherstone_limit/README.md:27	2.333e-5	[runs 068 055]
+CONVERSION	validation/run_068_featherstone_limit/README.md:28	4.66	4655 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:32	0.0625	62450 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:33	0.815	815 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:33	0.450	450 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:43	0.913	913 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:44	0.815	815 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:44	0.450	450 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:44	0.0625	62450 / 10^6 in run 068
+BY HAND	validation/run_068_featherstone_limit/README.md:52	0119	[runs 068]
+CONVERSION	validation/run_068_featherstone_limit/README.md:55	4.66	4655 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:57	0.271	271 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:57	18.8	18750 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:57	0.500015	500015 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:59	0.500796	500796 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:59	0.500370	500370 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:59	0.500048	500048 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:59	0.500002	500002 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:59	0.500007	500007 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:59	0.500016	500016 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:60	0.794	794 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:60	0.184	184 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:60	0.0148	14751 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:62	0.0625	62450 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:62	0.0625	62450 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:64	0.890	890 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:64	0.913	913 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:64	0.484	484 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:64	0.484	484 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:65	0.805	805 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:65	0.826	826 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:65	0.450	450 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:65	0.456	456 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:66	0.843	843 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:66	0.836	836 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:66	0.517	517 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:66	0.474	474 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:67	0.815	815 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:67	0.815	815 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:67	0.450	450 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:67	0.450	450 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:73	0.815	815 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:73	0.450	450 / 10^3 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:83	0.500015	500015 / 10^6 in run 068
+CONVERSION	validation/run_068_featherstone_limit/README.md:83	0.500016	500016 / 10^6 in run 068
+BY HAND	validation/run_068_featherstone_limit/README.md:84	2.9e-8	[runs 068]
+BY HAND	validation/run_069_mujoco_noslip_v2/README.md:7	36101576365	[runs 069]
+BY HAND	validation/run_069_mujoco_noslip_v2/README.md:25	95326	[runs 069]
+BY HAND	validation/run_070_featherstone_limit_v3/README.md:19	2.333e-5	[runs 070 068]
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:32	0.815	815 / 10^3 in run 070
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:32	0.0625	62450 / 10^6 in run 070
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:32	0.450	450 / 10^3 in run 070
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:49	0.843	843 / 10^3 in run 070
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:49	0.836	836 / 10^3 in run 070
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:49	0.517	517 / 10^3 in run 070
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:49	0.474	474 / 10^3 in run 070
+CONVERSION	validation/run_070_featherstone_limit_v3/README.md:54	0.342	342 / 10^3 in run 070
+CONVERSION	validation/run_071_study_10/README.md:20	1.75	1745 / 10^3 in run 071
+BY HAND	validation/run_071_study_10/README.md:25	797855	[runs 071]
+CONVERSION	validation/run_071_study_10/README.md:25	32.7	32668 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:56	4.833	4833 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:56	3.40	3395 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:56	4.883	4883 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:56	3.48	3475 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:57	5.943	5943 / 10^3 in run 071
+BY HAND	validation/run_071_study_10/README.md:57	797855	[runs 071]
+CONVERSION	validation/run_071_study_10/README.md:57	2.465	2465 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:57	32.7	32668 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:58	4.830	4830 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:58	3.40	3395 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:58	4.883	4883 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:58	3.48	3475 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:59	4.835	4835 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:59	3.41	3406 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:59	4.879	4879 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:59	3.47	3466 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:71	1.75	1745 / 10^3 in run 071
+CONVERSION	validation/run_071_study_10/README.md:78	32.7	32668 / 10^3 in run 071
+CONVERSION	validation/run_072_study_11/README.md:24	0.630	630 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:24	0.631	631 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:24	0.349	349 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:24	0.351	351 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:24	0.572	572 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:24	0.327	327 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:25	0.570	570 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:25	0.579	579 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:25	0.331	331 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:25	0.334	334 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:35	0.630	630 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:35	0.631	631 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:35	0.349	349 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:35	0.351	351 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:36	0.570	570 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:36	0.579	579 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:36	0.331	331 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:36	0.334	334 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:37	0.572	572 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:37	0.572	572 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:37	0.327	327 / 10^3 in run 072
+CONVERSION	validation/run_072_study_11/README.md:37	0.327	327 / 10^3 in run 072
+BY HAND	validation/run_073_xpbd_chain_energy/README.md:6	1000000	[runs 073]
+CONVERSION	validation/run_074_vbd_chain_spin/README.md:20	31.6	31551 / 10^3 in run 074
+BY HAND	validation/run_075_joint_runs_on_4318/README.md:10	1116	[runs 075]
+CONVERSION	validation/run_075_joint_runs_on_4318/README.md:15	3.97	3973416 / 10^6 in run 075
+BY HAND	validation/run_075_joint_runs_on_4318/README.md:15	6.91	[runs 075]
+BY HAND	validation/run_075_joint_runs_on_4318/README.md:15	1.75	[runs 075]
+CONVERSION	validation/run_075_joint_runs_on_4318/README.md:17	1.28	1277549 / 10^6 in run 075
+CONVERSION	validation/run_075_joint_runs_on_4318/README.md:17	2.30	2295072 / 10^6 in run 075
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:17	0.500759	500759 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:17	0.756	756 / 10^3 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:17	0.500632	500632 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:17	0.319	319 / 10^3 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:17	0.500069	500069 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:17	0.500002	500002 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:17	0.500003	500003 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:18	0.500001	500001 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:18	0.500006	500006 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:18	0.500002	500002 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:18	0.500002	500002 / 10^6 in run 076
+CONVERSION	validation/run_076_featherstone_limit_chain/README.md:18	0.500003	500003 / 10^6 in run 076
+BY HAND	validation/run_077_semi_joint/README.md:5	103222	[runs 077]
+CONVERSION	validation/run_077_semi_joint/README.md:27	0.0625	62464 / 10^6 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:28	0.815	815 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:28	0.450	450 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:41	0.815	815 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:41	0.450	450 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:53	0.431	431 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:53	0.200000	200 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:53	0.400000	400 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:56	0.200000	200 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:56	0.400000	400 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:63	0.0625	62464 / 10^6 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:66	0.0625	62464 / 10^6 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:66	0.826	826 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:66	0.824	824 / 10^3 in run 077
+CONVERSION	validation/run_077_semi_joint/README.md:67	0.450	450 / 10^3 in run 077
+BY HAND	validation/run_078_study_12/README.md:6	29691	[runs 078]
+CONVERSION	validation/run_078_study_12/README.md:17	1.077	1077 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:17	1.096	1096 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:17	0.2495	249458 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:17	0.2498	249788 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:18	0.200000	200 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:18	0.400000	400 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:22	0.600001	600001 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:22	0.600002	600002 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:26	11.5	11450 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:28	0.600002	600002 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:28	0.600002	600002 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:28	0.600002	600002 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:28	0.600002	600002 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:30	0.598	598 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:30	0.507	507 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:30	0.547	547 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:30	0.600	600 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:34	0.600002	600002 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:34	0.600001	600001 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:34	0.600001	600001 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:34	0.600002	600002 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:38	1.077	1077 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:38	0.659	659 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:38	0.2495	249458 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:38	0.4421	442052 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:39	1.096	1096 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:39	0.663	663 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:39	0.2498	249788 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:39	0.4423	442267 / 10^6 in run 078
+CONVERSION	validation/run_078_study_12/README.md:40	0.200000	200 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:40	0.400000	400 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:40	0.200000	200 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:40	0.400000	400 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:51	1.08	1076 / 10^3 in run 078
+CONVERSION	validation/run_078_study_12/README.md:51	0.2495	249458 / 10^6 in run 078
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:7	0.815	815 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:7	0.450	450 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:19	0.890	890 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:19	0.913	913 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:19	0.904	904 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:19	0.484	484 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.484	484 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.481	481 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.805	805 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.826	826 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.817	817 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.450	450 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.456	456 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:20	0.454	454 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:21	0.815	815 / 10^3 in run 079
+CONVERSION	validation/run_079_semi_limit_kd0/README.md:21	0.450	450 / 10^3 in run 079
+CONVERSION	validation/run_080_study_13/README.md:16	1.022	1022 / 10^3 in run 080
+CONVERSION	validation/run_080_study_13/README.md:16	0.558	558 / 10^3 in run 080
+CONVERSION	validation/run_080_study_13/README.md:16	1.044	1044 / 10^3 in run 080
+CONVERSION	validation/run_080_study_13/README.md:16	0.564	564 / 10^3 in run 080
+CONVERSION	validation/run_080_study_13/README.md:17	0.200000	200 / 10^3 in run 080
+CONVERSION	validation/run_080_study_13/README.md:17	0.400000	400 / 10^3 in run 080
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:17	1.65	1645 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:21	2.513	2513 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:21	3.63	3625 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:21	3.816	3816 / 10^3 in run 081
+BY HAND	validation/run_081_xpbd_limit_chain_iterations/README.md:21	1.6e6	[runs 081]
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:22	2.963	2963 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:22	1.98	1975 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:22	0.169	169 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:23	2.959	2959 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:23	2.00	1995 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:23	12.2	12150 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:24	2.958	2958 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:24	2.01	2005 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:24	3.44	3435 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:25	2.384	2384 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:25	3.63	3625 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:25	0.874	874 / 10^3 in run 081
+BY HAND	validation/run_081_xpbd_limit_chain_iterations/README.md:25	1.3e7	[runs 081]
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:26	2.862	2862 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:26	2.67	2665 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:26	0.503	503 / 10^3 in run 081
+BY HAND	validation/run_081_xpbd_limit_chain_iterations/README.md:26	1.3e7	[runs 081]
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:27	2.855	2855 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:27	2.72	2716 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:27	7.21	7205 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:28	2.840	2840 / 10^3 in run 081
+CONVERSION	validation/run_081_xpbd_limit_chain_iterations/README.md:28	2.83	2825 / 10^3 in run 081
+BY HAND	validation/run_083_xpbd_hold_iterations/README.md:27	94908182330	[runs 083]
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:16	1.014	1014 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:16	1.014	1014 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:16	1.014	1014 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:16	0.757	757 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:16	0.762	762 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:16	0.763	763 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:17	1.014	1014 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:17	1.014	1014 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:17	1.014	1014 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:17	0.757	757 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:17	0.761	761 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:17	0.762	762 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:18	0.247	247 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:18	0.242	242 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:18	0.241	241 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:18	0.374	374 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:18	0.360	360 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:18	0.360	360 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:19	0.235	235 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:19	0.234	234 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:19	0.234	234 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:19	0.348	348 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:19	0.345	345 / 10^3 in run 084
+CONVERSION	validation/run_084_semi_limit_heavy/README.md:19	0.345	345 / 10^3 in run 084
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:5	1.014	1014 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:15	0.228	228 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:15	0.231	231 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:15	0.348	348 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:15	0.341	341 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:16	0.223	223 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:16	0.224	224 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:16	0.330	330 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:16	0.327	327 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:17	0.242	242 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:17	0.241	241 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:17	0.360	360 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:17	0.360	360 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:18	0.234	234 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:18	0.234	234 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:18	0.345	345 / 10^3 in run 086
+CONVERSION	validation/run_086_semi_limit_stiff/README.md:18	0.345	345 / 10^3 in run 086
+CONVERSION	validation/run_087_study_14/README.md:13	0.2347	234653 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:13	0.2350	235 / 10^3 in run 087
+CONVERSION	validation/run_087_study_14/README.md:13	0.3883	388251 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:13	0.3874	387352 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:14	0.2332	233150 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:14	0.3879	387850 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:15	1.0163	1016251 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:15	1.0163	1016251 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:15	0.7485	748451 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:15	0.7488	748750 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:16	0.2463	246250 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:16	0.2452	245150 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:16	0.4121	412052 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:16	0.4144	414350 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:17	0.2389	238850 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:17	0.2381	238053 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:17	0.3923	392250 / 10^6 in run 087
+CONVERSION	validation/run_087_study_14/README.md:17	0.3932	393150 / 10^6 in run 087
+BY HAND	validation/run_088_study_15/README.md:20	54422	[runs 088]
+CONVERSION	validation/run_090_semi_coulomb_friction/README.md:12	1.25	1245 / 10^3 in run 090
+CONVERSION	validation/run_090_semi_coulomb_friction/README.md:22	0.125	125 / 10^3 in run 090
+CONVERSION	validation/run_090_semi_coulomb_friction/README.md:44	0.125	125 / 10^3 in run 090
+CONVERSION	validation/run_091_vbd_alm_hold_steps/README.md:5	62.5	62500 / 10^3 in run 091
+CONVERSION	validation/run_092_semi_coulomb_sweeps/README.md:24	0.125	125 / 10^3 in run 092
+CONVERSION	validation/run_092_semi_coulomb_sweeps/README.md:46	0.125	125 / 10^3 in run 092
+CONVERSION	validation/run_092_semi_coulomb_sweeps/README.md:50	0.125	125 / 10^3 in run 092
+CONVERSION	validation/run_092_semi_coulomb_sweeps/README.md:63	1.69	1685 / 10^3 in run 092
+BY HAND	validation/run_093_semi_coulomb_damping/README.md:8	1351279	[runs 093]
+BY HAND	validation/run_093_semi_coulomb_damping/README.md:8	950603	[runs 093]
+CONVERSION	validation/run_093_semi_coulomb_damping/README.md:23	0.125	125 / 10^3 in run 093
+CONVERSION	validation/run_093_semi_coulomb_damping/README.md:44	0.125	125 / 10^3 in run 093
+CONVERSION	validation/run_093_semi_coulomb_damping/README.md:52	1.69	1685 / 10^3 in run 093
+BY HAND	validation/run_094_featherstone_coulomb/README.md:7	35e3	[runs 094]
+CONVERSION	validation/run_094_featherstone_coulomb/README.md:27	0.125	125 / 10^3 in run 094
+CONVERSION	validation/run_094_featherstone_coulomb/README.md:49	0.125	125 / 10^3 in run 094
+BY HAND	validation/run_096_featherstone_rk4/README.md:5	3664356	[runs 096]
+CONVERSION	validation/run_096_featherstone_rk4/README.md:26	0.125	125 / 10^3 in run 096
+CONVERSION	validation/run_096_featherstone_rk4/README.md:50	0.125	125 / 10^3 in run 096
+CONVERSION	validation/run_096_featherstone_rk4/README.md:58	0.125	125 / 10^3 in run 096
+CONVERSION	validation/run_096_featherstone_rk4/README.md:64	0.125	125 / 10^3 in run 096
+CONVERSION	validation/run_097_featherstone_coulomb_v2/README.md:21	0.125	125 / 10^3 in run 097
+CONVERSION	validation/run_097_featherstone_coulomb_v2/README.md:55	1.69	1685 / 10^3 in run 097
+CONVERSION	validation/run_099_featherstone_coulomb_v3/README.md:21	0.125	125 / 10^3 in run 099
+BY HAND	validation/run_101_study_17/README.md:18	91837	[runs 101]
+CONVERSION	validation/run_101_study_17/README.md:21	22.5	22456 / 10^3 in run 101
+CONVERSION	validation/run_102_study_18/README.md:17	5.98	5976 / 10^3 in run 102
+CONVERSION	validation/run_102_study_18/README.md:17	5.94	5936 / 10^3 in run 102
+CONVERSION	validation/run_102_study_18/README.md:17	5.98	5976 / 10^3 in run 102
+CONVERSION	validation/run_102_study_18/README.md:17	5.94	5936 / 10^3 in run 102
+CONVERSION	validation/run_103_study_19/README.md:19	20.5	20450 / 10^3 in run 103
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:14	6.87	6865 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:15	0.02464	24635 / 10^6 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:15	0.08464	84635 / 10^6 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:35	6.87	6865 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:47	2.792553	2792553 / 10^6 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:47	2.792462	2792462 / 10^6 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:47	3.219	3219 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:47	3.220	3220 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:48	3.300000	3300 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:49	6.833	6833 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:49	6.87	6865 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:50	2.373	2373 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:54	3.300	3300 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:54	3.300	3300 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:54	3.300	3300 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:54	3.279	3279 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:54	2.793	2793 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:54	3.22	3216 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	3.267	3267 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	3.190	3190 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	3.299	3299 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	1.19	1185 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	3.213	3213 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	1.23	1225 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	2.513	2513 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:55	3.63	3625 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	3.271	3271 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	3.227	3227 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	1.05	1046 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	3.247	3247 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	1.10	1096 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	3.118	3118 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	1.49	1485 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	2.373	2373 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:56	3.91	3906 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:59	6.83	6825 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:60	2.79	2785 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:60	3.22	3216 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:62	3.19	3185 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:63	3.30	3295 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:66	6.04	6035 / 10^3 in run 105
+CONVERSION	validation/run_105_xpbd_limit_chain_reference/README.md:67	5.84	5835 / 10^3 in run 105
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:17	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:17	2.793	2793 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:19	3.298	3298 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:19	2.796	2796 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:19	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:19	2.901	2901 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:19	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:19	2.846	2846 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:20	3.231	3231 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:20	2.652	2652 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:20	3.293	3293 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:20	2.877	2877 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:20	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:20	2.865	2865 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:21	3.130	3130 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:21	2.221	2221 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:21	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:21	2.866	2866 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:21	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:21	2.840	2840 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:22	3.213	3213 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:22	2.384	2384 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:22	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:22	2.882	2882 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:22	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:22	2.840	2840 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:23	0.104	104 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:26	3.300	3300 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:27	2.35	2345 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:27	2.83	2825 / 10^3 in run 106
+CONVERSION	validation/run_106_xpbd_limit_chain_forms/README.md:28	3.22	3216 / 10^3 in run 106
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:31	2.793	2793 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:31	3.22	3216 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	2.959	2959 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	2.00	1995 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	2.882	2882 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	2.52	2515 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	2.860	2860 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	2.69	2685 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	2.817	2817 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:33	3.04	3035 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	2.958	2958 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	2.01	2005 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	2.847	2847 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	2.78	2775 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	2.817	2817 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	3.03	3025 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	2.812	2812 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:34	3.05	3045 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:36	3.299999	3299999 / 10^6 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:36	3.299999	3299999 / 10^6 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:36	3.299998	3299998 / 10^6 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:39	0.166	166 / 10^3 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:40	2.4996	2499550 / 10^6 in run 107
+CONVERSION	validation/run_107_xpbd_limit_chain_steps/README.md:40	2.4978	2497757 / 10^6 in run 107
+CONVERSION	validation/run_109_study_20/README.md:15	1.93	1925 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:15	2.68	2676 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:15	1.93	1925 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:15	2.59	2585 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:16	2.1995	2199462 / 10^6 in run 109
+CONVERSION	validation/run_109_study_20/README.md:16	2.2000	2200 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:16	2.9000	2900 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:16	2.8984	2898371 / 10^6 in run 109
+CONVERSION	validation/run_109_study_20/README.md:17	1.854220	1854220 / 10^6 in run 109
+CONVERSION	validation/run_109_study_20/README.md:17	1.854185	1854185 / 10^6 in run 109
+CONVERSION	validation/run_109_study_20/README.md:18	2.400000	2400 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:18	5.219	5219 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:18	5.24	5235 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:20	0.625	625 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:20	0.156	156 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:21	0.140	140 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:21	0.625	625 / 10^3 in run 109
+CONVERSION	validation/run_109_study_20/README.md:21	0.156	156 / 10^3 in run 109
+BY HAND	validation/run_110_study_21/README.md:6	0575	[runs 110]
+CONVERSION	validation/run_110_study_21/README.md:18	0.449998	449998 / 10^6 in run 110
+CONVERSION	validation/run_111_vbd_displacement/README.md:25	0.0625	62450 / 10^6 in run 111
+CONVERSION	validation/run_111_vbd_displacement/README.md:26	0.125	125 / 10^3 in run 111
+CONVERSION	validation/run_111_vbd_displacement/README.md:51	0.125	125 / 10^3 in run 111
+CONVERSION	validation/run_111_vbd_displacement/README.md:51	0.0625	62450 / 10^6 in run 111
+CONVERSION	validation/run_111_vbd_displacement/README.md:60	0.0625	62450 / 10^6 in run 111
+CONVERSION	validation/run_111_vbd_displacement/README.md:61	0.125	125 / 10^3 in run 111
+CONVERSION	validation/run_111_vbd_displacement/README.md:62	0.125	125 / 10^3 in run 111
+BY HAND	validation/run_112_cloth_proxy/README.md:25	48.6	[runs 112]
+CONVERSION	validation/run_112_cloth_proxy/README.md:25	14.0	13951 / 10^3 in run 112
+BY HAND	validation/run_112_cloth_proxy/README.md:37	168	[runs 112]
+CONVERSION	validation/run_112_cloth_proxy/README.md:38	74.1	74054 / 10^3 in run 112
+CONVERSION	validation/run_112_cloth_proxy/README.md:38	18.3	18265 / 10^3 in run 112
+BY HAND	validation/run_112_cloth_proxy/README.md:48	2885	[runs 112]
+BY HAND	validation/run_112_cloth_proxy/README.md:48	607	[runs 112]
+BY HAND	validation/run_112_cloth_proxy/README.md:49	228	[runs 112]
+BY HAND	validation/run_112_cloth_proxy/README.md:52	168	[runs 112]
+CONVERSION	validation/run_112_cloth_proxy/README.md:59	15.9	15902 / 10^3 in run 112
+BY HAND	validation/run_113_vbd_displacement_far/README.md:12	7.6e-6	[runs 113]
+CONVERSION	validation/run_113_vbd_displacement_far/README.md:45	1.05	1046 / 10^3 in run 113
+BY HAND	validation/run_113_vbd_displacement_far/README.md:67	7.6e-6	[runs 113]
+CONVERSION	validation/run_113_vbd_displacement_far/README.md:69	11.6	11550 / 10^3 in run 113
+CONVERSION	validation/run_114_study_22/README.md:16	0.09375	93745 / 10^6 in run 114
+CONVERSION	validation/run_114_study_22/README.md:16	0.375	375 / 10^3 in run 114
+CONVERSION	validation/run_114_study_22/README.md:16	0.375	375 / 10^3 in run 114
+CONVERSION	validation/run_114_study_22/README.md:19	0.375	375 / 10^3 in run 114
+CONVERSION	validation/run_114_study_22/README.md:19	0.09375	93745 / 10^6 in run 114
+CONVERSION	validation/run_114_study_22/README.md:19	0.09375	93745 / 10^6 in run 114
+CONVERSION	validation/run_114_study_22/README.md:25	0.375	375 / 10^3 in run 114
+CONVERSION	validation/run_114_study_22/README.md:25	0.09375	93745 / 10^6 in run 114
+BY HAND	validation/run_114_study_22/README.md:50	9.5e-7	[runs 114]
+CONVERSION	validation/run_114_study_22/README.md:55	72.5	72450 / 10^3 in run 114
+CONVERSION	validation/run_115_vbd_displacement_slide/README.md:54	72.5	72453 / 10^3 in run 115
+CONVERSION	validation/run_115_vbd_displacement_slide/README.md:54	244.6	244564 / 10^3 in run 115
+CONVERSION	validation/run_115_vbd_displacement_slide/README.md:55	1.40	1395 / 10^3 in run 115
+CONVERSION	validation/run_115_vbd_displacement_slide/README.md:55	1.19	1185 / 10^3 in run 115
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:6	2409	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:6	17e4739	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:62	2906041219	[runs 116]
+CONVERSION	validation/run_116_vbd_proxy_coupling/README.md:69	0.200	200 / 10^3 in run 116
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:71	6867	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:71	2500	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:79	6867	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:88	6867	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:90	4.5e6	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:90	66.8e6	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:90	28.6e6	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:90	49.8e6	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:90	19.0e6	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:90	2.2e6	[runs 116]
+BY HAND	validation/run_116_vbd_proxy_coupling/README.md:90	4.0e6	[runs 116]
+CONVERSION	validation/run_116_vbd_proxy_coupling/README.md:101	1.79	1786 / 10^3 in run 116
+BY HAND	validation/run_117_study_23/README.md:6	1e68	[runs 117]
+BY HAND	validation/run_118_vbd_proxy_coupling_v2/README.md:6	8371681	[runs 118]
+CONVERSION	validation/run_118_vbd_proxy_coupling_v2/README.md:53	14.8	14755 / 10^3 in run 118
+BY HAND	validation/run_118_vbd_proxy_coupling_v2/README.md:53	1200	[runs 118]
+CONVERSION	validation/run_118_vbd_proxy_coupling_v2/README.md:60	1.03	1026 / 10^3 in run 118
+BY HAND	validation/run_118_vbd_proxy_coupling_v2/README.md:73	662442	[runs 118]
+CONVERSION	validation/run_119_study_24/README.md:16	10.9	10851 / 10^3 in run 119
+BY HAND	validation/run_119_study_24/README.md:19	2900	[runs 119]
+CONVERSION	validation/run_119_study_24/README.md:29	10.9	10851 / 10^3 in run 119
+CONVERSION	validation/run_119_study_24/README.md:29	0.998	998 / 10^3 in run 119
+CONVERSION	validation/run_119_study_24/README.md:29	1.000	1000 / 10^3 in run 119
+CONVERSION	validation/run_119_study_24/README.md:37	10.9	10851 / 10^3 in run 119
+BY HAND	validation/run_119_study_24/README.md:39	4712	[runs 119]
+CONVERSION	validation/run_120_mpm_collider/README.md:10	1.73	1728897 / 10^6 in run 120
+CONVERSION	validation/run_120_mpm_collider/README.md:44	1.13	1126864 / 10^6 in run 120
+CONVERSION	validation/run_121_vbd_far_joint_options/README.md:14	0.999	999 / 10^3 in run 121
+BY HAND	validation/run_121_vbd_far_joint_options/README.md:54	9.5e-7	[runs 121]
+CONVERSION	validation/run_122_mpm_slope_options/README.md:44	21.4	21399 / 10^3 in run 122
+CONVERSION	validation/run_122_mpm_slope_options/README.md:45	20.9	20888 / 10^3 in run 122
+CONVERSION	validation/run_122_mpm_slope_options/README.md:46	21.6	21622 / 10^3 in run 122
+CONVERSION	validation/run_124_mpm_slope_options_words/README.md:33	21.4	21399 / 10^3 in run 124
+CONVERSION	validation/run_124_mpm_slope_options_words/README.md:35	14.9	14860 / 10^3 in run 124
+CONVERSION	validation/run_124_mpm_slope_options_words/README.md:36	13.8	13805 / 10^3 in run 124
+CONVERSION	validation/run_124_mpm_slope_options_words/README.md:37	21.4	21399 / 10^3 in run 124
+CONVERSION	validation/run_124_mpm_slope_options_words/README.md:38	21.4	21399 / 10^3 in run 124
+CONVERSION	validation/run_124_mpm_slope_options_words/README.md:39	21.3	21308 / 10^3 in run 124
+CONVERSION	validation/run_125_far_chain_solvers/README.md:74	11.8	11750 / 10^3 in run 125
+CONVERSION	validation/run_125_far_chain_solvers/README.md:75	510.2	510151 / 10^3 in run 125
+CONVERSION	validation/run_125_far_chain_solvers/README.md:75	511.2	511150 / 10^3 in run 125
+BY HAND	validation/run_125_far_chain_solvers/README.md:79	991526	[runs 125]
+BY HAND	validation/run_127_friction_combine/README.md:5	0103	[runs 127]
+CONVERSION	validation/run_127_friction_combine/README.md:11	92.5	92451 / 10^3 in run 127
+CONVERSION	validation/run_127_friction_combine/README.md:11	56.9	56856 / 10^3 in run 127
+CONVERSION	validation/run_129_static_friction/README.md:34	3.92	3915 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:34	7.84	7837 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:36	1.96	1955 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:37	2.46	2455 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:39	4.41	4410 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:40	0.1276	127602 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:55	2.46	2455 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:56	4.41	4410 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:69	2.460	2459748 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:69	4.410	4410 / 10^3 in run 129
+BY HAND	validation/run_129_static_friction/README.md:69	127551	[runs 129]
+CONVERSION	validation/run_129_static_friction/README.md:70	2.4598	2459764 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:70	4.4133	4413304 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:71	2.4600	2459980 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:71	4.3982	4398215 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:72	2.4599	2459859 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:72	4.3983	4398258 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:73	2.4657	2465670 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:73	4.4474	4447410 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:74	2.6476	2647638 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:74	4.4436	4443646 / 10^6 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:76	1.18	1175 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:77	2.46	2455 / 10^3 in run 129
+CONVERSION	validation/run_129_static_friction/README.md:78	4.41	4410 / 10^3 in run 129
+CONVERSION	validation/run_130_study_27/README.md:17	9.81	9805 / 10^3 in run 130
+CONVERSION	validation/run_130_study_27/README.md:34	2.36	2355 / 10^3 in run 130
+CONVERSION	validation/run_130_study_27/README.md:34	4.41	4405 / 10^3 in run 130
+CONVERSION	validation/run_130_study_27/README.md:42	1.18	1175 / 10^3 in run 130
+CONVERSION	validation/run_131_study_28/README.md:15	1.9845	1984500 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:18	1.8955	1895544 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:18	1.9943	1994328 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:19	1.9844	1984396 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:19	1.9844	1984396 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:20	1.9868	1986811 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:20	1.9863	1986335 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:21	1.9868	1986811 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:21	1.9864	1986365 / 10^6 in run 131
+CONVERSION	validation/run_131_study_28/README.md:28	2.31	2305 / 10^3 in run 131
+CONVERSION	validation/run_131_study_28/README.md:29	2.12	2115 / 10^3 in run 131
+CONVERSION	validation/run_131_study_28/README.md:29	2.205	2205 / 10^3 in run 131
+CONVERSION	validation/run_132_study_29/README.md:16	3.087	3087 / 10^3 in run 132
+CONVERSION	validation/run_132_study_29/README.md:19	3.0717	3071705 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:19	3.0432	3043192 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:20	3.0876	3087618 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:20	3.0888	3088813 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:21	3.0877	3087718 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:21	3.0875	3087480 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:22	3.0877	3087718 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:22	3.0874	3087431 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:23	3.0717	3071705 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:23	3.0788	3078782 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:24	3.1232	3123164 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:24	3.1469	3146886 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:25	3.1461	3146052 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:25	3.1908	3190756 / 10^6 in run 132
+CONVERSION	validation/run_132_study_29/README.md:32	3.15	3145 / 10^3 in run 132
+CONVERSION	validation/run_133_study_30/README.md:18	0.0625	62451 / 10^6 in run 133
+CONVERSION	validation/run_133_study_30/README.md:35	2.26	2255 / 10^3 in run 133
+CONVERSION	validation/run_133_study_30/README.md:35	4.41	4405 / 10^3 in run 133
+BY HAND	validation/run_133_study_30/README.md:36	118076	[runs 133]
+BY HAND	validation/run_135_study_32/README.md:29	849	[runs 135]
+BY HAND	validation/run_135_study_32/README.md:29	1843	[runs 135]
+BY HAND	validation/run_135_study_32/README.md:29	693	[runs 135]
+BY HAND	validation/run_135_study_32/README.md:29	1000	[runs 135]
+BY HAND	validation/run_135_study_32/README.md:30	1000	[runs 135]
+BY HAND	validation/run_135_study_32/README.md:30	4000	[runs 135]
+BY HAND	validation/run_135_study_32/README.md:31	4000	[runs 135]
+BY HAND	validation/run_135_study_32/README.md:31	1000	[runs 135]
+BY HAND	validation/run_136_study_33/README.md:7	8189	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:7	5943	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:28	4850	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:28	7011	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:28	5209	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:28	7010	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:28	11751	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:28	11750	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:30	7153	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:32	7011	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:32	7010	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:32	11751	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:32	11750	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:40	102041	[runs 136]
+BY HAND	validation/run_136_study_33/README.md:55	4712	[runs 136]
+BY HAND	validation/run_137_study_34/README.md:7	9678069462	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:21	3033	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:21	8081	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:21	4821	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:21	9923	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:21	9801	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:21	9800	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:21	9923	[runs 137]
+CONVERSION	validation/run_137_study_34/README.md:23	2.85	2845 / 10^3 in run 137
+BY HAND	validation/run_137_study_34/README.md:23	4620	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:24	8001	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:24	8040	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:24	9801	[runs 137]
+BY HAND	validation/run_137_study_34/README.md:24	9850	[runs 137]
+CONVERSION	validation/run_137_study_34/README.md:29	12.5	12500004 / 10^6 in run 137
+CONVERSION	validation/run_137_study_34/README.md:30	12.5	12500004 / 10^6 in run 137
+BY HAND	validation/run_138_study_35/README.md:7	97407	[runs 138]
+CONVERSION	validation/run_138_study_35/README.md:25	10.6	10632 / 10^3 in run 138
+CONVERSION	validation/run_138_study_35/README.md:25	10.6	10632 / 10^3 in run 138
+CONVERSION	validation/run_138_study_35/README.md:25	10.7	10699508736 / 10^9 in run 138
+CONVERSION	validation/run_138_study_35/README.md:27	1.32	1316 / 10^3 in run 138
+CONVERSION	validation/run_138_study_35/README.md:27	13.3	13259 / 10^3 in run 138
+CONVERSION	validation/run_138_study_35/README.md:28	1.32	1316 / 10^3 in run 138
+CONVERSION	validation/run_138_study_35/README.md:28	13.3	13259 / 10^3 in run 138
+CONVERSION	validation/run_138_study_35/README.md:29	10.6	10632 / 10^3 in run 138
+CONVERSION	validation/run_138_study_35/README.md:29	10.7	10699508736 / 10^9 in run 138
+BY HAND	validation/run_138_study_35/README.md:41	100000	[runs 138]

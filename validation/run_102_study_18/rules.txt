@@ -1,0 +1,20 @@
+RULE R1_safe_when_off eq 16 16 : HELD
+RULE R2_fault_there_semi all_ge 100 368204 634 412 : HELD
+RULE R3_held_semi all_in -10 10 0 0 0 : HELD
+RULE R4_issue9_held_semi all_in -10 10 1 1 : HELD
+RULE R4_issue9_turned_semi all_le 10000 5980 5940 : HELD
+RULE R5_coulomb_slide_semi all_within 81633 100 81267 81706 81826 : HELD
+RULE R6_T05_semi all_within 4000 100 3999 4000 3999 3999 3999 3999 : HELD
+RULE R6_T10_semi all_within 4000 100 3999 3999 3999 3999 3999 3999 : HELD
+RULE R7_nothing_lost_semi eq 0 0 : HELD
+RULE R8_numbers_semi all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE R2_fault_there_featherstone all_ge 100 785373 783 412 : HELD
+RULE R3_held_featherstone all_in -10 10 0 0 0 : HELD
+RULE R4_issue9_held_featherstone all_in -10 10 0 0 : HELD
+RULE R4_issue9_turned_featherstone all_le 10000 5980 5940 : HELD
+RULE R5_coulomb_slide_featherstone all_within 81633 100 81269 81707 81827 : HELD
+RULE R6_T05_featherstone all_within 4000 100 3970 3989 3995 3997 3998 : HELD
+RULE R6_T10_featherstone all_within 4000 100 3981 3993 3997 3998 3999 : HELD
+RULE R7_nothing_lost_featherstone eq 0 0 : HELD
+RULE R8_numbers_featherstone all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 19, held: 19

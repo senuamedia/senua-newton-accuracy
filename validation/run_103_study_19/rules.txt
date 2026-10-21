@@ -1,0 +1,5 @@
+RULE R1_fault_there all_ge 1000 20352 99763 353588 : HELD
+RULE R2_held all_in -10 10 0 0 1 : HELD
+RULE R3_slide_no_further all_ge 0 1098 15898 53604 : HELD
+RULE R4_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 4, held: 4

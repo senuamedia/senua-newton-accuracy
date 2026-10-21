@@ -1,0 +1,175 @@
+diff -ruN a/newton/_src/solvers/vbd/rigid_velocity_carried.py b/newton/_src/solvers/vbd/rigid_velocity_carried.py
+--- a/newton/_src/solvers/vbd/rigid_velocity_carried.py	1970-01-01 10:00:00
++++ b/newton/_src/solvers/vbd/rigid_velocity_carried.py	2026-10-19 14:35:34
+@@ -0,0 +1,121 @@
++# SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: VBD's rigid-body velocity without the 32-bit cancellation.
++#
++# VBD reads each body's linear velocity back from its positions after the solve, v = (x - x_prev) / dt
++# (rigid_vbd_kernels.update_body_velocity). The positions are 32-bit floats, so the difference is a whole number of
++# their spacing at the body's position: where a step's motion is under half that spacing it is 0 and the body does not
++# fall, and elsewhere each step's speed is rounded to a multiple of spacing / dt (a 1 kg cube released 10 m up does not
++# fall at all; 0.15 m up at 0.031 ms it falls 56% fast). In exact arithmetic the forward step's target is
++# x_inertia = x_prev + dt * v_forward, so (x - x_prev) / dt = v_forward + (x - x_inertia) / dt. This copy computes the
++# right-hand side: the forward step's velocity, which the rounded position could not hold, plus the solve's correction,
++# a difference of two nearby positions. The same quantity, without the cancellation; nothing is fitted. The angular
++# velocity, the pose copies and kinematic bodies (inverse mass 0, whose pose the user sets) are as in
++# update_body_velocity. Launched in its place only when NEWTON_VBD_CARRIED_VELOCITY=1, read once when solver_vbd is
++# imported; otherwise never imported.
++
++import warp as wp
++
++from newton._src.math import quat_velocity
++
++
++@wp.kernel
++def update_body_velocity_carried(
++    dt: float,
++    body_q: wp.array[wp.transform],
++    body_com: wp.array[wp.vec3],
++    body_inv_mass: wp.array[float],
++    body_inertia_q: wp.array[wp.transform],
++    body_q_prev: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_qd_mirror: wp.array[wp.spatial_vector],
++    body_q_out: wp.array[wp.transform],
++):
++    tid = wp.tid()
++
++    pose = body_q[tid]
++    pose_prev = body_q_prev[tid]
++
++    x = wp.transform_get_translation(pose)
++    x_prev = wp.transform_get_translation(pose_prev)
++    q = wp.transform_get_rotation(pose)
++    q_prev = wp.transform_get_rotation(pose_prev)
++
++    com_local = body_com[tid]
++    x_com = x + wp.quat_rotate(q, com_local)
++    x_com_prev = x_prev + wp.quat_rotate(q_prev, com_local)
++
++    # the stock velocity, kept for kinematic bodies
++    v = (x_com - x_com_prev) / dt
++    if body_inv_mass[tid] > 0.0:
++        # body_qd_mirror is state_in.body_qd: until it is written below it holds the forward step's velocity, and
++        # body_inertia_q the forward step's pose (forward_step_rigid_bodies); neither is changed by the iterations
++        pose_i = body_inertia_q[tid]
++        x_com_i = wp.transform_get_translation(pose_i) + wp.quat_rotate(wp.transform_get_rotation(pose_i), com_local)
++        v = wp.spatial_top(body_qd_mirror[tid]) + (x_com - x_com_i) / dt
++
++    omega = quat_velocity(q, q_prev, dt)
++
++    body_qd[tid] = wp.spatial_vector(v, omega)
++    body_qd_mirror[tid] = wp.spatial_vector(v, omega)
++    body_q_prev[tid] = pose
++    body_q_out[tid] = pose
++
++
++# The second form, NEWTON_VBD_CARRIED_VELOCITY=2: the angular velocity carried as well. With the linear velocity
++# carried and the angular one still read back from 32-bit quaternions (the first form), a joint anchor's velocity,
++# v + w x r, joins an exact part to a rounded one. The forward step turns a body by
++# q_inertia = normalize((1 + dt / 2 [w_forward, 0]) q_prev) (solver.integrate_rigid_body), whose angle is
++# 2 atan(dt |w_forward| / 2) about w_forward: what quat_velocity(q_inertia, q_prev, dt) gives in exact arithmetic. So
++# quat_velocity(q, q_prev, dt) = w_forward 2 atan(dt |w_forward| / 2) / (dt |w_forward|) + quat_velocity(q, q_inertia, dt)
++# to first order in the solve's own turn: the forward step's part computed from w_forward, not from two rounded
++# quaternions, and the solve's part a difference of two nearby ones. The linear velocity is the first form's.
++@wp.kernel
++def update_body_velocity_carried_both(
++    dt: float,
++    body_q: wp.array[wp.transform],
++    body_com: wp.array[wp.vec3],
++    body_inv_mass: wp.array[float],
++    body_inertia_q: wp.array[wp.transform],
++    body_q_prev: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_qd_mirror: wp.array[wp.spatial_vector],
++    body_q_out: wp.array[wp.transform],
++):
++    tid = wp.tid()
++
++    pose = body_q[tid]
++    pose_prev = body_q_prev[tid]
++
++    x = wp.transform_get_translation(pose)
++    x_prev = wp.transform_get_translation(pose_prev)
++    q = wp.transform_get_rotation(pose)
++    q_prev = wp.transform_get_rotation(pose_prev)
++
++    com_local = body_com[tid]
++    x_com = x + wp.quat_rotate(q, com_local)
++    x_com_prev = x_prev + wp.quat_rotate(q_prev, com_local)
++
++    # the stock velocity, kept for kinematic bodies
++    v = (x_com - x_com_prev) / dt
++    omega = quat_velocity(q, q_prev, dt)
++    if body_inv_mass[tid] > 0.0:
++        # body_qd_mirror is state_in.body_qd: until it is written below it holds the forward step's velocity, and
++        # body_inertia_q the forward step's pose (forward_step_rigid_bodies); neither is changed by the iterations
++        qd_forward = body_qd_mirror[tid]
++        pose_i = body_inertia_q[tid]
++        q_i = wp.transform_get_rotation(pose_i)
++        x_com_i = wp.transform_get_translation(pose_i) + wp.quat_rotate(q_i, com_local)
++        v = wp.spatial_top(qd_forward) + (x_com - x_com_i) / dt
++        w_f = wp.spatial_bottom(qd_forward)
++        w_len = wp.length(w_f)
++        w_turn = wp.vec3(0.0)
++        if w_len > 0.0:
++            w_turn = w_f * (2.0 * wp.atan(0.5 * dt * w_len) / (dt * w_len))
++        omega = w_turn + quat_velocity(q, q_i, dt)
++
++    body_qd[tid] = wp.spatial_vector(v, omega)
++    body_qd_mirror[tid] = wp.spatial_vector(v, omega)
++    body_q_prev[tid] = pose
++    body_q_out[tid] = pose
+diff -ruN a/newton/_src/solvers/vbd/solver_vbd.py b/newton/_src/solvers/vbd/solver_vbd.py
+--- a/newton/_src/solvers/vbd/solver_vbd.py	2026-10-19 14:35:33
++++ b/newton/_src/solvers/vbd/solver_vbd.py	2026-10-19 14:35:34
+@@ -3,6 +3,7 @@
+ 
+ from __future__ import annotations
+ 
++import os
+ import warnings
+ import weakref
+ from collections.abc import Mapping
+@@ -107,6 +108,10 @@
+ 
+ __all__ = ["SolverVBD"]
+ 
++# Senua AI patch, in design: the rigid bodies' velocity carried, not read back from 32-bit poses; read once.
++# "1": the linear velocity only (first form); "2": the linear and the angular velocity (second form)
++_VBD_CARRIED_VELOCITY = os.environ.get("NEWTON_VBD_CARRIED_VELOCITY", "")
++
+ _PARTICLE_CONTACT_GATHER_BLOCK_DIM = 128
+ 
+ 
+@@ -4647,13 +4652,21 @@
+         if not self._integrates_rigid_bodies:
+             return
+ 
++        kernel = update_body_velocity
++        inputs = [dt, state_in.body_q, model.body_com]
++        if _VBD_CARRIED_VELOCITY == "1":  # Senua AI patch, in design
++            from .rigid_velocity_carried import update_body_velocity_carried  # noqa: PLC0415
++
++            kernel = update_body_velocity_carried
++            inputs = [*inputs, self.body_inv_mass_effective, self.body_inertia_q]
++        elif _VBD_CARRIED_VELOCITY == "2":  # Senua AI patch, in design
++            from .rigid_velocity_carried import update_body_velocity_carried_both  # noqa: PLC0415
++
++            kernel = update_body_velocity_carried_both
++            inputs = [*inputs, self.body_inv_mass_effective, self.body_inertia_q]
+         wp.launch(
+-            kernel=update_body_velocity,
+-            inputs=[
+-                dt,
+-                state_in.body_q,
+-                model.body_com,
+-            ],
++            kernel=kernel,
++            inputs=inputs,
+             outputs=[self.body_q_prev, state_out.body_qd, state_in.body_qd, state_out.body_q],
+             dim=model.body_count,
+             device=self.device,

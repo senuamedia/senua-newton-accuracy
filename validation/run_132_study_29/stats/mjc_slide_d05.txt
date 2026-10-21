@@ -1,0 +1,1 @@
+STATS contact dt 0.0005 h0 0 vx0 0.7 mu 0.35 mass 1.2 radius 0.05 steps 1200 most_tilt_urad 977 engine newton 1.7.0 solver mujoco extra opt.use_mujoco_cpu=True opt.cone=elliptic opt.noslip_iterations=10

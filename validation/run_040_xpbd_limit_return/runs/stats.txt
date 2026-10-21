@@ -1,0 +1,8 @@
+STATS relax1_0.0016 joint dt 0.0016 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 875 engine newton 1.6.1 solver xpbd extra opt.joint_angular_relaxation=1.0 lo=-0.5 hi=2.5
+STATS released_0.0016 joint dt 0.0016 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 875 engine newton 1.6.1 solver xpbd extra lo=-0.5 hi=2.5
+STATS it8_0.0016 joint dt 0.0016 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 875 engine newton 1.6.1 solver xpbd extra iterations=8 lo=-0.5 hi=2.5
+STATS relax1_it8_0.0016 joint dt 0.0016 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 875 engine newton 1.6.1 solver xpbd extra iterations=8 opt.joint_angular_relaxation=1.0 lo=-0.5 hi=2.5
+STATS relax1_0.00032 joint dt 0.00032 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 4375 engine newton 1.6.1 solver xpbd extra opt.joint_angular_relaxation=1.0 lo=-0.5 hi=2.5
+STATS released_0.00032 joint dt 0.00032 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 4375 engine newton 1.6.1 solver xpbd extra lo=-0.5 hi=2.5
+STATS it8_0.00032 joint dt 0.00032 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 4375 engine newton 1.6.1 solver xpbd extra iterations=8 lo=-0.5 hi=2.5
+STATS relax1_it8_0.00032 joint dt 0.00032 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 4375 engine newton 1.6.1 solver xpbd extra iterations=8 opt.joint_angular_relaxation=1.0 lo=-0.5 hi=2.5

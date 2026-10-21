@@ -1,0 +1,1 @@
+played 39 files under: solver=mujoco opt.cone=elliptic

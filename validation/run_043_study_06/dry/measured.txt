@@ -1,0 +1,2 @@
+on struck 1 0.0025 deepest_urad -1021765 turned_back_urad -376186
+on bad_plays 0

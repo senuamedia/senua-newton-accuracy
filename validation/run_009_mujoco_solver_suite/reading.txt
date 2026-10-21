@@ -1,0 +1,2 @@
+CHECK XPBD's suite without SUITE_DROPMU against run 007's: 40 of 40 files byte-identical
+SUITE needs 48 numbers, got 41

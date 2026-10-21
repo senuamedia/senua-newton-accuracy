@@ -1,0 +1,7 @@
+RULE C0_safe_when_off eq 9 9 : HELD
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C1_free_energy all_le 5 2 1 2 4 14 : FAILED
+RULE C1_free_momentum all_le 5 0 0 0 1 2 : HELD
+RULE C2_swing_energy all_le 100 2225 7 3 : FAILED
+RULE C3_nothing_lost eq 2 0 : FAILED
+checks: 6, held: 3

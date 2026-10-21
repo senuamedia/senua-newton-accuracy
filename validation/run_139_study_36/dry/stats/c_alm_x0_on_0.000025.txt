@@ -1,0 +1,1 @@
+STATS chain dt 2.5e-05 mass1 1.3 mass2 0.7 radius 0.04 arm1 0.24 len1 0.48 arm2 0.19 gravity 0 dofs 2 steps 800 engine newton 1.7.0 solver vbd extra opt.rigid_compliant_alm=True

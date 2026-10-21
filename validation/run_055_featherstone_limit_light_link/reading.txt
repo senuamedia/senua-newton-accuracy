@@ -1,0 +1,28 @@
+light_featherstone_0.0041666667 the file is missing or not whole out_of_range_at_step 14
+light_featherstone_0.001 the file is missing or not whole out_of_range_at_step 53
+light_featherstone_0.00025 the file is missing or not whole out_of_range_at_step 202
+light_featherstone_0.0001 the file is missing or not whole out_of_range_at_step 508
+light_featherstone_0.00002 the file is missing or not whole out_of_range_at_step 2839
+light_featherstone_0.00001 the file is missing or not whole out_of_range_at_step 7218
+light_featherstone_0.000005 FINAL dt_ns 5000 angle_urad -270572 speed_urads -18754787 number_throughout
+light_featherstone_0.000002 FINAL dt_ns 2000 angle_urad -500015 speed_urads 14280 number_throughout
+lightkd0_featherstone_0.00025 the file is missing or not whole out_of_range_at_step 221
+lightkd0_featherstone_0.0001 FINAL dt_ns 100000 angle_urad -323764 speed_urads -19231014 number_throughout
+lightkd0_featherstone_0.00005 FINAL dt_ns 50000 angle_urad -436729 speed_urads 18692970 number_throughout
+lightkd0_featherstone_0.00002 FINAL dt_ns 20000 angle_urad -419134 speed_urads 18307793 number_throughout
+heavy_featherstone_0.0041666667 FINAL dt_ns 4166667 angle_urad -181778 speed_urads -1217266 number_throughout
+heavy_featherstone_0.001 FINAL dt_ns 1000000 angle_urad -278011 speed_urads -1550144 number_throughout
+light_mujoco_0.0041666667 FINAL dt_ns 4166667 angle_urad -524533 speed_urads 208816 number_throughout
+light_mujoco_0.001 FINAL dt_ns 1000000 angle_urad -500579 speed_urads 1197 number_throughout
+light_mujoco_0.00025 FINAL dt_ns 250000 angle_urad -500055 speed_urads 113 number_throughout
+light_mujoco_0.0001 FINAL dt_ns 100000 angle_urad -500009 speed_urads 273 number_throughout
+light_mujoco_0.00002 FINAL dt_ns 20000 angle_urad -500003 speed_urads 1403 number_throughout
+light_mujoco_0.00001 FINAL dt_ns 10000 angle_urad -500005 speed_urads 2758 number_throughout
+light_mujoco_0.000005 FINAL dt_ns 5000 angle_urad -500006 speed_urads 4114 number_throughout
+light_mujoco_0.000002 FINAL dt_ns 2000 angle_urad -500004 speed_urads 2024 number_throughout
+lightkd0_mujoco_0.00025 FINAL dt_ns 250000 angle_urad -519622 speed_urads 493529 number_throughout
+lightkd0_mujoco_0.0001 FINAL dt_ns 100000 angle_urad -519737 speed_urads 499875 number_throughout
+lightkd0_mujoco_0.00005 FINAL dt_ns 50000 angle_urad -519777 speed_urads 502068 number_throughout
+lightkd0_mujoco_0.00002 FINAL dt_ns 20000 angle_urad -519801 speed_urads 503364 number_throughout
+heavy_mujoco_0.0041666667 FINAL dt_ns 4166667 angle_urad -54747 speed_urads 262515 number_throughout
+heavy_mujoco_0.001 FINAL dt_ns 1000000 angle_urad -62622 speed_urads 230837 number_throughout

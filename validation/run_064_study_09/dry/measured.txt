@@ -1,0 +1,12 @@
+c1_release_0.004 nan -1 energy_drift_ppm 18061 momentum_drift_ppm 12095 kinetic_end_per_million 1018395
+c1_rk4_0.004 nan -1 energy_drift_ppm 0 momentum_drift_ppm 0 kinetic_end_per_million 999999
+c5_kd0_0.0005 nan -1 energy_drift_ppm -1267 momentum_drift_ppm -326 kinetic_end_per_million 998732
+c5_release_0.0005 nan 19 energy_drift_ppm  momentum_drift_ppm  kinetic_end_per_million 
+c2_release_0.004 nan -1 mean_speed_ums 538 largest_speed_last_third_ums 1096
+c2_rk4_0.004 nan -1 mean_speed_ums -1 largest_speed_last_third_ums 3
+c3_default_0.0005_0.001 nan 111 mean_ground_force_mN 
+c3_elliptic_0.0005_0.001 nan -1 mean_ground_force_mN 14669
+c4_normal_featherstone_0.0025 nan -1 rebound_per_10000 11377
+c4_normal_semi_0.0025 nan -1 rebound_per_10000 11377
+c4_release_featherstone_0.0025 nan -1 rebound_per_10000 11377
+c4_release_semi_0.0025 nan -1 rebound_per_10000 11377

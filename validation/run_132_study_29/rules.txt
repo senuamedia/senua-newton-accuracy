@@ -1,0 +1,7 @@
+RULE R1_newton_slide all_within 71429 100 71078 71231 71489 71663 71490 71664 : HELD
+RULE R1_newton_hold all_in -10 10 3 6 0 0 0 0 : HELD
+RULE R1_newton_push all_within 3087000 100 3087636 3088813 3087724 3087480 3087718 3087431 : HELD
+RULE R2_the_transfer eq 15 15 : HELD
+RULE R3_released_departs eq 2 2 : HELD
+RULE R4_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 6, held: 6

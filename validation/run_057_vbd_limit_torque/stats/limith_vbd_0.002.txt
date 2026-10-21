@@ -1,0 +1,1 @@
+STATS joint dt 0.002 mass 1 radius 0.05 arm 0.5 gravity 1 steps 400 engine newton 1.7.0 solver vbd extra lo=-0.5 hi=0.5

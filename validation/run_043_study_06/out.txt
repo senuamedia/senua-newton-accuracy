@@ -1,0 +1,10 @@
+RULE R1_safe_when_off eq 10 10 : HELD
+RULE R2_fault_there_03 all_ge -472600 -219703 -219205 : HELD
+RULE R2_fault_there_3 all_ge -182100 -79375 -79011 : HELD
+RULE R3_strike_03_lo all_ge -602600 -595403 -584862 : HELD
+RULE R3_strike_03_hi all_le -542600 -595403 -584862 : HELD
+RULE R3_strike_3_lo all_ge -312100 -288636 -287446 : HELD
+RULE R3_strike_3_hi all_le -252100 -288636 -287446 : HELD
+RULE R4_nothing_else eq 4 4 : HELD
+RULE R5_no_blow_up eq 0 0 : HELD
+rules: 9, held: 9

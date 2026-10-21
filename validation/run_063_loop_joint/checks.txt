@@ -1,0 +1,21 @@
+RULE F_featherstone_free all_within 1500000 100 1500136 : HELD
+RULE F_featherstone_loopfree all_within 1500000 100 1500136 : HELD
+RULE L_featherstone_limit_applied all_within 500000 10 1500136 : FAILED
+RULE D_featherstone_drive_applied all_within 300000 100 0 : FAILED
+RULE F_mujoco_free all_within 1500000 100 1500136 : HELD
+RULE F_mujoco_loopfree all_within 1500000 100 1500136 : HELD
+RULE L_mujoco_limit_applied all_within 500000 10 1500136 : FAILED
+RULE D_mujoco_drive_applied all_within 300000 100 0 : FAILED
+RULE F_xpbd_free all_within 1500000 100 1500017 : HELD
+RULE F_xpbd_loopfree all_within 1500000 100 1499981 : HELD
+RULE L_xpbd_limit_applied all_within 500000 10 -376704 : FAILED
+RULE D_xpbd_drive_applied all_within 300000 100 300176 : HELD
+RULE F_semi_free all_within 1500000 100 1499355 : HELD
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE F_vbd_free all_within 1500000 100 1630964 : FAILED
+RULE F_vbd_loopfree all_within 1500000 100 1632111 : FAILED
+RULE L_vbd_limit_applied all_within 500000 10 -237055 : FAILED
+RULE D_vbd_drive_applied all_within 300000 100 298865 : HELD
+checks: 20, held: 9

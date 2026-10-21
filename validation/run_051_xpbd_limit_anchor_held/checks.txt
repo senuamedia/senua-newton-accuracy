@@ -1,0 +1,12 @@
+same free_s3_0.0016.txt free_s2_0.0016.txt
+same off_r0.4_L2.7_0.0016.txt stock_r0.4_L2.7_0.0016.txt
+same off_r0.4_L3.05_0.0016.txt stock_r0.4_L3.05_0.0016.txt
+same s1_r0.4_L3.8_0.0016.txt on_r0.4_L3.8_0.0016.txt
+same s2_r0.4_L3.05_0.0016.txt s2_r0.4_L3.05_0.0016.txt
+same s2_arm0.3_r0.4_L2.5_0.0016.txt s2_arm0.3_r0.4_L2.5_0.0016.txt
+same free_s3_0.00032.txt free_s2_0.00032.txt
+same off_r0.4_L2.7_0.00032.txt stock_r0.4_L2.7_0.00032.txt
+same off_r0.4_L3.05_0.00032.txt stock_r0.4_L3.05_0.00032.txt
+same s1_r0.4_L3.8_0.00032.txt on_r0.4_L3.8_0.00032.txt
+same s2_r0.4_L3.05_0.00032.txt s2_r0.4_L3.05_0.00032.txt
+same s2_arm0.3_r0.4_L2.5_0.00032.txt s2_arm0.3_r0.4_L2.5_0.00032.txt

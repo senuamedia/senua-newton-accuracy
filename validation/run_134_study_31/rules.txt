@@ -1,0 +1,5 @@
+RULE R1_released_leaks all_ge 1 731 169 466 104 : HELD
+RULE R2_quarter_voxel_kept all_eq 0 54 5 0 0 : FAILED
+RULE R3_half_voxel_kept all_eq 0 0 0 0 0 : HELD
+RULE R4_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 4, held: 3

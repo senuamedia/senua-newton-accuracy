@@ -1,0 +1,260 @@
+Binary files a/newton/__pycache__/__init__.cpython-312.pyc and b/newton/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/__pycache__/_version.cpython-312.pyc and b/newton/__pycache__/_version.cpython-312.pyc differ
+Binary files a/newton/__pycache__/actuators.cpython-312.pyc and b/newton/__pycache__/actuators.cpython-312.pyc differ
+Binary files a/newton/__pycache__/controllers.cpython-312.pyc and b/newton/__pycache__/controllers.cpython-312.pyc differ
+Binary files a/newton/__pycache__/geometry.cpython-312.pyc and b/newton/__pycache__/geometry.cpython-312.pyc differ
+Binary files a/newton/__pycache__/ik.cpython-312.pyc and b/newton/__pycache__/ik.cpython-312.pyc differ
+Binary files a/newton/__pycache__/math.cpython-312.pyc and b/newton/__pycache__/math.cpython-312.pyc differ
+Binary files a/newton/__pycache__/selection.cpython-312.pyc and b/newton/__pycache__/selection.cpython-312.pyc differ
+Binary files a/newton/__pycache__/sensors.cpython-312.pyc and b/newton/__pycache__/sensors.cpython-312.pyc differ
+Binary files a/newton/__pycache__/solvers.cpython-312.pyc and b/newton/__pycache__/solvers.cpython-312.pyc differ
+Binary files a/newton/__pycache__/usd.cpython-312.pyc and b/newton/__pycache__/usd.cpython-312.pyc differ
+Binary files a/newton/__pycache__/utils.cpython-312.pyc and b/newton/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/__pycache__/viewer.cpython-312.pyc and b/newton/__pycache__/viewer.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/__init__.cpython-312.pyc and b/newton/_src/actuators/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/actuator.cpython-312.pyc and b/newton/_src/actuators/__pycache__/actuator.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/delay.cpython-312.pyc and b/newton/_src/actuators/__pycache__/delay.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/effort_mode_explicit.cpython-312.pyc and b/newton/_src/actuators/__pycache__/effort_mode_explicit.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/effort_mode_implicit.cpython-312.pyc and b/newton/_src/actuators/__pycache__/effort_mode_implicit.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/joint_space_response.cpython-312.pyc and b/newton/_src/actuators/__pycache__/joint_space_response.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/usd_parser.cpython-312.pyc and b/newton/_src/actuators/__pycache__/usd_parser.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/__pycache__/utils.cpython-312.pyc and b/newton/_src/actuators/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/clamping/__pycache__/__init__.cpython-312.pyc and b/newton/_src/actuators/clamping/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/clamping/__pycache__/base.cpython-312.pyc and b/newton/_src/actuators/clamping/__pycache__/base.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/clamping/__pycache__/clamping_dc_motor.cpython-312.pyc and b/newton/_src/actuators/clamping/__pycache__/clamping_dc_motor.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/clamping/__pycache__/clamping_max_effort.cpython-312.pyc and b/newton/_src/actuators/clamping/__pycache__/clamping_max_effort.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/clamping/__pycache__/clamping_position_based.cpython-312.pyc and b/newton/_src/actuators/clamping/__pycache__/clamping_position_based.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/__init__.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/_linearization.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/_linearization.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/base.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/base.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/drive_neural_gru.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/drive_neural_gru.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/drive_neural_lstm.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/drive_neural_lstm.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/drive_neural_mlp.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/drive_neural_mlp.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/drive_pd.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/drive_pd.cpython-312.pyc differ
+Binary files a/newton/_src/actuators/drives/__pycache__/drive_pid.cpython-312.pyc and b/newton/_src/actuators/drives/__pycache__/drive_pid.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/__pycache__/__init__.cpython-312.pyc and b/newton/_src/controllers/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/__pycache__/controller.cpython-312.pyc and b/newton/_src/controllers/__pycache__/controller.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/__pycache__/joint_selection.cpython-312.pyc and b/newton/_src/controllers/__pycache__/joint_selection.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/__pycache__/tool_selection.cpython-312.pyc and b/newton/_src/controllers/__pycache__/tool_selection.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/__pycache__/utils.cpython-312.pyc and b/newton/_src/controllers/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/__pycache__/__init__.cpython-312.pyc and b/newton/_src/controllers/impl/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/__pycache__/_common.cpython-312.pyc and b/newton/_src/controllers/impl/__pycache__/_common.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/differential_ik/__pycache__/__init__.cpython-312.pyc and b/newton/_src/controllers/impl/differential_ik/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/differential_ik/__pycache__/_common.cpython-312.pyc and b/newton/_src/controllers/impl/differential_ik/__pycache__/_common.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/differential_ik/__pycache__/model_based.cpython-312.pyc and b/newton/_src/controllers/impl/differential_ik/__pycache__/model_based.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/differential_ik/__pycache__/model_free.cpython-312.pyc and b/newton/_src/controllers/impl/differential_ik/__pycache__/model_free.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/joint_impedance/__pycache__/__init__.cpython-312.pyc and b/newton/_src/controllers/impl/joint_impedance/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/joint_impedance/__pycache__/model_based.cpython-312.pyc and b/newton/_src/controllers/impl/joint_impedance/__pycache__/model_based.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/joint_impedance/__pycache__/model_free.cpython-312.pyc and b/newton/_src/controllers/impl/joint_impedance/__pycache__/model_free.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/operational_space/__pycache__/__init__.cpython-312.pyc and b/newton/_src/controllers/impl/operational_space/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/operational_space/__pycache__/_common.cpython-312.pyc and b/newton/_src/controllers/impl/operational_space/__pycache__/_common.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/operational_space/__pycache__/model_based.cpython-312.pyc and b/newton/_src/controllers/impl/operational_space/__pycache__/model_based.cpython-312.pyc differ
+Binary files a/newton/_src/controllers/impl/operational_space/__pycache__/model_free.cpython-312.pyc and b/newton/_src/controllers/impl/operational_space/__pycache__/model_free.cpython-312.pyc differ
+Binary files a/newton/_src/core/__pycache__/__init__.cpython-312.pyc and b/newton/_src/core/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/core/__pycache__/_warnings.cpython-312.pyc and b/newton/_src/core/__pycache__/_warnings.cpython-312.pyc differ
+Binary files a/newton/_src/core/__pycache__/reset.cpython-312.pyc and b/newton/_src/core/__pycache__/reset.cpython-312.pyc differ
+Binary files a/newton/_src/core/__pycache__/types.cpython-312.pyc and b/newton/_src/core/__pycache__/types.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/__init__.cpython-312.pyc and b/newton/_src/geometry/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/broad_phase_common.cpython-312.pyc and b/newton/_src/geometry/__pycache__/broad_phase_common.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/broad_phase_nxn.cpython-312.pyc and b/newton/_src/geometry/__pycache__/broad_phase_nxn.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/broad_phase_sap.cpython-312.pyc and b/newton/_src/geometry/__pycache__/broad_phase_sap.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/bvh.cpython-312.pyc and b/newton/_src/geometry/__pycache__/bvh.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/collision_convex.cpython-312.pyc and b/newton/_src/geometry/__pycache__/collision_convex.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/collision_core.cpython-312.pyc and b/newton/_src/geometry/__pycache__/collision_core.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/collision_primitive.cpython-312.pyc and b/newton/_src/geometry/__pycache__/collision_primitive.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/contact_data.cpython-312.pyc and b/newton/_src/geometry/__pycache__/contact_data.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/contact_match.cpython-312.pyc and b/newton/_src/geometry/__pycache__/contact_match.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/contact_reduction.cpython-312.pyc and b/newton/_src/geometry/__pycache__/contact_reduction.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/contact_reduction_global.cpython-312.pyc and b/newton/_src/geometry/__pycache__/contact_reduction_global.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/contact_reduction_hydroelastic.cpython-312.pyc and b/newton/_src/geometry/__pycache__/contact_reduction_hydroelastic.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/contact_sort.cpython-312.pyc and b/newton/_src/geometry/__pycache__/contact_sort.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/differentiable_contacts.cpython-312.pyc and b/newton/_src/geometry/__pycache__/differentiable_contacts.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/flags.cpython-312.pyc and b/newton/_src/geometry/__pycache__/flags.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/hashtable.cpython-312.pyc and b/newton/_src/geometry/__pycache__/hashtable.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/inertia.cpython-312.pyc and b/newton/_src/geometry/__pycache__/inertia.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/kernels.cpython-312.pyc and b/newton/_src/geometry/__pycache__/kernels.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/mpr.cpython-312.pyc and b/newton/_src/geometry/__pycache__/mpr.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/multicontact.cpython-312.pyc and b/newton/_src/geometry/__pycache__/multicontact.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/narrow_phase.cpython-312.pyc and b/newton/_src/geometry/__pycache__/narrow_phase.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/particle_surface.cpython-312.pyc and b/newton/_src/geometry/__pycache__/particle_surface.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/particle_surface_kernels.cpython-312.pyc and b/newton/_src/geometry/__pycache__/particle_surface_kernels.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/particle_surface_sparse_kernels.cpython-312.pyc and b/newton/_src/geometry/__pycache__/particle_surface_sparse_kernels.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/raycast.cpython-312.pyc and b/newton/_src/geometry/__pycache__/raycast.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/sdf_contact.cpython-312.pyc and b/newton/_src/geometry/__pycache__/sdf_contact.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/sdf_hydroelastic.cpython-312.pyc and b/newton/_src/geometry/__pycache__/sdf_hydroelastic.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/sdf_mc.cpython-312.pyc and b/newton/_src/geometry/__pycache__/sdf_mc.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/sdf_texture.cpython-312.pyc and b/newton/_src/geometry/__pycache__/sdf_texture.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/sdf_utils.cpython-312.pyc and b/newton/_src/geometry/__pycache__/sdf_utils.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/simplex_solver.cpython-312.pyc and b/newton/_src/geometry/__pycache__/simplex_solver.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/soft_contacts_sdf.cpython-312.pyc and b/newton/_src/geometry/__pycache__/soft_contacts_sdf.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/support_function.cpython-312.pyc and b/newton/_src/geometry/__pycache__/support_function.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/terrain_generator.cpython-312.pyc and b/newton/_src/geometry/__pycache__/terrain_generator.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/tri_mesh_collision.cpython-312.pyc and b/newton/_src/geometry/__pycache__/tri_mesh_collision.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/types.cpython-312.pyc and b/newton/_src/geometry/__pycache__/types.cpython-312.pyc differ
+Binary files a/newton/_src/geometry/__pycache__/utils.cpython-312.pyc and b/newton/_src/geometry/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/_src/math/__pycache__/__init__.cpython-312.pyc and b/newton/_src/math/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/math/__pycache__/spatial.cpython-312.pyc and b/newton/_src/math/__pycache__/spatial.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/__pycache__/__init__.cpython-312.pyc and b/newton/_src/sensors/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/__pycache__/sensor_camera.cpython-312.pyc and b/newton/_src/sensors/__pycache__/sensor_camera.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/__pycache__/sensor_contact.cpython-312.pyc and b/newton/_src/sensors/__pycache__/sensor_contact.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/__pycache__/sensor_frame_transform.cpython-312.pyc and b/newton/_src/sensors/__pycache__/sensor_frame_transform.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/__pycache__/sensor_imu.cpython-312.pyc and b/newton/_src/sensors/__pycache__/sensor_imu.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/__pycache__/sensor_tiled_camera.cpython-312.pyc and b/newton/_src/sensors/__pycache__/sensor_tiled_camera.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/sensor_camera_render/__pycache__/__init__.cpython-312.pyc and b/newton/_src/sensors/sensor_camera_render/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/sensor_camera_render/__pycache__/types.cpython-312.pyc and b/newton/_src/sensors/sensor_camera_render/__pycache__/types.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/sensor_camera_render/__pycache__/utils.cpython-312.pyc and b/newton/_src/sensors/sensor_camera_render/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/__init__.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/camera_utils.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/camera_utils.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/gaussians.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/gaussians.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/lighting.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/lighting.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/raytrace.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/raytrace.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/render.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/render.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/render_context.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/render_context.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/textures.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/textures.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/tiling.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/tiling.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/types.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/types.cpython-312.pyc differ
+Binary files a/newton/_src/sensors/warp_raytrace/__pycache__/utils.cpython-312.pyc and b/newton/_src/sensors/warp_raytrace/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/__init__.cpython-312.pyc and b/newton/_src/sim/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/articulation.cpython-312.pyc and b/newton/_src/sim/__pycache__/articulation.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/builder.cpython-312.pyc and b/newton/_src/sim/__pycache__/builder.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/collide.cpython-312.pyc and b/newton/_src/sim/__pycache__/collide.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/contact_kinematics.cpython-312.pyc and b/newton/_src/sim/__pycache__/contact_kinematics.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/contacts.cpython-312.pyc and b/newton/_src/sim/__pycache__/contacts.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/control.cpython-312.pyc and b/newton/_src/sim/__pycache__/control.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/enums.cpython-312.pyc and b/newton/_src/sim/__pycache__/enums.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/graph_coloring.cpython-312.pyc and b/newton/_src/sim/__pycache__/graph_coloring.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/inverse_dynamics.cpython-312.pyc and b/newton/_src/sim/__pycache__/inverse_dynamics.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/joint_mimic.cpython-312.pyc and b/newton/_src/sim/__pycache__/joint_mimic.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/model.cpython-312.pyc and b/newton/_src/sim/__pycache__/model.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/rod.cpython-312.pyc and b/newton/_src/sim/__pycache__/rod.cpython-312.pyc differ
+Binary files a/newton/_src/sim/__pycache__/state.cpython-312.pyc and b/newton/_src/sim/__pycache__/state.cpython-312.pyc differ
+Binary files a/newton/_src/sim/ik/__pycache__/__init__.cpython-312.pyc and b/newton/_src/sim/ik/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/sim/ik/__pycache__/ik_common.cpython-312.pyc and b/newton/_src/sim/ik/__pycache__/ik_common.cpython-312.pyc differ
+Binary files a/newton/_src/sim/ik/__pycache__/ik_lbfgs_optimizer.cpython-312.pyc and b/newton/_src/sim/ik/__pycache__/ik_lbfgs_optimizer.cpython-312.pyc differ
+Binary files a/newton/_src/sim/ik/__pycache__/ik_lm_optimizer.cpython-312.pyc and b/newton/_src/sim/ik/__pycache__/ik_lm_optimizer.cpython-312.pyc differ
+Binary files a/newton/_src/sim/ik/__pycache__/ik_objectives.cpython-312.pyc and b/newton/_src/sim/ik/__pycache__/ik_objectives.cpython-312.pyc differ
+Binary files a/newton/_src/sim/ik/__pycache__/ik_solver.cpython-312.pyc and b/newton/_src/sim/ik/__pycache__/ik_solver.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/__pycache__/__init__.cpython-312.pyc and b/newton/_src/solvers/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/__pycache__/solver.cpython-312.pyc and b/newton/_src/solvers/__pycache__/solver.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/__init__.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/admm_contact_stream.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/admm_contact_stream.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/admm_utils.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/admm_utils.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/interface.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/interface.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/model_view.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/model_view.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/proxy_utils.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/proxy_utils.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/solver_coupled.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/solver_coupled.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/solver_coupled_admm.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/solver_coupled_admm.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/coupled/__pycache__/solver_coupled_proxy.cpython-312.pyc and b/newton/_src/solvers/coupled/__pycache__/solver_coupled_proxy.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/__init__.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/collision_masks.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/collision_masks.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/constants.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/constants.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/enums.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/enums.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/equality.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/equality.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/kernels.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/kernels.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/solver_mujoco.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/solver_mujoco.cpython-312.pyc differ
+Binary files a/newton/_src/solvers/mujoco/__pycache__/utils.cpython-312.pyc and b/newton/_src/solvers/mujoco/__pycache__/utils.cpython-312.pyc differ
+--- a/newton/_src/solvers/mujoco/solver_mujoco.py
++++ b/newton/_src/solvers/mujoco/solver_mujoco.py
+@@ -4083,6 +4083,8 @@
+         cone: int | str | None = None,
+         jacobian: int | str | None = None,
+         impratio: float | None = None,
++        noslip_iterations: int | None = None,
++        noslip_tolerance: float | None = None,
+         tolerance: float | None = None,
+         ls_tolerance: float | None = None,
+         ccd_tolerance: float | None = None,
+@@ -4133,6 +4135,10 @@
+             cone: The type of contact friction cone. Can be "pyramidal", "elliptic", or their corresponding MuJoCo integer constants. If None, uses model custom attribute or Newton's default ("pyramidal").
+             jacobian: Jacobian computation method. Can be "dense", "sparse", or "auto", or their corresponding MuJoCo integer constants. If None, uses model custom attribute or MuJoCo's default ("auto").
+             impratio: Frictional-to-normal constraint impedance ratio. If None, uses model custom attribute or MuJoCo's default (1.0).
++            noslip_iterations: Senua AI patch, in design: iterations of MuJoCo's noslip solver, a pass after the main
++                solve that removes the slip a soft contact allows. MuJoCo C only (``use_mujoco_cpu=True``): MuJoCo
++                Warp does not implement noslip and refuses a positive count. If None, MuJoCo's default (0, off).
++            noslip_tolerance: Senua AI patch, in design: the noslip solver's tolerance. If None, MuJoCo's default.
+             tolerance: Solver tolerance for early termination. If None, uses model custom attribute or MuJoCo's default (1e-8).
+             ls_tolerance: Line search tolerance for early termination. If None, uses model custom attribute or MuJoCo's default (0.01).
+             ccd_tolerance: Continuous collision detection tolerance. If None, uses model custom attribute or MuJoCo's default (1e-6).
+@@ -4497,6 +4503,8 @@
+                 cone=cone,
+                 jacobian=jacobian,
+                 impratio=impratio,
++                noslip_iterations=noslip_iterations,
++                noslip_tolerance=noslip_tolerance,
+                 tolerance=tolerance,
+                 ls_tolerance=ls_tolerance,
+                 ccd_tolerance=ccd_tolerance,
+@@ -6041,6 +6049,8 @@
+         disableflags: int = 0,
+         disable_contacts: bool = False,
+         impratio: float | None = None,
++        noslip_iterations: int | None = None,
++        noslip_tolerance: float | None = None,
+         tolerance: float | None = None,
+         ls_tolerance: float | None = None,
+         ccd_tolerance: float | None = None,
+@@ -6298,6 +6308,10 @@
+             spec.option.sdf_initpoints = sdf_initpoints
+ 
+         # Set WORLD frequency options (use MuJoCo defaults if None)
++        if noslip_iterations is not None and not self.use_mujoco_cpu:  # Senua AI patch, in design: MuJoCo Warp refuses it
++            spec.option.noslip_iterations = noslip_iterations
++        if noslip_tolerance is not None and not self.use_mujoco_cpu:
++            spec.option.noslip_tolerance = noslip_tolerance
+         if impratio is not None:
+             spec.option.impratio = impratio
+         if tolerance is not None:
+@@ -8082,6 +8096,11 @@
+                 # MuJoCo Warp consumes only the compiled runtime policy. Keep
+                 # the authoring policy on the CPU model for inspection and MJCF export.
+                 self.mj_model.tree_sleep_policy[:] = sleep_policies
++            if self.use_mujoco_cpu:  # Senua AI patch, in design: noslip on the model MuJoCo's C engine steps
++                if noslip_iterations is not None:
++                    self.mj_model.opt.noslip_iterations = noslip_iterations
++                if noslip_tolerance is not None:
++                    self.mj_model.opt.noslip_tolerance = noslip_tolerance
+ 
+             # patch mjw_model with mesh_pos if it doesn't have it
+             if not hasattr(self.mjw_model, "mesh_pos"):
+Binary files a/newton/_src/usd/__pycache__/__init__.cpython-312.pyc and b/newton/_src/usd/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/usd/__pycache__/schema_resolver.cpython-312.pyc and b/newton/_src/usd/__pycache__/schema_resolver.cpython-312.pyc differ
+Binary files a/newton/_src/usd/__pycache__/schemas.cpython-312.pyc and b/newton/_src/usd/__pycache__/schemas.cpython-312.pyc differ
+Binary files a/newton/_src/usd/__pycache__/utils.cpython-312.pyc and b/newton/_src/usd/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/__init__.cpython-312.pyc and b/newton/_src/utils/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/benchmark.cpython-312.pyc and b/newton/_src/utils/__pycache__/benchmark.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/cable.cpython-312.pyc and b/newton/_src/utils/__pycache__/cable.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/color.cpython-312.pyc and b/newton/_src/utils/__pycache__/color.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/deprecation.cpython-312.pyc and b/newton/_src/utils/__pycache__/deprecation.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/download_assets.cpython-312.pyc and b/newton/_src/utils/__pycache__/download_assets.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/heightfield.cpython-312.pyc and b/newton/_src/utils/__pycache__/heightfield.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/import_usd_deformable_utils.cpython-312.pyc and b/newton/_src/utils/__pycache__/import_usd_deformable_utils.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/import_utils.cpython-312.pyc and b/newton/_src/utils/__pycache__/import_utils.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/mesh.cpython-312.pyc and b/newton/_src/utils/__pycache__/mesh.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/onnx.cpython-312.pyc and b/newton/_src/utils/__pycache__/onnx.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/render.cpython-312.pyc and b/newton/_src/utils/__pycache__/render.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/selection.cpython-312.pyc and b/newton/_src/utils/__pycache__/selection.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/texture.cpython-312.pyc and b/newton/_src/utils/__pycache__/texture.cpython-312.pyc differ
+Binary files a/newton/_src/utils/__pycache__/topology.cpython-312.pyc and b/newton/_src/utils/__pycache__/topology.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/__init__.cpython-312.pyc and b/newton/_src/viewer/__pycache__/__init__.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/camera.cpython-312.pyc and b/newton/_src/viewer/__pycache__/camera.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/image_logger.cpython-312.pyc and b/newton/_src/viewer/__pycache__/image_logger.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/kernels.cpython-312.pyc and b/newton/_src/viewer/__pycache__/kernels.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/picking.cpython-312.pyc and b/newton/_src/viewer/__pycache__/picking.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/plot_logger.cpython-312.pyc and b/newton/_src/viewer/__pycache__/plot_logger.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/transform.cpython-312.pyc and b/newton/_src/viewer/__pycache__/transform.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/utils.cpython-312.pyc and b/newton/_src/viewer/__pycache__/utils.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_file.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_file.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_gl.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_gl.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_gui.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_gui.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_null.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_null.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_rerun.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_rerun.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_rtx.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_rtx.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_usd.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_usd.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/viewer_viser.cpython-312.pyc and b/newton/_src/viewer/__pycache__/viewer_viser.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/__pycache__/wind.cpython-312.pyc and b/newton/_src/viewer/__pycache__/wind.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/gl/__pycache__/frame_cache.cpython-312.pyc and b/newton/_src/viewer/gl/__pycache__/frame_cache.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/gl/__pycache__/gui.cpython-312.pyc and b/newton/_src/viewer/gl/__pycache__/gui.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/gl/__pycache__/icon.cpython-312.pyc and b/newton/_src/viewer/gl/__pycache__/icon.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/gl/__pycache__/opengl.cpython-312.pyc and b/newton/_src/viewer/gl/__pycache__/opengl.cpython-312.pyc differ
+Binary files a/newton/_src/viewer/gl/__pycache__/shaders.cpython-312.pyc and b/newton/_src/viewer/gl/__pycache__/shaders.cpython-312.pyc differ

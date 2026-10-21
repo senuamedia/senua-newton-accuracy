@@ -1,0 +1,8 @@
+RULE R1_safe_when_off eq 16 16 : HELD
+RULE R2_spin_drifts_as_released ge 8249 100 : HELD
+RULE R3_centre_still all_in -3 3 0 0 0 0 0 0 : HELD
+RULE R4_l1_settles all_within 165141 200 165018 165123 : HELD
+RULE R4_l2_settles all_within 54319 200 54228 54306 : HELD
+RULE R5_hold_kept all_in -10 10 0 0 : HELD
+RULE R6_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 7, held: 7

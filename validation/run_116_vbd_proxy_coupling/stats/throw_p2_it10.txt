@@ -1,0 +1,1 @@
+STATS cloth coupled_dt 0.004 secs 0.3 cloth_mass 0.045 box_mass 0.5 iterations 10 feedback 1 steps 75 engine newton 1.7.0 extra scene=throw cloth_vz=-1

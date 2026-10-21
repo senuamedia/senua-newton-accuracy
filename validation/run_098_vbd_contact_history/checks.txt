@@ -1,0 +1,4 @@
+RULE C0_rig_unchanged eq 1 1 : HELD
+RULE C1_alm_sticky_held all_in -10 10 0 0 0 0 : HELD
+RULE C2_alm_sticky_slide_coulomb all_within 102041 100 138121 139047 139426 : FAILED
+checks: 3, held: 2

@@ -1,0 +1,9 @@
+RULE R1_safe_when_off eq 8 8 : HELD
+RULE R2_fault_there eq 0 0 : HELD
+RULE R3_inside_as_none eq 2 2 : HELD
+RULE R4_reach_angle all_within 3600000 139 2882046 2757972 : FAILED
+RULE R4_reach_speed_hi all_le 100000 -2136837 -2174066 : HELD
+RULE R4_reach_speed_lo all_ge -100000 -2136837 -2174066 : FAILED
+RULE R5_nothing_else eq 4 4 : HELD
+RULE R6_no_nan eq 0 0 : HELD
+rules: 8, held: 6

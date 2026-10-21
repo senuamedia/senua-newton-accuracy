@@ -1,0 +1,6 @@
+h_stock_0.004 CREEP dt_ns 4000000 steps 100 mean_speed_ums 17748 friction_over_normal_per_10000 4154 friction_limit_per_10000 6000
+h_floor_0.004 CREEP dt_ns 4000000 steps 100 mean_speed_ums 17748 friction_over_normal_per_10000 4154 friction_limit_per_10000 6000
+h_both_0.004 CREEP dt_ns 4000000 steps 100 mean_speed_ums 17729 friction_over_normal_per_10000 4154 friction_limit_per_10000 6000
+h_off_0.004 CREEP dt_ns 4000000 steps 100 mean_speed_ums 17748 friction_over_normal_per_10000 4154 friction_limit_per_10000 6000
+s_stock_0.004 STOP dt_ns 4000000 first_stopped_at_step 35 largest_speed_last_third_ums 0 slid_um 52955 came_back_um 48
+s_both_0.004 STOP dt_ns 4000000 first_stopped_at_step 35 largest_speed_last_third_ums 0 slid_um 52955 came_back_um 48

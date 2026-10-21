@@ -1,0 +1,3 @@
+CHECK XPBD's suite without SUITE_ZEROMU against run 007's: 40 of 40 files byte-identical
+plays that stopped being a number: 12
+SUITE needs 48 numbers, got 41

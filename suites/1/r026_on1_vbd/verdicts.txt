@@ -1,0 +1,46 @@
+CONFIG rig settings: solver=vbd
+free 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 1237356 largest_um 24508 summed_speed_difference_mm_s 0
+free 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 618972 largest_um 12258 summed_speed_difference_mm_s 0
+free 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 309393 largest_um 6127 summed_speed_difference_mm_s 0
+free 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 155082 largest_um 3059 summed_speed_difference_mm_s 0
+free 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 75651 largest_um 1444 summed_speed_difference_mm_s 0
+free 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 37935 largest_um 825 summed_speed_difference_mm_s 0
+slide 1/1 | CREEP dt_ns 10000000 steps 25 mean_speed_ums 3640982 friction_over_normal_per_10000 3826 friction_limit_per_10000 4000
+slide 1/16 | CREEP dt_ns 625000 steps 400 mean_speed_ums 3838731 friction_over_normal_per_10000 3893 friction_limit_per_10000 4000
+rest 1/1 | REST dt_ns 10000000 mean_ground_force_mN 19600 weight_mN 19600
+rest 1/16 | REST dt_ns 625000 mean_ground_force_mN 19600 weight_mN 19600
+drop 1/1 | BOUNCE dt_ns 10000000 the cube was still moving down at the end
+drop 1/2 | BOUNCE dt_ns 5000000 the cube was still moving down at the end
+drop 1/4 | BOUNCE dt_ns 2500000 the cube was still moving down at the end
+drop 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1237249 steps_to_turn 251 rebound_nm -3810924 drop_nm 80000000 rebound_per_10000 0
+drop 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1243372 steps_to_turn 38 rebound_nm -3571794 drop_nm 80000000 rebound_per_10000 0
+drop 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1249496 steps_to_turn 67 rebound_nm -2917793 drop_nm 80000000 rebound_per_10000 0
+drop 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1251026 steps_to_turn 131 rebound_nm -2435602 drop_nm 80000000 rebound_per_10000 0
+oblique 1/1 | IMPACT dt_ns 10000000 the cube was still moving down at the end
+oblique 1/2 | IMPACT dt_ns 5000000 the cube was still moving down at the end
+oblique 1/4 | IMPACT dt_ns 2500000 the cube was still moving down at the end
+oblique 1/8 | IMPACT dt_ns 1250000 steps 23 horizontal_lost_ums 212192 vertical_given_ums 1520246 ratio_per_10000 1395 friction_per_10000 4000 still_sliding_ums 3787808
+oblique 1/16 | IMPACT dt_ns 625000 steps 36 horizontal_lost_ums 144386 vertical_given_ums 1466173 ratio_per_10000 984 friction_per_10000 4000 still_sliding_ums 3855614
+oblique 1/32 | IMPACT dt_ns 312500 steps 64 horizontal_lost_ums 120926 vertical_given_ums 1445616 ratio_per_10000 836 friction_per_10000 4000 still_sliding_ums 3879074
+oblique 1/64 | IMPACT dt_ns 156250 steps 126 horizontal_lost_ums 96130 vertical_given_ums 1444506 ratio_per_10000 665 friction_per_10000 4000 still_sliding_ums 3903870
+settle 1/1 | SETTLE dt_ns 10000000 steps 10 horizontal_lost_ums 532949 vertical_given_ums 2150694 ratio_per_10000 2477 friction_per_10000 4000 still_sliding_ums 3467051
+settle 1/2 | SETTLE dt_ns 5000000 steps 20 horizontal_lost_ums 651264 vertical_given_ums 2201745 ratio_per_10000 2957 friction_per_10000 4000 still_sliding_ums 3348736
+settle 1/4 | SETTLE dt_ns 2500000 steps 40 horizontal_lost_ums 486207 vertical_given_ums 2200122 ratio_per_10000 2209 friction_per_10000 4000 still_sliding_ums 3513793
+settle 1/8 | SETTLE dt_ns 1250000 steps 80 horizontal_lost_ums 472021 vertical_given_ums 2215218 ratio_per_10000 2130 friction_per_10000 4000 still_sliding_ums 3527979
+settle 1/16 | SETTLE dt_ns 625000 steps 160 horizontal_lost_ums 434590 vertical_given_ums 2219731 ratio_per_10000 1957 friction_per_10000 4000 still_sliding_ums 3565410
+settle 1/32 | SETTLE dt_ns 312500 steps 320 horizontal_lost_ums 412750 vertical_given_ums 2221072 ratio_per_10000 1858 friction_per_10000 4000 still_sliding_ums 3587250
+settle 1/64 | SETTLE dt_ns 156250 steps 640 horizontal_lost_ums 361633 vertical_given_ums 2221107 ratio_per_10000 1628 friction_per_10000 4000 still_sliding_ums 3638367
+hold 1/1 | CREEP dt_ns 10000000 steps 100 mean_speed_ums 1574 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold 1/16 | CREEP dt_ns 625000 steps 1600 mean_speed_ums 93488 friction_over_normal_per_10000 2999 friction_limit_per_10000 5000
+slip 1/1 | SLIP dt_ns 10000000 mean_speed_ums 1117200 predicted_ums 980000 push_mN 11760 friction_limit_mN 9800
+slip 1/16 | SLIP dt_ns 625000 mean_speed_ums 1207300 predicted_ums 980000 push_mN 11760 friction_limit_mN 9800
+chain 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 143685 largest_um 2939 summed_speed_difference_mm_s 3903
+chain 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 63160 largest_um 1470 summed_speed_difference_mm_s 5824
+chain 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 36057 largest_um 1277 summed_speed_difference_mm_s 490
+chain 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 12204 largest_um 974 summed_speed_difference_mm_s 1881
+chain 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 13953 largest_um 760 summed_speed_difference_mm_s 3286
+chain 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 10745 largest_um 508 summed_speed_difference_mm_s 8590
+lift 1/1 | PULL dt_ns 10000000 lowest_ground_force_mN 0 steps_pulling 0
+lift 1/16 | PULL dt_ns 625000 lowest_ground_force_mN 0 steps_pulling 0
+rebound 1/16 | PULL dt_ns 625000 lowest_ground_force_mN 0 steps_pulling 0
+SUITE needs 48 numbers, got 45

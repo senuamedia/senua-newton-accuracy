@@ -1,0 +1,2 @@
+played 39 files under: solver=mujoco
+rc 1

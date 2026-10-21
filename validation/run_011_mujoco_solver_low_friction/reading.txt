@@ -1,0 +1,12 @@
+friction 0.0001, step 0.0025 | nan_at_step 51
+friction 0.0001, step 0.00015625 | nan_at_step 822
+friction 0.001, step 0.0025 | nan_at_step 51
+friction 0.001, step 0.00015625 | nan_at_step 818
+friction 0.01, step 0.0025 | no NaN
+friction 0.01, step 0.00015625 | no NaN
+friction 0.03, step 0.0025 | no NaN
+friction 0.03, step 0.00015625 | no NaN
+friction 0.1, step 0.0025 | no NaN
+friction 0.1, step 0.00015625 | no NaN
+friction 0.3, step 0.0025 | no NaN
+friction 0.3, step 0.00015625 | no NaN

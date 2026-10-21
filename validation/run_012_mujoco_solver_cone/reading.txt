@@ -1,0 +1,22 @@
+cone pyramidal, friction 0, step 0.0025 | nan_at_step 51
+cone pyramidal, friction 0, step 0.00015625 | nan_at_step 822
+cone pyramidal, friction 0.00001, step 0.0025 | nan_at_step 51
+cone pyramidal, friction 0.00001, step 0.00015625 | nan_at_step 822
+cone pyramidal, friction 0.0001, step 0.0025 | nan_at_step 51
+cone pyramidal, friction 0.0001, step 0.00015625 | nan_at_step 822
+cone pyramidal, friction 0.001, step 0.0025 | nan_at_step 51
+cone pyramidal, friction 0.001, step 0.00015625 | nan_at_step 818
+cone pyramidal, friction 0.01, step 0.0025 | plays
+cone pyramidal, friction 0.01, step 0.00015625 | plays
+cone elliptic, friction 0, step 0.0025 | plays
+cone elliptic, friction 0, step 0.00015625 | plays
+cone elliptic, friction 0.00001, step 0.0025 | plays
+cone elliptic, friction 0.00001, step 0.00015625 | plays
+cone elliptic, friction 0.0001, step 0.0025 | plays
+cone elliptic, friction 0.0001, step 0.00015625 | plays
+cone elliptic, friction 0.001, step 0.0025 | plays
+cone elliptic, friction 0.001, step 0.00015625 | plays
+cone elliptic, friction 0.01, step 0.0025 | plays
+cone elliptic, friction 0.01, step 0.00015625 | plays
+CHECK the default cone given explicitly, friction 0.01, step 0.0025, byte-identical to run 011's: yes
+CHECK the default cone given explicitly, friction 0.01, step 0.00015625, byte-identical to run 011's: yes

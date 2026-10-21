@@ -1,0 +1,6 @@
+RULE P1_reference_converged_angle near 2792462 2792553 10000 : HELD
+RULE P1_reference_converged_speed within -3219619 -3218964 100 : HELD
+RULE P2_reference_held_on_the_limit all_in 3299000 3301000 3300000 3300000 3300000 : HELD
+RULE P3_link2_after_the_strike within 6832725 6870000 100 : HELD
+RULE P4_v4_near_the_reference near 2372762 2792553 50000 : FAILED
+checks: 5, held: 4

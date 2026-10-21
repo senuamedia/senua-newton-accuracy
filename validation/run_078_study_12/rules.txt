@@ -1,0 +1,22 @@
+RULE R1_safe_when_off_27 eq 12 12 : HELD
+RULE R2_fault_there_27 all_ge 10000 37697 18849 37699 18850 : HELD
+RULE R3_held_27_speed all_in -100 100 0 -1 0 -1 0 -1 0 -1 : HELD
+RULE R3_held_27_still_semi_0.001 near -4466371 -4466370 1000 : HELD
+RULE R3_held_27_still_semi_0.0005 near -4466371 -4466370 1000 : HELD
+RULE R3_held_27_still_semirep_0.001 near -4466371 -4466370 1000 : HELD
+RULE R3_held_27_still_semirep_0.0005 near -4466371 -4466370 1000 : HELD
+RULE R4_fault_there_27_d6 all_ge 250000 1076991 249545 1095926 249795 : FAILED
+RULE R5_d6_held_semi_0.002 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semi_0.002 near 400000 400000 1000 : HELD
+RULE R5_d6_held_semi_0.0005 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semi_0.0005 near 400000 400000 1000 : HELD
+RULE R5_d6_held_semirep_0.002 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semirep_0.002 near 400000 400000 1000 : HELD
+RULE R5_d6_held_semirep_0.0005 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semirep_0.0005 near 400000 400000 1000 : HELD
+RULE R6_safe_when_off_28 eq 8 8 : HELD
+RULE R7_fault_there_28 all_ge 0 17 20 33 38 125 148 1383 3448 : HELD
+RULE R8_numbers_28 all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE R9_on_limit_28_angle all_within -600000 100 -600002 -600002 -600002 -600001 -600002 -600001 -600002 -600002 : HELD
+RULE R9_on_limit_28_still all_in -10000 10000 -2 -28 -3 -8 34 15 560 59 : HELD
+rules: 21, held: 20

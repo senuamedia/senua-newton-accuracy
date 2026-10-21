@@ -1,0 +1,3 @@
+STATS contact dt 0.0005 h0 0 vx0 0 mu 0.35 mass 1.2 radius 0.05 steps 2400 most_tilt_urad 13514 engine newton 1.7.0 solver mujoco extra opt.cone=elliptic
+linesearch iterations limit reached - please increase ls_iterations beyond 50
+To disable the print warning: m.opt.warn_overflow &= ~mjw.OverflowType.LS_ITERATIONS (or = 0 for all)

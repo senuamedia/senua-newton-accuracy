@@ -1,0 +1,6 @@
+run_038_vbd_joint_penalty play.sh exit 0 started 2026-10-19T13:53:21Z finished 2026-10-19T14:06:56Z
+run_039_mujoco_limit_force_space play.sh exit 0 started 2026-10-19T14:06:56Z finished 2026-10-19T14:08:00Z
+run_040_xpbd_limit_return play.sh exit 0 started 2026-10-19T14:08:00Z finished 2026-10-19T14:08:14Z
+run_041_vbd_joint_stiffness play.sh exit 0 started 2026-10-19T14:08:14Z finished 2026-10-19T14:13:04Z
+run_042_mujoco_limit_damping_step play.sh exit 0 started 2026-10-19T14:13:04Z finished 2026-10-19T14:13:07Z
+run_043_study_06 play.sh exit 0 started 2026-10-19T14:13:07Z finished 2026-10-19T14:16:29Z

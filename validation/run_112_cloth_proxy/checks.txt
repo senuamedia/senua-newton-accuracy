@@ -1,0 +1,4 @@
+RULE P1_cloth_receives_its_weight all_within 441 20 441 442 440 : HELD
+RULE P2_harvest_ten_times_too_large le 4410 74077 : HELD
+RULE P3_harvest_falls_with_iterations all_ge 0 55777 12707 : HELD
+checks: 3, held: 3

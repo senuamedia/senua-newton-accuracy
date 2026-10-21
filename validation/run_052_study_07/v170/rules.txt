@@ -1,0 +1,4 @@
+RULE R1_the_record_plays eq 89 0 : FAILED
+RULE R2_unchanged_kernels_play_the_same eq 23 0 : FAILED
+RULE R3_the_validated_studies_hold eq 0 0 : HELD
+RULE R4_study_5_as_it_was eq 0 0 : HELD

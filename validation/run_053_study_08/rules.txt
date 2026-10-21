@@ -1,0 +1,3 @@
+RULE A1_4010_holds_study_1 eq 3 0 : FAILED
+RULE B1_4316_holds_study_5 eq 4 0 : FAILED
+rules: 2, held: 0

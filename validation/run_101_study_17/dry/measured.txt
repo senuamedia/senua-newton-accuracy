@@ -1,0 +1,8 @@
+h_vbd_cold_0.004 stops -1 CREEP dt_ns 4000000 steps 50 mean_speed_ums 4887 friction_over_normal_per_10000 1418 friction_limit_per_10000 4500 most_tilt_urad 11070
+s_vbd_cold_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step -1 largest_speed_last_third_ums 461688 slid_um 117148 came_back_um 0 most_tilt_urad 16759
+h_vbd_carried_0.004 stops -1 CREEP dt_ns 4000000 steps 50 mean_speed_ums 342 friction_over_normal_per_10000 1462 friction_limit_per_10000 4500 most_tilt_urad 977
+s_vbd_carried_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step -1 largest_speed_last_third_ums 461688 slid_um 117148 came_back_um 0 most_tilt_urad 16759
+h_vbd_alm_cold_0.004 stops -1 CREEP dt_ns 4000000 steps 50 mean_speed_ums 2174 friction_over_normal_per_10000 1466 friction_limit_per_10000 4500 most_tilt_urad 10608
+s_vbd_alm_cold_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step -1 largest_speed_last_third_ums 456624 slid_um 119159 came_back_um 0 most_tilt_urad 13724
+h_vbd_alm_carried_0.004 stops -1 CREEP dt_ns 4000000 steps 50 mean_speed_ums 2185 friction_over_normal_per_10000 1466 friction_limit_per_10000 4500 most_tilt_urad 10586
+s_vbd_alm_carried_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step -1 largest_speed_last_third_ums 456624 slid_um 119159 came_back_um 0 most_tilt_urad 13724

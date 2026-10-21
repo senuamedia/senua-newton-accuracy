@@ -1,0 +1,4 @@
+setup: engines ready in ~/work/s8/e8: 2778 files in three trees
+pr4010 1.7.0 ~/work/s8/e8/pr4010/src/newton/__init__.py
+pr4316 1.7.0 ~/work/s8/e8/pr4316/src/newton/__init__.py
+pr4317 1.7.0 ~/work/s8/e8/pr4317/src/newton/__init__.py

@@ -1,0 +1,15 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE P1_safe_when_off eq 12 12 : HELD
+RULE C0_as_run_116 eq 20 20 : HELD
+RULE P2_tall_harvest_the_cloths_it10 within 440 440 20 : HELD
+RULE P2_tall_harvest_the_cloths_it40 within 440 440 20 : HELD
+RULE P3_boxes_still all_le 10 1 1 1 1 : HELD
+RULE P4_released_throw_momentum_grows_it10 ge 66775012 9000000 : HELD
+RULE P4_released_throw_momentum_grows_it40 ge 28599433 9000000 : HELD
+RULE P4_throw_momentum_kept_it10 within -4503685 -4500000 50 : HELD
+RULE P4_throw_momentum_kept_it40 within -4501391 -4500000 50 : HELD
+RULE P5_released_hammock_energy_grows ge 5691 767000 : FAILED
+RULE P5_hammock_energy_bounded all_le 767000 4464508 3118427 : FAILED
+RULE P5_hammock_carries_the_box_it10 within 0 6867 10 : FAILED
+RULE P5_hammock_carries_the_box_it40 within 3938 6867 10 : FAILED
+checks: 14, held: 10

@@ -1,0 +1,16 @@
+STATS lim_m0.1_0.00025_off joint dt 0.00025 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m0.1_0.00025_on joint dt 0.00025 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m1_0.00025_off joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m1_0.00025_on joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m10_0.00025_off joint dt 0.00025 mass 10 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m10_0.00025_on joint dt 0.00025 mass 10 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m100_0.00025_off joint dt 0.00025 mass 100 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m100_0.00025_on joint dt 0.00025 mass 100 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m0.1_0.01_off joint dt 0.01 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m0.1_0.01_on joint dt 0.01 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m1_0.01_off joint dt 0.01 mass 1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m1_0.01_on joint dt 0.01 mass 1 radius 0.04 arm 0.4 gravity 1 steps 200 out_of_range_at_step 79 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m10_0.01_off joint dt 0.01 mass 10 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m10_0.01_on joint dt 0.01 mass 10 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m100_0.01_off joint dt 0.01 mass 100 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_m100_0.01_on joint dt 0.01 mass 100 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1

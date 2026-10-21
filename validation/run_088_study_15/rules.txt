@@ -1,0 +1,7 @@
+RULE R1_safe_when_off eq 2 2 : HELD
+RULE R2_fault_there all_ge 100 3415 3415 854 854 : HELD
+RULE R3_held all_in -10 10 0 4 : HELD
+RULE R4_slide_kept_0.003 within 53216 53228 100 : HELD
+RULE R4_slide_kept_0.00075 within 54123 54122 100 : HELD
+RULE R5_nothing_lost eq 0 0 : HELD
+rules: 6, held: 6

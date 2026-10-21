@@ -1,0 +1,30 @@
+stock_plain drop 0.004 rebound_per_10000 850
+stock_plain oblique 0.004 impact 3499 settle 3499 most_tilt_urad 346395
+stock_plain drop 0.0004 rebound_per_10000 1067
+stock_plain oblique 0.0004 impact 3500 settle 3499 most_tilt_urad 393977
+stock_plain nan_plays 0
+stock_res drop 0.004 rebound_per_10000 0
+stock_res oblique 0.004 impact 300 settle 1826 most_tilt_urad 5027
+stock_res drop 0.0004 rebound_per_10000 0
+stock_res oblique 0.0004 impact 1980 settle 3283 most_tilt_urad 2490
+stock_res nan_plays 0
+off_plain drop 0.004 rebound_per_10000 850
+off_plain oblique 0.004 impact 3499 settle 3499 most_tilt_urad 346395
+off_plain drop 0.0004 rebound_per_10000 1067
+off_plain oblique 0.0004 impact 3500 settle 3499 most_tilt_urad 393977
+off_plain nan_plays 0
+off_res drop 0.004 rebound_per_10000 0
+off_res oblique 0.004 impact 300 settle 1826 most_tilt_urad 5027
+off_res drop 0.0004 rebound_per_10000 0
+off_res oblique 0.0004 impact 1980 settle 3283 most_tilt_urad 2490
+off_res nan_plays 0
+on_plain drop 0.004 rebound_per_10000 850
+on_plain oblique 0.004 impact 3499 settle 3499 most_tilt_urad 346395
+on_plain drop 0.0004 rebound_per_10000 1067
+on_plain oblique 0.0004 impact 3500 settle 3499 most_tilt_urad 393977
+on_plain nan_plays 0
+on_res drop 0.004 rebound_per_10000 0
+on_res oblique 0.004 impact 3499 settle 3499 most_tilt_urad 4784
+on_res drop 0.0004 rebound_per_10000 0
+on_res oblique 0.0004 impact 3499 settle 3499 most_tilt_urad 10125
+on_res nan_plays 0

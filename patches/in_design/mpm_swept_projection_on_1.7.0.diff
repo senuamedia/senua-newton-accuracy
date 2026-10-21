@@ -1,0 +1,46 @@
+--- a/newton/_src/solvers/implicit_mpm/rasterized_collisions.py
++++ b/newton/_src/solvers/implicit_mpm/rasterized_collisions.py
+@@ -1,6 +1,8 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
++
+ import warp as wp
+ import warp.fem as fem
+ import warp.sparse as wps
+@@ -9,6 +11,13 @@
+ 
+ from .contact_solver_kernels import solve_coulomb_isotropic
+ 
++# Senua AI patch, in design: with NEWTON_MPM_SWEPT_PROJECTION=1 (read once, here) project_outside_collider tests each
++# particle's step from its start (its position less its velocity over the step, as the particles are advected) against
++# the collider seen from there: a particle that set out outside a collider and whose travel along that side's normal
++# carries it past the surface is stopped at that surface. Only the step's end was tested, so a particle a step carries
++# across a wall thinner than its travel, or into the wall's far half, was let through (#4712's leak).
++_SWEPT_PROJECTION = os.environ.get("NEWTON_MPM_SWEPT_PROJECTION") == "1"
++
+ __all__ = [
+     "Collider",
+     "build_rigidity_operator",
+@@ -406,6 +415,20 @@
+     )
+ 
+     sdf_end = sdf - wp.dot(sdf_vel, sdf_gradient) * dt + collider.material_projection_threshold[material_id]
++    if wp.static(_SWEPT_PROJECTION):  # Senua AI patch, in design: the step seen from its start
++        pos_start = pos_adv - p_vel * dt
++        sdf0, grad0, vel0, _collider_id0, material0 = collision_sdf(
++            pos_start, environment_index, collider, body_q, body_qd, body_q_prev, dt
++        )
++        if sdf0 > 0.0:
++            # the start side's surface, moving with the collider, against the particle's travel along its normal
++            reach = sdf0 + wp.dot(grad0, pos_adv - pos_start) - wp.dot(vel0, grad0) * dt
++            reach += collider.material_projection_threshold[material0]
++            if reach < 0.0:
++                sdf_end = reach
++                sdf_gradient = grad0
++                sdf_vel = vel0
++                material_id = material0
+     if sdf_end < 0:
+         # remove normal vel
+         friction = collider.material_friction[material_id]

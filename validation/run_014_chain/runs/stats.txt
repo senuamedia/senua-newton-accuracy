@@ -1,0 +1,80 @@
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver featherstone extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver featherstone extra opt.angular_damping=0
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver mujoco extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver mujoco extra opt.integrator=euler
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver xpbd extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 out_of_range_at_step 7 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 out_of_range_at_step 7 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 out_of_range_at_step 11 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 out_of_range_at_step 10 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 out_of_range_at_step 20 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 out_of_range_at_step 19 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 out_of_range_at_step 2536 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 out_of_range_at_step 6239 engine newton 1.6.1 solver semi extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 out_of_range_at_step 7 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 out_of_range_at_step 7 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 out_of_range_at_step 11 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 out_of_range_at_step 10 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 out_of_range_at_step 20 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 out_of_range_at_step 19 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 out_of_range_at_step 3983 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 out_of_range_at_step 5301 engine newton 1.6.1 solver semi extra opt.angular_damping=0
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver vbd extra none
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 200 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True
+STATS chain dt 0.01 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 200 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 800 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True
+STATS chain dt 0.0025 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 800 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 3200 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True
+STATS chain dt 0.000625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 3200 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 0 dofs 2 steps 12800 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True
+STATS chain dt 0.00015625 mass1 1.2 mass2 0.6 radius 0.04 arm1 0.25 len1 0.5 arm2 0.2 gravity 1 dofs 2 steps 12800 engine newton 1.6.1 solver vbd extra opt.rigid_compliant_alm=True

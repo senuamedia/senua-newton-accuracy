@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "~/work/rec99/tools/nwt_mpm_collider.py", line 60, in main
+    opts[k[4:]] = int(v)
+                  ^^^^^^
+ValueError: invalid literal for int() with base 10: 'pic'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "~/work/rec99/tools/nwt_mpm_collider.py", line 140, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "~/work/rec99/tools/nwt_mpm_collider.py", line 62, in main
+    opts[k[4:]] = float(v)
+                  ^^^^^^^^
+ValueError: could not convert string to float: 'pic'

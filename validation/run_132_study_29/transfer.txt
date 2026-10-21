@@ -1,0 +1,7 @@
+the transfer: 15 (scene, step, solver) lines where MuJoCo C is right
+MuJoCo C slide d1: 71255, right 1
+MuJoCo C slide d05: 71426, right 1
+MuJoCo C hold d1: 0, right 1
+MuJoCo C hold d05: 0, right 1
+MuJoCo C push d1: 3071706, right 1
+MuJoCo C push d05: 3043192, right 0

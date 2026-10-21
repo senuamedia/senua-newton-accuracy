@@ -1,0 +1,1 @@
+STATS joint dt 0.0005 mass 1.6 radius 0.04 arm 0.35 gravity 0 steps 160 engine newton 1.7.0 solver xpbd extra iterations=2 drivek=25 target=0

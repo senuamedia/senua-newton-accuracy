@@ -1,0 +1,1 @@
+STATS contact dt 0.0012 h0 1 vx0 0 mu 0 mass 1.4 radius 0.05 steps 17 most_tilt_urad 85677 engine newton 1.7.0 solver vbd_alm extra gravity=0 comx=0.025 wz0=4.2

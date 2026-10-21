@@ -1,0 +1,16 @@
+chain_v4_it2_default_0.0025 stops -1 joint1_angle_urad 2512760 joint1_speed_urads -3631705 joint2_angle_urad -6020490 joint2_speed_urads 12296571
+chain_v4_it2_one_0.0025 stops -1 joint1_angle_urad 3815869 joint1_speed_urads 1597413250000 joint2_angle_urad 279747 joint2_speed_urads -1495790250000
+chain_v4_it8_default_0.0025 stops -1 joint1_angle_urad 2962580 joint1_speed_urads -1980688 joint2_angle_urad 5223738 joint2_speed_urads 7266947
+chain_v4_it8_one_0.0025 stops -1 joint1_angle_urad -169105 joint1_speed_urads -754295 joint2_angle_urad -2757237 joint2_speed_urads -7125485
+chain_v4_it32_default_0.0025 stops -1 joint1_angle_urad 2959025 joint1_speed_urads -2002205 joint2_angle_urad 5235215 joint2_speed_urads 7330951
+chain_v4_it32_one_0.0025 stops -1 joint1_angle_urad -53682 joint1_speed_urads 12187587 joint2_angle_urad 5803674 joint2_speed_urads -25117289
+chain_v4_it128_default_0.0025 stops -1 joint1_angle_urad 2957798 joint1_speed_urads -2007864 joint2_angle_urad 5239383 joint2_speed_urads 7349772
+chain_v4_it128_one_0.0025 stops -1 joint1_angle_urad -17629 joint1_speed_urads 3441010 joint2_angle_urad 1645416 joint2_speed_urads 16366920
+chain_v4_it2_default_0.000625 stops -1 joint1_angle_urad 2383559 joint1_speed_urads -3632304 joint2_angle_urad -5888440 joint2_speed_urads 12316745
+chain_v4_it2_one_0.000625 stops -1 joint1_angle_urad 873906 joint1_speed_urads 12590772000000 joint2_angle_urad -2517795 joint2_speed_urads -10290409000000
+chain_v4_it8_default_0.000625 stops -1 joint1_angle_urad 2862274 joint1_speed_urads -2666177 joint2_angle_urad 5602757 joint2_speed_urads 9612325
+chain_v4_it8_one_0.000625 stops -1 joint1_angle_urad -503027 joint1_speed_urads 12961430000000 joint2_angle_urad -6001043 joint2_speed_urads -2100620250000
+chain_v4_it32_default_0.000625 stops -1 joint1_angle_urad 2854765 joint1_speed_urads -2720960 joint2_angle_urad 5629092 joint2_speed_urads 9801627
+chain_v4_it32_one_0.000625 stops -1 joint1_angle_urad -19292 joint1_speed_urads -7209040 joint2_angle_urad 4770456 joint2_speed_urads 7957633
+chain_v4_it128_default_0.000625 stops -1 joint1_angle_urad 2840340 joint1_speed_urads -2833548 joint2_angle_urad 5683306 joint2_speed_urads 10209525
+chain_v4_it128_one_0.000625 stops -1 joint1_angle_urad -14929 joint1_speed_urads 215331 joint2_angle_urad 5379409 joint2_speed_urads -26326370

@@ -1,0 +1,294 @@
+diff --git a/newton/_src/sim/articulation.py b/newton/_src/sim/articulation.py
+index 5332d30d9bf..b2e3366ea0d 100644
+--- a/newton/_src/sim/articulation.py
++++ b/newton/_src/sim/articulation.py
+@@ -709,6 +709,36 @@ def compute_shape_world_transforms(
+         shape_world_transform[shape_idx] = X_bs
+ 
+ 
++@wp.func
++def joint_angle_reference(limit_lower: float, limit_upper: float) -> float:
++    """Reference angle [rad] about which a single rotational DOF is measured.
++
++    Maximal-coordinate solvers recover a hinge angle from the relative orientation of two bodies, which only
++    determines it modulo ``2*pi``. Measuring it within ``pi`` of the middle of the limit range makes every angle
++    inside ``[limit_lower, limit_upper]`` (and overshoots of up to ``pi - (limit_upper - limit_lower) / 2``) read
++    correctly for any range narrower than ``2*pi``, including ranges that extend beyond ``+-pi``. Unlimited
++    (or ``2*pi``-wide and wider) ranges return 0, i.e. the principal value.
++
++    Args:
++        limit_lower: Lower joint limit [rad].
++        limit_upper: Upper joint limit [rad].
++
++    Returns:
++        The reference angle [rad].
++    """
++    if limit_upper >= limit_lower and limit_upper - limit_lower < 2.0 * wp.pi:
++        return 0.5 * (limit_lower + limit_upper)
++    return 0.0
++
++
++@wp.func
++def wrap_angle_near(angle: float, reference: float) -> float:
++    """Return ``angle + 2*pi*k`` in ``[reference - pi, reference + pi)``."""
++    two_pi = 2.0 * wp.pi
++    d = angle - reference + wp.pi
++    return reference - wp.pi + (d - two_pi * wp.floor(d / two_pi))
++
++
+ @wp.func
+ def reconstruct_angular_q_qd(q_pc: wp.quat, w_err: wp.vec3, X_wp: wp.transform, axis: wp.vec3):
+     """
+@@ -750,6 +780,8 @@ def eval_articulation_ik(
+     joint_dof_dim: wp.array2d[int],
+     joint_q_start: wp.array[int],
+     joint_qd_start: wp.array[int],
++    joint_limit_lower: wp.array[float],
++    joint_limit_upper: wp.array[float],
+     body_flags: wp.array[wp.int32],
+     body_flag_filter: int,
+     joint_q: wp.array[float],
+@@ -851,6 +883,11 @@ def eval_articulation_ik(
+         q_pc = wp.quat_inverse(q_p) * q_c
+ 
+         q, qd = reconstruct_angular_q_qd(q_pc, w_err, X_wpj, axis)
++        # the relative rotation fixes the angle modulo 2 pi only: report the value the solvers' limits use
++        lower = joint_limit_lower[qd_start]
++        upper = joint_limit_upper[qd_start]
++        if upper >= lower and upper - lower < 2.0 * wp.pi:
++            q = wrap_angle_near(q, joint_angle_reference(lower, upper))
+ 
+         joint_q[q_start] = q
+         joint_qd[qd_start] = qd
+@@ -927,6 +964,10 @@ def eval_articulation_ik(
+             axis = joint_axis[qd_start]
+             q_pc = wp.quat_inverse(q_p) * q_c
+             q, qd = reconstruct_angular_q_qd(q_pc, w_err, X_wpj, joint_axis[qd_start + lin_axis_count])
++            lower = joint_limit_lower[qd_start + lin_axis_count]
++            upper = joint_limit_upper[qd_start + lin_axis_count]
++            if upper >= lower and upper - lower < 2.0 * wp.pi:
++                q = wrap_angle_near(q, joint_angle_reference(lower, upper))
+             joint_q[q_start + lin_axis_count] = q
+             joint_qd[qd_start + lin_axis_count] = qd
+ 
+@@ -1018,6 +1059,8 @@ def eval_ik(
+             model.joint_dof_dim,
+             model.joint_q_start,
+             model.joint_qd_start,
++            model.joint_limit_lower,
++            model.joint_limit_upper,
+             model.body_flags,
+             body_flag_filter,
+         ],
+diff --git a/newton/_src/solvers/xpbd/kernels.py b/newton/_src/solvers/xpbd/kernels.py
+index 9d30fe68b5e..86f6d6e150f 100644
+--- a/newton/_src/solvers/xpbd/kernels.py
++++ b/newton/_src/solvers/xpbd/kernels.py
+@@ -13,6 +13,7 @@
+     velocity_at_point,
+ )
+ from ...sim import BodyFlags, JointType, Model
++from ...sim.articulation import joint_angle_reference
+ from ...sim.contacts import contact_surface_point, contact_surface_separation
+ from ...sim.joint_mimic import eval_joint_mimic_coordinate
+ 
+@@ -1554,6 +1555,40 @@ def solve_simple_body_joints(
+         wp.atomic_add(deltas, id_c, wp.spatial_vector(lin_delta_c, ang_delta_c))
+ 
+ 
++@wp.kernel
++def compute_joint_angle_references(
++    joint_type: wp.array[int],
++    joint_X_c: wp.array[wp.transform],
++    joint_qd_start: wp.array[int],
++    joint_dof_dim: wp.array2d[int],
++    joint_axis: wp.array[wp.vec3],
++    joint_limit_lower: wp.array[float],
++    joint_limit_upper: wp.array[float],
++    # outputs
++    joint_X_c_solve: wp.array[wp.transform],
++    joint_ref_err: wp.array[wp.vec3],
++):
++    """Per joint with one rotational DOF: the child joint frame rotated by -reference about the axis (used by
++    solve_body_joints in place of ``joint_X_c``) and the reference as an error vector; NaN error for an unlimited
++    joint (reference = drive target, evaluated per step)."""
++    tid = wp.tid()
++    joint_X_c_solve[tid] = joint_X_c[tid]
++    joint_ref_err[tid] = wp.vec3(0.0)
++    if joint_dof_dim[tid, 1] != 1 or joint_type[tid] == JointType.BALL:
++        return
++    idx = joint_qd_start[tid] + joint_dof_dim[tid, 0]
++    lower = joint_limit_lower[idx]
++    upper = joint_limit_upper[idx]
++    if upper >= lower and upper - lower < 2.0 * wp.pi:
++        ref = joint_angle_reference(lower, upper)
++        a = wp.normalize(joint_axis[idx])
++        joint_X_c_solve[tid] = joint_X_c[tid] * wp.transform(wp.vec3(0.0), wp.quat_from_axis_angle(a, -ref))
++        joint_ref_err[tid] = a * ref
++    else:
++        nan = wp.nan
++        joint_ref_err[tid] = wp.vec3(nan, 0.0, 0.0)
++
++
+ @wp.kernel
+ def solve_body_joints(
+     body_q: wp.array[wp.transform],
+@@ -1581,6 +1616,7 @@ def solve_body_joints(
+     joint_angular_compliance: float,
+     angular_relaxation: float,
+     linear_relaxation: float,
++    joint_ref_err: wp.array[wp.vec3],
+     dt: float,
+     deltas: wp.array[wp.spatial_vector],
+     joint_impulse: wp.array[wp.spatial_vector],
+@@ -1893,6 +1929,21 @@ def solve_body_joints(
+         q_p = wp.transform_get_rotation(X_wp)
+         q_c = wp.transform_get_rotation(X_wc)
+ 
++        # A hinge angle is only defined modulo 2 pi; measuring it near a reference inside the joint's range (see
++        # compute_joint_angle_references) keeps a hinge past +-pi from reading as a ~2 pi limit violation.
++        ang_ref = wp.vec3(0.0)
++        if ang_axis_count == 1:
++            ref_err = joint_ref_err[tid]
++            if ref_err[0] == ref_err[0]:  # not NaN: static reference, already in X_c
++                ang_ref = ref_err
++            else:
++                ref_idx = axis_start + lin_axis_count
++                if joint_target_ke[ref_idx] > 0.0:
++                    ref = joint_target_q[target_axis_start + lin_axis_count]
++                    ref_axis = wp.normalize(joint_axis[ref_idx])
++                    q_c = q_c * wp.quat_from_axis_angle(ref_axis, -ref)
++                    ang_ref = ref_axis * ref
++
+         # make quats lie in same hemisphere
+         if wp.dot(q_p, q_c) < 0.0:
+             q_c *= -1.0
+@@ -1932,20 +1983,23 @@ def solve_body_joints(
+ 
+         # rescale swing
+         swing_sq = qswing[3] * qswing[3]
+-        # if swing axis magnitude close to zero vector, just treat in quaternion space
++        # rescale the swing from quaternion space (sin(theta / 2)) to an angle: scale = theta / sin(theta / 2), whose
++        # limit for a vanishing swing is 2 (not 1: the unscaled value is half the angle, which halves the error of
++        # compliant rows near zero swing; hard rows are unaffected as error and gradient scale together)
+         angularEps = 1.0e-4
++        scale = 2.0
+         if swing_sq + angularEps < 1.0:
+             d = wp.sqrt(1.0 - qswing[3] * qswing[3])
+             theta = 2.0 * wp.acos(wp.clamp(qswing[3], -1.0, 1.0))
+             scale = theta / d
+ 
+-            err_1 *= scale
+-            err_2 *= scale
++        err_1 *= scale
++        err_2 *= scale
+ 
+-            grad_1 *= scale
+-            grad_2 *= scale
++        grad_1 *= scale
++        grad_2 *= scale
+ 
+-        errs = wp.vec3(err_0, err_1, err_2)
++        errs = wp.vec3(err_0, err_1, err_2) + ang_ref
+         grad_x = wp.vec3(grad_0[0], grad_1[0], grad_2[0])
+         grad_y = wp.vec3(grad_0[1], grad_1[1], grad_2[1])
+         grad_z = wp.vec3(grad_0[2], grad_1[2], grad_2[2])
+diff --git a/newton/_src/solvers/xpbd/solver_xpbd.py b/newton/_src/solvers/xpbd/solver_xpbd.py
+index ee03d77e029..8c70b1e2987 100644
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py
+@@ -19,6 +19,7 @@
+     apply_particle_deltas,
+     apply_particle_shape_restitution,
+     bending_constraint,
++    compute_joint_angle_references,
+     convert_contact_impulse_to_force,
+     convert_joint_impulse_to_parent_f,
+     copy_kinematic_body_state_kernel,
+@@ -95,6 +96,8 @@ class SolverXPBD(SolverBase, CouplingInterface):
+           :attr:`~newton.Model.joint_target_ke`/:attr:`~newton.Model.joint_target_kd`, and
+           :attr:`~newton.Control.joint_f` are supported.
+           Joint limits are enforced as hard positional constraints (``joint_limit_ke``/``joint_limit_kd`` are not used).
++          The angle of a joint with one rotational DOF is measured within pi of the middle of its limit range (of its
++          position target if unlimited), so limit ranges may extend beyond +-pi as long as they are narrower than 2 pi.
+         - :attr:`~newton.Model.joint_armature`, :attr:`~newton.Model.joint_friction`,
+           :attr:`~newton.Model.joint_effort_limit`, :attr:`~newton.Model.joint_velocity_limit`,
+           and :attr:`~newton.Model.joint_target_mode` are not supported.
+@@ -206,6 +209,16 @@ def __init__(
+ 
+         self._init_kinematic_state()
+ 
++        # per joint with one rotational DOF: child joint frame rotated by -(angle reference) and the reference as an
++        # error offset (see compute_joint_angle_references); refreshed by notify_model_changed
++        self._joint_X_c_solve = None
++        self._joint_ref_err = None
++        if model.joint_count:
++            with wp.ScopedDevice(model.device):
++                self._joint_X_c_solve = wp.clone(model.joint_X_c)
++                self._joint_ref_err = wp.zeros(model.joint_count, dtype=wp.vec3)
++            self._refresh_joint_references()
++
+         # helper variables to track constraint resolution vars
+         self._particle_delta_counter = 0
+         self._body_delta_counter = 0
+@@ -236,8 +249,9 @@ def compute_body_velocity_from_position_delta(self, value: bool) -> None:
+     def notify_model_changed(self, flags: ModelFlags | int) -> None:
+         """Refresh cached body data after model properties change.
+ 
+-        Effective inverse masses and inertia tensors are refreshed for body-property changes. The cached restitution
+-        state is refreshed for shape-property changes. Other flags are ignored.
++        Effective inverse masses and inertia tensors are refreshed for body-property changes, the angle references
++        of joints with one rotational DOF for joint and joint-DOF property changes (limits, axes, joint frames), and
++        the cached restitution state for shape-property changes. Other flags are ignored.
+ 
+         Args:
+             flags: Bitmask of :class:`~newton.ModelFlags` or custom ``int`` bits indicating which model properties
+@@ -247,9 +261,31 @@ def notify_model_changed(self, flags: ModelFlags | int) -> None:
+         self._apply_module_options()
+         if flags & (ModelFlags.BODY_PROPERTIES | ModelFlags.BODY_INERTIAL_PROPERTIES):
+             self._refresh_kinematic_state()
++        if flags & (ModelFlags.JOINT_PROPERTIES | ModelFlags.JOINT_DOF_PROPERTIES):
++            self._refresh_joint_references()
+         if self.enable_restitution and flags & ModelFlags.SHAPE_PROPERTIES:
+             self._refresh_rigid_restitution_enabled()
+ 
++    def _refresh_joint_references(self):
++        """Angle references of the joints with one rotational DOF, from their limits and child joint frames."""
++        model = self.model
++        if model.joint_count:
++            wp.launch(
++                kernel=compute_joint_angle_references,
++                dim=model.joint_count,
++                inputs=[
++                    model.joint_type,
++                    model.joint_X_c,
++                    model.joint_qd_start,
++                    model.joint_dof_dim,
++                    model.joint_axis,
++                    model.joint_limit_lower,
++                    model.joint_limit_upper,
++                ],
++                outputs=[self._joint_X_c_solve, self._joint_ref_err],
++                device=model.device,
++            )
++
+     def _refresh_rigid_restitution_enabled(self) -> None:
+         restitution = self.model.shape_material_restitution
+         self._rigid_restitution_enabled = restitution is not None and restitution.size > 0
+@@ -825,7 +861,7 @@ def step(
+                                 model.joint_parent,
+                                 model.joint_child,
+                                 model.joint_X_p,
+-                                model.joint_X_c,
++                                self._joint_X_c_solve,
+                                 model.joint_limit_lower,
+                                 model.joint_limit_upper,
+                                 model.joint_qd_start,
+@@ -840,6 +876,7 @@ def step(
+                                 self.joint_angular_compliance,
+                                 self.joint_angular_relaxation,
+                                 self.joint_linear_relaxation,
++                                self._joint_ref_err,
+                                 dt,
+                             ],
+                             outputs=[body_deltas, joint_impulse],

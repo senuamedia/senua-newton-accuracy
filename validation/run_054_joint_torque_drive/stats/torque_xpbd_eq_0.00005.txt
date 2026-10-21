@@ -1,0 +1,1 @@
+STATS joint dt 5e-05 mass 1 radius 0.05 arm 0.5 gravity 0 steps 1000 engine newton 1.7.0 solver xpbd extra opt.joint_angular_relaxation=0.7 torque=1

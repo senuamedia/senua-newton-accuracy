@@ -1,0 +1,13 @@
+RULE N0_safe_when_off eq 6 6 : HELD
+RULE N1_fault_there_0.002 all_ge 500 1293 765 : HELD
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE N1_fault_there_0.0005 all_ge 500 1293 765 : HELD
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE N2_warp_refuses eq 1 1 : HELD
+checks: 12, held: 4

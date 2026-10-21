@@ -1,0 +1,1 @@
+STATS contact dt 0.0025 h0 0.08 vx0 0 mu 0.0001 mass 2 radius 0.04 steps 200 most_tilt_urad 0 nan_at_step 51 engine newton 1.6.1 solver mujoco extra none

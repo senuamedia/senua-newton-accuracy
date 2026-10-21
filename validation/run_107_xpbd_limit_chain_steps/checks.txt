@@ -1,0 +1,5 @@
+RULE P1_on_the_limit_it64 all_in 3299000 3301000 3299999 3299999 3299998 : HELD
+RULE P2_converged_it64 near 2811868 2792553 20000 : HELD
+RULE P3_arm_held_angle all_within 2500000 50 2499583 2497757 : HELD
+RULE P3_arm_held_speed all_in -100000 100000 -259 -4200 : HELD
+checks: 4, held: 4

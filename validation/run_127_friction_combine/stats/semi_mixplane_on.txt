@@ -1,0 +1,1 @@
+STATS contact dt 0.0005 h0 0 vx0 1 mu 0.2 mass 1 radius 0.05 steps 1200 most_tilt_urad 329632 engine newton 1.7.0 solver semi extra groundmu=0.9 register=1 prio=0 groundprio=1

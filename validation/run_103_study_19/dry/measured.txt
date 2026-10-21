@@ -1,0 +1,4 @@
+h_cold_0.004 stops -1 CREEP dt_ns 4000000 steps 63 mean_speed_ums 7769 friction_over_normal_per_10000 2443 friction_limit_per_10000 5500 most_tilt_urad 14907
+s_cold_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 45 largest_speed_last_third_ums 161589 slid_um 64484 came_back_um 59 most_tilt_urad 14101
+h_carried_0.004 stops -1 CREEP dt_ns 4000000 steps 63 mean_speed_ums 340 friction_over_normal_per_10000 2488 friction_limit_per_10000 5500 most_tilt_urad 977
+s_carried_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 42 largest_speed_last_third_ums 161589 slid_um 64093 came_back_um 343 most_tilt_urad 13084

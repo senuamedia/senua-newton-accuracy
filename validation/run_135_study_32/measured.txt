@@ -1,0 +1,12 @@
+cup_v007_s12_none stops -1 FINAL dt_ns 3472222 angle_urad 134 speed_urads 0
+cup_v007_s12_half stops -1 FINAL dt_ns 3472222 angle_urad 0 speed_urads 0
+cup_v007_s12_quarter stops -1 FINAL dt_ns 3472222 angle_urad 9 speed_urads 0
+cup_v007_s24_none stops -1 FINAL dt_ns 1736111 angle_urad 68 speed_urads 0
+cup_v007_s24_half stops -1 FINAL dt_ns 1736111 angle_urad 0 speed_urads 0
+cup_v007_s24_quarter stops -1 FINAL dt_ns 1736111 angle_urad 4 speed_urads 0
+cup_v014_s12_none stops -1 FINAL dt_ns 3472222 angle_urad 706 speed_urads 0
+cup_v014_s12_half stops -1 FINAL dt_ns 3472222 angle_urad 9 speed_urads 0
+cup_v014_s12_quarter stops -1 FINAL dt_ns 3472222 angle_urad 31 speed_urads 0
+cup_v014_s24_none stops -1 FINAL dt_ns 1736111 angle_urad 219 speed_urads 0
+cup_v014_s24_half stops -1 FINAL dt_ns 1736111 angle_urad 0 speed_urads 0
+cup_v014_s24_quarter stops -1 FINAL dt_ns 1736111 angle_urad 2 speed_urads 0

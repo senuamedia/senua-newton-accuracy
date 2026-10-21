@@ -1,0 +1,45 @@
+f_stock_0.006 stops -1 energy_drift_ppm 9821 energy_largest_drift_ppm 9934 momentum_drift_ppm 5822 kinetic_end_per_million 1009920
+f_stock_0.003 stops -1 energy_drift_ppm 4928 energy_largest_drift_ppm 5000 momentum_drift_ppm 2913 kinetic_end_per_million 1004953
+f_stock_0.001 stops -1 energy_drift_ppm 1643 energy_largest_drift_ppm 1675 momentum_drift_ppm 968 kinetic_end_per_million 1001646
+f_stock_0.00025 stops -1 energy_drift_ppm 400 energy_largest_drift_ppm 416 momentum_drift_ppm 236 kinetic_end_per_million 1000400
+w_stock_0.005 stops -1 energy_drift_ppm 17362 energy_largest_drift_ppm 58886 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+w_stock_0.002 stops -1 energy_drift_ppm 20005 energy_largest_drift_ppm 23606 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+w_stock_0.0005 stops -1 energy_drift_ppm 5780 energy_largest_drift_ppm 6029 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+f_off_0.006 stops -1 energy_drift_ppm 9821 energy_largest_drift_ppm 9934 momentum_drift_ppm 5822 kinetic_end_per_million 1009920
+f_off_0.003 stops -1 energy_drift_ppm 4928 energy_largest_drift_ppm 5000 momentum_drift_ppm 2913 kinetic_end_per_million 1004953
+f_off_0.001 stops -1 energy_drift_ppm 1643 energy_largest_drift_ppm 1675 momentum_drift_ppm 968 kinetic_end_per_million 1001646
+f_off_0.00025 stops -1 energy_drift_ppm 400 energy_largest_drift_ppm 416 momentum_drift_ppm 236 kinetic_end_per_million 1000400
+w_off_0.005 stops -1 energy_drift_ppm 17362 energy_largest_drift_ppm 58886 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+w_off_0.002 stops -1 energy_drift_ppm 20005 energy_largest_drift_ppm 23606 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+w_off_0.0005 stops -1 energy_drift_ppm 5780 energy_largest_drift_ppm 6029 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+f_rk4_0.006 stops -1 energy_drift_ppm 0 energy_largest_drift_ppm 2 momentum_drift_ppm 0 kinetic_end_per_million 1000000
+f_rk4_0.003 stops -1 energy_drift_ppm 0 energy_largest_drift_ppm 1 momentum_drift_ppm 0 kinetic_end_per_million 999999
+f_rk4_0.001 stops -1 energy_drift_ppm 0 energy_largest_drift_ppm 3 momentum_drift_ppm 0 kinetic_end_per_million 1000000
+f_rk4_0.00025 stops -1 energy_drift_ppm -4 energy_largest_drift_ppm 7 momentum_drift_ppm -2 kinetic_end_per_million 999995
+w_rk4_0.005 stops -1 energy_drift_ppm -19 energy_largest_drift_ppm 20 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+w_rk4_0.002 stops -1 energy_drift_ppm 2 energy_largest_drift_ppm 3 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+w_rk4_0.0005 stops -1 energy_drift_ppm 4 energy_largest_drift_ppm 7 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+gap_free_stock_1/1 gap_um 1237356
+gap_free_stock_1/2 gap_um 618972
+gap_free_stock_1/4 gap_um 309393
+gap_free_stock_1/8 gap_um 155082
+gap_free_stock_1/16 gap_um 75651
+gap_free_stock_1/32 gap_um 37935
+gap_chain_stock_1/1 gap_um 7734224
+gap_chain_stock_1/2 gap_um 1404959
+gap_chain_stock_1/4 gap_um 361169
+gap_chain_stock_1/8 gap_um 303202
+gap_chain_stock_1/16 gap_um 95501
+gap_chain_stock_1/32 gap_um 20620
+gap_free_rk4_1/1 gap_um 88
+gap_free_rk4_1/2 gap_um 129
+gap_free_rk4_1/4 gap_um 116
+gap_free_rk4_1/8 gap_um 713
+gap_free_rk4_1/16 gap_um 3637
+gap_free_rk4_1/32 gap_um 6285
+gap_chain_rk4_1/1 gap_um 288007
+gap_chain_rk4_1/2 gap_um 188558
+gap_chain_rk4_1/4 gap_um 35404
+gap_chain_rk4_1/8 gap_um 63815
+gap_chain_rk4_1/16 gap_um 15542
+gap_chain_rk4_1/32 gap_um 543

@@ -1,0 +1,1 @@
+STATS chain dt 0.001 mass1 0.05 mass2 0.05 radius 0.01 arm1 0.02 len1 0.04 arm2 0.02 gravity 1 dofs 2 steps 300 engine newton 1.7.0 solver featherstone extra lo1=-0.5 hi1=0.5

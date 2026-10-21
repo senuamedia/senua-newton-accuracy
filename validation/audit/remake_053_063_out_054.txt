@@ -1,0 +1,108 @@
+RULE C0_rig_unchanged eq 2 2 : HELD
+RULE P1_torque_xpbd_0.0001 all_within 4967 100 8670 : FAILED
+RULE P1_gravity_xpbd_0.0001 all_within -24338 100 -24265 : HELD
+RULE P1_torque_xpbd_eq_0.0001 all_within 4967 100 4977 : HELD
+RULE P1_gravity_xpbd_eq_0.0001 all_within -24338 100 -24386 : HELD
+RULE P1_torque_xpbd_4317_0.0001 all_within 4967 100 4964 : HELD
+RULE P1_gravity_xpbd_4317_0.0001 all_within -24338 100 -24385 : HELD
+RULE P1_torque_featherstone_0.0001 all_within 4967 100 4977 : HELD
+RULE P1_gravity_featherstone_0.0001 all_within -24338 100 -24386 : HELD
+RULE P1_torque_mujoco_0.0001 all_within 4967 100 4977 : HELD
+RULE P1_gravity_mujoco_0.0001 all_within -24338 100 -24386 : HELD
+RULE P2_drive_xpbd_it1_0.0001 all_within 161563 400 173011 : FAILED
+RULE P2_drive_xpbd_it2_0.0001 all_within 161563 400 147266 : FAILED
+RULE P2_drive_xpbd_it4_0.0001 all_within 161563 400 99348 : FAILED
+RULE P2_drive_xpbd_it8_0.0001 all_within 161563 400 16921 : FAILED
+RULE P2_drive_xpbd_it16_0.0001 all_within 161563 400 -100950 : FAILED
+RULE P2_drive_featherstone_0.0001 all_within 161563 400 161526 : HELD
+RULE P2_drive_mujoco_0.0001 all_within 161563 400 161526 : HELD
+RULE P3_hold_semi_2500000_0.0001 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_semi_2500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_semi_2500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_xpbd_2500000_0.0001 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_xpbd_2500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_xpbd_2500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_xpbd_4316_2500000_0.0001 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_xpbd_4316_2500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_xpbd_4316_2500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_vbd_2500000_0.0001 all_within 2500000 1000 0 : FAILED
+RULE P3_still_vbd_2500000_0.0001 all_le 10000 -1 : HELD
+RULE P3_still_lo_vbd_2500000_0.0001 all_ge -10000 -1 : HELD
+RULE P3_hold_featherstone_2500000_0.0001 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_featherstone_2500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_featherstone_2500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_mujoco_2500000_0.0001 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_mujoco_2500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_mujoco_2500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_semi_3500000_0.0001 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_semi_3500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_semi_3500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_xpbd_3500000_0.0001 all_within 3500000 1000 3779909 : FAILED
+RULE P3_still_xpbd_3500000_0.0001 all_le 10000 40305183 : FAILED
+RULE P3_still_lo_xpbd_3500000_0.0001 all_ge -10000 40305183 : HELD
+RULE P3_hold_xpbd_4316_3500000_0.0001 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_xpbd_4316_3500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_xpbd_4316_3500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_vbd_3500000_0.0001 all_within 3500000 1000 6283185 : FAILED
+RULE P3_still_vbd_3500000_0.0001 all_le 10000 1 : HELD
+RULE P3_still_lo_vbd_3500000_0.0001 all_ge -10000 1 : HELD
+RULE P3_hold_featherstone_3500000_0.0001 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_featherstone_3500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_featherstone_3500000_0.0001 all_ge -10000 0 : HELD
+RULE P3_hold_mujoco_3500000_0.0001 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_mujoco_3500000_0.0001 all_le 10000 0 : HELD
+RULE P3_still_lo_mujoco_3500000_0.0001 all_ge -10000 0 : HELD
+RULE P1_torque_xpbd_0.00005 all_within 4967 100 8648 : FAILED
+RULE P1_gravity_xpbd_0.00005 all_within -24338 100 -24241 : HELD
+RULE P1_torque_xpbd_eq_0.00005 all_within 4967 100 10 : FAILED
+RULE P1_gravity_xpbd_eq_0.00005 all_within -24338 100 -24361 : HELD
+RULE P1_torque_xpbd_4317_0.00005 all_within 4967 100 11 : FAILED
+RULE P1_gravity_xpbd_4317_0.00005 all_within -24338 100 -24361 : HELD
+RULE P1_torque_featherstone_0.00005 all_within 4967 100 4972 : HELD
+RULE P1_gravity_featherstone_0.00005 all_within -24338 100 -24362 : HELD
+RULE P1_torque_mujoco_0.00005 all_within 4967 100 4972 : HELD
+RULE P1_gravity_mujoco_0.00005 all_within -24338 100 -24362 : HELD
+RULE P2_drive_xpbd_it1_0.00005 all_within 161563 400 173024 : FAILED
+RULE P2_drive_xpbd_it2_0.00005 all_within 161563 400 147279 : FAILED
+RULE P2_drive_xpbd_it4_0.00005 all_within 161563 400 99360 : FAILED
+RULE P2_drive_xpbd_it8_0.00005 all_within 161563 400 16904 : FAILED
+RULE P2_drive_xpbd_it16_0.00005 all_within 161563 400 -101087 : FAILED
+RULE P2_drive_featherstone_0.00005 all_within 161563 400 161545 : HELD
+RULE P2_drive_mujoco_0.00005 all_within 161563 400 161545 : HELD
+RULE P3_hold_semi_2500000_0.00005 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_semi_2500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_semi_2500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_xpbd_2500000_0.00005 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_xpbd_2500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_xpbd_2500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_xpbd_4316_2500000_0.00005 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_xpbd_4316_2500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_xpbd_4316_2500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_vbd_2500000_0.00005 all_within 2500000 1000 0 : FAILED
+RULE P3_still_vbd_2500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_vbd_2500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_featherstone_2500000_0.00005 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_featherstone_2500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_featherstone_2500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_mujoco_2500000_0.00005 all_within 2500000 1000 2500000 : HELD
+RULE P3_still_mujoco_2500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_mujoco_2500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_semi_3500000_0.00005 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_semi_3500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_semi_3500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_xpbd_3500000_0.00005 all_within 3500000 1000 2975076 : FAILED
+RULE P3_still_xpbd_3500000_0.00005 all_le 10000 27951487 : FAILED
+RULE P3_still_lo_xpbd_3500000_0.00005 all_ge -10000 27951487 : HELD
+RULE P3_hold_xpbd_4316_3500000_0.00005 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_xpbd_4316_3500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_xpbd_4316_3500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_vbd_3500000_0.00005 all_within 3500000 1000 6283185 : FAILED
+RULE P3_still_vbd_3500000_0.00005 all_le 10000 1 : HELD
+RULE P3_still_lo_vbd_3500000_0.00005 all_ge -10000 1 : HELD
+RULE P3_hold_featherstone_3500000_0.00005 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_featherstone_3500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_featherstone_3500000_0.00005 all_ge -10000 0 : HELD
+RULE P3_hold_mujoco_3500000_0.00005 all_within 3500000 1000 3500000 : HELD
+RULE P3_still_mujoco_3500000_0.00005 all_le 10000 0 : HELD
+RULE P3_still_lo_mujoco_3500000_0.00005 all_ge -10000 0 : HELD
+checks: 107, held: 85

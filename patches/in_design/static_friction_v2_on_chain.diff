@@ -1,0 +1,432 @@
+--- a/newton/_src/solvers/featherstone/coulomb_friction.py
++++ b/newton/_src/solvers/featherstone/coulomb_friction.py
+@@ -118,6 +118,7 @@
+             model.shape_material_kf,
+             model.shape_material_ka,
+             model.shape_material_mu,
++            model.shape_material_mu_static,
+             model.shape_body,
+             contacts.rigid_contact_count,
+             contacts.rigid_contact_point0,
+@@ -134,7 +135,7 @@
+             False,
+             friction_smoothing,
+         ],
+-        outputs=[body_f, arrays.fn, arrays.nrm, arrays.ra, arrays.rb, arrays.mu, arrays.bodies, arrays.count],
++        outputs=[body_f, arrays.fn, arrays.nrm, arrays.ra, arrays.rb, arrays.mu, arrays.mu_static, arrays.bodies, arrays.count],
+         device=model.device,
+     )
+ 
+@@ -215,6 +216,7 @@
+                 arrays.ra,
+                 arrays.rb,
+                 arrays.mu,
++                arrays.mu_static,
+                 arrays.bodies,
+                 arrays.count,
+                 dt,
+--- a/newton/_src/solvers/mujoco/solver_mujoco.py
++++ b/newton/_src/solvers/mujoco/solver_mujoco.py
+@@ -4157,6 +4157,9 @@
+                 ``wp.config.deterministic``.
+         """
+         super().__init__(model)
++        from ..static_friction import warn_static_friction_not_applied  # Senua AI patch, in design
++
++        warn_static_friction_not_applied(model, "SolverMuJoCo")
+ 
+         # Import and cache MuJoCo modules (only happens once per class)
+         mujoco, _ = self.import_mujoco()
+--- a/newton/_src/solvers/semi_implicit/kernels_contact_coulomb.py
++++ b/newton/_src/solvers/semi_implicit/kernels_contact_coulomb.py
+@@ -25,8 +25,13 @@
+ # NEWTON_CONTACT_DAMPING_NO_PULL=1 the force pass damps the normal contact in both phases, kept from pulling, as that
+ # patch's pass does (Study 3); unset, it is the second form's.
+ 
++import os
++
+ import warp as wp
+ 
++# Senua AI patch, in design: stick within the static cone, slide at the dynamic coefficient beyond it
++STATIC_FRICTION = wp.constant(os.environ.get("NEWTON_STATIC_FRICTION") == "1")
++
+ from ...sim import Contacts, Model, State
+ from .kernels_contact import _CONTACT_DAMPING_NO_PULL
+ 
+@@ -47,6 +52,7 @@
+     contact_ra: wp.array[wp.vec3],
+     contact_rb: wp.array[wp.vec3],
+     contact_mu: wp.array[float],
++    contact_mu_static: wp.array[float],
+     contact_bodies: wp.array[wp.vec2i],
+     body_contact_count: wp.array[int],
+     dt: float,
+@@ -93,7 +99,13 @@
+     if w_eff <= 0.0:
+         return
+     # the impulse that stops the slip, shared among the body's contacts, within Coulomb's cone
+-    j = wp.min(slip / (w_eff * float(shared)), contact_mu[tid] * fn * dt)
++    if wp.static(STATIC_FRICTION):
++        # Senua AI patch, in design: the impulse that stops the slip while within the static cone, else the dynamic cap
++        j = slip / (w_eff * float(shared))
++        if j > contact_mu_static[tid] * fn * dt:
++            j = contact_mu[tid] * fn * dt
++    else:
++        j = wp.min(slip / (w_eff * float(shared)), contact_mu[tid] * fn * dt)
+     p = -t * j
+     if body_a >= 0:
+         wp.atomic_add(body_dp, body_a, wp.spatial_vector(p, wp.cross(r_a, p)))
+@@ -141,6 +153,7 @@
+     shape_material_kf: wp.array[float],
+     shape_material_ka: wp.array[float],
+     shape_material_mu: wp.array[float],
++    shape_material_mu_static: wp.array[float],
+     shape_body: wp.array[int],
+     contact_count: wp.array[int],
+     contact_point0: wp.array[wp.vec3],
+@@ -162,6 +175,7 @@
+     rec_ra: wp.array[wp.vec3],
+     rec_rb: wp.array[wp.vec3],
+     rec_mu: wp.array[float],
++    rec_mu_static: wp.array[float],
+     rec_bodies: wp.array[wp.vec2i],
+     rec_count: wp.array[int],
+     tid: int,
+@@ -208,6 +222,19 @@
+         kf /= float(mat_nonzero)
+         ka /= float(mat_nonzero)
+         mu /= float(mat_nonzero)
++    # Senua AI patch, in design: the pair's static coefficient by the same mean, each shape's max(mu_static, mu)
++    mu_static = mu
++    if wp.static(STATIC_FRICTION):
++        msum = float(0.0)
++        mnum = int(0)
++        if shape_a >= 0:
++            msum += wp.max(shape_material_mu_static[shape_a], shape_material_mu[shape_a])
++            mnum += 1
++        if shape_b >= 0:
++            msum += wp.max(shape_material_mu_static[shape_b], shape_material_mu[shape_b])
++            mnum += 1
++        if mnum > 0:
++            mu_static = msum / float(mnum)
+ 
+     # per-contact stiffness/damping/friction
+     if rigid_contact_stiffness:
+@@ -217,6 +244,7 @@
+         kd = contact_kd if contact_kd > 0.0 else kd
+         contact_mu = rigid_contact_friction_scale[tid]
+         mu = mu * contact_mu if contact_mu > 0.0 else mu
++        mu_static = mu_static * contact_mu if contact_mu > 0.0 else mu_static
+ 
+     # contact normal stored as A-to-B; this spring-damper kernel uses B-to-A
+     # internally so that the existing force-application signs are preserved.
+@@ -311,6 +339,7 @@
+         rec_ra[tid] = r_a
+         rec_rb[tid] = r_b
+         rec_mu[tid] = mu
++        rec_mu_static[tid] = mu_static
+         rec_bodies[tid] = wp.vec2i(body_a, body_b)
+         if body_a >= 0:
+             wp.atomic_add(rec_count, body_a, 1)
+@@ -344,6 +373,7 @@
+     shape_material_kf: wp.array[float],
+     shape_material_ka: wp.array[float],
+     shape_material_mu: wp.array[float],
++    shape_material_mu_static: wp.array[float],
+     shape_body: wp.array[int],
+     contact_count: wp.array[int],
+     contact_point0: wp.array[wp.vec3],
+@@ -365,6 +395,7 @@
+     rec_ra: wp.array[wp.vec3],
+     rec_rb: wp.array[wp.vec3],
+     rec_mu: wp.array[float],
++    rec_mu_static: wp.array[float],
+     rec_bodies: wp.array[wp.vec2i],
+     rec_count: wp.array[int],
+ ):
+@@ -381,6 +412,7 @@
+         shape_material_kf,
+         shape_material_ka,
+         shape_material_mu,
++        shape_material_mu_static,
+         shape_body,
+         contact_count,
+         contact_point0,
+@@ -402,6 +434,7 @@
+         rec_ra,
+         rec_rb,
+         rec_mu,
++        rec_mu_static,
+         rec_bodies,
+         rec_count,
+         tid,
+@@ -420,6 +453,7 @@
+             self.ra = wp.zeros(n, dtype=wp.vec3)
+             self.rb = wp.zeros(n, dtype=wp.vec3)
+             self.mu = wp.zeros(n, dtype=float)
++            self.mu_static = wp.zeros(n, dtype=float)
+             self.bodies = wp.zeros(n, dtype=wp.vec2i)
+             self.count = wp.zeros(model.body_count, dtype=int)
+             self.dp = wp.zeros(model.body_count, dtype=wp.spatial_vector)
+@@ -453,6 +487,7 @@
+             model.shape_material_kf,
+             model.shape_material_ka,
+             model.shape_material_mu,
++            model.shape_material_mu_static,
+             model.shape_body,
+             contacts.rigid_contact_count,
+             contacts.rigid_contact_point0,
+@@ -469,7 +504,7 @@
+             force_in_world_frame,
+             friction_smoothing,
+         ],
+-        outputs=[body_f_out, arrays.fn, arrays.nrm, arrays.ra, arrays.rb, arrays.mu, arrays.bodies, arrays.count],
++        outputs=[body_f_out, arrays.fn, arrays.nrm, arrays.ra, arrays.rb, arrays.mu, arrays.mu_static, arrays.bodies, arrays.count],
+         device=model.device,
+     )
+ 
+@@ -490,6 +525,7 @@
+             arrays.ra,
+             arrays.rb,
+             arrays.mu,
++            arrays.mu_static,
+             arrays.bodies,
+             arrays.count,
+             dt,
+@@ -518,6 +554,7 @@
+     contact_ra: wp.array[wp.vec3],
+     contact_rb: wp.array[wp.vec3],
+     contact_mu: wp.array[float],
++    contact_mu_static: wp.array[float],
+     contact_bodies: wp.array[wp.vec2i],
+     body_contact_count: wp.array[int],
+     dt: float,
+@@ -571,7 +608,11 @@
+     total = total_before - vt / (w_eff * float(shared))
+     cap = contact_mu[tid] * fn * dt
+     size = wp.length(total)
+-    if size > cap:
++    cap_stick = cap
++    if wp.static(STATIC_FRICTION):
++        # Senua AI patch, in design: the total kept while within the static cone, else brought to the dynamic cap
++        cap_stick = contact_mu_static[tid] * fn * dt
++    if size > cap_stick:
+         total = total * (cap / size)
+     contact_pt[tid] = total
+     p = total - total_before
+@@ -608,6 +649,7 @@
+                 arrays.ra,
+                 arrays.rb,
+                 arrays.mu,
++                arrays.mu_static,
+                 arrays.bodies,
+                 arrays.count,
+                 dt,
+--- a/newton/_src/solvers/static_friction.py
++++ b/newton/_src/solvers/static_friction.py
+@@ -0,0 +1,33 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: a solver that does not apply a shape's static friction coefficient says so.
++#
++# Pull request #4306 adds a static (break-away) coefficient to Newton's shapes, `mu_static`, which a solver uses as
++# max(mu_static, mu); with NEWTON_STATIC_FRICTION=1 (read once, here) XPBD, SemiImplicit and Featherstone stick within
++# it. MuJoCo models one coefficient, so the MuJoCo solver cannot, and VBD's contact does not yet: when made, each warns
++# once, naming the shapes whose static coefficient is above their dynamic one. Nothing a solver does changes.
++
++import os
++import warnings
++
++import numpy as np
++
++STATIC_FRICTION = os.environ.get("NEWTON_STATIC_FRICTION") == "1"
++
++
++def warn_static_friction_not_applied(model, solver_name: str, reason: str = "MuJoCo models one"):
++    if not STATIC_FRICTION or getattr(model, "shape_material_mu_static", None) is None or model.shape_count == 0:
++        return
++    mus = model.shape_material_mu_static.numpy()
++    mu = model.shape_material_mu.numpy()
++    shapes = [i for i in range(len(mus)) if mus[i] >= 0.0 and mus[i] > mu[i]]
++    if shapes:
++        labels = list(model.shape_label) if getattr(model, "shape_label", None) is not None else []
++        shown = [labels[i] if i < len(labels) and labels[i] else str(i) for i in shapes[:8]]
++        more = " and %d more" % (len(shapes) - 8) if len(shapes) > 8 else ""
++        warnings.warn(
++            "%s does not apply a static friction coefficient (%s): shapes %s%s play at their dynamic"
++            " coefficient." % (solver_name, reason, ", ".join(shown), more),
++            stacklevel=3,
++        )
+--- a/newton/_src/solvers/vbd/solver_vbd.py
++++ b/newton/_src/solvers/vbd/solver_vbd.py
+@@ -850,6 +850,9 @@
+             collision_frequency=collision_frequency,
+             collision_frequency_type=collision_frequency_type,
+         )
++        from ..static_friction import warn_static_friction_not_applied  # Senua AI patch, in design
++
++        warn_static_friction_not_applied(model, "SolverVBD", "its contact does not yet")
+         # The solver's warm-start setting is authoritative for an owned pipeline:
+         # lambda/penalty restores ride the pipeline's matched contact indices, so
+         # history without matching silently cold-starts every refresh (k times per
+--- a/newton/_src/solvers/xpbd/friction_total_kernels.py
++++ b/newton/_src/solvers/xpbd/friction_total_kernels.py
+@@ -14,8 +14,13 @@
+ # function's. Launched in its place only when the solver was made with NEWTON_XPBD_FRICTION_TOTAL=1 (read once, when
+ # the solver is made); otherwise never imported.
+ 
++import os
++
+ import warp as wp
+ 
++# Senua AI patch, in design: stick within the static cone on the step's totals, slide at the dynamic coefficient beyond it
++STATIC_FRICTION = wp.constant(os.environ.get("NEWTON_STATIC_FRICTION") == "1")
++
+ from ...math import velocity_at_point
+ from ...sim import BodyFlags
+ from ...sim.contacts import contact_surface_point, contact_surface_separation
+@@ -45,6 +50,7 @@
+     shape_material_mu: wp.array[float],
+     shape_material_mu_torsional: wp.array[float],
+     shape_material_mu_rolling: wp.array[float],
++    shape_material_mu_static: wp.array[float],
+     relaxation: float,
+     dt: float,
+     deltas: wp.array[wp.spatial_vector],
+@@ -140,6 +146,19 @@
+         mu /= float(mat_nonzero)
+         mu_torsional /= float(mat_nonzero)
+         mu_rolling /= float(mat_nonzero)
++    # Senua AI patch, in design: the pair's static coefficient by the same mean, each shape's max(mu_static, mu)
++    mu_static = mu
++    if wp.static(STATIC_FRICTION):
++        ms = float(0.0)
++        ns = int(0)
++        if shape_a >= 0:
++            ms += wp.max(shape_material_mu_static[shape_a], shape_material_mu[shape_a])
++            ns += 1
++        if shape_b >= 0:
++            ms += wp.max(shape_material_mu_static[shape_b], shape_material_mu[shape_b])
++            ns += 1
++        if ns > 0:
++            mu_static = ms / float(ns)
+ 
+     r_a = bx_a - wp.transform_point(X_wb_a, com_a)
+     r_b = bx_b - wp.transform_point(X_wb_b, com_b)
+@@ -218,7 +237,14 @@
+             # times the normal correction summed over the same iterations (Coulomb's bound on the totals)
+             n_total = contact_lambda_n_sum[tid] + lambda_n
+             f_before = contact_lambda_f_sum[tid]
+-            f_total = wp.max(f_before + lambda_fr, -n_total * mu)
++            if wp.static(STATIC_FRICTION):
++                # Senua AI patch, in design: the full correction while the total stays in the static cone, else the
++                # dynamic bound
++                f_total = f_before + lambda_fr
++                if f_total < -n_total * mu_static:
++                    f_total = -n_total * mu
++            else:
++                f_total = wp.max(f_before + lambda_fr, -n_total * mu)
+             lambda_fr = f_total - f_before
+             contact_lambda_f_sum[tid] = f_total
+ 
+@@ -293,6 +319,7 @@
+     shape_material_mu: wp.array[float],
+     shape_material_mu_torsional: wp.array[float],
+     shape_material_mu_rolling: wp.array[float],
++    shape_material_mu_static: wp.array[float],
+     relaxation: float,
+     dt: float,
+     deltas: wp.array[wp.spatial_vector],
+@@ -327,6 +354,7 @@
+         shape_material_mu,
+         shape_material_mu_torsional,
+         shape_material_mu_rolling,
++        shape_material_mu_static,
+         relaxation,
+         dt,
+         deltas,
+--- a/newton/_src/solvers/xpbd/kernels.py
++++ b/newton/_src/solvers/xpbd/kernels.py
+@@ -1,8 +1,13 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
++
+ import warp as wp
+ 
++# Senua AI patch, in design: stick within the static cone, slide at the dynamic coefficient beyond it
++STATIC_FRICTION = wp.constant(os.environ.get("NEWTON_STATIC_FRICTION") == "1")
++
+ from ...geometry import ParticleFlags
+ from ...math import (
+     vec_abs,
+@@ -2477,6 +2482,7 @@
+     shape_material_mu: wp.array[float],
+     shape_material_mu_torsional: wp.array[float],
+     shape_material_mu_rolling: wp.array[float],
++    shape_material_mu_static: wp.array[float],
+     relaxation: float,
+     dt: float,
+     deltas: wp.array[wp.spatial_vector],
+@@ -2570,6 +2576,19 @@
+         mu /= float(mat_nonzero)
+         mu_torsional /= float(mat_nonzero)
+         mu_rolling /= float(mat_nonzero)
++    # Senua AI patch, in design: the pair's static coefficient by the same mean, each shape's max(mu_static, mu)
++    mu_static = mu
++    if wp.static(STATIC_FRICTION):
++        ms = float(0.0)
++        ns = int(0)
++        if shape_a >= 0:
++            ms += wp.max(shape_material_mu_static[shape_a], shape_material_mu[shape_a])
++            ns += 1
++        if shape_b >= 0:
++            ms += wp.max(shape_material_mu_static[shape_b], shape_material_mu[shape_b])
++            ns += 1
++        if ns > 0:
++            mu_static = ms / float(ns)
+ 
+     r_a = bx_a - wp.transform_point(X_wb_a, com_a)
+     r_b = bx_b - wp.transform_point(X_wb_b, com_b)
+@@ -2645,7 +2664,12 @@
+             )
+ 
+             # limit friction based on incremental normal force, good approximation to limiting on total force
+-            lambda_fr = wp.max(lambda_fr, -lambda_n * mu)
++            if wp.static(STATIC_FRICTION):
++                # Senua AI patch, in design: the full correction within the static cone, else the dynamic limit
++                if lambda_fr < -lambda_n * mu_static:
++                    lambda_fr = -lambda_n * mu
++            else:
++                lambda_fr = wp.max(lambda_fr, -lambda_n * mu)
+ 
+             lin_delta_a -= perp * lambda_fr
+             lin_delta_b += perp * lambda_fr
+@@ -2716,6 +2740,7 @@
+     shape_material_mu: wp.array[float],
+     shape_material_mu_torsional: wp.array[float],
+     shape_material_mu_rolling: wp.array[float],
++    shape_material_mu_static: wp.array[float],
+     relaxation: float,
+     dt: float,
+     deltas: wp.array[wp.spatial_vector],
+@@ -2748,6 +2773,7 @@
+         shape_material_mu,
+         shape_material_mu_torsional,
+         shape_material_mu_rolling,
++        shape_material_mu_static,
+         relaxation,
+         dt,
+         deltas,
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py
+@@ -815,6 +815,7 @@
+                                 model.shape_material_mu,
+                                 model.shape_material_mu_torsional,
+                                 model.shape_material_mu_rolling,
++                                model.shape_material_mu_static,
+                                 self.rigid_contact_relaxation,
+                                 dt,
+                             ],

@@ -1,0 +1,33 @@
+STATS lim_xpbd_m0.1_0.00025 joint dt 0.00025 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_featherstone_m0.1_0.00025 joint dt 0.00025 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_xpbd_m1_0.00025 joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_featherstone_m1_0.00025 joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_vbd_m0.1_0.00025 joint dt 0.00025 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_xpbd_m10_0.00025 joint dt 0.00025 mass 10 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_featherstone_m10_0.00025 joint dt 0.00025 mass 10 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_xpbd_m100_0.00025 joint dt 0.00025 mass 100 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_xpbd_m0.1_0.01 joint dt 0.01 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_featherstone_m100_0.00025 joint dt 0.00025 mass 100 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_xpbd_m1_0.01 joint dt 0.01 mass 1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_featherstone_m0.1_0.01 joint dt 0.01 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 200 out_of_range_at_step 36 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_xpbd_m10_0.01 joint dt 0.01 mass 10 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_featherstone_m1_0.01 joint dt 0.01 mass 1 radius 0.04 arm 0.4 gravity 1 steps 200 out_of_range_at_step 114 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_vbd_m1_0.00025 joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_xpbd_m100_0.01 joint dt 0.01 mass 100 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver xpbd extra lo=-1 hi=1
+STATS lim_featherstone_m10_0.01 joint dt 0.01 mass 10 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_featherstone_m100_0.01 joint dt 0.01 mass 100 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS lim_mujoco_m0.1_0.00025 joint dt 0.00025 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_vbd_m10_0.00025 joint dt 0.00025 mass 10 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_vbd_m100_0.00025 joint dt 0.00025 mass 100 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_vbd_m0.1_0.01 joint dt 0.01 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_mujoco_m1_0.00025 joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_vbd_m1_0.01 joint dt 0.01 mass 1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_vbd_m10_0.01 joint dt 0.01 mass 10 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_vbd_m100_0.01 joint dt 0.01 mass 100 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver vbd extra lo=-1 hi=1
+STATS lim_mujoco_m10_0.00025 joint dt 0.00025 mass 10 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_mujoco_m100_0.00025 joint dt 0.00025 mass 100 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_mujoco_m0.1_0.01 joint dt 0.01 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_mujoco_m1_0.01 joint dt 0.01 mass 1 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_mujoco_m10_0.01 joint dt 0.01 mass 10 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS lim_mujoco_m100_0.01 joint dt 0.01 mass 100 radius 0.04 arm 0.4 gravity 1 steps 200 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS free_mujoco_rk4_0.00025 joint dt 0.00025 mass 1 radius 0.04 arm 0.4 gravity 1 steps 8000 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4

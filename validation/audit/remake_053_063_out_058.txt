@@ -1,0 +1,49 @@
+RULE H_hold_featherstone_2.5_angle all_within 2500000 1000 2500000 : HELD
+RULE H_hold_featherstone_2.5_still all_le 10000 0 : HELD
+RULE H_hold_mujoco_2.5_angle all_within 2500000 1000 2500000 : HELD
+RULE H_hold_mujoco_2.5_still all_le 10000 0 : HELD
+RULE H_hold_semi_2.5_angle all_within 2500000 1000 2500000 : HELD
+RULE H_hold_semi_2.5_still all_le 10000 0 : HELD
+RULE H_hold_vbd_2.5_angle all_within 2500000 1000 2500000 : HELD
+RULE H_hold_vbd_2.5_still all_le 10000 0 : HELD
+RULE H_hold_xpbd_2.5_angle all_within 2500000 1000 2500000 : HELD
+RULE H_hold_xpbd_2.5_still all_le 10000 0 : HELD
+RULE H_hold_xpbd_4316_2.5_angle all_within 2500000 1000 2500000 : HELD
+RULE H_hold_xpbd_4316_2.5_still all_le 10000 0 : HELD
+RULE H_built_semi_2.5_angle all_within 2500000 1000 2500000 : HELD
+RULE H_built_semi_2.5_still all_le 10000 0 : HELD
+RULE H_built_vbd_2.5_angle all_within 2500000 1000 0 : FAILED
+RULE H_built_vbd_2.5_still all_le 10000 1 : HELD
+RULE H_hold_featherstone_3.5_angle all_within 3500000 1000 3500000 : HELD
+RULE H_hold_featherstone_3.5_still all_le 10000 0 : HELD
+RULE H_hold_mujoco_3.5_angle all_within 3500000 1000 3500000 : HELD
+RULE H_hold_mujoco_3.5_still all_le 10000 0 : HELD
+RULE H_hold_semi_3.5_angle all_within 3500000 1000 3500000 : HELD
+RULE H_hold_semi_3.5_still all_le 10000 0 : HELD
+RULE H_hold_vbd_3.5_angle all_within 3500000 1000 3500000 : HELD
+RULE H_hold_vbd_3.5_still all_le 10000 0 : HELD
+RULE H_hold_xpbd_3.5_angle all_within 3500000 1000 3779909 : FAILED
+RULE H_hold_xpbd_3.5_still all_le 10000 40305183 : FAILED
+RULE H_hold_xpbd_4316_3.5_angle all_within 3500000 1000 3500000 : HELD
+RULE H_hold_xpbd_4316_3.5_still all_le 10000 0 : HELD
+RULE H_built_semi_3.5_angle all_within 3500000 1000 3500000 : HELD
+RULE H_built_semi_3.5_still all_le 10000 0 : HELD
+RULE H_built_vbd_3.5_angle all_within 3500000 1000 6283185 : FAILED
+RULE H_built_vbd_3.5_still all_le 10000 1 : HELD
+RULE H_hold_featherstone_7_angle all_within 7000000 1000 7000000 : HELD
+RULE H_hold_featherstone_7_still all_le 10000 0 : HELD
+RULE H_hold_mujoco_7_angle all_within 7000000 1000 7000000 : HELD
+RULE H_hold_mujoco_7_still all_le 10000 0 : HELD
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_hold_vbd_7_angle all_within 7000000 1000 -5566370 : FAILED
+RULE H_hold_vbd_7_still all_le 10000 0 : HELD
+RULE H_hold_xpbd_7_angle all_within 7000000 1000 -303682 : FAILED
+RULE H_hold_xpbd_7_still all_le 10000 89862091 : FAILED
+RULE H_hold_xpbd_4316_7_angle all_within 7000000 1000 -5566370 : FAILED
+RULE H_hold_xpbd_4316_7_still all_le 10000 0 : HELD
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE H_built_vbd_7_angle all_within 7000000 1000 -6283185 : FAILED
+RULE H_built_vbd_7_still all_le 10000 0 : HELD
+checks: 48, held: 35

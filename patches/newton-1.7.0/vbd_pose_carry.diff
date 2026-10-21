@@ -1,0 +1,1423 @@
+--- a/newton/_src/solvers/vbd/rigid_vbd_kernels.py
++++ b/newton/_src/solvers/vbd/rigid_vbd_kernels.py
+@@ -28,9 +28,15 @@
+ import functools
+ from typing import Any
+ 
++import os
++
+ import warp as wp
+ 
+ from newton._src.core.types import MAXVAL
++
++# Senua AI patch, in design: with NEWTON_VBD_POSE_CARRY=1 (read once, here; with NEWTON_VBD_DISPLACEMENT=1) each body
++# centre carried as two 32-bit numbers, the target and pose made from them, each joint seen from the child's target centre.
++_POSE_CARRY = os.environ.get("NEWTON_VBD_POSE_CARRY") == "1"
+ from newton._src.geometry.kernels import triangle_closest_point
+ from newton._src.math import orthonormal_basis, quat_velocity
+ from newton._src.sim import JointType
+@@ -3761,6 +3767,943 @@
+ # Utility kernels
+ # -----------------------------
+ @wp.func
++def _joint_local_pose(
++    b: int,
++    pose: wp.transform,
++    com: wp.vec3,
++    origin: wp.vec3,
++    body_tgt_hi: wp.array[wp.vec3],
++    body_tgt_lo: wp.array[wp.vec3],
++    body_d_lin: wp.array[wp.vec3],
++    body_inv_mass: wp.array[float],
++):
++    """Senua AI patch, in design: a body's pose seen from `origin`: its inertial target's centre less the origin plus its
++    carried displacement (a kinematic body's pose less the origin)."""
++    q = wp.transform_get_rotation(pose)
++    if body_inv_mass[b] == 0.0:
++        return wp.transform(wp.transform_get_translation(pose) - origin, q)
++    base = (body_tgt_hi[b] - origin) + body_tgt_lo[b]
++    return wp.transform(base + body_d_lin[b] - wp.quat_rotate(q, com), q)
++
++
++@wp.func
++def _joint_local_pose_prev(
++    b: int,
++    pose_prev: wp.transform,
++    com: wp.vec3,
++    origin: wp.vec3,
++    body_tgt_hi: wp.array[wp.vec3],
++    body_tgt_lo: wp.array[wp.vec3],
++    body_qd_fwd: wp.array[wp.spatial_vector],
++    body_inv_mass: wp.array[float],
++    dt: float,
++):
++    """Senua AI patch, in design: a body's previous pose seen from `origin`: its inertial target's centre less the origin
++    less the forward step's v dt (the target is x + v dt, semi-implicit Euler); a kinematic body's less the origin."""
++    q = wp.transform_get_rotation(pose_prev)
++    if body_inv_mass[b] == 0.0:
++        return wp.transform(wp.transform_get_translation(pose_prev) - origin, q)
++    base = (body_tgt_hi[b] - origin) + body_tgt_lo[b]
++    return wp.transform(base - wp.spatial_top(body_qd_fwd[b]) * dt - wp.quat_rotate(q, com), q)
++
++
++@wp.func
++def evaluate_joint_force_hessian_local(
++    body_index: int,
++    joint_index: int,
++    body_q: wp.array[wp.transform],
++    body_q_prev: wp.array[wp.transform],
++    body_q_rest: wp.array[wp.transform],
++    body_com: wp.array[wp.vec3],
++    joint_type: wp.array[int],
++    joint_enabled: wp.array[bool],
++    joint_parent: wp.array[int],
++    joint_child: wp.array[int],
++    joint_X_p: wp.array[wp.transform],
++    joint_X_c: wp.array[wp.transform],
++    joint_axis: wp.array[wp.vec3],
++    joint_rod_rest_kb_local: wp.array[wp.vec3],
++    joint_rod_rest_twist: wp.array[float],
++    joint_qd_start: wp.array[int],
++    joint_target_q_start: wp.array[int],
++    joint_constraint_start: wp.array[int],
++    joint_penalty_k: wp.array[float],
++    joint_rho: wp.array[float],
++    joint_material_k: wp.array[float],
++    joint_penalty_kd: wp.array[float],
++    joint_sigma_start: wp.array[wp.vec3],
++    joint_C_fric: wp.array[wp.vec3],
++    # Drive parameters (DOF-indexed via joint_qd_start)
++    joint_target_ke: wp.array[float],
++    joint_target_kd: wp.array[float],
++    joint_target_q: wp.array[float],
++    joint_target_qd: wp.array[float],
++    # Limit parameters (DOF-indexed via joint_qd_start)
++    joint_limit_lower: wp.array[float],
++    joint_limit_upper: wp.array[float],
++    joint_limit_ke: wp.array[float],
++    joint_limit_kd: wp.array[float],
++    joint_drive_limit_support: wp.array[float],
++    joint_drive_lambda: wp.array[float],
++    joint_limit_lambda: wp.array[float],
++    joint_lambda_lin: wp.array[wp.vec3],
++    joint_lambda_ang: wp.array[wp.vec3],
++    joint_C0_lin: wp.array[wp.vec3],
++    joint_C0_ang: wp.array[wp.vec3],
++    joint_is_hard: wp.array[wp.int32],
++    stab_alpha: float,
++    joint_compliant_alm: int,
++    joint_dof_dim: wp.array2d[int],
++    joint_rest_angle: wp.array[float],
++    joint_angle_prev: wp.array[float],
++    dt: float,
++    body_tgt_hi: wp.array[wp.vec3],
++    body_tgt_lo: wp.array[wp.vec3],
++    body_d_lin: wp.array[wp.vec3],
++    body_qd_fwd: wp.array[wp.spatial_vector],
++    body_inv_mass: wp.array[float],
++):
++    """Compute VBD joint force and Hessian contributions for one body.
++
++    Supported joint types: ROD, BALL, FIXED, REVOLUTE, PRISMATIC, D6.
++    Rod joints use split stretch/shear and bend/twist helpers; other joints use
++    projector-based linear/angular evaluators.
++
++    Indexing:
++        joint_constraint_start[j] is a solver-owned start offset into the per-constraint
++        arrays (joint_penalty_k, joint_penalty_kd, joint_material_k, joint_rho,
++        and joint_is_hard). Layout per joint type:
++          - ROD:   4 scalars -> [stretch, shear, bend, twist]
++          - BALL:  1 scalar  -> [linear]
++          - FIXED: 2 scalars -> [linear, angular]
++          - REVOLUTE:  3 scalars -> [linear, angular, ang_drive_limit]
++          - PRISMATIC: 3 scalars -> [linear, angular, lin_drive_limit]
++          - D6: 2 + lin_count + ang_count scalars -> [linear, angular, per-DOF drive/limit]
++        Legacy drive/limit slots use AVBD-ramped penalty stiffness. Under
++        compliant ALM, each free DOF is a scalar finite-material row with its
++        own multiplier; active limits project onto the appropriate half-line.
++    """
++    jt = joint_type[joint_index]
++    if (
++        jt != JointType.ROD
++        and jt != JointType.BALL
++        and jt != JointType.FIXED
++        and jt != JointType.REVOLUTE
++        and jt != JointType.PRISMATIC
++        and jt != JointType.D6
++    ):
++        return _zero_force_hessian()
++
++    if not joint_enabled[joint_index]:
++        return _zero_force_hessian()
++
++    parent_index = joint_parent[joint_index]
++    child_index = joint_child[joint_index]
++    if body_index != child_index and (parent_index < 0 or body_index != parent_index):
++        return _zero_force_hessian()
++
++    is_parent_body = parent_index >= 0 and body_index == parent_index
++
++    X_pj = joint_X_p[joint_index]
++    X_cj = joint_X_c[joint_index]
++
++    if parent_index >= 0:
++        parent_pose = body_q[parent_index]
++        parent_pose_prev = body_q_prev[parent_index]
++        parent_com = body_com[parent_index]
++    else:
++        parent_pose = wp.transform(wp.vec3(0.0), wp.quat_identity())
++        parent_pose_prev = parent_pose
++        parent_com = wp.vec3(0.0)
++
++    child_pose = body_q[child_index]
++    child_pose_prev = body_q_prev[child_index]
++    child_com = body_com[child_index]
++
++    # Senua AI patch, in design: the joint seen from the child's inertial target centre, every pose its target's centre
++    # less that centre plus its carried displacement, every previous pose less the forward step's v dt: no term in the
++    # solve is the difference of two 32-bit world positions
++    origin = body_tgt_hi[child_index]
++    child_pose = _joint_local_pose(child_index, child_pose, child_com, origin, body_tgt_hi, body_tgt_lo, body_d_lin, body_inv_mass)
++    child_pose_prev = _joint_local_pose_prev(
++        child_index, child_pose_prev, child_com, origin, body_tgt_hi, body_tgt_lo, body_qd_fwd, body_inv_mass, dt
++    )
++    if parent_index >= 0:
++        parent_pose = _joint_local_pose(
++            parent_index, parent_pose, parent_com, origin, body_tgt_hi, body_tgt_lo, body_d_lin, body_inv_mass
++        )
++        parent_pose_prev = _joint_local_pose_prev(
++            parent_index, parent_pose_prev, parent_com, origin, body_tgt_hi, body_tgt_lo, body_qd_fwd, body_inv_mass, dt
++        )
++    else:
++        parent_pose = wp.transform(-origin, wp.quat_identity())
++        parent_pose_prev = parent_pose
++
++    X_wp = parent_pose * X_pj
++    X_wc = child_pose * X_cj
++    X_wp_prev = parent_pose_prev * X_pj
++    X_wc_prev = child_pose_prev * X_cj
++
++    c_start = joint_constraint_start[joint_index]
++
++    # Hoist quaternion extraction (shared by all angular constraints and drive/limits)
++    q_wp = wp.transform_get_rotation(X_wp)
++    q_wc = wp.transform_get_rotation(X_wc)
++    q_wp_prev = wp.transform_get_rotation(X_wp_prev)
++    q_wc_prev = wp.transform_get_rotation(X_wc_prev)
++
++    if jt == JointType.ROD:
++        stretch_idx = c_start
++        shear_idx = c_start + 1
++        bend_idx = c_start + 2
++        twist_idx = c_start + 3
++
++        solve_weight_stretch = _load_solve_weight(joint_penalty_k, joint_rho, stretch_idx, joint_compliant_alm)
++        solve_weight_shear = _load_solve_weight(joint_penalty_k, joint_rho, shear_idx, joint_compliant_alm)
++        solve_weight_bend = _load_solve_weight(joint_penalty_k, joint_rho, bend_idx, joint_compliant_alm)
++        solve_weight_twist = _load_solve_weight(joint_penalty_k, joint_rho, twist_idx, joint_compliant_alm)
++
++        material_stretch = joint_material_k[stretch_idx]
++        material_shear = joint_material_k[shear_idx]
++        material_bend = joint_material_k[bend_idx]
++        material_twist = joint_material_k[twist_idx]
++
++        kd_stretch = joint_penalty_kd[stretch_idx]
++        kd_shear = joint_penalty_kd[shear_idx]
++        kd_bend = joint_penalty_kd[bend_idx]
++        kd_twist = joint_penalty_kd[twist_idx]
++
++        total_force = wp.vec3(0.0)
++        total_torque = wp.vec3(0.0)
++        total_H_ll = wp.mat33(0.0)
++        total_H_al = wp.mat33(0.0)
++        total_H_aa = wp.mat33(0.0)
++
++        bend_stiff = _structural_row_has_stiffness(solve_weight_bend, material_bend, joint_compliant_alm)
++        twist_stiff = _structural_row_has_stiffness(solve_weight_twist, material_twist, joint_compliant_alm)
++        bend_active = bend_stiff or kd_bend > 0.0
++        twist_active = twist_stiff or kd_twist > 0.0
++        if bend_active or twist_active:
++            lambda_ang = joint_lambda_ang[joint_index]
++            C0_ang = joint_C0_ang[joint_index]
++            bend_hard = bend_stiff and joint_compliant_alm == 0 and joint_is_hard[bend_idx] == 1
++            twist_hard = twist_stiff and joint_compliant_alm == 0 and joint_is_hard[twist_idx] == 1
++
++            bend_dual = wp.vec3(lambda_ang[0], lambda_ang[1], 0.0)
++            twist_dual = wp.vec3(0.0, 0.0, lambda_ang[2])
++            bend_dual_active = joint_compliant_alm == 1 or bend_hard
++            twist_dual_active = joint_compliant_alm == 1 or twist_hard
++            if not bend_dual_active:
++                bend_dual = wp.vec3(0.0)
++            if not twist_dual_active:
++                twist_dual = wp.vec3(0.0)
++
++            bend_primal_k, bend_dual_eff = _material_force_terms(
++                solve_weight_bend, material_bend, bend_dual, joint_compliant_alm
++            )
++            twist_primal_k, twist_dual_eff = _material_force_terms(
++                solve_weight_twist, material_twist, twist_dual, joint_compliant_alm
++            )
++
++            K_elastic_diag = wp.vec3(bend_primal_k, bend_primal_k, twist_primal_k)
++            K_damp_diag = wp.vec3(kd_bend, kd_bend, kd_twist)
++            damping_active = kd_bend > 0.0 or kd_twist > 0.0
++
++            bend_alpha = float(0.0)
++            twist_alpha = float(0.0)
++            if joint_compliant_alm == 1 or bend_hard:
++                bend_alpha = stab_alpha
++            if joint_compliant_alm == 1 or twist_hard:
++                twist_alpha = stab_alpha
++
++            sigma = wp.vec3(0.0)
++            H_fric_diag = wp.vec3(0.0)
++            lambda_projected = bend_dual_eff + twist_dual_eff
++            C0_force = bend_primal_k * bend_alpha * wp.vec3(C0_ang[0], C0_ang[1], 0.0)
++            C0_force = C0_force + twist_primal_k * twist_alpha * wp.vec3(0.0, 0.0, C0_ang[2])
++            dahl_sigma = joint_sigma_start[joint_index]
++            dahl_fric = joint_C_fric[joint_index]
++            if bend_stiff and not bend_hard:
++                sigma = sigma + wp.vec3(dahl_sigma[0], dahl_sigma[1], 0.0)
++                H_fric_diag = H_fric_diag + wp.vec3(dahl_fric[0], dahl_fric[1], 0.0)
++            if twist_stiff and not twist_hard:
++                sigma = sigma + wp.vec3(0.0, 0.0, dahl_sigma[2])
++                H_fric_diag = H_fric_diag + wp.vec3(0.0, 0.0, dahl_fric[2])
++
++            rod_torque, rod_H_aa, _rod_kappa, _rod_J = evaluate_rod_bend_twist_force_hessian_z(
++                q_wp,
++                q_wc,
++                joint_rod_rest_kb_local[joint_index],
++                joint_rod_rest_twist[joint_index],
++                q_wp_prev,
++                q_wc_prev,
++                is_parent_body,
++                K_elastic_diag,
++                C0_force,
++                sigma,
++                H_fric_diag,
++                lambda_projected,
++                K_damp_diag,
++                damping_active,
++                dt,
++            )
++            total_torque = total_torque + rod_torque
++            total_H_aa = total_H_aa + rod_H_aa
++
++        stretch_stiff = _structural_row_has_stiffness(solve_weight_stretch, material_stretch, joint_compliant_alm)
++        shear_stiff = _structural_row_has_stiffness(solve_weight_shear, material_shear, joint_compliant_alm)
++        stretch_active = stretch_stiff or kd_stretch > 0.0
++        shear_active = shear_stiff or kd_shear > 0.0
++        if stretch_active or shear_active:
++            lambda_lin = joint_lambda_lin[joint_index]
++            C0_lin = joint_C0_lin[joint_index]
++            stretch_hard = stretch_stiff and joint_compliant_alm == 0 and joint_is_hard[stretch_idx] == 1
++            shear_hard = shear_stiff and joint_compliant_alm == 0 and joint_is_hard[shear_idx] == 1
++
++            stretch_dual = wp.vec3(0.0, 0.0, lambda_lin[2])
++            shear_dual = wp.vec3(lambda_lin[0], lambda_lin[1], 0.0)
++            stretch_dual_active = joint_compliant_alm == 1 or stretch_hard
++            shear_dual_active = joint_compliant_alm == 1 or shear_hard
++            if not stretch_dual_active:
++                stretch_dual = wp.vec3(0.0)
++            if not shear_dual_active:
++                shear_dual = wp.vec3(0.0)
++
++            stretch_primal_k, stretch_dual_eff = _material_force_terms(
++                solve_weight_stretch, material_stretch, stretch_dual, joint_compliant_alm
++            )
++            shear_primal_k, shear_dual_eff = _material_force_terms(
++                solve_weight_shear, material_shear, shear_dual, joint_compliant_alm
++            )
++
++            k_diag = wp.vec3(shear_primal_k, shear_primal_k, stretch_primal_k)
++            kd_diag = wp.vec3(kd_shear, kd_shear, kd_stretch)
++            damping_active = kd_stretch > 0.0 or kd_shear > 0.0
++
++            stretch_alpha = float(0.0)
++            shear_alpha = float(0.0)
++            if joint_compliant_alm == 1 or stretch_hard:
++                stretch_alpha = stab_alpha
++            if joint_compliant_alm == 1 or shear_hard:
++                shear_alpha = stab_alpha
++
++            lambda_local = stretch_dual_eff + shear_dual_eff
++            C0_force_local = shear_primal_k * shear_alpha * wp.vec3(C0_lin[0], C0_lin[1], 0.0)
++            C0_force_local = C0_force_local + stretch_primal_k * stretch_alpha * wp.vec3(0.0, 0.0, C0_lin[2])
++
++            f_l, t_l, Hll_l, Hal_l, Haa_l = evaluate_rod_stretch_shear_force_hessian(
++                X_wp,
++                X_wc,
++                X_wp_prev,
++                X_wc_prev,
++                parent_pose,
++                child_pose,
++                parent_com,
++                child_com,
++                is_parent_body,
++                k_diag,
++                C0_force_local,
++                lambda_local,
++                kd_diag,
++                damping_active,
++                dt,
++            )
++            total_force = total_force + f_l
++            total_torque = total_torque + t_l
++            total_H_ll = total_H_ll + Hll_l
++            total_H_al = total_H_al + Hal_l
++            total_H_aa = total_H_aa + Haa_l
++
++        return total_force, total_torque, total_H_ll, total_H_al, total_H_aa
++
++    P_I = wp.identity(3, float)
++
++    # AL gating for non-rod structural slots.
++    lin_lambda = wp.vec3(0.0)
++    lin_C0 = wp.vec3(0.0)
++    lin_alpha = float(0.0)
++    lin_hard = joint_is_hard[c_start] == 1
++    if lin_hard or joint_compliant_alm == 1:
++        lin_lambda = joint_lambda_lin[joint_index]
++        lin_C0 = joint_C0_lin[joint_index]
++        lin_alpha = stab_alpha
++
++    # BALL has no angular structural slot; other non-rod joints do.
++    ang_lambda = wp.vec3(0.0)
++    ang_C0 = wp.vec3(0.0)
++    ang_alpha = float(0.0)
++    ang_hard = jt != JointType.BALL and joint_is_hard[c_start + 1] == 1
++    if jt != JointType.BALL and (ang_hard or joint_compliant_alm == 1):
++        ang_lambda = joint_lambda_ang[joint_index]
++        ang_C0 = joint_C0_ang[joint_index]
++        ang_alpha = stab_alpha
++
++    if jt == JointType.BALL:
++        solve_weight = _load_solve_weight(joint_penalty_k, joint_rho, c_start, joint_compliant_alm)
++        damping = joint_penalty_kd[c_start]
++        if solve_weight > 0.0:
++            return evaluate_linear_constraint_force_hessian(
++                X_wp,
++                X_wc,
++                X_wp_prev,
++                X_wc_prev,
++                parent_pose,
++                child_pose,
++                parent_com,
++                child_com,
++                is_parent_body,
++                solve_weight,
++                joint_material_k[c_start],
++                P_I,
++                lin_lambda,
++                lin_C0,
++                lin_alpha,
++                damping,
++                joint_compliant_alm,
++                dt,
++            )
++        return _zero_force_hessian()
++
++    if parent_index >= 0:
++        X_wp_rest = body_q_rest[parent_index] * X_pj
++    else:
++        X_wp_rest = X_pj
++    X_wc_rest = body_q_rest[child_index] * X_cj
++    q_wp_rest = wp.transform_get_rotation(X_wp_rest)
++    q_wc_rest = wp.transform_get_rotation(X_wc_rest)
++
++    if jt == JointType.FIXED:
++        solve_weight_lin = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 0, joint_compliant_alm)
++        kd_lin = joint_penalty_kd[c_start + 0]
++        if solve_weight_lin > 0.0:
++            f_lin, t_lin, Hll_lin, Hal_lin, Haa_lin = evaluate_linear_constraint_force_hessian(
++                X_wp,
++                X_wc,
++                X_wp_prev,
++                X_wc_prev,
++                parent_pose,
++                child_pose,
++                parent_com,
++                child_com,
++                is_parent_body,
++                solve_weight_lin,
++                joint_material_k[c_start + 0],
++                P_I,
++                lin_lambda,
++                lin_C0,
++                lin_alpha,
++                kd_lin,
++                joint_compliant_alm,
++                dt,
++            )
++        else:
++            f_lin = wp.vec3(0.0)
++            t_lin = wp.vec3(0.0)
++            Hll_lin = wp.mat33(0.0)
++            Hal_lin = wp.mat33(0.0)
++            Haa_lin = wp.mat33(0.0)
++
++        solve_weight_ang = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 1, joint_compliant_alm)
++        kd_ang = joint_penalty_kd[c_start + 1]
++        if solve_weight_ang > 0.0:
++            t_ang, Haa_ang, _ang_kappa, _ang_J = evaluate_angular_constraint_force_hessian(
++                q_wp,
++                q_wc,
++                q_wp_rest,
++                q_wc_rest,
++                q_wp_prev,
++                q_wc_prev,
++                is_parent_body,
++                solve_weight_ang,
++                joint_material_k[c_start + 1],
++                P_I,
++                ang_lambda,
++                ang_C0,
++                ang_alpha,
++                kd_ang,
++                joint_compliant_alm,
++                dt,
++            )
++        else:
++            t_ang = wp.vec3(0.0)
++            Haa_ang = wp.mat33(0.0)
++
++        return f_lin, t_lin + t_ang, Hll_lin, Hal_lin, Haa_lin + Haa_ang
++
++    elif jt == JointType.REVOLUTE:
++        qd_start = joint_qd_start[joint_index]
++        P_lin, P_ang = build_joint_projectors(jt, joint_axis, qd_start, 0, 1, q_wp)
++        a = wp.normalize(joint_axis[qd_start])
++
++        solve_weight_lin = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 0, joint_compliant_alm)
++        kd_lin = joint_penalty_kd[c_start + 0]
++        if solve_weight_lin > 0.0:
++            f_lin, t_lin, Hll_lin, Hal_lin, Haa_lin = evaluate_linear_constraint_force_hessian(
++                X_wp,
++                X_wc,
++                X_wp_prev,
++                X_wc_prev,
++                parent_pose,
++                child_pose,
++                parent_com,
++                child_com,
++                is_parent_body,
++                solve_weight_lin,
++                joint_material_k[c_start + 0],
++                P_lin,
++                lin_lambda,
++                lin_C0,
++                lin_alpha,
++                kd_lin,
++                joint_compliant_alm,
++                dt,
++            )
++        else:
++            f_lin = wp.vec3(0.0)
++            t_lin = wp.vec3(0.0)
++            Hll_lin = wp.mat33(0.0)
++            Hal_lin = wp.mat33(0.0)
++            Haa_lin = wp.mat33(0.0)
++
++        solve_weight_ang = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 1, joint_compliant_alm)
++        kd_ang = joint_penalty_kd[c_start + 1]
++
++        kappa_cached = wp.vec3(0.0)
++        J_world_cached = wp.mat33(0.0)
++        has_cached = False
++
++        if solve_weight_ang > 0.0:
++            t_ang, Haa_ang, kappa_cached, J_world_cached = evaluate_angular_constraint_force_hessian(
++                q_wp,
++                q_wc,
++                q_wp_rest,
++                q_wc_rest,
++                q_wp_prev,
++                q_wc_prev,
++                is_parent_body,
++                solve_weight_ang,
++                joint_material_k[c_start + 1],
++                P_ang,
++                ang_lambda,
++                ang_C0,
++                ang_alpha,
++                kd_ang,
++                joint_compliant_alm,
++                dt,
++            )
++            has_cached = True
++        else:
++            t_ang = wp.vec3(0.0)
++            Haa_ang = wp.mat33(0.0)
++
++        # Drive + limits on free angular DOF (constraint slot c_start + 2)
++        dof_idx = qd_start
++        axis_dl = _load_joint_axis_drive_limit(
++            dof_idx,
++            joint_target_q_start[joint_index],
++            c_start + 2,
++            joint_target_ke,
++            joint_target_kd,
++            joint_target_q,
++            joint_target_qd,
++            joint_limit_lower,
++            joint_limit_upper,
++            joint_limit_ke,
++            joint_limit_kd,
++            joint_penalty_k,
++            joint_compliant_alm,
++        )
++        has_drive = _drive_row_applies_force(axis_dl.material_drive_ke, axis_dl.drive_kd)
++        has_limits = _limit_row_exists(axis_dl.material_limit_ke, axis_dl.lower, axis_dl.upper)
++
++        if has_drive or has_limits:
++            inv_dt = 1.0 / dt
++
++            if has_cached:
++                kappa = kappa_cached
++                J_world = J_world_cached
++            else:
++                kappa, J_world = compute_kappa_and_jacobian(q_wp, q_wc, q_wp_rest, q_wc_rest)
++
++            theta = wp.dot(kappa, a)
++            theta_abs = _unwrap_hinge_angle(theta + joint_rest_angle[dof_idx], joint_angle_prev[dof_idx])
++            omega_p = quat_velocity(q_wp, q_wp_prev, dt)
++            omega_c = quat_velocity(q_wc, q_wc_prev, dt)
++            dkappa_dt = compute_kappa_dot(J_world, omega_p, omega_c)
++            dtheta_dt = wp.dot(dkappa_dt, a)
++
++            f_scalar, H_scalar = _eval_joint_axis_drive_limit(
++                axis_dl,
++                theta_abs,
++                dtheta_dt,
++                has_drive,
++                has_limits,
++                joint_drive_limit_support[dof_idx],
++                joint_drive_lambda[dof_idx],
++                joint_limit_lambda[dof_idx],
++                joint_compliant_alm,
++                inv_dt,
++            )
++            if H_scalar > 0.0:
++                tau_drive, Haa_drive = apply_angular_drive_limit_torque(a, J_world, is_parent_body, f_scalar, H_scalar)
++                t_ang = t_ang + tau_drive
++                Haa_ang = Haa_ang + Haa_drive
++
++        return f_lin, t_lin + t_ang, Hll_lin, Hal_lin, Haa_lin + Haa_ang
++
++    elif jt == JointType.PRISMATIC:
++        qd_start = joint_qd_start[joint_index]
++        axis_local = joint_axis[qd_start]
++        P_lin, P_ang = build_joint_projectors(jt, joint_axis, qd_start, 1, 0, q_wp)
++
++        solve_weight_lin = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 0, joint_compliant_alm)
++        kd_lin = joint_penalty_kd[c_start + 0]
++        if solve_weight_lin > 0.0:
++            f_lin, t_lin, Hll_lin, Hal_lin, Haa_lin = evaluate_linear_constraint_force_hessian(
++                X_wp,
++                X_wc,
++                X_wp_prev,
++                X_wc_prev,
++                parent_pose,
++                child_pose,
++                parent_com,
++                child_com,
++                is_parent_body,
++                solve_weight_lin,
++                joint_material_k[c_start + 0],
++                P_lin,
++                lin_lambda,
++                lin_C0,
++                lin_alpha,
++                kd_lin,
++                joint_compliant_alm,
++                dt,
++            )
++        else:
++            f_lin = wp.vec3(0.0)
++            t_lin = wp.vec3(0.0)
++            Hll_lin = wp.mat33(0.0)
++            Hal_lin = wp.mat33(0.0)
++            Haa_lin = wp.mat33(0.0)
++
++        solve_weight_ang = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 1, joint_compliant_alm)
++        kd_ang = joint_penalty_kd[c_start + 1]
++        if solve_weight_ang > 0.0:
++            t_ang, Haa_ang, _ang_kappa, _ang_J = evaluate_angular_constraint_force_hessian(
++                q_wp,
++                q_wc,
++                q_wp_rest,
++                q_wc_rest,
++                q_wp_prev,
++                q_wc_prev,
++                is_parent_body,
++                solve_weight_ang,
++                joint_material_k[c_start + 1],
++                P_ang,
++                ang_lambda,
++                ang_C0,
++                ang_alpha,
++                kd_ang,
++                joint_compliant_alm,
++                dt,
++            )
++        else:
++            t_ang = wp.vec3(0.0)
++            Haa_ang = wp.mat33(0.0)
++
++        # Drive + limits on free linear DOF (constraint slot c_start + 2)
++        dof_idx = qd_start
++        axis_dl = _load_joint_axis_drive_limit(
++            dof_idx,
++            joint_target_q_start[joint_index],
++            c_start + 2,
++            joint_target_ke,
++            joint_target_kd,
++            joint_target_q,
++            joint_target_qd,
++            joint_limit_lower,
++            joint_limit_upper,
++            joint_limit_ke,
++            joint_limit_kd,
++            joint_penalty_k,
++            joint_compliant_alm,
++        )
++        has_drive = _drive_row_applies_force(axis_dl.material_drive_ke, axis_dl.drive_kd)
++        has_limits = _limit_row_exists(axis_dl.material_limit_ke, axis_dl.lower, axis_dl.upper)
++
++        if has_drive or has_limits:
++            inv_dt = 1.0 / dt
++
++            x_p = wp.transform_get_translation(X_wp)
++            x_c = wp.transform_get_translation(X_wc)
++            C_vec = x_c - x_p
++            axis_w = wp.normalize(wp.quat_rotate(q_wp, axis_local))
++
++            d_along = wp.dot(C_vec, axis_w)
++            x_p_prev = wp.transform_get_translation(X_wp_prev)
++            x_c_prev = wp.transform_get_translation(X_wc_prev)
++            C_vec_prev = x_c_prev - x_p_prev
++            dC_dt = (C_vec - C_vec_prev) * inv_dt
++            dd_dt = wp.dot(dC_dt, axis_w)
++
++            f_scalar, H_scalar = _eval_joint_axis_drive_limit(
++                axis_dl,
++                d_along,
++                dd_dt,
++                has_drive,
++                has_limits,
++                joint_drive_limit_support[dof_idx],
++                joint_drive_lambda[dof_idx],
++                joint_limit_lambda[dof_idx],
++                joint_compliant_alm,
++                inv_dt,
++            )
++            if H_scalar > 0.0:
++                if is_parent_body:
++                    com_w = wp.transform_point(parent_pose, parent_com)
++                    r = x_p - com_w
++                else:
++                    com_w = wp.transform_point(child_pose, child_com)
++                    r = x_c - com_w
++
++                force_drive, torque_drive, Hll_drive, Hal_drive, Haa_drive = apply_linear_drive_limit_force(
++                    axis_w, r, is_parent_body, f_scalar, H_scalar
++                )
++
++                f_lin = f_lin + force_drive
++                t_lin = t_lin + torque_drive
++                Hll_lin = Hll_lin + Hll_drive
++                Hal_lin = Hal_lin + Hal_drive
++                Haa_lin = Haa_lin + Haa_drive
++
++        return f_lin, t_lin + t_ang, Hll_lin, Hal_lin, Haa_lin + Haa_ang
++
++    elif jt == JointType.D6:
++        lin_count = joint_dof_dim[joint_index, 0]
++        ang_count = joint_dof_dim[joint_index, 1]
++        qd_start = joint_qd_start[joint_index]
++
++        P_lin, P_ang = build_joint_projectors(
++            jt,
++            joint_axis,
++            qd_start,
++            lin_count,
++            ang_count,
++            q_wp,
++        )
++
++        total_force = wp.vec3(0.0)
++        total_torque = wp.vec3(0.0)
++        total_H_ll = wp.mat33(0.0)
++        total_H_al = wp.mat33(0.0)
++        total_H_aa = wp.mat33(0.0)
++
++        # Linear constraint (constrained when lin_count < 3)
++        solve_weight_lin = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 0, joint_compliant_alm)
++        kd_lin = joint_penalty_kd[c_start + 0]
++
++        if lin_count < 3 and solve_weight_lin > 0.0:
++            f_l, t_l, Hll_l, Hal_l, Haa_l = evaluate_linear_constraint_force_hessian(
++                X_wp,
++                X_wc,
++                X_wp_prev,
++                X_wc_prev,
++                parent_pose,
++                child_pose,
++                parent_com,
++                child_com,
++                is_parent_body,
++                solve_weight_lin,
++                joint_material_k[c_start + 0],
++                P_lin,
++                lin_lambda,
++                lin_C0,
++                lin_alpha,
++                kd_lin,
++                joint_compliant_alm,
++                dt,
++            )
++            total_force = total_force + f_l
++            total_torque = total_torque + t_l
++            total_H_ll = total_H_ll + Hll_l
++            total_H_al = total_H_al + Hal_l
++            total_H_aa = total_H_aa + Haa_l
++
++        # Angular constraint (constrained when ang_count < 3)
++        solve_weight_ang = _load_solve_weight(joint_penalty_k, joint_rho, c_start + 1, joint_compliant_alm)
++        kd_ang = joint_penalty_kd[c_start + 1]
++
++        kappa_cached = wp.vec3(0.0)
++        J_world_cached = wp.mat33(0.0)
++        has_cached = False
++
++        if ang_count < 3 and solve_weight_ang > 0.0:
++            t_ang, Haa_ang, kappa_cached, J_world_cached = evaluate_angular_constraint_force_hessian(
++                q_wp,
++                q_wc,
++                q_wp_rest,
++                q_wc_rest,
++                q_wp_prev,
++                q_wc_prev,
++                is_parent_body,
++                solve_weight_ang,
++                joint_material_k[c_start + 1],
++                P_ang,
++                ang_lambda,
++                ang_C0,
++                ang_alpha,
++                kd_ang,
++                joint_compliant_alm,
++                dt,
++            )
++            has_cached = True
++
++            total_torque = total_torque + t_ang
++            total_H_aa = total_H_aa + Haa_ang
++
++        # Linear drives/limits (per free linear DOF)
++        if lin_count > 0:
++            x_p = wp.transform_get_translation(X_wp)
++            x_c = wp.transform_get_translation(X_wc)
++            C_vec = x_c - x_p
++            q_wp_rot = q_wp
++            x_p_prev = wp.transform_get_translation(X_wp_prev)
++            x_c_prev = wp.transform_get_translation(X_wc_prev)
++            C_vec_prev = x_c_prev - x_p_prev
++            inv_dt = 1.0 / dt
++            dC_dt = (C_vec - C_vec_prev) * inv_dt
++
++            if is_parent_body:
++                com_w = wp.transform_point(parent_pose, parent_com)
++                r_drive = x_p - com_w
++            else:
++                com_w = wp.transform_point(child_pose, child_com)
++                r_drive = x_c - com_w
++
++            target_q_base = joint_target_q_start[joint_index]
++            for li in range(3):
++                if li < lin_count:
++                    dof_idx = qd_start + li
++                    axis_dl = _load_joint_axis_drive_limit(
++                        dof_idx,
++                        target_q_base + li,
++                        c_start + 2 + li,
++                        joint_target_ke,
++                        joint_target_kd,
++                        joint_target_q,
++                        joint_target_qd,
++                        joint_limit_lower,
++                        joint_limit_upper,
++                        joint_limit_ke,
++                        joint_limit_kd,
++                        joint_penalty_k,
++                        joint_compliant_alm,
++                    )
++                    has_drive = _drive_row_applies_force(axis_dl.material_drive_ke, axis_dl.drive_kd)
++                    has_limits = _limit_row_exists(axis_dl.material_limit_ke, axis_dl.lower, axis_dl.upper)
++
++                    if has_drive or has_limits:
++                        axis_w = wp.normalize(wp.quat_rotate(q_wp_rot, joint_axis[dof_idx]))
++                        d_along = wp.dot(C_vec, axis_w)
++                        dd_dt = wp.dot(dC_dt, axis_w)
++
++                        f_scalar, H_scalar = _eval_joint_axis_drive_limit(
++                            axis_dl,
++                            d_along,
++                            dd_dt,
++                            has_drive,
++                            has_limits,
++                            joint_drive_limit_support[dof_idx],
++                            joint_drive_lambda[dof_idx],
++                            joint_limit_lambda[dof_idx],
++                            joint_compliant_alm,
++                            inv_dt,
++                        )
++                        if H_scalar > 0.0:
++                            force_drive, torque_drive, Hll_drive, Hal_drive, Haa_drive = apply_linear_drive_limit_force(
++                                axis_w, r_drive, is_parent_body, f_scalar, H_scalar
++                            )
++
++                            total_force = total_force + force_drive
++                            total_torque = total_torque + torque_drive
++                            total_H_ll = total_H_ll + Hll_drive
++                            total_H_al = total_H_al + Hal_drive
++                            total_H_aa = total_H_aa + Haa_drive
++
++        # Angular drives/limits (per free angular DOF)
++        if ang_count > 0:
++            inv_dt = 1.0 / dt
++
++            if has_cached:
++                kappa = kappa_cached
++                J_world = J_world_cached
++            else:
++                kappa, J_world = compute_kappa_and_jacobian(q_wp, q_wc, q_wp_rest, q_wc_rest)
++
++            omega_p = quat_velocity(q_wp, q_wp_prev, dt)
++            omega_c = quat_velocity(q_wc, q_wc_prev, dt)
++            dkappa_dt = compute_kappa_dot(J_world, omega_p, omega_c)
++
++            target_q_base = joint_target_q_start[joint_index]
++            for ai in range(3):
++                if ai < ang_count:
++                    dof_idx = qd_start + lin_count + ai
++                    axis_dl = _load_joint_axis_drive_limit(
++                        dof_idx,
++                        target_q_base + lin_count + ai,
++                        c_start + 2 + lin_count + ai,
++                        joint_target_ke,
++                        joint_target_kd,
++                        joint_target_q,
++                        joint_target_qd,
++                        joint_limit_lower,
++                        joint_limit_upper,
++                        joint_limit_ke,
++                        joint_limit_kd,
++                        joint_penalty_k,
++                        joint_compliant_alm,
++                    )
++                    has_drive = _drive_row_applies_force(axis_dl.material_drive_ke, axis_dl.drive_kd)
++                    has_limits = _limit_row_exists(axis_dl.material_limit_ke, axis_dl.lower, axis_dl.upper)
++
++                    if has_drive or has_limits:
++                        a = wp.normalize(joint_axis[dof_idx])
++                        theta = wp.dot(kappa, a)
++                        theta_abs = theta + joint_rest_angle[dof_idx]
++                        if ang_count == 1:
++                            theta_abs = _unwrap_hinge_angle(theta_abs, joint_angle_prev[dof_idx])
++                        dtheta_dt = wp.dot(dkappa_dt, a)
++
++                        f_scalar, H_scalar = _eval_joint_axis_drive_limit(
++                            axis_dl,
++                            theta_abs,
++                            dtheta_dt,
++                            has_drive,
++                            has_limits,
++                            joint_drive_limit_support[dof_idx],
++                            joint_drive_lambda[dof_idx],
++                            joint_limit_lambda[dof_idx],
++                            joint_compliant_alm,
++                            inv_dt,
++                        )
++                        if H_scalar > 0.0:
++                            tau_drive, Haa_drive = apply_angular_drive_limit_torque(
++                                a, J_world, is_parent_body, f_scalar, H_scalar
++                            )
++                            total_torque = total_torque + tau_drive
++                            total_H_aa = total_H_aa + Haa_drive
++
++        return total_force, total_torque, total_H_ll, total_H_al, total_H_aa
++
++    return _zero_force_hessian()
++
++
++# -----------------------------
++# Utility kernels
++# -----------------------------
++
++
++@wp.func
+ def _reset_joint_history(
+     joint: int,
+     joint_constraint_start: wp.array[wp.int32],
+@@ -8374,6 +9317,9 @@
+     body_q_new: wp.array[wp.transform],
+     body_d_lin: wp.array[wp.vec3],
+     body_q_d: wp.array[wp.quat],
++    body_qd_fwd: wp.array[wp.spatial_vector],
++    body_tgt_hi: wp.array[wp.vec3],
++    body_tgt_lo: wp.array[wp.vec3],
+ ):
+     """
+     AVBD solve step for rigid bodies.
+@@ -8496,54 +9442,109 @@
+     num_adj_joints = get_body_num_adjacent_joints(adjacency, body_index)
+     for joint_counter in range(num_adj_joints):
+         joint_idx = get_body_adjacent_joint_id(adjacency, body_index, joint_counter)
+-        joint_force, joint_torque, joint_H_ll, joint_H_al, joint_H_aa = evaluate_joint_force_hessian(
+-            body_index,
+-            joint_idx,
+-            body_q,
+-            body_q_prev,
+-            body_q_rest,
+-            body_com,
+-            joint_type,
+-            joint_enabled,
+-            joint_parent,
+-            joint_child,
+-            joint_X_p,
+-            joint_X_c,
+-            joint_axis,
+-            joint_rod_rest_kb_local,
+-            joint_rod_rest_twist,
+-            joint_qd_start,
+-            joint_target_q_start,
+-            joint_constraint_start,
+-            joint_penalty_k,
+-            joint_rho,
+-            joint_material_k,
+-            joint_penalty_kd,
+-            joint_sigma_start,
+-            joint_C_fric,
+-            joint_target_ke,
+-            joint_target_kd,
+-            joint_target_q,
+-            joint_target_qd,
+-            joint_limit_lower,
+-            joint_limit_upper,
+-            joint_limit_ke,
+-            joint_limit_kd,
+-            joint_drive_limit_support,
+-            joint_drive_lambda,
+-            joint_limit_lambda,
+-            joint_lambda_lin,
+-            joint_lambda_ang,
+-            joint_C0_lin,
+-            joint_C0_ang,
+-            joint_is_hard,
+-            stab_alpha,
+-            joint_compliant_alm,
+-            joint_dof_dim,
+-            joint_rest_angle,
+-            joint_angle_prev,
+-            dt,
+-        )
++        if wp.static(_POSE_CARRY):  # Senua AI patch, in design: the joint seen from the child's inertial target centre
++            joint_force, joint_torque, joint_H_ll, joint_H_al, joint_H_aa = evaluate_joint_force_hessian_local(
++                body_index,
++                joint_idx,
++                body_q,
++                body_q_prev,
++                body_q_rest,
++                body_com,
++                joint_type,
++                joint_enabled,
++                joint_parent,
++                joint_child,
++                joint_X_p,
++                joint_X_c,
++                joint_axis,
++                joint_rod_rest_kb_local,
++                joint_rod_rest_twist,
++                joint_qd_start,
++                joint_target_q_start,
++                joint_constraint_start,
++                joint_penalty_k,
++                joint_rho,
++                joint_material_k,
++                joint_penalty_kd,
++                joint_sigma_start,
++                joint_C_fric,
++                joint_target_ke,
++                joint_target_kd,
++                joint_target_q,
++                joint_target_qd,
++                joint_limit_lower,
++                joint_limit_upper,
++                joint_limit_ke,
++                joint_limit_kd,
++                joint_drive_limit_support,
++                joint_drive_lambda,
++                joint_limit_lambda,
++                joint_lambda_lin,
++                joint_lambda_ang,
++                joint_C0_lin,
++                joint_C0_ang,
++                joint_is_hard,
++                stab_alpha,
++                joint_compliant_alm,
++                joint_dof_dim,
++                joint_rest_angle,
++                joint_angle_prev,
++                dt,
++                body_tgt_hi,
++                body_tgt_lo,
++                body_d_lin,
++                body_qd_fwd,
++                body_inv_mass,
++            )
++        else:
++            joint_force, joint_torque, joint_H_ll, joint_H_al, joint_H_aa = evaluate_joint_force_hessian(
++                body_index,
++                joint_idx,
++                body_q,
++                body_q_prev,
++                body_q_rest,
++                body_com,
++                joint_type,
++                joint_enabled,
++                joint_parent,
++                joint_child,
++                joint_X_p,
++                joint_X_c,
++                joint_axis,
++                joint_rod_rest_kb_local,
++                joint_rod_rest_twist,
++                joint_qd_start,
++                joint_target_q_start,
++                joint_constraint_start,
++                joint_penalty_k,
++                joint_rho,
++                joint_material_k,
++                joint_penalty_kd,
++                joint_sigma_start,
++                joint_C_fric,
++                joint_target_ke,
++                joint_target_kd,
++                joint_target_q,
++                joint_target_qd,
++                joint_limit_lower,
++                joint_limit_upper,
++                joint_limit_ke,
++                joint_limit_kd,
++                joint_drive_limit_support,
++                joint_drive_lambda,
++                joint_limit_lambda,
++                joint_lambda_lin,
++                joint_lambda_ang,
++                joint_C0_lin,
++                joint_C0_ang,
++                joint_is_hard,
++                stab_alpha,
++                joint_compliant_alm,
++                joint_dof_dim,
++                joint_rest_angle,
++                joint_angle_prev,
++                dt,
++            )
+ 
+         f_force = f_force + joint_force
+         f_torque = f_torque + joint_torque
+@@ -8584,9 +9585,150 @@
+     body_q_d[body_index] = q_d_new
+     rot_new = wp.normalize(wp.mul(q_d_new, rot_star))
+     com_new = com_star + d_new
++    if wp.static(_POSE_CARRY):  # Senua AI patch, in design: the target's centre carried as two numbers, d added to the low one
++        com_new = body_tgt_hi[body_index] + (body_tgt_lo[body_index] + d_new)
+     pos_new = com_new - wp.quat_rotate(rot_new, body_com_local)
+     if wp.length_sq(d_new) == 0.0 and q_d_new[0] == 0.0 and q_d_new[1] == 0.0 and q_d_new[2] == 0.0:
+         body_q_new[body_index] = q_inertial
+     else:
+         body_q_new[body_index] = wp.transform(pos_new, rot_new)
+ 
++
++
++@wp.kernel
++def carry_start(
++    body_q: wp.array[wp.transform],
++    body_com: wp.array[wp.vec3],
++    body_inv_mass: wp.array[float],
++    p_written: wp.array[wp.vec3],
++    com_hi: wp.array[wp.vec3],
++    com_lo: wp.array[wp.vec3],
++    start_hi: wp.array[wp.vec3],
++    start_lo: wp.array[wp.vec3],
++):
++    """Senua AI patch, in design: the step's starting centre as two 32-bit numbers: the carried pair where the pose is
++    the one the carry wrote, else the pose's own centre (a body set from outside, a kinematic one, the first step)."""
++    b = wp.tid()
++    q = body_q[b]
++    p = wp.transform_get_translation(q)
++    w = p_written[b]
++    if body_inv_mass[b] != 0.0 and p[0] == w[0] and p[1] == w[1] and p[2] == w[2]:
++        start_hi[b] = com_hi[b]
++        start_lo[b] = com_lo[b]
++    else:
++        start_hi[b] = wp.transform_point(q, body_com[b])
++        start_lo[b] = wp.vec3(0.0)
++
++
++@wp.kernel
++def carry_target(
++    body_qd: wp.array[wp.spatial_vector],
++    body_com: wp.array[wp.vec3],
++    body_inv_mass: wp.array[float],
++    start_hi: wp.array[wp.vec3],
++    start_lo: wp.array[wp.vec3],
++    dt: float,
++    body_q: wp.array[wp.transform],
++    body_inertia_q: wp.array[wp.transform],
++    tgt_hi: wp.array[wp.vec3],
++    tgt_lo: wp.array[wp.vec3],
++):
++    """Senua AI patch, in design: the forward step's target centre, x + v dt, as two 32-bit numbers (Fast2Sum: the high part
++    the rounded sum, the low part what it rounded away), the target pose and the predicted pose written from it once."""
++    b = wp.tid()
++    q = body_q[b]
++    r = wp.transform_get_rotation(q)
++    c = body_com[b]
++    if body_inv_mass[b] == 0.0:
++        tgt_hi[b] = wp.transform_point(q, c)
++        tgt_lo[b] = wp.vec3(0.0)
++        return
++    a = start_hi[b]
++    s_lo = start_lo[b] + wp.spatial_top(body_qd[b]) * dt
++    s = a + s_lo
++    tgt_hi[b] = s
++    tgt_lo[b] = s_lo - (s - a)
++    pose = wp.transform(s - wp.quat_rotate(r, c), r)
++    body_q[b] = pose
++    body_inertia_q[b] = pose
++
++
++@wp.kernel
++def carry_end(
++    body_q: wp.array[wp.transform],
++    body_com: wp.array[wp.vec3],
++    body_inv_mass: wp.array[float],
++    body_d_lin: wp.array[wp.vec3],
++    tgt_hi: wp.array[wp.vec3],
++    tgt_lo: wp.array[wp.vec3],
++    com_hi: wp.array[wp.vec3],
++    com_lo: wp.array[wp.vec3],
++    p_written: wp.array[wp.vec3],
++):
++    """Senua AI patch, in design: the step's final centre as two 32-bit numbers, target plus displacement (Fast2Sum), and
++    the pose the solve wrote, so the next step knows its pose is the carry's own."""
++    b = wp.tid()
++    q = body_q[b]
++    p_written[b] = wp.transform_get_translation(q)
++    if body_inv_mass[b] == 0.0:
++        com_hi[b] = wp.transform_point(q, body_com[b])
++        com_lo[b] = wp.vec3(0.0)
++        return
++    a = tgt_hi[b]
++    s_lo = tgt_lo[b] + body_d_lin[b]
++    s = a + s_lo
++    com_hi[b] = s
++    com_lo[b] = s_lo - (s - a)
++
++
++@wp.kernel
++def carry_origin(start_hi: wp.array[wp.vec3], origin: wp.array[wp.vec3]):
++    """Senua AI patch, in design: the shifted copies' reference point, the first body's carried start centre."""
++    if wp.tid() == 0:
++        origin[0] = start_hi[0]
++
++
++@wp.kernel
++def carry_shift_bodies(
++    body_q: wp.array[wp.transform],
++    body_q_prev: wp.array[wp.transform],
++    body_com: wp.array[wp.vec3],
++    body_inv_mass: wp.array[float],
++    start_hi: wp.array[wp.vec3],
++    start_lo: wp.array[wp.vec3],
++    tgt_hi: wp.array[wp.vec3],
++    tgt_lo: wp.array[wp.vec3],
++    origin: wp.array[wp.vec3],
++    q_shift: wp.array[wp.transform],
++    prev_shift: wp.array[wp.transform],
++):
++    """Senua AI patch, in design: each body's target and start poses seen from the reference point, made from the pairs."""
++    b = wp.tid()
++    o = origin[0]
++    q = body_q[b]
++    qp = body_q_prev[b]
++    r = wp.transform_get_rotation(q)
++    rp = wp.transform_get_rotation(qp)
++    c = body_com[b]
++    if body_inv_mass[b] == 0.0:
++        q_shift[b] = wp.transform(wp.transform_get_translation(q) - o, r)
++        prev_shift[b] = wp.transform(wp.transform_get_translation(qp) - o, rp)
++        return
++    q_shift[b] = wp.transform((tgt_hi[b] - o) + tgt_lo[b] - wp.quat_rotate(r, c), r)
++    prev_shift[b] = wp.transform((start_hi[b] - o) + start_lo[b] - wp.quat_rotate(rp, c), rp)
++
++
++@wp.kernel
++def carry_shift_joints(
++    joint_parent: wp.array[int],
++    joint_X_p: wp.array[wp.transform],
++    origin: wp.array[wp.vec3],
++    jxp_shift: wp.array[wp.transform],
++):
++    """Senua AI patch, in design: a joint's parent frame seen from the reference point where its parent is the world."""
++    j = wp.tid()
++    x = joint_X_p[j]
++    if joint_parent[j] < 0:
++        jxp_shift[j] = wp.transform(wp.transform_get_translation(x) - origin[0], wp.transform_get_rotation(x))
++    else:
++        jxp_shift[j] = x
+--- a/newton/_src/solvers/vbd/solver_vbd.py
++++ b/newton/_src/solvers/vbd/solver_vbd.py
+@@ -93,6 +93,12 @@
+     solve_rigid_body_displacement,
+     reset_body_displacement,
+     update_body_velocity_displacement,
++    carry_end,
++    carry_start,
++    carry_target,
++    carry_origin,
++    carry_shift_bodies,
++    carry_shift_joints,
+     step_body_body_contact_C0_lambda,
+     step_joint_C0_lambda_rho,
+     update_body_velocity,
+@@ -943,9 +949,18 @@
+         self._displacement = os.environ.get("NEWTON_VBD_DISPLACEMENT") == "1"
+         self._body_d_lin = None
+         self._body_q_d = None
++        self._carry = None  # Senua AI patch, in design: the pose carry's pairs, made when switched on
+         if self._displacement and model.body_count:
+             self._body_d_lin = wp.zeros(model.body_count, dtype=wp.vec3, device=model.device)
+             self._body_q_d = wp.zeros(model.body_count, dtype=wp.quat, device=model.device)
++            if os.environ.get("NEWTON_VBD_POSE_CARRY") == "1":  # Senua AI patch, in design: the pose carry, read once here
++                nb = model.body_count
++                self._carry = {k: wp.zeros(nb, dtype=wp.vec3, device=model.device) for k in ("com_hi", "com_lo", "start_hi", "start_lo", "tgt_hi", "tgt_lo")}
++                self._carry["p_written"] = wp.full(nb, wp.vec3(float("nan")), dtype=wp.vec3, device=model.device)
++                self._carry["origin"] = wp.zeros(1, dtype=wp.vec3, device=model.device)
++                self._carry["q_shift"] = wp.zeros(nb, dtype=wp.transform, device=model.device)
++                self._carry["prev_shift"] = wp.zeros(nb, dtype=wp.transform, device=model.device)
++                self._carry["jxp_shift"] = wp.zeros(max(model.joint_count, 1), dtype=wp.transform, device=model.device)
+         self.rigid_soft_contact_use_log_barrier = bool(rigid_soft_contact_use_log_barrier)
+         self._joint_mode_deprecation_warned = False
+ 
+@@ -3627,6 +3642,16 @@
+                     device=self.device,
+                 )
+ 
++            if self._carry is not None and self._use_displacement():  # Senua AI patch, in design: the start centre
++                c = self._carry
++                wp.launch(
++                    kernel=carry_start,
++                    dim=model.body_count,
++                    inputs=[state_in.body_q, model.body_com, self.body_inv_mass_effective, c["p_written"], c["com_hi"], c["com_lo"]],
++                    outputs=[c["start_hi"], c["start_lo"]],
++                    device=self.device,
++                )
++
+             # Forward integrate rigid bodies (body_q modified in-place for dynamic bodies only).
+             wp.launch(
+                 kernel=forward_step_rigid_bodies,
+@@ -3660,6 +3685,16 @@
+                     device=self.device,
+                 )
+ 
++            if self._carry is not None and self._use_displacement():  # Senua AI patch, in design: the target centre
++                c = self._carry
++                wp.launch(
++                    kernel=carry_target,
++                    dim=model.body_count,
++                    inputs=[state_in.body_qd, model.body_com, self.body_inv_mass_effective, c["start_hi"], c["start_lo"], dt],
++                    outputs=[state_in.body_q, self.body_inertia_q, c["tgt_hi"], c["tgt_lo"]],
++                    device=self.device,
++                )
++
+             # Truncate the forward step against the division planes before any
+             # solve iterations run on the predicted poses.
+             self._rigid_penetration_free_truncation(state_in, contacts)
+@@ -3670,6 +3705,24 @@
+                 joint_lambda_retention = _rigid_lambda_retention(
+                     self.rigid_joint_alpha, self.rigid_avbd_gamma, self.rigid_compliant_alm
+                 )
++                if self._carry is not None and self._use_displacement():  # Senua AI patch, in design: the joint C0 from the pairs
++                    c = self._carry
++                    wp.launch(kernel=carry_origin, dim=1, inputs=[c["start_hi"]], outputs=[c["origin"]], device=self.device)
++                    wp.launch(
++                        kernel=carry_shift_bodies,
++                        dim=model.body_count,
++                        inputs=[state_in.body_q, self.body_q_prev, model.body_com, self.body_inv_mass_effective, c["start_hi"], c["start_lo"],
++                                c["tgt_hi"], c["tgt_lo"], c["origin"]],
++                        outputs=[c["q_shift"], c["prev_shift"]],
++                        device=self.device,
++                    )
++                    wp.launch(
++                        kernel=carry_shift_joints,
++                        dim=model.joint_count,
++                        inputs=[model.joint_parent, model.joint_X_p, c["origin"]],
++                        outputs=[c["jxp_shift"]],
++                        device=self.device,
++                    )
+                 wp.launch(
+                     kernel=step_joint_C0_lambda_rho,
+                     dim=model.joint_count,
+@@ -3679,15 +3732,15 @@
+                         model.joint_enabled,
+                         model.joint_parent,
+                         model.joint_child,
+-                        model.joint_X_p,
++                        model.joint_X_p if self._carry is None else self._carry["jxp_shift"],
+                         model.joint_X_c,
+                         model.joint_axis,
+                         model.joint_qd_start,
+                         model.joint_dof_dim,
+                         self.joint_rod_rest_kb_local,
+                         self.joint_rod_rest_twist,
+-                        state_in.body_q,
+-                        self.body_q_prev,
++                        state_in.body_q if self._carry is None else self._carry["q_shift"],
++                        self.body_q_prev if self._carry is None else self._carry["prev_shift"],
+                         model.body_q,
+                         self.joint_rest_angle,
+                         self._rigid_pose_rebaseline_mask,
+@@ -4247,7 +4300,12 @@
+                 ],
+                 outputs=[
+                     state_in.body_q,
+-                    *([self._body_d_lin, self._body_q_d] if self._use_displacement() else []),
++                    *(
++                        [self._body_d_lin, self._body_q_d, state_in.body_qd]
++                        + ([self._carry["tgt_hi"], self._carry["tgt_lo"]] if self._carry is not None else [None, None])
++                        if self._use_displacement()
++                        else []
++                    ),
+                 ],
+                 dim=color_group.size,
+                 device=self.device,
+@@ -4672,6 +4730,15 @@
+             return
+ 
+         if self._use_displacement():  # Senua AI patch, in design
++            if self._carry is not None:  # Senua AI patch, in design: the final centre carried to the next step
++                c = self._carry
++                wp.launch(
++                    kernel=carry_end,
++                    dim=model.body_count,
++                    inputs=[state_in.body_q, model.body_com, self.body_inv_mass_effective, self._body_d_lin, c["tgt_hi"], c["tgt_lo"]],
++                    outputs=[c["com_hi"], c["com_lo"], c["p_written"]],
++                    device=self.device,
++                )
+             wp.launch(
+                 kernel=update_body_velocity_displacement,
+                 inputs=[dt, state_in.body_q, model.body_com, self.body_inv_mass_effective, self._body_d_lin, self._body_q_d],

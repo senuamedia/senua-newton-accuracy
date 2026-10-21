@@ -1,0 +1,51 @@
+--- a/newton/_src/solvers/mujoco/solver_mujoco.py
++++ b/newton/_src/solvers/mujoco/solver_mujoco.py
+@@ -4083,6 +4083,8 @@
+         cone: int | str | None = None,
+         jacobian: int | str | None = None,
+         impratio: float | None = None,
++        noslip_iterations: int | None = None,
++        noslip_tolerance: float | None = None,
+         tolerance: float | None = None,
+         ls_tolerance: float | None = None,
+         ccd_tolerance: float | None = None,
+@@ -4133,6 +4135,10 @@
+             cone: The type of contact friction cone. Can be "pyramidal", "elliptic", or their corresponding MuJoCo integer constants. If None, uses model custom attribute or Newton's default ("pyramidal").
+             jacobian: Jacobian computation method. Can be "dense", "sparse", or "auto", or their corresponding MuJoCo integer constants. If None, uses model custom attribute or MuJoCo's default ("auto").
+             impratio: Frictional-to-normal constraint impedance ratio. If None, uses model custom attribute or MuJoCo's default (1.0).
++            noslip_iterations: Senua AI patch, in design: iterations of MuJoCo's noslip solver, a pass after the main
++                solve that removes the slip a soft contact allows. MuJoCo C only (``use_mujoco_cpu=True``): MuJoCo
++                Warp does not implement noslip and refuses a positive count. If None, MuJoCo's default (0, off).
++            noslip_tolerance: Senua AI patch, in design: the noslip solver's tolerance. If None, MuJoCo's default.
+             tolerance: Solver tolerance for early termination. If None, uses model custom attribute or MuJoCo's default (1e-8).
+             ls_tolerance: Line search tolerance for early termination. If None, uses model custom attribute or MuJoCo's default (0.01).
+             ccd_tolerance: Continuous collision detection tolerance. If None, uses model custom attribute or MuJoCo's default (1e-6).
+@@ -4497,6 +4503,8 @@
+                 cone=cone,
+                 jacobian=jacobian,
+                 impratio=impratio,
++                noslip_iterations=noslip_iterations,
++                noslip_tolerance=noslip_tolerance,
+                 tolerance=tolerance,
+                 ls_tolerance=ls_tolerance,
+                 ccd_tolerance=ccd_tolerance,
+@@ -6041,6 +6049,8 @@
+         disableflags: int = 0,
+         disable_contacts: bool = False,
+         impratio: float | None = None,
++        noslip_iterations: int | None = None,
++        noslip_tolerance: float | None = None,
+         tolerance: float | None = None,
+         ls_tolerance: float | None = None,
+         ccd_tolerance: float | None = None,
+@@ -6298,6 +6308,10 @@
+             spec.option.sdf_initpoints = sdf_initpoints
+ 
+         # Set WORLD frequency options (use MuJoCo defaults if None)
++        if noslip_iterations is not None:  # Senua AI patch, in design
++            spec.option.noslip_iterations = noslip_iterations
++        if noslip_tolerance is not None:
++            spec.option.noslip_tolerance = noslip_tolerance
+         if impratio is not None:
+             spec.option.impratio = impratio
+         if tolerance is not None:

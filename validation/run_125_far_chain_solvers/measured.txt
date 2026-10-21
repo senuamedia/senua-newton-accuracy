@@ -1,0 +1,12 @@
+c_xpbd_x0_0.000375 stops -1 energy_largest_drift_ppm 12466
+c_xpbd_x0_0.00009375 stops -1 energy_largest_drift_ppm 7409
+c_xpbd_x10_0.000375 stops -1 energy_largest_drift_ppm 10820
+c_xpbd_x10_0.00009375 stops -1 energy_largest_drift_ppm 8506
+c_semi_x0_0.000375 stops -1 energy_largest_drift_ppm 4599
+c_semi_x0_0.00009375 stops -1 energy_largest_drift_ppm 4557
+c_semi_x10_0.000375 stops -1 energy_largest_drift_ppm 4679
+c_semi_x10_0.00009375 stops -1 energy_largest_drift_ppm 4173
+c_featherstone_x0_0.000375 stops -1 energy_largest_drift_ppm 906
+c_featherstone_x0_0.00009375 stops -1 energy_largest_drift_ppm 215
+c_featherstone_x10_0.000375 stops -1 energy_largest_drift_ppm 892
+c_featherstone_x10_0.00009375 stops -1 energy_largest_drift_ppm 219

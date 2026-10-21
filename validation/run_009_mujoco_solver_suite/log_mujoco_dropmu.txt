@@ -1,0 +1,99 @@
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (9.999999747378752e-06) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 0: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+~/work/venv/lib/python3.12/site-packages/mujoco_warp/_src/io.py:410: UserWarning: geom 1: friction[0] (0.0) < MJ_MINMU (1e-05) with condim=3 may cause NaN
+  warnings.warn(
+failed: rest suites/1/mujoco_dropmu/rest_1.txt
+failed: rest suites/1/mujoco_dropmu/rest_16.txt
+failed: bounce suites/1/mujoco_dropmu/drop_1.txt
+failed: bounce suites/1/mujoco_dropmu/drop_2.txt
+failed: bounce suites/1/mujoco_dropmu/drop_4.txt
+failed: bounce suites/1/mujoco_dropmu/drop_8.txt
+failed: bounce suites/1/mujoco_dropmu/drop_16.txt
+failed: bounce suites/1/mujoco_dropmu/drop_32.txt
+failed: bounce suites/1/mujoco_dropmu/drop_64.txt
+failed: pull suites/1/mujoco_dropmu/lift_1.txt
+failed: pull suites/1/mujoco_dropmu/lift_16.txt
+failed: pull suites/1/mujoco_dropmu/rebound_16.txt

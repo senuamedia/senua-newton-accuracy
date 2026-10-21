@@ -1,0 +1,1 @@
+STATS contact dt 0.003 h0 0.06 vx0 0 mu 0.4 mass 0.7 radius 0.035 steps 3 most_tilt_urad 0 engine newton 1.7.0 solver semi extra slab=0.004 vz0=-90

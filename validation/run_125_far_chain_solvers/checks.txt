@@ -1,0 +1,5 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C0_featherstone_as_study_22 eq 4 4 : HELD
+RULE P1_xpbd_10m_as_the_origin all_within 7409 3 8506 : HELD
+RULE P1_semi_10m_as_the_origin all_within 4557 3 4173 : HELD
+checks: 4, held: 4

@@ -1,0 +1,12 @@
+h_stock_0.003 CREEP dt_ns 3000000 steps 300 mean_speed_ums 3415 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+h_floor_0.003 CREEP dt_ns 3000000 steps 300 mean_speed_ums 3415 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+h_both_0.003 CREEP dt_ns 3000000 steps 300 mean_speed_ums 0 friction_over_normal_per_10000 4199 friction_limit_per_10000 6000
+h_off_0.003 CREEP dt_ns 3000000 steps 300 mean_speed_ums 3415 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+s_stock_0.003 STOP dt_ns 3000000 first_stopped_at_step 46 largest_speed_last_third_ums 0 slid_um 53228 came_back_um 0
+s_both_0.003 STOP dt_ns 3000000 first_stopped_at_step 45 largest_speed_last_third_ums 0 slid_um 53216 came_back_um 11
+h_stock_0.00075 CREEP dt_ns 750000 steps 1200 mean_speed_ums 854 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+h_floor_0.00075 CREEP dt_ns 750000 steps 1200 mean_speed_ums 854 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+h_both_0.00075 CREEP dt_ns 750000 steps 1200 mean_speed_ums 4 friction_over_normal_per_10000 4199 friction_limit_per_10000 6000
+h_off_0.00075 CREEP dt_ns 750000 steps 1200 mean_speed_ums 854 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+s_stock_0.00075 STOP dt_ns 750000 first_stopped_at_step 182 largest_speed_last_third_ums 0 slid_um 54122 came_back_um 0
+s_both_0.00075 STOP dt_ns 750000 first_stopped_at_step 181 largest_speed_last_third_ums 99 slid_um 54123 came_back_um 0

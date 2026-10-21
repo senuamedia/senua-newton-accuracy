@@ -1,0 +1,42 @@
+c1_release_0.000125 nan -1 energy_drift_ppm 616 momentum_drift_ppm 405 kinetic_end_per_million 1000616
+c1_release_0.0005 nan -1 energy_drift_ppm 2377 momentum_drift_ppm 1577 kinetic_end_per_million 1002383
+c1_release_0.002 nan -1 energy_drift_ppm 9322 momentum_drift_ppm 6206 kinetic_end_per_million 1009410
+c1_release_0.008 nan -1 energy_drift_ppm 33864 momentum_drift_ppm 22782 kinetic_end_per_million 1035069
+c1_rk4_0.000125 nan -1 energy_drift_ppm 0 momentum_drift_ppm 0 kinetic_end_per_million 1000000
+c1_rk4_0.0005 nan -1 energy_drift_ppm 5 momentum_drift_ppm 3 kinetic_end_per_million 1000005
+c1_rk4_0.002 nan -1 energy_drift_ppm -1 momentum_drift_ppm 0 kinetic_end_per_million 999998
+c1_rk4_0.008 nan -1 energy_drift_ppm 1 momentum_drift_ppm 1 kinetic_end_per_million 1000001
+c5_kd0_0.00025 nan -1 energy_drift_ppm -1260 momentum_drift_ppm -326 kinetic_end_per_million 998739
+c5_kd0_0.0005 nan -1 energy_drift_ppm -1267 momentum_drift_ppm -326 kinetic_end_per_million 998732
+c5_kd0_0.001 nan -1 energy_drift_ppm -1265 momentum_drift_ppm -325 kinetic_end_per_million 998734
+c5_release_0.00025 nan 32 energy_drift_ppm  momentum_drift_ppm  kinetic_end_per_million 
+c5_release_0.0005 nan 19 energy_drift_ppm  momentum_drift_ppm  kinetic_end_per_million 
+c5_release_0.001 nan 14 energy_drift_ppm  momentum_drift_ppm  kinetic_end_per_million 
+c2_release_0.0005 nan -1 mean_speed_ums 56 largest_speed_last_third_ums 119
+c2_release_0.002 nan -1 mean_speed_ums 269 largest_speed_last_third_ums 546
+c2_release_0.008 nan -1 mean_speed_ums 1079 largest_speed_last_third_ums 2189
+c2_rk4_0.0005 nan -1 mean_speed_ums -10 largest_speed_last_third_ums 19
+c2_rk4_0.002 nan -1 mean_speed_ums 0 largest_speed_last_third_ums 3
+c2_rk4_0.008 nan -1 mean_speed_ums 0 largest_speed_last_third_ums 1
+c3_default_0.0001_0.00025 nan 443 mean_ground_force_mN 
+c3_default_0.0001_0.002 nan 55 mean_ground_force_mN 
+c3_default_0.001_0.00025 nan 443 mean_ground_force_mN 
+c3_default_0.001_0.002 nan 55 mean_ground_force_mN 
+c3_default_0_0.00025 nan 443 mean_ground_force_mN 
+c3_default_0_0.002 nan 55 mean_ground_force_mN 
+c3_elliptic_0.0001_0.00025 nan -1 mean_ground_force_mN 14669
+c3_elliptic_0.0001_0.002 nan -1 mean_ground_force_mN 14673
+c3_elliptic_0.001_0.00025 nan -1 mean_ground_force_mN 14669
+c3_elliptic_0.001_0.002 nan -1 mean_ground_force_mN 14673
+c3_elliptic_0_0.00025 nan -1 mean_ground_force_mN 14669
+c3_elliptic_0_0.002 nan -1 mean_ground_force_mN 14673
+c4_normal_featherstone_0.0003125 nan -1 rebound_per_10000 0
+c4_normal_featherstone_0.00125 nan -1 rebound_per_10000 0
+c4_normal_semi_0.0003125 nan -1 rebound_per_10000 0
+c4_normal_semi_0.00125 nan -1 rebound_per_10000 0
+c4_release_featherstone_0.0003125 nan -1 rebound_per_10000 13
+c4_release_featherstone_0.00125 nan -1 rebound_per_10000 59
+c4_release_featherstone_0.005 nan -1 rebound_per_10000 107610
+c4_release_semi_0.0003125 nan -1 rebound_per_10000 13
+c4_release_semi_0.00125 nan -1 rebound_per_10000 59
+c4_release_semi_0.005 nan -1 rebound_per_10000 107609

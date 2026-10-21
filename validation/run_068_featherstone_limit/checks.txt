@@ -1,0 +1,11 @@
+RULE F0_safe_when_off eq 11 11 : HELD
+RULE F1_fault_there all_ge 0 14 53 202 2839 : HELD
+RULE F2_held_numbers all_eq -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE F2_held_angle all_within -500000 100 -500796 -500370 -500048 -500002 -500007 -500016 : HELD
+RULE F2_held_still_hi all_le 10000 794124 -184275 46117 1436 5905 14786 : FAILED
+RULE F2_held_still_lo all_ge -10000 794124 -184275 46117 1436 5905 14786 : FAILED
+RULE F3_pulls_released all_le -880000 -890426 -912641 : HELD
+RULE F4_no_pull_0.1kg all_within -815000 40 -825620 -836205 -805148 : FAILED
+RULE F4_no_pull_1kg all_within -450000 22 -449751 -455779 -517140 -474045 : FAILED
+RULE F5_no_limit_unchanged eq 2 2 : HELD
+checks: 10, held: 6

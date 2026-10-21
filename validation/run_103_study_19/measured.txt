@@ -1,0 +1,12 @@
+h_cold_0.0025 stops -1 CREEP dt_ns 2500000 steps 280 mean_speed_ums 20352 friction_over_normal_per_10000 4125 friction_limit_per_10000 5500 most_tilt_urad 20144
+s_cold_0.0025 stops -1 STOP dt_ns 2500000 first_stopped_at_step 77 largest_speed_last_third_ums 1279 slid_um 71822 came_back_um 526 most_tilt_urad 15533
+h_cold_0.0006 stops -1 CREEP dt_ns 600000 steps 1167 mean_speed_ums 99763 friction_over_normal_per_10000 4125 friction_limit_per_10000 5500 most_tilt_urad 20450
+s_cold_0.0006 stops -1 STOP dt_ns 600000 first_stopped_at_step 393 largest_speed_last_third_ums 1850 slid_um 84636 came_back_um 487 most_tilt_urad 16801
+h_cold_0.00015 stops -1 CREEP dt_ns 150000 steps 4667 mean_speed_ums 353588 friction_over_normal_per_10000 4124 friction_limit_per_10000 5500 most_tilt_urad 19261
+s_cold_0.00015 stops -1 STOP dt_ns 150000 first_stopped_at_step -1 largest_speed_last_third_ums 28362 slid_um 102901 came_back_um 0 most_tilt_urad 13811
+h_carried_0.0025 stops -1 CREEP dt_ns 2500000 steps 280 mean_speed_ums 0 friction_over_normal_per_10000 4125 friction_limit_per_10000 5500 most_tilt_urad 1196
+s_carried_0.0025 stops -1 STOP dt_ns 2500000 first_stopped_at_step 71 largest_speed_last_third_ums 504 slid_um 70724 came_back_um 750 most_tilt_urad 13982
+h_carried_0.0006 stops -1 CREEP dt_ns 600000 steps 1167 mean_speed_ums 0 friction_over_normal_per_10000 4125 friction_limit_per_10000 5500 most_tilt_urad 1381
+s_carried_0.0006 stops -1 STOP dt_ns 600000 first_stopped_at_step 282 largest_speed_last_third_ums 37 slid_um 68738 came_back_um 137 most_tilt_urad 6940
+h_carried_0.00015 stops -1 CREEP dt_ns 150000 steps 4667 mean_speed_ums 1 friction_over_normal_per_10000 4124 friction_limit_per_10000 5500 most_tilt_urad 1381
+s_carried_0.00015 stops -1 STOP dt_ns 150000 first_stopped_at_step 903 largest_speed_last_third_ums 50 slid_um 49297 came_back_um 363 most_tilt_urad 1691

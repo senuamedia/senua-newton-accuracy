@@ -1,0 +1,1 @@
+STATS chain dt 0.0002 mass1 0.95 mass2 1.05 radius 0.04 arm1 0.23 len1 0.46 arm2 0.24 gravity 0 dofs 2 steps 10000 engine newton 1.7.0 solver xpbd extra iterations=32 opt.joint_linear_relaxation=1.0 opt.joint_angular_relaxation=1.0

@@ -1,0 +1,8 @@
+RULE R1_named eq 12 12 : HELD
+RULE R2_nothing_where_nothing_is_ignored eq 0 0 : HELD
+RULE R3_off_says_nothing_new eq 0 0 : HELD
+RULE R4_nothing_else_changes eq 12 12 : HELD
+RULE R5_semi_loop_a_number all_eq -1 -1 : HELD
+RULE R5_semi_loop_at_target near 449998 450000 1000 : HELD
+RULE R5_semi_loop_at_rest in -182 -10000 10000 : HELD
+rules: 7, held: 7

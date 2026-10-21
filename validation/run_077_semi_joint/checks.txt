@@ -1,0 +1,20 @@
+RULE J0_safe_when_off eq 16 16 : HELD
+RULE J1_rev7_thrown_released_semi all_ge 20000 25131 : HELD
+RULE J2_rev7_held_semi all_in -100 100 0 -2 : HELD
+RULE J2_rev7_still_semi near -5566370 -5566370 1000 : HELD
+RULE J3_rev2.5_unchanged_semi near 2500000 2500000 1000 : HELD
+RULE J4_d6_drifts_released_semi all_ge 300000 431101 : HELD
+RULE J5_d6_held_semi near 200000 200000 1000 : HELD
+RULE J5_d6_held_dof2_semi near 400000 400000 1000 : HELD
+RULE J1_rev7_thrown_released_semirep all_ge 20000 25133 : HELD
+RULE J2_rev7_held_semirep all_in -100 100 0 -2 : HELD
+RULE J2_rev7_still_semirep near -5566370 -5566370 1000 : HELD
+RULE J3_rev2.5_unchanged_semirep near 2500000 2500000 1000 : HELD
+RULE J4_d6_drifts_released_semirep all_ge 300000 435242 : HELD
+RULE J5_d6_held_semirep near 200000 200000 1000 : HELD
+RULE J5_d6_held_dof2_semirep near 400000 400000 1000 : HELD
+RULE J6_no_pull_0.1kg_0.00025 all_in -835000 -795000 68973 : FAILED
+RULE J6_no_pull_1kg_0.00025 all_in -470000 -430000 68973 : FAILED
+RULE J6_no_pull_0.1kg_0.0000625 all_in -835000 -795000 68973 : FAILED
+RULE J6_no_pull_1kg_0.0000625 all_in -470000 -430000 -824450 : FAILED
+checks: 19, held: 15

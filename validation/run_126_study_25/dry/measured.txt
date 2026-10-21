@@ -1,0 +1,30 @@
+hold_stock_0.002 stops -1 CREEP dt_ns 2000000 steps 10 mean_speed_ums 1496 friction_over_normal_per_10000 4384 friction_limit_per_10000 7000
+hold_off_0.002 stops -1 CREEP dt_ns 2000000 steps 10 mean_speed_ums 1496 friction_over_normal_per_10000 4384 friction_limit_per_10000 7000
+hold_cpuoff_0.002 stops -1 CREEP dt_ns 2000000 steps 10 mean_speed_ums 1496 friction_over_normal_per_10000 4384 friction_limit_per_10000 7000
+hold_on_0.002 stops -1 CREEP dt_ns 2000000 steps 10 mean_speed_ums 1136 friction_over_normal_per_10000 4413 friction_limit_per_10000 7000
+hold_cpuon_0.002 stops -1 CREEP dt_ns 2000000 steps 10 mean_speed_ums 1136 friction_over_normal_per_10000 4413 friction_limit_per_10000 7000
+slide_stock_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step -1 largest_speed_last_third_ums 954920 slid_um 39771 came_back_um 0
+slide_off_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step -1 largest_speed_last_third_ums 954920 slid_um 39771 came_back_um 0
+slide_cpuoff_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step -1 largest_speed_last_third_ums 954920 slid_um 39771 came_back_um 0
+slide_on_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step -1 largest_speed_last_third_ums 954920 slid_um 39771 came_back_um 0
+slide_cpuon_0.002 stops -1 STOP dt_ns 2000000 first_stopped_at_step -1 largest_speed_last_third_ums 954920 slid_um 39771 came_back_um 0
+drop_stock_0.002 stops -1 REST dt_ns 2000000 mean_ground_force_mN 0 weight_mN 13720
+drop_off_0.002 stops -1 REST dt_ns 2000000 mean_ground_force_mN 0 weight_mN 13720
+drop_cpuoff_0.002 stops -1 REST dt_ns 2000000 mean_ground_force_mN 0 weight_mN 13720
+drop_on_0.002 stops -1 REST dt_ns 2000000 mean_ground_force_mN 0 weight_mN 13720
+drop_cpuon_0.002 stops -1 REST dt_ns 2000000 mean_ground_force_mN 0 weight_mN 13720
+hold_stock_0.0005 stops -1 CREEP dt_ns 500000 steps 40 mean_speed_ums 1428 friction_over_normal_per_10000 4423 friction_limit_per_10000 7000
+hold_off_0.0005 stops -1 CREEP dt_ns 500000 steps 40 mean_speed_ums 1428 friction_over_normal_per_10000 4423 friction_limit_per_10000 7000
+hold_cpuoff_0.0005 stops -1 CREEP dt_ns 500000 steps 40 mean_speed_ums 1428 friction_over_normal_per_10000 4423 friction_limit_per_10000 7000
+hold_on_0.0005 stops -1 CREEP dt_ns 500000 steps 40 mean_speed_ums 1090 friction_over_normal_per_10000 4452 friction_limit_per_10000 7000
+hold_cpuon_0.0005 stops -1 CREEP dt_ns 500000 steps 40 mean_speed_ums 1090 friction_over_normal_per_10000 4452 friction_limit_per_10000 7000
+slide_stock_0.0005 stops -1 STOP dt_ns 500000 first_stopped_at_step -1 largest_speed_last_third_ums 961489 slid_um 40007 came_back_um 0
+slide_off_0.0005 stops -1 STOP dt_ns 500000 first_stopped_at_step -1 largest_speed_last_third_ums 961489 slid_um 40007 came_back_um 0
+slide_cpuoff_0.0005 stops -1 STOP dt_ns 500000 first_stopped_at_step -1 largest_speed_last_third_ums 961490 slid_um 40007 came_back_um 0
+slide_on_0.0005 stops -1 STOP dt_ns 500000 first_stopped_at_step -1 largest_speed_last_third_ums 961490 slid_um 40007 came_back_um 0
+slide_cpuon_0.0005 stops -1 STOP dt_ns 500000 first_stopped_at_step -1 largest_speed_last_third_ums 961490 slid_um 40007 came_back_um 0
+drop_stock_0.0005 stops -1 REST dt_ns 500000 mean_ground_force_mN 0 weight_mN 13720
+drop_off_0.0005 stops -1 REST dt_ns 500000 mean_ground_force_mN 0 weight_mN 13720
+drop_cpuoff_0.0005 stops -1 REST dt_ns 500000 mean_ground_force_mN 0 weight_mN 13720
+drop_on_0.0005 stops -1 REST dt_ns 500000 mean_ground_force_mN 0 weight_mN 13720
+drop_cpuon_0.0005 stops -1 REST dt_ns 500000 mean_ground_force_mN 0 weight_mN 13720

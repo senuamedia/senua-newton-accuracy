@@ -1,0 +1,10 @@
+STATS spin_mujoco_euler_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3133156 engine newton 1.6.1 solver mujoco extra opt.integrator=euler gravity=0 comx=0.05 wz0=5
+STATS spin_mujoco_rk4_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3133156 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4 gravity=0 comx=0.05 wz0=5
+STATS spin_mujoco_euler_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3140282 engine newton 1.6.1 solver mujoco extra opt.integrator=euler gravity=0 comx=0.05 wz0=5
+STATS spin_vbd_alm_on2_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3140343 engine newton 1.6.1 solver vbd_alm extra gravity=0 comx=0.05 wz0=5
+STATS spin_mujoco_rk4_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3140216 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4 gravity=0 comx=0.05 wz0=5
+STATS spin_vbd_alm_off_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141498 engine newton 1.6.1 solver vbd_alm extra gravity=0 comx=0.05 wz0=5
+STATS spin_mujoco_euler_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141433 engine newton 1.6.1 solver mujoco extra opt.integrator=euler gravity=0 comx=0.05 wz0=5
+STATS spin_vbd_alm_on2_0.00015625 contact dt 0.00015625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 12800 most_tilt_urad 3141557 engine newton 1.6.1 solver vbd_alm extra gravity=0 comx=0.05 wz0=5
+STATS spin_mujoco_rk4_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141440 engine newton 1.6.1 solver mujoco extra opt.integrator=rk4 gravity=0 comx=0.05 wz0=5
+STATS spin_vbd_alm_off_0.00015625 contact dt 0.00015625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 12800 most_tilt_urad 3141550 engine newton 1.6.1 solver vbd_alm extra gravity=0 comx=0.05 wz0=5

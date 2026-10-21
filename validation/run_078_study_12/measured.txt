@@ -1,0 +1,60 @@
+s1_semi_stock_0.001_n1 stops -1 FINAL dt_ns 1000000 angle_urad -4466332 speed_urads 37697
+s1_semi_stock_0.001_n800 stops -1 FINAL dt_ns 1000000 angle_urad 5666806 speed_urads 20972349
+s1_semi_stock_0.0005_n1 stops -1 FINAL dt_ns 500000 angle_urad -4466361 speed_urads 18849
+s1_semi_stock_0.0005_n800 stops -1 FINAL dt_ns 500000 angle_urad -1584566 speed_urads 13764978
+s2_semi_stock_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 1076991 speed_urads 1292415 dof2 FINAL dt_ns 2000000 angle_urad 659353 speed_urads -62726
+s2_semi_stock_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 249545 speed_urads 335119 dof2 FINAL dt_ns 500000 angle_urad 442068 speed_urads 266674
+s1_semirep_stock_0.001_n1 stops -1 FINAL dt_ns 1000000 angle_urad -4466332 speed_urads 37699
+s1_semirep_stock_0.001_n800 stops -1 FINAL dt_ns 1000000 angle_urad 5797534 speed_urads 21395267
+s1_semirep_stock_0.0005_n1 stops -1 FINAL dt_ns 500000 angle_urad -4466361 speed_urads 18850
+s1_semirep_stock_0.0005_n800 stops -1 FINAL dt_ns 500000 angle_urad -1565522 speed_urads 13903084
+s2_semirep_stock_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 1095926 speed_urads 1331906 dof2 FINAL dt_ns 2000000 angle_urad 663446 speed_urads -54231
+s2_semirep_stock_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 249795 speed_urads 337687 dof2 FINAL dt_ns 500000 angle_urad 442274 speed_urads 268660
+s1_semi_joff_0.001_n1 stops -1 FINAL dt_ns 1000000 angle_urad -4466332 speed_urads 37697
+s1_semi_joff_0.001_n800 stops -1 FINAL dt_ns 1000000 angle_urad 5666806 speed_urads 20972349
+s1_semi_joff_0.0005_n1 stops -1 FINAL dt_ns 500000 angle_urad -4466361 speed_urads 18849
+s1_semi_joff_0.0005_n800 stops -1 FINAL dt_ns 500000 angle_urad -1584566 speed_urads 13764978
+s2_semi_joff_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 1076991 speed_urads 1292415 dof2 FINAL dt_ns 2000000 angle_urad 659353 speed_urads -62726
+s2_semi_joff_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 249545 speed_urads 335119 dof2 FINAL dt_ns 500000 angle_urad 442068 speed_urads 266674
+s1_semirep_joff_0.001_n1 stops -1 FINAL dt_ns 1000000 angle_urad -4466332 speed_urads 37699
+s1_semirep_joff_0.001_n800 stops -1 FINAL dt_ns 1000000 angle_urad 5797534 speed_urads 21395267
+s1_semirep_joff_0.0005_n1 stops -1 FINAL dt_ns 500000 angle_urad -4466361 speed_urads 18850
+s1_semirep_joff_0.0005_n800 stops -1 FINAL dt_ns 500000 angle_urad -1565522 speed_urads 13903084
+s2_semirep_joff_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 1095926 speed_urads 1331906 dof2 FINAL dt_ns 2000000 angle_urad 663446 speed_urads -54231
+s2_semirep_joff_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 249795 speed_urads 337687 dof2 FINAL dt_ns 500000 angle_urad 442274 speed_urads 268660
+s1_semi_angle_0.001_n1 stops -1 FINAL dt_ns 1000000 angle_urad -4466370 speed_urads 0
+s1_semi_angle_0.001_n800 stops -1 FINAL dt_ns 1000000 angle_urad -4466371 speed_urads -1
+s1_semi_angle_0.0005_n1 stops -1 FINAL dt_ns 500000 angle_urad -4466370 speed_urads 0
+s1_semi_angle_0.0005_n800 stops -1 FINAL dt_ns 500000 angle_urad -4466371 speed_urads -1
+s2_semi_angle_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 2000000 angle_urad 400000 speed_urads 1
+s2_semi_angle_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 500000 angle_urad 400000 speed_urads 0
+s1_semirep_angle_0.001_n1 stops -1 FINAL dt_ns 1000000 angle_urad -4466370 speed_urads 0
+s1_semirep_angle_0.001_n800 stops -1 FINAL dt_ns 1000000 angle_urad -4466371 speed_urads -1
+s1_semirep_angle_0.0005_n1 stops -1 FINAL dt_ns 500000 angle_urad -4466370 speed_urads 0
+s1_semirep_angle_0.0005_n800 stops -1 FINAL dt_ns 500000 angle_urad -4466371 speed_urads -1
+s2_semirep_angle_0.002 stops -1 FINAL dt_ns 2000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 2000000 angle_urad 400000 speed_urads 1
+s2_semirep_angle_0.0005 stops -1 FINAL dt_ns 500000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 500000 angle_urad 400000 speed_urads 0
+s3_light_stock_0.0041666667 stops 17 the file is missing or not whole back_urad none
+s4_serial_stock_0.0041666667 stops 20 last_line angle1_urad -4060539904000000 speed1_urads -974464942080000000
+s3_light_stock_0.002 stops 33 the file is missing or not whole back_urad none
+s4_serial_stock_0.002 stops 38 last_line angle1_urad 35314288000000 speed1_urads 17660579840000000
+s3_light_stock_0.0005 stops 125 the file is missing or not whole back_urad none
+s4_serial_stock_0.0005 stops 148 last_line angle1_urad -58722332031 speed1_urads -118140872000000
+s3_light_stock_0.00005 stops 1383 the file is missing or not whole back_urad none
+s4_serial_stock_0.00005 stops 3448 last_line angle1_urad 16503945313 speed1_urads 332899424000000
+s3_light_foff_0.0041666667 stops 17 the file is missing or not whole back_urad none
+s4_serial_foff_0.0041666667 stops 20 last_line angle1_urad -4060539904000000 speed1_urads -974464942080000000
+s3_light_foff_0.002 stops 33 the file is missing or not whole back_urad none
+s4_serial_foff_0.002 stops 38 last_line angle1_urad 35314288000000 speed1_urads 17660579840000000
+s3_light_foff_0.0005 stops 125 the file is missing or not whole back_urad none
+s4_serial_foff_0.0005 stops 148 last_line angle1_urad -58722332031 speed1_urads -118140872000000
+s3_light_foff_0.00005 stops 1383 the file is missing or not whole back_urad none
+s4_serial_foff_0.00005 stops 3448 last_line angle1_urad 16503945313 speed1_urads 332899424000000
+s3_light_three_0.0041666667 stops -1 FINAL dt_ns 4166667 angle_urad -600002 speed_urads -2 back_urad -597698
+s4_serial_three_0.0041666667 stops -1 last_line angle1_urad -600002 speed1_urads -28
+s3_light_three_0.002 stops -1 FINAL dt_ns 2000000 angle_urad -600002 speed_urads -3 back_urad -506950
+s4_serial_three_0.002 stops -1 last_line angle1_urad -600001 speed1_urads -8
+s3_light_three_0.0005 stops -1 FINAL dt_ns 500000 angle_urad -600002 speed_urads 34 back_urad -547440
+s4_serial_three_0.0005 stops -1 last_line angle1_urad -600001 speed1_urads 15
+s3_light_three_0.00005 stops -1 FINAL dt_ns 50000 angle_urad -600002 speed_urads 560 back_urad -599848
+s4_serial_three_0.00005 stops -1 last_line angle1_urad -600002 speed1_urads 59

@@ -1,0 +1,1 @@
+STATS chain dt 0.0025 mass1 0.9 mass2 0.6 radius 0.04 arm1 0.2 len1 0.45 arm2 0.25 gravity 1 dofs 2 steps 800 engine newton 1.7.0 solver featherstone extra opt.angular_damping=0

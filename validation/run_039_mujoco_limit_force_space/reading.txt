@@ -1,0 +1,20 @@
+S off against run 036: 8 of 8 byte-identical
+on m 0.1 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -1004975 swing_per_10000 3198 turn_urad -804398 swing_per_10000 638 turn_urad -1001723 swing_per_10000 628 turn_urad -974461 swing_per_10000 86 turns 14
+on m 1 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -1021464 swing_per_10000 3251 turn_urad -447617 swing_per_10000 1826 turn_urad -1014895 swing_per_10000 1805 turn_urad -701329 swing_per_10000 997 turns 14
+on m 10 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -1076587 swing_per_10000 3426 turn_urad -183234 swing_per_10000 2843 turn_urad -1067734 swing_per_10000 2815 turn_urad -332255 swing_per_10000 2340 turns 7
+on m 100 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -1252783 swing_per_10000 3987 turn_urad -63228 swing_per_10000 3786 turn_urad -1243036 swing_per_10000 3755 turn_urad -122516 swing_per_10000 3566 turns 5
+on m 0.1 kg 0.01 s | SWING dt_ns 10000000 released_at_urad -1 turn_urad -1021329 swing_per_10000 3250 turn_urad -646134 swing_per_10000 1193 turn_urad -1007610 swing_per_10000 1150 turn_urad -947053 swing_per_10000 192 turns 115
+on m 1 kg 0.01 s | the file is missing or not whole
+on m 10 kg 0.01 s | SWING dt_ns 10000000 released_at_urad -1 turn_urad -1069588 swing_per_10000 3404 turn_urad -190309 swing_per_10000 2798 turn_urad -1066062 swing_per_10000 2787 turn_urad -325007 swing_per_10000 2358 turns 7
+on m 100 kg 0.01 s | SWING dt_ns 10000000 released_at_urad -1 turn_urad -1251456 swing_per_10000 3983 turn_urad -66429 swing_per_10000 3771 turn_urad -1240858 swing_per_10000 3738 turn_urad -131853 swing_per_10000 3530 turns 5
+off m 0.1 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -1031914 swing_per_10000 3284 turn_urad -350506 swing_per_10000 2168 turn_urad -1024467 swing_per_10000 2145 turn_urad -581312 swing_per_10000 1410 turns 9
+off m 1 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -1110248 swing_per_10000 3533 turn_urad -134957 swing_per_10000 3104 turn_urad -1101075 swing_per_10000 3075 turn_urad -250187 swing_per_10000 2708 turns 6
+off m 10 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -1359806 swing_per_10000 4328 turn_urad -45414 swing_per_10000 4183 turn_urad -1349907 swing_per_10000 4152 turn_urad -88786 swing_per_10000 4014 turns 5
+off m 100 kg 0.00025 s | SWING dt_ns 250000 released_at_urad -1 turn_urad -2143805 swing_per_10000 6823 turn_urad -14187 swing_per_10000 6778 turn_urad -2133996 swing_per_10000 6747 turns 3
+off m 0.1 kg 0.01 s | SWING dt_ns 10000000 released_at_urad -1 turn_urad -1021329 swing_per_10000 3250 turn_urad -842035 swing_per_10000 570 turn_urad -1014849 swing_per_10000 550 turn_urad -699083 swing_per_10000 1004 turns 9
+off m 1 kg 0.01 s | SWING dt_ns 10000000 released_at_urad -1 turn_urad -1106404 swing_per_10000 3521 turn_urad -166060 swing_per_10000 2993 turn_urad -1100873 swing_per_10000 2975 turn_urad -250416 swing_per_10000 2706 turns 6
+off m 10 kg 0.01 s | SWING dt_ns 10000000 released_at_urad -1 turn_urad -1357100 swing_per_10000 4319 turn_urad -50478 swing_per_10000 4159 turn_urad -1347783 swing_per_10000 4129 turn_urad -90050 swing_per_10000 4003 turns 5
+off m 100 kg 0.01 s | SWING dt_ns 10000000 released_at_urad -1 turn_urad -2139763 swing_per_10000 6810 turn_urad -25188 swing_per_10000 6730 turn_urad -2130333 swing_per_10000 6700 turns 3
+N on, the suite against run 013's: 39 of 39 byte-identical
+N on, run 014's MuJoCo chains: 8 of 8 byte-identical
+K plays that stopped being a number: 0

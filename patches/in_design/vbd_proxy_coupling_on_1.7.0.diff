@@ -1,0 +1,614 @@
+--- a/newton/_src/solvers/vbd/particle_vbd_kernels.py
++++ b/newton/_src/solvers/vbd/particle_vbd_kernels.py
+@@ -2857,6 +2857,148 @@
+         particle_displacements[particle_index] = particle_displacements[particle_index] + h_inv * f
+ 
+ 
++# Senua AI patch, in design: newton-physics/newton #4698 (A). The unbalanced force on each particle at an iterate: the
++# inertial, elastic and accumulated forces solve_elasticity sums, written out in place of the update it takes from
++# them. Zero at a converged iterate; launched only from SolverVBD's realized-harvest pass, with
++# NEWTON_VBD_PROXY_COUPLING=2.
++@wp.kernel
++def evaluate_particle_residual(
++    dt: float,
++    particle_ids_in_color: wp.array[wp.int32],
++    pos_prev: wp.array[wp.vec3],
++    pos: wp.array[wp.vec3],
++    mass: wp.array[float],
++    inertia: wp.array[wp.vec3],
++    particle_flags: wp.array[wp.int32],
++    tri_indices: wp.array2d[wp.int32],
++    tri_poses: wp.array[wp.mat22],
++    tri_materials: wp.array2d[float],
++    tri_areas: wp.array[float],
++    edge_indices: wp.array2d[wp.int32],
++    edge_rest_angles: wp.array[float],
++    edge_rest_length: wp.array[float],
++    edge_bending_properties: wp.array2d[float],
++    tet_indices: wp.array2d[wp.int32],
++    tet_poses: wp.array[wp.mat33],
++    tet_materials: wp.array2d[float],
++    particle_adjacency: MeshAdjacencyData,
++    particle_forces: wp.array[wp.vec3],
++    particle_hessians: wp.array[wp.mat33],
++    # output
++    particle_residual: wp.array[wp.vec3],
++):
++    t_id = wp.tid()
++
++    particle_index = particle_ids_in_color[t_id]
++
++    if not particle_flags[particle_index] & ParticleFlags.ACTIVE or mass[particle_index] == 0:
++        particle_residual[particle_index] = wp.vec3(0.0)
++        return
++
++    dt_sqr_reciprocal = 1.0 / (dt * dt)
++
++    # inertia force and hessian
++    f = mass[particle_index] * (inertia[particle_index] - pos[particle_index]) * (dt_sqr_reciprocal)
++    h = mass[particle_index] * dt_sqr_reciprocal * wp.identity(n=3, dtype=float)
++
++    # fmt: off
++    if wp.static("inertia_force_hessian" in VBD_DEBUG_PRINTING_OPTIONS):
++        wp.printf(
++            "particle: %d after accumulate inertia\nforce:\n %f %f %f, \nhessian:, \n%f %f %f, \n%f %f %f, \n%f %f %f\n",
++            particle_index,
++            f[0], f[1], f[2], h[0, 0], h[0, 1], h[0, 2], h[1, 0], h[1, 1], h[1, 2], h[2, 0], h[2, 1], h[2, 2],
++        )
++
++    if tri_indices.shape[0] > 0:
++        # elastic force and hessian
++        for i_adj_tri in range(get_vertex_num_adjacent_faces(particle_adjacency, particle_index)):
++            tri_index, vertex_order = get_vertex_adjacent_face_id_order(particle_adjacency, particle_index, i_adj_tri)
++
++            # fmt: off
++            if wp.static("connectivity" in VBD_DEBUG_PRINTING_OPTIONS):
++                wp.printf(
++                    "particle: %d | num_adj_faces: %d | ",
++                    particle_index,
++                    get_vertex_num_adjacent_faces(particle_adjacency, particle_index),
++                )
++                wp.printf("i_face: %d | face id: %d | v_order: %d | ", i_adj_tri, tri_index, vertex_order)
++                wp.printf(
++                    "face: %d %d %d\n",
++                    tri_indices[tri_index, 0],
++                    tri_indices[tri_index, 1],
++                    tri_indices[tri_index, 2],
++                )
++            # fmt: on
++
++            if tri_materials[tri_index, 0] > 0.0 or tri_materials[tri_index, 1] > 0.0:
++                f_tri, h_tri = evaluate_neo_hookean_membrane_force_hessian(
++                    tri_index,
++                    vertex_order,
++                    pos,
++                    pos_prev,
++                    tri_indices,
++                    tri_poses[tri_index],
++                    tri_areas[tri_index],
++                    tri_materials[tri_index, 0],
++                    tri_materials[tri_index, 1],
++                    tri_materials[tri_index, 2],
++                    dt,
++                )
++
++                f = f + f_tri
++                h = h + h_tri
++
++    if edge_indices.shape[0] > 0:
++        for i_adj_edge in range(get_vertex_num_adjacent_edges(particle_adjacency, particle_index)):
++            nei_edge_index, vertex_order_on_edge = get_vertex_adjacent_edge_id_order(particle_adjacency, particle_index, i_adj_edge)
++            # vertex is on the edge; otherwise it only effects the bending energy n
++            if edge_bending_properties[nei_edge_index, 0] > 0.0:
++                f_edge, h_edge = evaluate_dihedral_angle_based_bending_force_hessian(
++                    nei_edge_index, vertex_order_on_edge, pos, pos_prev, edge_indices, edge_rest_angles, edge_rest_length,
++                    edge_bending_properties[nei_edge_index, 0], edge_bending_properties[nei_edge_index, 1], dt
++                )
++
++                f = f + f_edge
++                h = h + h_edge
++
++    if tet_indices.shape[0] > 0:
++        # solve tet elasticity
++        num_adj_tets = get_vertex_num_adjacent_tets(particle_adjacency, particle_index)
++        for adj_tet_counter in range(num_adj_tets):
++            nei_tet_index, vertex_order_on_tet = get_vertex_adjacent_tet_id_order(
++                particle_adjacency, particle_index, adj_tet_counter
++            )
++            if tet_materials[nei_tet_index, 0] > 0.0 or tet_materials[nei_tet_index, 1] > 0.0:
++                f_tet, h_tet = evaluate_volumetric_neo_hookean_force_and_hessian(
++                    nei_tet_index,
++                    vertex_order_on_tet,
++                    pos_prev,
++                    pos,
++                    tet_indices,
++                    tet_poses[nei_tet_index],
++                    tet_materials[nei_tet_index, 0],
++                    tet_materials[nei_tet_index, 1],
++                    tet_materials[nei_tet_index, 2],
++                    dt,
++                )
++
++                f += f_tet
++                h += h_tet
++
++    # fmt: off
++    if wp.static("overall_force_hessian" in VBD_DEBUG_PRINTING_OPTIONS):
++        wp.printf(
++            "vertex: %d final\noverall force:\n %f %f %f, \noverall hessian:, \n%f %f %f, \n%f %f %f, \n%f %f %f\n",
++            particle_index,
++            f[0], f[1], f[2], h[0, 0], h[0, 1], h[0, 2], h[1, 0], h[1, 1], h[1, 2], h[2, 0], h[2, 1], h[2, 2],
++        )
++
++    # fmt: on
++    f = f + particle_forces[particle_index]
++
++    particle_residual[particle_index] = f
++
++
+ @wp.kernel
+ def accumulate_contact_force_and_hessian(
+     # inputs
+--- a/newton/_src/solvers/vbd/solver_vbd.py
++++ b/newton/_src/solvers/vbd/solver_vbd.py
+@@ -3,6 +3,7 @@
+ 
+ from __future__ import annotations
+ 
++import os
+ import warnings
+ import weakref
+ from collections.abc import Mapping
+@@ -56,6 +57,7 @@
+     reset_particle_state,
+     scatter_particle_body_contact_force_and_hessian,
+     solve_elasticity,
++    evaluate_particle_residual,
+     update_velocity,
+ )
+ from .rigid_vbd_kernels import (
+@@ -99,6 +101,10 @@
+ )
+ from .vbd_coupling_kernels import (
+     _harvest_vbd_body_particle_contact_forces_on_proxy_bodies_kernel,
++    _vbd_component_residual_kernel,
++    _vbd_particle_contact_magnitude_kernel,
++    _vbd_realized_body_particle_wrench_kernel,
++    _vbd_scatter_realized_proxy_wrenches_kernel,
+     _harvest_vbd_proxy_particle_body_contact_forces_kernel,
+     _harvest_vbd_proxy_particle_self_contact_forces_kernel,
+     _harvest_vbd_proxy_wrenches_kernel,
+@@ -935,6 +941,17 @@
+         # Common parameters
+         self.iterations = iterations
+         self.friction_epsilon = friction_epsilon
++        # Senua AI patch, in design (newton-physics/newton #4698), read once here: NEWTON_VBD_PROXY_COUPLING=1 rewinds
++        # a proxy body by its gravity only, as VBD's explicit harvest overwrites the feedback; =2 also harvests the
++        # soft-contact reaction as the particles received it
++        self._proxy_coupling = {"1": 1, "2": 2}.get(os.environ.get("NEWTON_VBD_PROXY_COUPLING", ""), 0)
++        self._residual_mode = False
++        self._particle_residual = None
++        self._particle_contact_magnitude = None
++        self._realized_body_f = None
++        self._zero_coupling_forces = None
++        self._particle_component = None
++        self._component_residual = None
+         self.rigid_soft_contact_use_log_barrier = bool(rigid_soft_contact_use_log_barrier)
+         self._joint_mode_deprecation_warned = False
+ 
+@@ -1490,6 +1507,135 @@
+             # Snapshot pass-0 history so restarted iterations restore the same baseline.
+             wp.copy(dest=self._coupling_body_q_prev_snapshot, src=self.body_q_prev)
+ 
++    def coupling_rewind_proxy_body(
++        self,
++        body_local_to_proxy_global: wp.array[int],
++        state: State,
++        coupling_forces: wp.array[wp.spatial_vector],
++        body_gravity_acceleration: wp.array[wp.vec3],
++        dt: float,
++    ) -> None:
++        """Senua AI patch, in design (newton-physics/newton #4698 (B)): with NEWTON_VBD_PROXY_COUPLING set, rewind a
++        proxy body by its gravity only when VBD integrates it. The generic rewind also takes the lagged feedback off,
++        which the generic momentum harvest adds back; VBD's explicit harvest overwrites it instead, so the proxy is
++        pushed into the deformable by a force nothing balances, which the harvest then reads as more contact force."""
++        self._apply_module_options()
++        if self._proxy_coupling >= 1 and self._integrates_rigid_bodies:
++            if self._zero_coupling_forces is None or self._zero_coupling_forces.shape[0] != coupling_forces.shape[0]:
++                self._zero_coupling_forces = wp.zeros_like(coupling_forces)
++            coupling_forces = self._zero_coupling_forces
++        super().coupling_rewind_proxy_body(
++            body_local_to_proxy_global, state, coupling_forces, body_gravity_acceleration, dt
++        )
++
++    def _evaluate_realized_body_particle_wrenches(
++        self, state: State, state_out: State, contacts: Contacts | None, dt: float
++    ):
++        """Senua AI patch, in design (newton-physics/newton #4698 (A)): each body's soft-contact reaction as its
++        particles received it, at the step's final iterate, before the pose history the iterations used advances.
++        A particle's unbalanced force there is evaluated by one more pass of the particle iteration, writing the
++        force in place of the update, and summed over its deformable; each contact's penalty force is taken less
++        its share, by its force along it, of its deformable's."""
++        model = self.model
++        if self._realized_body_f is None or self._realized_body_f.shape[0] != model.body_count:
++            self._realized_body_f = wp.zeros(model.body_count, dtype=wp.spatial_vector, device=self.device)
++        self._realized_body_f.zero_()
++        if model.particle_count == 0 or model.body_count == 0 or contacts is None or contacts.soft_contact_max == 0:
++            return
++        if self.body_particle_contact_penalty_k.shape[0] < contacts.soft_contact_max:
++            return
++        if self._particle_residual is None or self._particle_residual.shape[0] != model.particle_count:
++            self._particle_residual = wp.zeros(model.particle_count, dtype=wp.vec3, device=self.device)
++            self._particle_contact_magnitude = wp.zeros(model.particle_count, dtype=float, device=self.device)
++            self._component_residual = wp.zeros(model.particle_count, dtype=wp.vec3, device=self.device)
++            self._particle_component = self._particle_component_ids()
++        self._residual_mode = True
++        try:
++            self._solve_particle_iteration(state, state_out, contacts, dt)
++        finally:
++            self._residual_mode = False
++        self._component_residual.zero_()
++        wp.launch(
++            _vbd_component_residual_kernel,
++            dim=model.particle_count,
++            inputs=[self._particle_component, self._particle_residual],
++            outputs=[self._component_residual],
++            device=self.device,
++        )
++        self._particle_contact_magnitude.zero_()
++        common = [
++            float(dt),
++            state.particle_q,
++            self.particle_q_prev,
++            model.particle_radius,
++            state.body_q,
++            self.body_q_prev,
++            state.body_qd,
++            model.body_com,
++            float(self.friction_epsilon),
++            self.rigid_soft_contact_use_log_barrier,
++            self.body_particle_contact_penalty_k,
++            self.body_particle_contact_material_kd,
++            self.body_particle_contact_material_mu,
++            contacts.soft_contact_count,
++        ]
++        geometry = [
++            contacts.soft_contact_indices,
++            contacts.soft_contact_barycentric,
++            contacts.soft_contact_shape,
++            contacts.soft_contact_body_pos,
++            contacts.soft_contact_body_vel,
++            contacts.soft_contact_normal,
++            model.shape_margin,
++            model.shape_body,
++        ]
++        wp.launch(
++            _vbd_particle_contact_magnitude_kernel,
++            dim=contacts.soft_contact_max,
++            inputs=[*common, contacts.soft_contact_max, *geometry, self._particle_component, self._component_residual],
++            outputs=[self._particle_contact_magnitude],
++            device=self.device,
++        )
++        wp.launch(
++            _vbd_realized_body_particle_wrench_kernel,
++            dim=model.body_count * _NUM_CONTACT_THREADS_PER_BODY,
++            inputs=[
++                *common,
++                *geometry,
++                self.body_particle_contact_buffer_pre_alloc,
++                self.body_particle_contact_counts,
++                self.body_particle_contact_indices,
++                self._particle_component,
++                self._component_residual,
++                self._particle_contact_magnitude,
++            ],
++            outputs=[self._realized_body_f],
++            device=self.device,
++        )
++
++    def _particle_component_ids(self) -> wp.array:
++        """Senua AI patch, in design (#4698 (A)): each particle's deformable, the lowest index of the particles a
++        triangle, a bending edge, a tetrahedron or a spring joins to it, found once from the model's topology."""
++        model = self.model
++        n = model.particle_count
++        label = np.arange(n, dtype=np.int64)
++        groups = []
++        for arr in (model.tri_indices, model.edge_indices, model.tet_indices, model.spring_indices):
++            if arr is not None and arr.shape[0] > 0:
++                a = arr.numpy().astype(np.int64)
++                groups.append(a.reshape(-1, 2) if a.ndim == 1 else a)
++        while True:
++            prev = label.copy()
++            for a in groups:
++                valid = (a >= 0) & (a < n)
++                low = np.where(valid, label[np.where(valid, a, 0)], n).min(axis=1)
++                for k in range(a.shape[1]):
++                    np.minimum.at(label, a[valid[:, k], k], low[valid[:, k]])
++            label = label[label]
++            if np.array_equal(label, prev):
++                break
++        return wp.array(label.astype(np.int32), dtype=wp.int32, device=self.device)
++
+     def coupling_prepare_proxy_contacts(
+         self,
+         state: State,
+@@ -1572,7 +1718,15 @@
+                 device=self.device,
+             )
+ 
+-        if contacts.soft_contact_max > 0 and self.body_particle_contact_penalty_k.shape[0] >= contacts.soft_contact_max:
++        if self._proxy_coupling == 2 and self._realized_body_f is not None:  # Senua AI patch, in design (#4698)
++            wp.launch(
++                _vbd_scatter_realized_proxy_wrenches_kernel,
++                dim=body_local_to_proxy_global.shape[0],
++                inputs=[body_local_to_proxy_global, self._realized_body_f],
++                outputs=[out_body_f],
++                device=self.device,
++            )
++        elif contacts.soft_contact_max > 0 and self.body_particle_contact_penalty_k.shape[0] >= contacts.soft_contact_max:
+             # Per-body, mirroring accumulate_body_particle_contacts_per_body: the harvest reads the
+             # same truncated adjacency list the destination solve consumed, so the reaction reported
+             # to the source is by construction the one the solve applied.
+@@ -2598,6 +2752,9 @@
+             self._solve_rigid_body_iteration(state_in, state_out, control, contacts, dt)
+             self._solve_particle_iteration(state_in, state_out, contacts, dt)
+ 
++        if self._proxy_coupling == 2 and self._integrates_rigid_bodies:  # Senua AI patch, in design (#4698)
++            self._evaluate_realized_body_particle_wrenches(state_in, state_out, contacts, dt)
++
+         # Opt-in contact force export: evaluate at the final iterate while the pose history the
+         # iterations used is still intact (finalization advances it below).
+         if observables is not None and observables.is_requested(SolverBase.ObservableKind.CONTACT_F):
+@@ -3909,7 +4066,7 @@
+                     device=self.device,
+                     max_blocks=self.model.device.sm_count,
+                 )
+-            if self.use_particle_tile_solve:
++            if self.use_particle_tile_solve and not self._residual_mode:
+                 particle_count_in_color = self.model.particle_color_groups[color].size
+                 per_block = self._tiled_elasticity_particles_per_block
+                 blocks = (particle_count_in_color + per_block - 1) // per_block
+@@ -3947,7 +4104,7 @@
+                 )
+             else:
+                 wp.launch(
+-                    kernel=solve_elasticity,
++                    kernel=evaluate_particle_residual if self._residual_mode else solve_elasticity,
+                     dim=self.model.particle_color_groups[color].size,
+                     inputs=[
+                         dt,
+@@ -3973,11 +4130,12 @@
+                         self.particle_hessians,
+                     ],
+                     outputs=[
+-                        self.particle_displacements,
++                        self._particle_residual if self._residual_mode else self.particle_displacements,
+                     ],
+                     device=self.device,
+                 )
+-            self._penetration_free_truncation(state_in, contacts)
++            if not self._residual_mode:
++                self._penetration_free_truncation(state_in, contacts)
+ 
+         wp.copy(state_out.particle_q, state_in.particle_q)
+ 
+--- a/newton/_src/solvers/vbd/vbd_coupling_kernels.py
++++ b/newton/_src/solvers/vbd/vbd_coupling_kernels.py
+@@ -543,3 +543,217 @@
+                                 tri_c, collision_force_2, particle_local_to_proxy_global, out_particle_f
+                             )
+             collision_buffer_counter += NUM_THREADS_PER_COLLISION_PRIMITIVE
++
++
++# Senua AI patch, in design: newton-physics/newton #4698 (A), VBD's realized harvest, with NEWTON_VBD_PROXY_COUPLING=2.
++#
++# The stock harvest hands the source solver the penalty force of VBD's last iterate, k * depth plus damping and
++# friction, at contacts its particles never felt: a light cloth's Gauss-Seidel sweeps leave its iterate unconverged in
++# the contact's normal and the particles' momentum change is their weight, while the harvest is 10 to 100 times that
++# (#4698; run 112 of the Senua AI deep dive). Here each deformable's unbalanced force at that iterate, summed over its
++# particles (their inertial, elastic and contact forces), is taken off its contacts, each in the share its force along
++# that unbalance has of all of theirs: at a converged iterate the penalty forces exactly; summed over the deformable's
++# contacts, its momentum change less its weight and what pins hold (its internal forces sum to zero); and a pin's pull
++# stays in its neighbours' elastic forces, so a body resting on a pinned deformable is still held. Per particle the
++# unbalance does not stay where the contact is: a stiff membrane carries it to neighbours that touch nothing (the
++# deep dive's design probes), so it is summed over the deformable, the particles a triangle, a bending edge, a
++# tetrahedron or a spring joins; and shared by each contact's force along it, not by its size, so that friction and
++# damping across it do not move its split.
++
++
++@wp.kernel(enable_backward=False)
++def _vbd_particle_contact_magnitude_kernel(
++    dt: float,
++    particle_q: wp.array[wp.vec3],
++    particle_q_prev: wp.array[wp.vec3],
++    particle_radius: wp.array[float],
++    body_q: wp.array[wp.transform],
++    body_q_prev: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_com: wp.array[wp.vec3],
++    friction_epsilon: float,
++    rigid_body_particle_contact_use_log_barrier: bool,
++    body_particle_contact_penalty_k: wp.array[float],
++    body_particle_contact_material_kd: wp.array[float],
++    body_particle_contact_material_mu: wp.array[float],
++    body_particle_contact_count: wp.array[int],
++    body_particle_contact_max: int,
++    soft_contact_indices: wp.array[wp.vec3i],
++    soft_contact_barycentric: wp.array[wp.vec3],
++    body_particle_contact_shape: wp.array[int],
++    body_particle_contact_body_pos: wp.array[wp.vec3],
++    body_particle_contact_body_vel: wp.array[wp.vec3],
++    body_particle_contact_normal: wp.array[wp.vec3],
++    shape_margin: wp.array[float],
++    shape_body: wp.array[wp.int32],
++    particle_component: wp.array[wp.int32],
++    component_residual: wp.array[wp.vec3],
++    out_magnitude: wp.array[float],
++):
++    """Add the force each soft contact applies to its particles, along their deformable's unbalanced force, to its sum."""
++    contact_idx = wp.tid()
++    if contact_idx >= wp.min(body_particle_contact_max, body_particle_contact_count[0]):
++        return
++    corners = soft_contact_indices[contact_idx]
++    if corners[0] < 0 or corners[0] >= particle_q.shape[0]:
++        return
++    bary = soft_contact_barycentric[contact_idx]
++    force_on_particle, _hess, _cp_world = _eval_soft_ef_contact(
++        contact_idx,
++        corners,
++        bary,
++        particle_q,
++        particle_q_prev,
++        particle_radius,
++        body_particle_contact_penalty_k[contact_idx],
++        body_particle_contact_material_kd[contact_idx],
++        body_particle_contact_material_mu[contact_idx],
++        friction_epsilon,
++        shape_body,
++        body_q,
++        body_q_prev,
++        body_qd,
++        body_com,
++        body_particle_contact_shape,
++        body_particle_contact_body_pos,
++        body_particle_contact_body_vel,
++        body_particle_contact_normal,
++        shape_margin,
++        dt,
++        rigid_body_particle_contact_use_log_barrier,
++    )
++    for k in range(3):
++        j = corners[k]
++        if j >= 0:
++            c = particle_component[j]
++            wp.atomic_add(out_magnitude, c, wp.abs(bary[k]) * wp.dot(force_on_particle, component_residual[c]))
++
++
++@wp.kernel(enable_backward=False)
++def _vbd_realized_body_particle_wrench_kernel(
++    dt: float,
++    particle_q: wp.array[wp.vec3],
++    particle_q_prev: wp.array[wp.vec3],
++    particle_radius: wp.array[float],
++    body_q: wp.array[wp.transform],
++    body_q_prev: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_com: wp.array[wp.vec3],
++    friction_epsilon: float,
++    rigid_body_particle_contact_use_log_barrier: bool,
++    body_particle_contact_penalty_k: wp.array[float],
++    body_particle_contact_material_kd: wp.array[float],
++    body_particle_contact_material_mu: wp.array[float],
++    body_particle_contact_count: wp.array[int],
++    soft_contact_indices: wp.array[wp.vec3i],
++    soft_contact_barycentric: wp.array[wp.vec3],
++    body_particle_contact_shape: wp.array[int],
++    body_particle_contact_body_pos: wp.array[wp.vec3],
++    body_particle_contact_body_vel: wp.array[wp.vec3],
++    body_particle_contact_normal: wp.array[wp.vec3],
++    shape_margin: wp.array[float],
++    shape_body: wp.array[wp.int32],
++    body_particle_contact_buffer_pre_alloc: int,
++    body_particle_contact_counts: wp.array[wp.int32],
++    body_particle_contact_indices: wp.array[wp.int32],
++    particle_component: wp.array[wp.int32],
++    component_residual: wp.array[wp.vec3],
++    component_contact_magnitude: wp.array[float],
++    out_body_f: wp.array[wp.spatial_vector],
++):
++    """Each body's soft-contact reaction as its particles received it, by the stock harvest's walk of its contacts."""
++    tid = wp.tid()
++    body_idx = tid // _NUM_CONTACT_THREADS_PER_BODY
++    thread_id_within_body = tid % _NUM_CONTACT_THREADS_PER_BODY
++    if body_idx >= out_body_f.shape[0]:
++        return
++
++    num_contacts = body_particle_contact_counts[body_idx]
++    if num_contacts > body_particle_contact_buffer_pre_alloc:
++        num_contacts = body_particle_contact_buffer_pre_alloc
++    if num_contacts == 0:
++        return
++
++    max_contacts = body_particle_contact_count[0]
++    com_world = wp.transform_point(body_q[body_idx], body_com[body_idx])
++
++    force_acc = wp.vec3(0.0)
++    torque_acc = wp.vec3(0.0)
++
++    i = thread_id_within_body
++    while i < num_contacts:
++        contact_idx = body_particle_contact_indices[body_idx * body_particle_contact_buffer_pre_alloc + i]
++        i += _NUM_CONTACT_THREADS_PER_BODY
++        if contact_idx >= max_contacts:
++            continue
++
++        corners = soft_contact_indices[contact_idx]
++        if corners[0] < 0 or corners[0] >= particle_q.shape[0]:
++            continue
++
++        bary = soft_contact_barycentric[contact_idx]
++        force_on_particle, _hess, cp_world = _eval_soft_ef_contact(
++            contact_idx,
++            corners,
++            bary,
++            particle_q,
++            particle_q_prev,
++            particle_radius,
++            body_particle_contact_penalty_k[contact_idx],
++            body_particle_contact_material_kd[contact_idx],
++            body_particle_contact_material_mu[contact_idx],
++            friction_epsilon,
++            shape_body,
++            body_q,
++            body_q_prev,
++            body_qd,
++            body_com,
++            body_particle_contact_shape,
++            body_particle_contact_body_pos,
++            body_particle_contact_body_vel,
++            body_particle_contact_normal,
++            shape_margin,
++            dt,
++            rigid_body_particle_contact_use_log_barrier,
++        )
++        # less its deformable's unbalanced force, in the share this contact's force along it has of all its contacts'
++        realized = force_on_particle
++        for k in range(3):
++            j = corners[k]
++            if j >= 0:
++                c = particle_component[j]
++                total = component_contact_magnitude[c]
++                if total > 0.0:
++                    g = component_residual[c]
++                    realized = realized - g * (wp.abs(bary[k]) * wp.dot(force_on_particle, g) / total)
++
++        force_on_body = -realized
++        force_acc += force_on_body
++        torque_acc += wp.cross(cp_world - com_world, force_on_body)
++
++    wp.atomic_add(out_body_f, body_idx, wp.spatial_vector(force_acc, torque_acc))
++
++
++@wp.kernel(enable_backward=False)
++def _vbd_component_residual_kernel(
++    particle_component: wp.array[wp.int32],
++    particle_residual: wp.array[wp.vec3],
++    out_component_residual: wp.array[wp.vec3],
++):
++    """Sum each particle's unbalanced force into its deformable's."""
++    i = wp.tid()
++    wp.atomic_add(out_component_residual, particle_component[i], particle_residual[i])
++
++
++@wp.kernel(enable_backward=False)
++def _vbd_scatter_realized_proxy_wrenches_kernel(
++    body_local_to_proxy_global: wp.array[int],
++    realized_body_f: wp.array[wp.spatial_vector],
++    out_body_f: wp.array[wp.spatial_vector],
++):
++    """Add each proxy body's realized soft-contact reaction to its harvested wrench."""
++    body_idx = wp.tid()
++    proxy_global = body_local_to_proxy_global[body_idx]
++    if proxy_global < 0 or proxy_global >= out_body_f.shape[0] or body_idx >= realized_body_f.shape[0]:
++        return
++    wp.atomic_add(out_body_f, proxy_global, realized_body_f[body_idx])

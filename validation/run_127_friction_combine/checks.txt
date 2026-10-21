@@ -1,0 +1,14 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE P1_safe_when_off eq 20 20 : HELD
+RULE P2_released_xpbd_not_mujocos_rule ge 36065 5645 : HELD
+RULE P3_xpbd_mujocos_rule all_within 56454 100 56454 56454 56454 : HELD
+RULE P3_xpbd_priority within 254848 254848 100 : HELD
+RULE P3_semi_mujocos_rule all_within 40429 100 40429 40429 40429 : HELD
+RULE P3_semi_priority within 84199 84199 100 : HELD
+RULE P3_featherstone_mujocos_rule all_within 40335 100 40335 40335 40335 : HELD
+RULE P3_featherstone_priority within 84232 84232 100 : HELD
+RULE P3_vbd_mujocos_rule all_within 112599 100 112599 112599 112599 : HELD
+RULE P3_vbd_priority within 328089 328089 100 : HELD
+RULE P3_mujoco_mujocos_rule all_within 56866 100 56866 56866 56866 : HELD
+RULE P3_mujoco_priority within 254964 254964 100 : HELD
+checks: 13, held: 13

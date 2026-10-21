@@ -1,0 +1,4 @@
+RULE R1_released_leaks all_ge 1 134 68 706 219 : HELD
+RULE R2_half_voxel_kept all_eq 0 0 0 9 0 : FAILED
+RULE R3_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 3, held: 2

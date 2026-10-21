@@ -1,0 +1,8 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C0_as_study_22 eq 4 4 : HELD
+RULE P1_default_floor ge 3281 1904 : HELD
+RULE P2_alm_10m_as_the_origin all_within 1053 3 2296 : FAILED
+RULE P2_gamma0_10m_as_the_origin all_within 1269 3 5847 : FAILED
+RULE P2_alpha0_10m_as_the_origin all_within 905 3 3410 : FAILED
+RULE P2_alpha1_10m_as_the_origin all_within 1214 3 4146 : FAILED
+checks: 7, held: 3

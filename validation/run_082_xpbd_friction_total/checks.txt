@@ -1,0 +1,7 @@
+RULE X0_safe_when_off eq 43 43 : HELD
+RULE X1_T06_fails_released eq 0 0 : HELD
+RULE X1_T06_passes_patched eq 0 1 : FAILED
+RULE X2_hold_creeps_released all_ge 300 10862 1531 2715 380 : HELD
+RULE X2_hold_held_patched all_in -10 10 10862 0 2715 0 : FAILED
+RULE X3_nothing_lost eq 0 0 : HELD
+checks: 6, held: 4

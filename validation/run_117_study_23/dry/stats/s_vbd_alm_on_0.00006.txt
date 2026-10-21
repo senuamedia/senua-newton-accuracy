@@ -1,0 +1,1 @@
+STATS contact dt 6e-05 h0 1 vx0 0 mu 0 mass 1.7 radius 0.045 steps 333 most_tilt_urad 69928 engine newton 1.7.0 solver vbd_alm extra gravity=0 comx=0.03 wz0=3.5

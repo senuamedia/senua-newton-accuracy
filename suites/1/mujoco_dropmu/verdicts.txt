@@ -1,0 +1,46 @@
+CONFIG rig settings: solver=mujoco
+free 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 1237356 largest_um 24508 summed_speed_difference_mm_s 0
+free 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 618972 largest_um 12258 summed_speed_difference_mm_s 0
+free 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 309393 largest_um 6127 summed_speed_difference_mm_s 0
+free 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 155082 largest_um 3059 summed_speed_difference_mm_s 0
+free 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 75651 largest_um 1444 summed_speed_difference_mm_s 0
+free 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 37935 largest_um 825 summed_speed_difference_mm_s 0
+slide 1/1 | CREEP dt_ns 10000000 steps 25 mean_speed_ums 3609862 friction_over_normal_per_10000 4000 friction_limit_per_10000 4000
+slide 1/16 | CREEP dt_ns 625000 steps 400 mean_speed_ums 3531958 friction_over_normal_per_10000 3999 friction_limit_per_10000 4000
+rest 1/1 | the file is missing or not whole
+rest 1/16 | the file is missing or not whole
+drop 1/1 | the file is missing or not whole
+drop 1/2 | the file is missing or not whole
+drop 1/4 | the file is missing or not whole
+drop 1/8 | the file is missing or not whole
+drop 1/16 | the file is missing or not whole
+drop 1/32 | the file is missing or not whole
+drop 1/64 | the file is missing or not whole
+oblique 1/1 | IMPACT dt_ns 10000000 steps 1 horizontal_lost_ums 1154820 vertical_given_ums 2887050 ratio_per_10000 4000 friction_per_10000 4000 still_sliding_ums 2845180
+oblique 1/2 | IMPACT dt_ns 5000000 steps 1 horizontal_lost_ums 563000 vertical_given_ums 1407500 ratio_per_10000 4000 friction_per_10000 4000 still_sliding_ums 3437000
+oblique 1/4 | IMPACT dt_ns 2500000 steps 3 horizontal_lost_ums 625575 vertical_given_ums 1563937 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3374425
+oblique 1/8 | IMPACT dt_ns 1250000 steps 5 horizontal_lost_ums 526199 vertical_given_ums 1315497 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3473801
+oblique 1/16 | IMPACT dt_ns 625000 steps 11 horizontal_lost_ums 549893 vertical_given_ums 1374732 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3450107
+oblique 1/32 | IMPACT dt_ns 312500 steps 21 horizontal_lost_ums 528612 vertical_given_ums 1321530 ratio_per_10000 4000 friction_per_10000 4000 still_sliding_ums 3471388
+oblique 1/64 | IMPACT dt_ns 156250 steps 43 horizontal_lost_ums 534640 vertical_given_ums 1336599 ratio_per_10000 4000 friction_per_10000 4000 still_sliding_ums 3465360
+settle 1/1 | SETTLE dt_ns 10000000 steps 10 horizontal_lost_ums 1154820 vertical_given_ums 2887050 ratio_per_10000 4000 friction_per_10000 4000 still_sliding_ums 2845180
+settle 1/2 | SETTLE dt_ns 5000000 steps 20 horizontal_lost_ums 961575 vertical_given_ums 2403937 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3038425
+settle 1/4 | SETTLE dt_ns 2500000 steps 40 horizontal_lost_ums 823122 vertical_given_ums 2057804 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3176878
+settle 1/8 | SETTLE dt_ns 1250000 steps 80 horizontal_lost_ums 832331 vertical_given_ums 2080828 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3167669
+settle 1/16 | SETTLE dt_ns 625000 steps 160 horizontal_lost_ums 837366 vertical_given_ums 2093414 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3162634
+settle 1/32 | SETTLE dt_ns 312500 steps 320 horizontal_lost_ums 855535 vertical_given_ums 2138840 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3144465
+settle 1/64 | SETTLE dt_ns 156250 steps 640 horizontal_lost_ums 854354 vertical_given_ums 2135885 ratio_per_10000 3999 friction_per_10000 4000 still_sliding_ums 3145646
+hold 1/1 | CREEP dt_ns 10000000 steps 100 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold 1/16 | CREEP dt_ns 625000 steps 1600 mean_speed_ums 1293 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+slip 1/1 | SLIP dt_ns 10000000 mean_speed_ums 992400 predicted_ums 980000 push_mN 11760 friction_limit_mN 9800
+slip 1/16 | SLIP dt_ns 625000 mean_speed_ums 978500 predicted_ums 980000 push_mN 11760 friction_limit_mN 9800
+chain 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 111368 largest_um 7749 summed_speed_difference_mm_s 1323
+chain 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 30718 largest_um 2706 summed_speed_difference_mm_s 833
+chain 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 14159 largest_um 942 summed_speed_difference_mm_s 273
+chain 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 9143 largest_um 735 summed_speed_difference_mm_s 373
+chain 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 8333 largest_um 666 summed_speed_difference_mm_s 292
+chain 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 2820 largest_um 309 summed_speed_difference_mm_s 117
+lift 1/1 | the file is missing or not whole
+lift 1/16 | the file is missing or not whole
+rebound 1/16 | the file is missing or not whole
+SUITE needs 48 numbers, got 41

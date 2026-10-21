@@ -1,0 +1,14 @@
+STATS cube_it2_0.002 contact dt 0.002 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 1000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=2
+STATS cube_it4_0.002 contact dt 0.002 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 1000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=4
+STATS cube_it8_0.002 contact dt 0.002 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 1000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=8
+STATS cube_it16_0.002 contact dt 0.002 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 1000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=16
+STATS cube_it32_0.002 contact dt 0.002 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 1000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=32
+STATS cube_it2_relax1_0.002 contact dt 0.002 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 1000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=2 opt.rigid_contact_relaxation=1.0
+STATS plate_it2_0.002 contact dt 0.002 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 1000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=2 hz=0.005
+STATS cube_it2_0.0005 contact dt 0.0005 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 4000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=2
+STATS cube_it4_0.0005 contact dt 0.0005 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 4000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=4
+STATS cube_it8_0.0005 contact dt 0.0005 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 4000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=8
+STATS cube_it16_0.0005 contact dt 0.0005 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 4000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=16
+STATS cube_it32_0.0005 contact dt 0.0005 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 4000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=32
+STATS cube_it2_relax1_0.0005 contact dt 0.0005 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 4000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=2 opt.rigid_contact_relaxation=1.0
+STATS plate_it2_0.0005 contact dt 0.0005 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 4000 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.iterations=2 hz=0.005

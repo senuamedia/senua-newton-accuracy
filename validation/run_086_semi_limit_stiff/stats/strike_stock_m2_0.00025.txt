@@ -1,0 +1,1 @@
+STATS joint dt 0.00025 mass 2 radius 0.15 arm 0.4 gravity 1 steps 8000 engine newton 1.7.0 solver semi extra opt.joint_attach_ke=1000000 lo=-1 hi=1

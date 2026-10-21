@@ -1,0 +1,134 @@
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_contact.py:101: DeprecationWarning: Omitting rigid_compliant_alm is deprecated as of Newton 1.6 because the default will change from the legacy penalty/AVBD path (False) to unified compliant ALM (True), which is becoming the standard for rigid VBD. The legacy path is deprecated and will be removed in a future release. Pass rigid_compliant_alm=True to adopt compliant ALM now, or rigid_compliant_alm=False to keep the legacy path during the migration window.
+  solver = solvers[solver_name](model, **kw)
+failed: bounce suites/1/r020_on_vbd/drop_1.txt
+failed: bounce suites/1/r020_on_vbd/drop_2.txt
+failed: bounce suites/1/r020_on_vbd/drop_4.txt
+failed: bounce suites/1/r020_on_vbd/drop_8.txt
+failed: bounce suites/1/r020_on_vbd/drop_32.txt
+failed: bounce suites/1/r020_on_vbd/drop_64.txt
+failed: impact suites/1/r020_on_vbd/oblique_1.txt
+failed: impact suites/1/r020_on_vbd/oblique_2.txt
+failed: impact suites/1/r020_on_vbd/oblique_4.txt
+failed: impact suites/1/r020_on_vbd/oblique_8.txt
+failed: impact suites/1/r020_on_vbd/oblique_32.txt
+~/sxbuild/sx_contact_suite.sh: line 28: [: : integer expression expected
+failed: impact suites/1/r020_on_vbd/oblique_64.txt
+~/sxbuild/sx_contact_suite.sh: line 28: [: : integer expression expected
+failed: settle suites/1/r020_on_vbd/oblique_8.txt
+failed: settle suites/1/r020_on_vbd/oblique_32.txt
+failed: settle suites/1/r020_on_vbd/oblique_64.txt

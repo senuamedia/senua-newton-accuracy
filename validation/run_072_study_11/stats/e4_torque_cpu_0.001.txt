@@ -1,0 +1,1 @@
+STATS joint dt 0.001 mass 1.6 radius 0.04 arm 0.35 gravity 0 steps 40 engine newton 1.7.0 solver mujoco extra opt.use_mujoco_cpu=True torque=0.7

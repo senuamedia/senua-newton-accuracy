@@ -1,0 +1,19 @@
+RULE R1_reference_slide all_within 91837 100 91688 91817 : HELD
+RULE R1_reference_hold all_in -10 10 0 0 : HELD
+RULE R1_reference_push all_within 1984500 100 1895544 1994328 : FAILED
+RULE R2_released_departs eq 2 2 : HELD
+RULE R3_xpbd_d1_slide within 91388 91688 100 : HELD
+RULE R5_xpbd_d1_push within 1984434 1895544 100 : FAILED
+RULE R3_xpbd_d05_slide within 91617 91817 100 : HELD
+RULE R5_xpbd_d05_push within 1984396 1994328 100 : HELD
+RULE R3_semi_d1_slide within 91738 91688 100 : HELD
+RULE R5_semi_d1_push within 1986811 1895544 100 : FAILED
+RULE R3_semi_d05_slide within 91963 91817 100 : HELD
+RULE R5_semi_d05_push within 1986335 1994328 100 : HELD
+RULE R3_featherstone_d1_slide within 91741 91688 100 : HELD
+RULE R5_featherstone_d1_push within 1986837 1895544 100 : FAILED
+RULE R3_featherstone_d05_slide within 91964 91817 100 : HELD
+RULE R5_featherstone_d05_push within 1986365 1994328 100 : HELD
+RULE R4_held all_in -10 10 3 6 0 0 0 0 : HELD
+RULE R6_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 18, held: 14

@@ -1,0 +1,9 @@
+RULE C0_safe_when_off eq 6 6 : HELD
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C1_hold_held_f64 all_in -10 10 0 0 0 : HELD
+RULE C1_hold_held_df64 all_in -10 10 0 0 0 : HELD
+RULE C2_slide_coulomb_df64 all_within 102041 100 99448 101761 102337 : FAILED
+RULE C3_T06_at_1_16_df64 in -10 10 0 : FAILED
+RULE C3_nothing_lost_df64_against_stock eq 0 0 : HELD
+RULE C3_nothing_lost_df64_against_damp eq 0 0 : HELD
+checks: 8, held: 6

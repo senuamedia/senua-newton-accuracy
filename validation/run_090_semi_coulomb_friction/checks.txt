@@ -1,0 +1,8 @@
+RULE C0_safe_when_off eq 6 6 : HELD
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C1_hold_creeps_released all_ge 300 115435 6601 735 : HELD
+RULE C1_hold_held all_in -10 10 8821 2205 551 : FAILED
+RULE C2_slide_coulomb all_within 102041 100 101561 102281 102467 : HELD
+RULE C3_T06_passes eq 0 1 : FAILED
+RULE C3_nothing_lost eq 1 0 : FAILED
+checks: 7, held: 4

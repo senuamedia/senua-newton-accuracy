@@ -1,0 +1,106 @@
+diff --git a/newton/_src/solvers/featherstone/solver_featherstone.py b/newton/_src/solvers/featherstone/solver_featherstone.py
+index 5f3e9c0c975..5673eddc302 100644
+--- a/newton/_src/solvers/featherstone/solver_featherstone.py
++++ b/newton/_src/solvers/featherstone/solver_featherstone.py
+@@ -1,6 +1,8 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import math
++
+ import numpy as np
+ import warp as wp
+ 
+@@ -139,7 +141,7 @@ def __init__(
+         *,
+         angular_damping: float = 0.05,
+         update_mass_matrix_interval: int = 1,
+-        friction_smoothing: float = 1.0,
++        friction_smoothing: float = 1.0e-3,
+         use_tile_gemm: bool = False,
+         fuse_cholesky: bool = True,
+         deterministic: wp.DeterministicMode | None = None,
+@@ -149,7 +151,7 @@ def __init__(
+             model: The model to be simulated.
+             angular_damping: Angular damping factor. Defaults to 0.05.
+             update_mass_matrix_interval: How often to update the mass matrix (every n-th time the :meth:`step` function gets called). Defaults to 1.
+-            friction_smoothing: The delta value for the Huber norm (see :func:`warp.norm_huber() <warp._src.lang.norm_huber>`) used for the friction velocity normalization. Defaults to 1.0.
++            friction_smoothing: Slip speed [m/s] below which friction fades out, passed as ``delta`` to :func:`warp.norm_pseudo_huber`. Friction is ``min(kf * |v_t|, mu * |f_n|)`` scaled by ``|v_t| / sqrt(delta^2 + |v_t|^2)``, so keep it well under the slip speeds in the scene. Must be positive. Defaults to 1.0e-3.
+             use_tile_gemm: Whether to use operators from Warp's Tile API to solve for joint accelerations. Defaults to False.
+             fuse_cholesky: Whether to fuse the Cholesky decomposition into the inertia matrix evaluation kernel when using the Tile API. Only used if `use_tile_gemm` is true. Defaults to True.
+             deterministic: Opt-in determinism for this solver's atomic-emitting
+@@ -157,6 +159,8 @@ def __init__(
+                 ``None`` (default) to inherit the current
+                 ``wp.config.deterministic`` mode.
+         """
++        if not math.isfinite(friction_smoothing) or friction_smoothing <= 0.0:
++            raise ValueError(f"friction_smoothing must be finite and > 0 (got {friction_smoothing}).")
+         super().__init__(model)
+         effective_deterministic = deterministic if deterministic is not None else wp.config.deterministic
+         if model.joint_count > 0:
+diff --git a/newton/_src/solvers/semi_implicit/kernels_contact.py b/newton/_src/solvers/semi_implicit/kernels_contact.py
+index 77644d11d91..ce6d86d040c 100644
+--- a/newton/_src/solvers/semi_implicit/kernels_contact.py
++++ b/newton/_src/solvers/semi_implicit/kernels_contact.py
+@@ -533,8 +533,10 @@ def eval_body_contact(
+     # Coulomb friction (smooth, but gradients are numerically unstable around |vt| = 0)
+     ft = wp.vec3(0.0)
+     if d < 0.0:
+-        # use a smooth vector norm to avoid gradient instability at/around zero velocity
+-        vs = wp.norm_huber(vt, delta=friction_smoothing)
++        # vs has to be a real norm, otherwise fr is not a unit vector and the cone is
++        # scaled by whatever |fr| happens to be. wp.norm_huber returns 0.5 * |vt|^2
++        # below its delta, which scales it by 2 / |vt|. See particle_force above.
++        vs = wp.norm_pseudo_huber(vt, delta=friction_smoothing)
+         if vs > 0.0:
+             fr = vt / vs
+             ft = fr * wp.min(kf * vs, -mu * (fn + fd))
+@@ -602,7 +604,7 @@ def eval_body_contact_forces(
+     model: Model,
+     state: State,
+     contacts: Contacts | None,
+-    friction_smoothing: float = 1.0,
++    friction_smoothing: float = 1.0e-3,
+     force_in_world_frame: bool = False,
+     body_f_out: wp.array | None = None,
+     body_q: wp.array | None = None,
+diff --git a/newton/_src/solvers/semi_implicit/solver_semi_implicit.py b/newton/_src/solvers/semi_implicit/solver_semi_implicit.py
+index 4a4766bdc24..18a4844a1fe 100644
+--- a/newton/_src/solvers/semi_implicit/solver_semi_implicit.py
++++ b/newton/_src/solvers/semi_implicit/solver_semi_implicit.py
+@@ -1,6 +1,8 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import math
++
+ import warp as wp
+ 
+ from ...core.types import override
+@@ -75,7 +77,7 @@ def __init__(
+         model: Model,
+         *,
+         angular_damping: float = 0.05,
+-        friction_smoothing: float = 1.0,
++        friction_smoothing: float = 1.0e-3,
+         joint_attach_ke: float = 1.0e4,
+         joint_attach_kd: float = 1.0e2,
+         enable_tri_contact: bool = True,
+@@ -85,7 +87,7 @@ def __init__(
+         Args:
+             model: The model to be simulated.
+             angular_damping: Angular damping factor to be used in rigid body integration. Defaults to 0.05.
+-            friction_smoothing: Huber norm delta used for friction velocity normalization (see :func:`warp.norm_huber() <warp._src.lang.norm_huber>`). Defaults to 1.0.
++            friction_smoothing: Slip speed [m/s] below which friction fades out, passed as ``delta`` to :func:`warp.norm_pseudo_huber`. Friction is ``min(kf * |v_t|, mu * |f_n|)`` scaled by ``|v_t| / sqrt(delta^2 + |v_t|^2)``, so keep it well under the slip speeds in the scene. Must be positive. Defaults to 1.0e-3.
+             joint_attach_ke: Joint attachment spring stiffness. Defaults to 1.0e4.
+             joint_attach_kd: Joint attachment spring damping. Defaults to 1.0e2.
+             enable_tri_contact: Enable triangle contact. Defaults to True.
+@@ -94,6 +96,8 @@ def __init__(
+                 ``None`` (default) to inherit the current
+                 ``wp.config.deterministic`` mode.
+         """
++        if not math.isfinite(friction_smoothing) or friction_smoothing <= 0.0:
++            raise ValueError(f"friction_smoothing must be finite and > 0 (got {friction_smoothing}).")
+         super().__init__(model=model)
+         effective_deterministic = deterministic if deterministic is not None else wp.config.deterministic
+         deterministic_modules = []

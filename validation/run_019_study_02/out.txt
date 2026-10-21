@@ -1,0 +1,10 @@
+RULE R1_safe_when_off eq 20 20 : HELD
+RULE R2_bounce_there all_ge 100 850 1067 : HELD
+RULE R2_friction_lost all_le 3150 300 1980 : HELD
+RULE R3_no_bounce all_le 10 0 0 : HELD
+RULE R4_impact all_within 3500 100 3499 3499 : HELD
+RULE R5_after_impact all_within 3500 100 3499 3499 : HELD
+RULE R6_nothing_else eq 6 6 : HELD
+RULE R7_pass_not_run eq 10 10 : HELD
+RULE R8_no_nan eq 0 0 : HELD
+rules: 9, held: 9

@@ -1,0 +1,27 @@
+stock semi slide slid_um 84061 most_tilt_urad 327354
+stock semi plate_1.0 slid_um 19374 decel_260_300 -15198
+stock semi plate_0.05 slid_um 2943 decel_260_300 -44
+stock semi impact ratio_per_10000 4381
+stock featherstone slide slid_um 83859 most_tilt_urad 330993
+stock featherstone plate_1.0 slid_um 19374 decel_260_300 -15210
+stock featherstone plate_0.05 slid_um 2943 decel_260_300 -44
+stock featherstone impact ratio_per_10000 4381
+stock nan_plays 0
+off semi slide slid_um 84061 most_tilt_urad 327354
+off semi plate_1.0 slid_um 19374 decel_260_300 -15198
+off semi plate_0.05 slid_um 2943 decel_260_300 -44
+off semi impact ratio_per_10000 4381
+off featherstone slide slid_um 83859 most_tilt_urad 330993
+off featherstone plate_1.0 slid_um 19374 decel_260_300 -15210
+off featherstone plate_0.05 slid_um 2943 decel_260_300 -44
+off featherstone impact ratio_per_10000 4381
+off nan_plays 0
+on semi slide slid_um 191783 most_tilt_urad 7994
+on semi plate_1.0 slid_um 83230 decel_260_300 -2933
+on semi plate_0.05 slid_um 83230 decel_260_300 -2933
+on semi impact ratio_per_10000 2500
+on featherstone slide slid_um 191783 most_tilt_urad 7994
+on featherstone plate_1.0 slid_um 83230 decel_260_300 -2933
+on featherstone plate_0.05 slid_um 83230 decel_260_300 -2933
+on featherstone impact ratio_per_10000 2500
+on nan_plays 0

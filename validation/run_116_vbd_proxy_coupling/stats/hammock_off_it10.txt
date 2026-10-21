@@ -1,0 +1,1 @@
+STATS cloth coupled_dt 0.004 secs 0.6 cloth_mass 0.0407143 box_mass 0.2 iterations 10 feedback 1 steps 150 engine newton 1.7.0 extra scene=hammock box_hx=0.05

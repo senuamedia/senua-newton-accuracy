@@ -1,0 +1,1 @@
+STATS joint dt 5e-05 mass 0.8 radius 0.04 arm 0.3 gravity 0 steps 6000 engine newton 1.7.0 solver featherstone extra drivek=40 drived=4 target=0.7

@@ -1,0 +1,10 @@
+RULE R1_safe_when_off eq 9 9 : HELD
+RULE R2_full_relaxation_diverges all_ge 7944762870 70348188822975 69109664271 584887151649 1107964310851 : HELD
+RULE R3_falls_with_the_step falls 24779 11852 4178 1408 717 : HELD
+RULE R4_converged within 3615 4178 10 : FAILED
+RULE R5_half_of_released_0.0004 le 4178 4948 : HELD
+RULE R5_half_of_released_0.0002 le 1408 3569 : HELD
+RULE R5_half_of_released_0.0001 le 717 2532 : HELD
+RULE R6_one_joint_unchanged eq 2 2 : HELD
+RULE R7_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 9, held: 8

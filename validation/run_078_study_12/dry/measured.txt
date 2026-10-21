@@ -1,0 +1,24 @@
+s1_semi_stock_0.002_n1 stops -1 FINAL dt_ns 2000000 angle_urad -4466219 speed_urads 75391
+s1_semi_stock_0.002_n50 stops -1 FINAL dt_ns 2000000 angle_urad -4274907 speed_urads 3741566
+s2_semi_stock_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 201382 speed_urads 54188 dof2 FINAL dt_ns 1000000 angle_urad 401247 speed_urads 48825
+s1_semirep_stock_0.002_n1 stops -1 FINAL dt_ns 2000000 angle_urad -4466219 speed_urads 75398
+s1_semirep_stock_0.002_n50 stops -1 FINAL dt_ns 2000000 angle_urad -4274594 speed_urads 3751122
+s2_semirep_stock_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 201383 speed_urads 54258 dof2 FINAL dt_ns 1000000 angle_urad 401248 speed_urads 48887
+s1_semi_joff_0.002_n1 stops -1 FINAL dt_ns 2000000 angle_urad -4466219 speed_urads 75391
+s1_semi_joff_0.002_n50 stops -1 FINAL dt_ns 2000000 angle_urad -4274907 speed_urads 3741566
+s2_semi_joff_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 201382 speed_urads 54188 dof2 FINAL dt_ns 1000000 angle_urad 401247 speed_urads 48825
+s1_semirep_joff_0.002_n1 stops -1 FINAL dt_ns 2000000 angle_urad -4466219 speed_urads 75398
+s1_semirep_joff_0.002_n50 stops -1 FINAL dt_ns 2000000 angle_urad -4274594 speed_urads 3751122
+s2_semirep_joff_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 201383 speed_urads 54258 dof2 FINAL dt_ns 1000000 angle_urad 401248 speed_urads 48887
+s1_semi_angle_0.002_n1 stops -1 FINAL dt_ns 2000000 angle_urad -4466370 speed_urads 0
+s1_semi_angle_0.002_n50 stops -1 FINAL dt_ns 2000000 angle_urad -4466371 speed_urads 0
+s2_semi_angle_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 0
+s1_semirep_angle_0.002_n1 stops -1 FINAL dt_ns 2000000 angle_urad -4466370 speed_urads 0
+s1_semirep_angle_0.002_n50 stops -1 FINAL dt_ns 2000000 angle_urad -4466371 speed_urads 0
+s2_semirep_angle_0.001 stops -1 FINAL dt_ns 1000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 0
+s3_light_stock_0.001 stops 64 the file is missing or not whole back_urad none
+s4_serial_stock_0.001 stops 74 last_line angle1_urad 76434016000000 speed1_urads 76343894016000000
+s3_light_foff_0.001 stops 64 the file is missing or not whole back_urad none
+s4_serial_foff_0.001 stops 74 last_line angle1_urad 76434016000000 speed1_urads 76343894016000000
+s3_light_three_0.001 stops -1 FINAL dt_ns 1000000 angle_urad -600002 speed_urads 26 back_urad -526971
+s4_serial_three_0.001 stops -1 last_line angle1_urad -600001 speed1_urads -11

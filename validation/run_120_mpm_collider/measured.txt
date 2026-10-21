@@ -1,0 +1,11 @@
+slope_m0 stops -1 STOP dt_ns 5208333 first_stopped_at_step -1 largest_speed_last_third_ums 1131639 slid_um 542717 came_back_um 0
+slope_m0.0125 stops -1 STOP dt_ns 5208333 first_stopped_at_step -1 largest_speed_last_third_ums 585110 slid_um 286917 came_back_um 0
+slope_m0.025 stops -1 STOP dt_ns 5208333 first_stopped_at_step 90 largest_speed_last_third_ums 172 slid_um 21399 came_back_um 9
+slope_m0.05 stops -1 STOP dt_ns 5208333 first_stopped_at_step 37 largest_speed_last_third_ums 7 slid_um 5895 came_back_um 44
+slope_m0_sub32 stops -1 STOP dt_ns 1302083 first_stopped_at_step -1 largest_speed_last_third_ums 954836 slid_um 510196 came_back_um 0
+slope_m0.05_sub32 stops -1 STOP dt_ns 1302083 first_stopped_at_step -1 largest_speed_last_third_ums 252390 slid_um 160809 came_back_um 0
+cup_m0 stops -1 FINAL dt_ns 5208333 angle_urad 578 speed_urads 0
+cup_m0.0025 stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_m0.003 stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_m0.005 stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0
+cup_m0.01 stops -1 FINAL dt_ns 5208333 angle_urad 0 speed_urads 0

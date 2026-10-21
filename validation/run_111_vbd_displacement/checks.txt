@@ -1,0 +1,7 @@
+RULE C0_safe_when_off eq 17 17 : HELD
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C1_spin_still all_in -3 3 0 0 0 0 0 0 0 0 : HELD
+RULE C2_chain_no_worse_as_the_step_shrinks all_ge 0 28866 8324 : HELD
+RULE C3_hold_carried_still all_in -10 10 0 0 : HELD
+RULE C3_slide_kept all_within 138121 100 138123 : HELD
+checks: 6, held: 6

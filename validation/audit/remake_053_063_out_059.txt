@@ -1,0 +1,26 @@
+RULE C0_rig_unchanged eq 2 2 : HELD
+RULE xpbd_mix_as_0.2 all_within 254848 100 92519 : FAILED
+RULE xpbd_mix_as_0.55 all_within 92519 100 92519 : HELD
+RULE xpbd_mix_as_0.9 all_within 56454 100 92519 : FAILED
+RULE xpbd_mixreg_as_0.2 all_within 254848 100 92519 : FAILED
+RULE xpbd_mixreg_as_0.55 all_within 92519 100 92519 : HELD
+RULE xpbd_mixreg_as_0.9 all_within 56454 100 92519 : FAILED
+RULE xpbd_mixcube_as_0.2 all_within 254848 100 92519 : FAILED
+RULE xpbd_mixcube_as_0.55 all_within 92519 100 92519 : HELD
+RULE xpbd_mixcube_as_0.9 all_within 56454 100 92519 : FAILED
+RULE xpbd_mixground_as_0.2 all_within 254848 100 92519 : FAILED
+RULE xpbd_mixground_as_0.55 all_within 92519 100 92519 : HELD
+RULE xpbd_mixground_as_0.9 all_within 56454 100 92519 : FAILED
+RULE mujoco_mix_as_0.2 all_within 254964 100 56866 : FAILED
+RULE mujoco_mix_as_0.55 all_within 92756 100 56866 : FAILED
+RULE mujoco_mix_as_0.9 all_within 56866 100 56866 : HELD
+RULE mujoco_mixreg_as_0.2 all_within 254964 100 56866 : FAILED
+RULE mujoco_mixreg_as_0.55 all_within 92756 100 56866 : FAILED
+RULE mujoco_mixreg_as_0.9 all_within 56866 100 56866 : HELD
+RULE mujoco_mixcube_as_0.2 all_within 254964 100 254964 : HELD
+RULE mujoco_mixcube_as_0.55 all_within 92756 100 254964 : FAILED
+RULE mujoco_mixcube_as_0.9 all_within 56866 100 254964 : FAILED
+RULE mujoco_mixground_as_0.2 all_within 254964 100 56866 : FAILED
+RULE mujoco_mixground_as_0.55 all_within 92756 100 56866 : FAILED
+RULE mujoco_mixground_as_0.9 all_within 56866 100 56866 : HELD
+checks: 25, held: 9

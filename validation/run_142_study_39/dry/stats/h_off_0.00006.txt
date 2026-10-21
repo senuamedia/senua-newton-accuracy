@@ -1,0 +1,1 @@
+STATS contact dt 6e-05 h0 0 vx0 0 mu 0.5 mass 1.25 radius 0.045 steps 333 most_tilt_urad 0 engine newton 1.7.0 solver vbd extra opt.rigid_compliant_alm=False opt.rigid_avbd_joint_alpha=0.0 opt.rigid_contact_history=True matching=sticky

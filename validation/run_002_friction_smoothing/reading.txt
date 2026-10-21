@@ -1,0 +1,28 @@
+semi smoothing 1.0 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 981 largest_speed_last_third_ums 0 slid_um 43330 came_back_um 11860 | mean_acceleration_mm_s2 -9496
+semi smoothing 1.0 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 3929 largest_speed_last_third_ums 0 slid_um 42974 came_back_um 11796 | mean_acceleration_mm_s2 -9608
+semi smoothing 1.0 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+semi smoothing 0.1 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 1507 largest_speed_last_third_ums 7 slid_um 37286 came_back_um 33369 | mean_acceleration_mm_s2 -5740
+semi smoothing 0.1 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 6058 largest_speed_last_third_ums 8 slid_um 37053 came_back_um 33218 | mean_acceleration_mm_s2 -5639
+semi smoothing 0.1 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+semi smoothing 0.01 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 1769 largest_speed_last_third_ums 53 slid_um 39314 came_back_um 38233 | mean_acceleration_mm_s2 -3948
+semi smoothing 0.01 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 7171 largest_speed_last_third_ums 66 slid_um 39216 came_back_um 38235 | mean_acceleration_mm_s2 -3922
+semi smoothing 0.01 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+semi smoothing 0.001 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 1830 largest_speed_last_third_ums 82 slid_um 39807 came_back_um 39122 | mean_acceleration_mm_s2 -3815
+semi smoothing 0.001 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 7396 largest_speed_last_third_ums 102 slid_um 39672 came_back_um 39028 | mean_acceleration_mm_s2 -3814
+semi smoothing 0.001 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+featherstone smoothing 1.0 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 982 largest_speed_last_third_ums 0 slid_um 43339 came_back_um 11871 | mean_acceleration_mm_s2 -9496
+featherstone smoothing 1.0 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 3930 largest_speed_last_third_ums 0 slid_um 42982 came_back_um 11804 | mean_acceleration_mm_s2 -9608
+featherstone smoothing 1.0 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+featherstone smoothing 0.1 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 1512 largest_speed_last_third_ums 8 slid_um 37370 came_back_um 33452 | mean_acceleration_mm_s2 -5734
+featherstone smoothing 0.1 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 6074 largest_speed_last_third_ums 8 slid_um 37124 came_back_um 33289 | mean_acceleration_mm_s2 -5635
+featherstone smoothing 0.1 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+featherstone smoothing 0.01 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 1779 largest_speed_last_third_ums 53 slid_um 39450 came_back_um 38369 | mean_acceleration_mm_s2 -3942
+featherstone smoothing 0.01 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 7207 largest_speed_last_third_ums 71 slid_um 39334 came_back_um 38353 | mean_acceleration_mm_s2 -3918
+featherstone smoothing 0.01 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+featherstone smoothing 0.001 slide 0.000125 | STOP dt_ns 125000 first_stopped_at_step 1842 largest_speed_last_third_ums 86 slid_um 39956 came_back_um 39271 | mean_acceleration_mm_s2 -3810
+featherstone smoothing 0.001 slide 0.00003125 | STOP dt_ns 31250 first_stopped_at_step 7438 largest_speed_last_third_ums 110 slid_um 39801 came_back_um 39158 | mean_acceleration_mm_s2 -3809
+featherstone smoothing 0.001 hold 0.00003125 | CREEP dt_ns 31250 steps 32000 mean_speed_ums 735 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+CHECK semi slide 0.000125 with friction_smoothing=1.0 given, byte-identical to run 001's: yes
+CHECK semi slide 0.00003125 with friction_smoothing=1.0 given, byte-identical to run 001's: yes
+CHECK featherstone slide 0.000125 with friction_smoothing=1.0 given, byte-identical to run 001's: yes
+CHECK featherstone slide 0.00003125 with friction_smoothing=1.0 given, byte-identical to run 001's: yes

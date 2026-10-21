@@ -1,0 +1,3 @@
+STATS joint dt 1e-05 mass 0.05 radius 0.01 arm 0.02 gravity 1 steps 15000 engine newton 1.7.0 solver mujoco extra lo=-0.5 hi=0.5
+solver iterations limit reached - please increase iterations beyond 100
+To disable the print warning: m.opt.warn_overflow &= ~mjw.OverflowType.ITERATIONS (or = 0 for all)

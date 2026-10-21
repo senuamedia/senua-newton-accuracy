@@ -1,0 +1,46 @@
+CONFIG rig settings: solver=vbd
+free 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 1233697 largest_um 24192 summed_speed_difference_mm_s 24
+free 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 1266628 largest_um 31376 summed_speed_difference_mm_s 12
+free 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 308225 largest_um 6104 summed_speed_difference_mm_s 6
+free 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 154113 largest_um 3051 summed_speed_difference_mm_s 3
+free 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 77053 largest_um 1526 summed_speed_difference_mm_s 1
+free 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 165287072 largest_um 4884339 summed_speed_difference_mm_s 1
+slide 1/1 | CREEP dt_ns 10000000 steps 25 mean_speed_ums 3640978 friction_over_normal_per_10000 3826 friction_limit_per_10000 4000
+slide 1/16 | CREEP dt_ns 625000 steps 400 mean_speed_ums 3838199 friction_over_normal_per_10000 3896 friction_limit_per_10000 4000
+rest 1/1 | REST dt_ns 10000000 mean_ground_force_mN 19600 weight_mN 19600
+rest 1/16 | REST dt_ns 625000 mean_ground_force_mN 19600 weight_mN 19600
+drop 1/1 | BOUNCE dt_ns 10000000 the cube was still moving down at the end
+drop 1/2 | BOUNCE dt_ns 5000000 the cube was still moving down at the end
+drop 1/4 | BOUNCE dt_ns 2500000 the cube was still moving down at the end
+drop 1/8 | BOUNCE dt_ns 1250000 the cube started on the ground
+drop 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1243854 steps_to_turn 38 rebound_nm -3565040 drop_nm 80000000 rebound_per_10000 0
+drop 1/32 | BOUNCE dt_ns 312500 the cube started on the ground
+drop 1/64 | BOUNCE dt_ns 156250 the cube started on the ground
+oblique 1/1 | IMPACT dt_ns 10000000 the cube was still moving down at the end
+oblique 1/2 | IMPACT dt_ns 5000000 the cube was still moving down at the end
+oblique 1/4 | IMPACT dt_ns 2500000 the cube was still moving down at the end
+oblique 1/8 | IMPACT dt_ns 1250000 the cube started on the ground
+oblique 1/16 | IMPACT dt_ns 625000 steps 35 horizontal_lost_ums 142002 vertical_given_ums 1458306 ratio_per_10000 973 friction_per_10000 4000 still_sliding_ums 3857994
+oblique 1/32 | IMPACT dt_ns 312500 the cube started on the ground
+oblique 1/64 | IMPACT dt_ns 156250 the cube started on the ground
+settle 1/1 | SETTLE dt_ns 10000000 steps 10 horizontal_lost_ums 532934 vertical_given_ums 2150691 ratio_per_10000 2477 friction_per_10000 4000 still_sliding_ums 3467065
+settle 1/2 | SETTLE dt_ns 5000000 steps 20 horizontal_lost_ums 651240 vertical_given_ums 2201733 ratio_per_10000 2957 friction_per_10000 4000 still_sliding_ums 3348768
+settle 1/4 | SETTLE dt_ns 2500000 steps 40 horizontal_lost_ums 487638 vertical_given_ums 2200005 ratio_per_10000 2216 friction_per_10000 4000 still_sliding_ums 3512382
+settle 1/8 | SETTLE dt_ns 1250000 the cube started on the ground
+settle 1/16 | SETTLE dt_ns 625000 steps 160 horizontal_lost_ums 435162 vertical_given_ums 2220164 ratio_per_10000 1959 friction_per_10000 4000 still_sliding_ums 3564834
+settle 1/32 | SETTLE dt_ns 312500 the cube started on the ground
+settle 1/64 | SETTLE dt_ns 156250 the cube started on the ground
+hold 1/1 | CREEP dt_ns 10000000 steps 100 mean_speed_ums 1574 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold 1/16 | CREEP dt_ns 625000 steps 1600 mean_speed_ums 93355 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+slip 1/1 | SLIP dt_ns 10000000 mean_speed_ums 1117200 predicted_ums 980000 push_mN 11760 friction_limit_mN 9800
+slip 1/16 | SLIP dt_ns 625000 mean_speed_ums 1214400 predicted_ums 980000 push_mN 11760 friction_limit_mN 9800
+chain 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 143675 largest_um 2940 summed_speed_difference_mm_s 3912
+chain 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 62808 largest_um 1468 summed_speed_difference_mm_s 5785
+chain 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 36406 largest_um 1300 summed_speed_difference_mm_s 547
+chain 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 12320 largest_um 1006 summed_speed_difference_mm_s 1842
+chain 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 15897 largest_um 831 summed_speed_difference_mm_s 3387
+chain 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 9181 largest_um 422 summed_speed_difference_mm_s 8749
+lift 1/1 | PULL dt_ns 10000000 lowest_ground_force_mN 0 steps_pulling 0
+lift 1/16 | PULL dt_ns 625000 lowest_ground_force_mN -23 steps_pulling 68
+rebound 1/16 | PULL dt_ns 625000 lowest_ground_force_mN -8 steps_pulling 179
+SUITE needs 48 numbers, got 36

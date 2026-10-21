@@ -1,0 +1,3 @@
+stock_res drop 0.005 rebound_per_10000 0
+stock_res oblique 0.005 impact 1326 settle 3359 most_tilt_urad 30611
+stock_res nan_plays 0

@@ -1,0 +1,1 @@
+STATS contact dt 0.006 h0 0.07 vx0 0 mu 0 mass 3 radius 0.06 steps 83 most_tilt_urad 0 engine newton 1.6.1 solver featherstone extra none

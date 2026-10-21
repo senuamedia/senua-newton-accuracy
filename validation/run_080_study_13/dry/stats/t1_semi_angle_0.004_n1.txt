@@ -1,0 +1,11 @@
+Warp 1.18.0 initialized:
+   CUDA Toolkit 13.4, CUDA driver not available (NVRTC compilation available)
+   Devices:
+     "cpu"      : "x86_64"
+   Kernel cache:
+     ~/.cache/warp/1.18.0
+Module validate_and_correct_inertia_kernel_1ff2ac62 6ad45b8 load on device 'cpu' took 2.20 ms  (cached)
+Module newton._src.sim.articulation 2e73608 load on device 'cpu' took 0.58 ms  (cached)
+Module newton._src.solvers.semi_implicit.kernels_body_joint 5b3586c load on device 'cpu' took 0.38 ms  (cached)
+Module newton._src.solvers.solver 5e8bff5 load on device 'cpu' took 0.32 ms  (cached)
+STATS rest dt 0.004 joint revolute rest -7.6 ke 4 steps 1 engine newton 1.7.0 solver semi extra none

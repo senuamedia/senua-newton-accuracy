@@ -1,0 +1,397 @@
+diff -ruN a/newton/_src/solvers/xpbd/restitution_friction_kernels.py b/newton/_src/solvers/xpbd/restitution_friction_kernels.py
+--- a/newton/_src/solvers/xpbd/restitution_friction_kernels.py	1970-01-01 10:00:00
++++ b/newton/_src/solvers/xpbd/restitution_friction_kernels.py	2026-10-15 15:26:33
+@@ -0,0 +1,283 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: XPBD's restitution pass with Coulomb's friction on the normal impulse it applies.
++#
++# XPBD's position pass bounds each contact's friction by mu times the normal correction it makes in the same pass
++# (kernels.solve_body_contact_positions: "limit friction based on incremental normal force"). With
++# enable_restitution, a velocity pass then sets each impacting contact's separating speed to its restitution target
++# (restitution_kernels.solve_manifold_restitution) with impulses along the contact normal only. At an impact the
++# position pass makes only part of the normal change within the step (its relaxation, its iterations and the
++# per-contact weighting), and the restitution pass makes the rest at once, with no friction beside it: a cube landing
++# with sideways speed gets 4% to 43% of Coulomb's friction impulse (measured, run 015).
++#
++# Here the restitution pass is solved with Coulomb's law at each contact on the normal impulse the pass itself has
++# applied there: a tangential impulse opposing the contact's slip, no larger than mu times that normal impulse (an
++# isotropic cone) and no larger than what stops the slip. This is the velocity-level friction of Mueller et al.
++# (2020), Detailed rigid body simulation with extended position based dynamics, section 3.6, bounded by the normal
++# impulse of the same pass, solved with the same accumulated, clamped Gauss-Seidel sweeps as the stock pass's normal
++# rows. Where the pass pulls a separation back (a negative normal impulse), no friction is added: the position pass's
++# own friction stands. Every other line is the stock pass's. Launched in its place only when the solver was made with
++# NEWTON_XPBD_RESTITUTION_FRICTION=1 (read once, when the solver is made); otherwise never imported.
++
++import warp as wp
++
++from ...sim.contacts import contact_surface_point
++from .restitution_kernels import _restitution_manifold_max, _restitution_vecNf, _restitution_vecNi, _world_inv_inertia
++
++
++@wp.kernel
++def build_restitution_friction_records(
++    body_q_pre_solve: wp.array[wp.transform],
++    body_com: wp.array[wp.vec3],
++    shape_body: wp.array[int],
++    contact_count: wp.array[int],
++    restitution_contact_active: wp.array[wp.int32],
++    contact_shape0: wp.array[int],
++    contact_shape1: wp.array[int],
++    shape_material_mu: wp.array[float],
++    contact_point0: wp.array[wp.vec3],
++    contact_point1: wp.array[wp.vec3],
++    contact_offset0: wp.array[wp.vec3],
++    contact_offset1: wp.array[wp.vec3],
++    # outputs
++    contact_r_lo_mu: wp.array[wp.vec4],
++    contact_r_hi: wp.array[wp.vec3],
++):
++    """Per-contact friction records for the restitution pass, from the pre-solve state.
++
++    ``contact_r_lo_mu``: the contact point's offset from the lower-indexed body's centre of mass (world) and the
++    contact's friction coefficient, combined as the position pass combines it (the mean over the shapes present).
++    ``contact_r_hi``: the offset from the higher-indexed body's centre of mass. The lower and higher bodies and the
++    offsets are those of build_restitution_manifolds.
++    """
++    tid = wp.tid()
++
++    if tid >= contact_count[0]:
++        return
++    if restitution_contact_active[tid] == 0:
++        return
++
++    shape_a = contact_shape0[tid]
++    shape_b = contact_shape1[tid]
++    if shape_a == shape_b:
++        return
++    body_a = -1
++    body_b = -1
++    mat_nonzero = 0
++    mu = 0.0
++    if shape_a >= 0:
++        mat_nonzero += 1
++        mu += shape_material_mu[shape_a]
++        body_a = shape_body[shape_a]
++    if shape_b >= 0:
++        mat_nonzero += 1
++        mu += shape_material_mu[shape_b]
++        body_b = shape_body[shape_b]
++    if mat_nonzero > 0:
++        mu /= float(mat_nonzero)
++    if body_a == body_b:
++        return
++
++    lo = wp.min(body_a, body_b)
++    hi = wp.max(body_a, body_b)
++
++    X_lo = wp.transform_identity()
++    X_hi = wp.transform_identity()
++    com_lo = wp.vec3(0.0)
++    com_hi = wp.vec3(0.0)
++    if lo >= 0:
++        X_lo = body_q_pre_solve[lo]
++        com_lo = body_com[lo]
++    if hi >= 0:
++        X_hi = body_q_pre_solve[hi]
++        com_hi = body_com[hi]
++
++    p_lo = contact_point1[tid]
++    o_lo = contact_offset1[tid]
++    p_hi = contact_point0[tid]
++    o_hi = contact_offset0[tid]
++    if body_a == lo:
++        p_lo = contact_point0[tid]
++        o_lo = contact_offset0[tid]
++        p_hi = contact_point1[tid]
++        o_hi = contact_offset1[tid]
++
++    r_lo = contact_surface_point(X_lo, p_lo, o_lo) - wp.transform_point(X_lo, com_lo)
++    r_hi = contact_surface_point(X_hi, p_hi, o_hi) - wp.transform_point(X_hi, com_hi)
++    contact_r_lo_mu[tid] = wp.vec4(r_lo[0], r_lo[1], r_lo[2], mu)
++    contact_r_hi[tid] = r_hi
++
++
++@wp.kernel
++def solve_manifold_restitution_friction(
++    body_qd: wp.array[wp.spatial_vector],
++    body_q_pre_solve: wp.array[wp.transform],
++    body_m_inv: wp.array[float],
++    body_I_inv: wp.array[wp.mat33],
++    manifold_key: wp.array[wp.int64],
++    manifold_size: wp.array[wp.int32],
++    manifold_contact: wp.array[wp.int32],
++    body_count: int,
++    contact_n_K: wp.array[wp.vec4],
++    contact_axn_lo_target: wp.array[wp.vec4],
++    contact_axn_hi_sigma: wp.array[wp.vec4],
++    inner_iterations: int,
++    outer_iteration: int,
++    contact_r_lo_mu: wp.array[wp.vec4],
++    contact_r_hi: wp.array[wp.vec3],
++    # outputs
++    deltas: wp.array[wp.spatial_vector],
++    body_manifold_count: wp.array[float],
++):
++    """restitution_kernels.solve_manifold_restitution with a friction row after each contact's normal row.
++
++    The friction row keeps an accumulated tangential impulse per contact, clamped to the disk of radius
++    ``mu * max(normal impulse accumulated by this pass at the contact, 0)``, and drives the contact's tangential
++    relative velocity toward zero within that bound.
++    """
++    tid = wp.tid()
++
++    key = manifold_key[tid]
++    if key == wp.int64(0):
++        return
++
++    num_contacts = wp.min(manifold_size[tid], _restitution_manifold_max)
++
++    con = _restitution_vecNi()
++    for k in range(num_contacts):
++        con[k] = manifold_contact[tid * _restitution_manifold_max + k]
++    for i in range(1, num_contacts):
++        v = con[i]
++        j = i
++        while j > 0:
++            if con[j - 1] <= v:
++                break
++            con[j] = con[j - 1]
++            j -= 1
++        con[j] = v
++
++    lo = wp.int32(key / wp.int64(body_count + 1)) - 1
++    hi = wp.int32(key % wp.int64(body_count + 1)) - 1
++
++    m_inv_lo = 0.0
++    m_inv_hi = 0.0
++    I_inv_lo_world = wp.mat33(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
++    I_inv_hi_world = wp.mat33(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
++    v_lo0 = wp.vec3(0.0)
++    w_lo0 = wp.vec3(0.0)
++    v_hi0 = wp.vec3(0.0)
++    w_hi0 = wp.vec3(0.0)
++    if lo >= 0:
++        m_inv_lo = body_m_inv[lo]
++        I_inv_lo_world = _world_inv_inertia(wp.transform_get_rotation(body_q_pre_solve[lo]), body_I_inv[lo])
++        qd = body_qd[lo]
++        v_lo0 = wp.spatial_top(qd)
++        w_lo0 = wp.spatial_bottom(qd)
++    if hi >= 0:
++        m_inv_hi = body_m_inv[hi]
++        I_inv_hi_world = _world_inv_inertia(wp.transform_get_rotation(body_q_pre_solve[hi]), body_I_inv[hi])
++        qd = body_qd[hi]
++        v_hi0 = wp.spatial_top(qd)
++        w_hi0 = wp.spatial_bottom(qd)
++    v_lo = v_lo0
++    w_lo = w_lo0
++    v_hi = v_hi0
++    w_hi = w_hi0
++
++    lambda_min = _restitution_vecNf()
++    if outer_iteration == 0:
++        for k in range(num_contacts):
++            c = con[k]
++            d_nK = contact_n_K[c]
++            k_eff = d_nK[3]
++            if k_eff == 0.0:
++                continue
++            n = wp.vec3(d_nK[0], d_nK[1], d_nK[2])
++            d_lot = contact_axn_lo_target[c]
++            axn_lo = wp.vec3(d_lot[0], d_lot[1], d_lot[2])
++            d_his = contact_axn_hi_sigma[c]
++            axn_hi = wp.vec3(d_his[0], d_his[1], d_his[2])
++            sigma = wp.sign(d_his[3])
++            rel_vel_start = sigma * (wp.dot(n, v_lo) + wp.dot(axn_lo, w_lo) - wp.dot(n, v_hi) - wp.dot(axn_hi, w_hi))
++            lambda_min[k] = wp.min((d_lot[3] - rel_vel_start) / k_eff, 0.0)
++
++    lambda_acc = _restitution_vecNf()
++    # the accumulated friction impulse of each contact, applied to the lower body (the higher body takes its negative)
++    fr_x = _restitution_vecNf()
++    fr_y = _restitution_vecNf()
++    fr_z = _restitution_vecNf()
++    fired = wp.bool(False)
++    for _it in range(inner_iterations):
++        for k in range(num_contacts):
++            c = con[k]
++            d_nK = contact_n_K[c]
++            k_eff = d_nK[3]
++            if k_eff == 0.0:
++                continue
++            n = wp.vec3(d_nK[0], d_nK[1], d_nK[2])
++            d_lot = contact_axn_lo_target[c]
++            axn_lo = wp.vec3(d_lot[0], d_lot[1], d_lot[2])
++            target = d_lot[3]
++            d_his = contact_axn_hi_sigma[c]
++            axn_hi = wp.vec3(d_his[0], d_his[1], d_his[2])
++            sigma_threshold = d_his[3]
++            sigma = wp.sign(sigma_threshold)
++            impact_threshold = wp.abs(sigma_threshold) - 1.0
++
++            # the normal row, as the stock pass solves it
++            rel_vel_new = sigma * (wp.dot(n, v_lo) + wp.dot(axn_lo, w_lo) - wp.dot(n, v_hi) - wp.dot(axn_hi, w_hi))
++            if not (target == 0.0 and wp.abs(rel_vel_new) <= impact_threshold):
++                dv = (target - rel_vel_new) / k_eff
++                new_acc = wp.max(lambda_acc[k] + dv, lambda_min[k])
++                d_lambda = new_acc - lambda_acc[k]
++                lambda_acc[k] = new_acc
++                if d_lambda != 0.0:
++                    fired = True
++                    s = sigma * d_lambda
++                    v_lo += n * (m_inv_lo * s)
++                    w_lo += (I_inv_lo_world * axn_lo) * s
++                    v_hi -= n * (m_inv_hi * s)
++                    w_hi -= (I_inv_hi_world * axn_hi) * s
++
++            # the friction row: Coulomb's law on the normal impulse this pass has applied at the contact
++            d_r = contact_r_lo_mu[c]
++            r_lo = wp.vec3(d_r[0], d_r[1], d_r[2])
++            mu = d_r[3]
++            r_hi = contact_r_hi[c]
++            u = (v_lo + wp.cross(w_lo, r_lo)) - (v_hi + wp.cross(w_hi, r_hi))
++            u_t = u - wp.dot(n, u) * n
++            f_old = wp.vec3(fr_x[k], fr_y[k], fr_z[k])
++            f_new = f_old
++            slip = wp.length(u_t)
++            if slip > 0.0:
++                t = u_t / slip
++                rt_lo = wp.cross(r_lo, t)
++                rt_hi = wp.cross(r_hi, t)
++                k_t = m_inv_lo + m_inv_hi + wp.dot(rt_lo, I_inv_lo_world * rt_lo) + wp.dot(rt_hi, I_inv_hi_world * rt_hi)
++                if k_t > 0.0:
++                    f_new = f_old - u_t / k_t
++            bound = mu * wp.max(lambda_acc[k], 0.0)
++            f_len = wp.length(f_new)
++            if f_len > bound:
++                f_new = f_new * (bound / f_len)
++            df = f_new - f_old
++            if wp.length_sq(df) > 0.0:
++                fired = True
++                fr_x[k] = f_new[0]
++                fr_y[k] = f_new[1]
++                fr_z[k] = f_new[2]
++                v_lo += df * m_inv_lo
++                w_lo += I_inv_lo_world * wp.cross(r_lo, df)
++                v_hi -= df * m_inv_hi
++                w_hi -= I_inv_hi_world * wp.cross(r_hi, df)
++
++    if not fired:
++        return
++
++    if lo >= 0 and (m_inv_lo > 0.0 or wp.ddot(I_inv_lo_world, I_inv_lo_world) > 0.0):
++        wp.atomic_add(deltas, lo, wp.spatial_vector(v_lo - v_lo0, w_lo - w_lo0))
++        wp.atomic_add(body_manifold_count, lo, 1.0)
++    if hi >= 0 and (m_inv_hi > 0.0 or wp.ddot(I_inv_hi_world, I_inv_hi_world) > 0.0):
++        wp.atomic_add(deltas, hi, wp.spatial_vector(v_hi - v_hi0, w_hi - w_hi0))
++        wp.atomic_add(body_manifold_count, hi, 1.0)
+diff -ruN a/newton/_src/solvers/xpbd/solver_xpbd.py b/newton/_src/solvers/xpbd/solver_xpbd.py
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py	2026-10-15 15:25:19
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py	2026-10-15 15:27:18
+@@ -1,6 +1,7 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
+ import warnings
+ 
+ import warp as wp
+@@ -195,6 +196,8 @@
+         self.angular_damping = angular_damping
+ 
+         self.enable_restitution = enable_restitution
++        # Senua AI patch, in design: Coulomb's friction on the restitution pass's normal impulse, read once here
++        self._restitution_friction = os.environ.get("NEWTON_XPBD_RESTITUTION_FRICTION") == "1"
+         self._rigid_restitution_enabled = False
+         self._refresh_rigid_restitution_enabled()
+         self._compute_body_velocity_from_position_delta = False
+@@ -255,7 +258,13 @@
+             # Registration may advance the shared revision while this solver's
+             # core module options are stale, so force a complete reapplication.
+             self._applied_module_options_revision = -1
++        if self.enable_restitution and self._restitution_friction:  # Senua AI patch, in design
++            from . import restitution_friction_kernels  # noqa: PLC0415
+ 
++            if restitution_friction_kernels not in self._module_options:
++                self._set_module_options(self._restitution_module_options, module=restitution_friction_kernels)
++                self._applied_module_options_revision = -1
++
+     @override
+     def coupling_supports_inertial_property_refresh(self) -> bool:
+         """Return whether inertial properties can be refreshed during graph capture.
+@@ -438,6 +447,8 @@
+         restitution_contact_n_K = None
+         restitution_contact_axn_lo_target = None
+         restitution_contact_axn_hi_sigma = None
++        restitution_contact_r_lo_mu = None  # Senua AI patch, in design
++        restitution_contact_r_hi = None
+ 
+         contact_impulse = None
+         contact_impulse_iter = None
+@@ -470,6 +481,11 @@
+                 restitution_contact_axn_hi_sigma = wp.empty(
+                     contacts.rigid_contact_max, dtype=wp.vec4, device=model.device
+                 )
++                if self._restitution_friction:  # Senua AI patch, in design
++                    restitution_contact_r_lo_mu = wp.empty(
++                        contacts.rigid_contact_max, dtype=wp.vec4, device=model.device
++                    )
++                    restitution_contact_r_hi = wp.empty(contacts.rigid_contact_max, dtype=wp.vec3, device=model.device)
+ 
+             if contacts.force is not None:
+                 contact_impulse = wp.zeros(contacts.rigid_contact_max, dtype=wp.spatial_vector, device=model.device)
+@@ -1000,6 +1016,37 @@
+                         device=model.device,
+                     )
+ 
++                    restitution_kernel = solve_manifold_restitution
++                    restitution_friction_inputs = []
++                    if self._restitution_friction:  # Senua AI patch, in design
++                        from .restitution_friction_kernels import (  # noqa: PLC0415
++                            build_restitution_friction_records,
++                            solve_manifold_restitution_friction,
++                        )
++
++                        wp.launch(
++                            kernel=build_restitution_friction_records,
++                            dim=contacts.rigid_contact_max,
++                            inputs=[
++                                body_q_pre_solve,
++                                model.body_com,
++                                model.shape_body,
++                                contacts.rigid_contact_count,
++                                restitution_contact_active,
++                                contacts.rigid_contact_shape0,
++                                contacts.rigid_contact_shape1,
++                                model.shape_material_mu,
++                                contacts.rigid_contact_point0,
++                                contacts.rigid_contact_point1,
++                                contacts.rigid_contact_offset0,
++                                contacts.rigid_contact_offset1,
++                            ],
++                            outputs=[restitution_contact_r_lo_mu, restitution_contact_r_hi],
++                            device=model.device,
++                        )
++                        restitution_kernel = solve_manifold_restitution_friction
++                        restitution_friction_inputs = [restitution_contact_r_lo_mu, restitution_contact_r_hi]
++
+                     body_qd_with_restitution = body_qd_for_restitution
+                     if not requires_grad:
+                         # apply_restitution_deltas consumes and clears the
+@@ -1012,7 +1059,7 @@
+                             restitution_body_manifold_count = wp.zeros_like(restitution_body_manifold_count)
+ 
+                         wp.launch(
+-                            kernel=solve_manifold_restitution,
++                            kernel=restitution_kernel,
+                             dim=contacts.rigid_contact_max,
+                             inputs=[
+                                 body_qd_with_restitution,
+@@ -1028,6 +1075,7 @@
+                                 restitution_contact_axn_hi_sigma,
+                                 self._restitution_manifold_inner_iterations,
+                                 outer_iteration,
++                                *restitution_friction_inputs,
+                             ],
+                             outputs=[body_deltas, restitution_body_manifold_count],
+                             device=model.device,

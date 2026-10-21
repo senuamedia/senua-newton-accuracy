@@ -1,0 +1,12 @@
+vbd, lowest face 0.01 m above the ground (centre 0.06 m) | 0.000125: 1497 mm/s2 | 0.00003125: 646 mm/s2
+vbd, lowest face 0.1 m above the ground (centre 0.15 m) | 0.000125: 9536 mm/s2 | 0.00003125: 15258 mm/s2
+vbd, lowest face 1 m above the ground (centre 1.05 m) | 0.000125: 7629 mm/s2 | 0.00003125: 0 mm/s2
+vbd, lowest face 10 m above the ground (centre 10.05 m) | 0.000125: 0 mm/s2 | 0.00003125: 0 mm/s2
+vbd_alm, lowest face 0.01 m above the ground (centre 0.06 m) | 0.000125: 1414 mm/s2 | 0.00003125: 400 mm/s2
+vbd_alm, lowest face 0.1 m above the ground (centre 0.15 m) | 0.000125: 9536 mm/s2 | 0.00003125: 15258 mm/s2
+vbd_alm, lowest face 1 m above the ground (centre 1.05 m) | 0.000125: 7629 mm/s2 | 0.00003125: 0 mm/s2
+vbd_alm, lowest face 10 m above the ground (centre 10.05 m) | 0.000125: 0 mm/s2 | 0.00003125: 0 mm/s2
+xpbd, lowest face 0.01 m above the ground (centre 0.06 m) | 0.000125: -2174 mm/s2 | 0.00003125: -1991 mm/s2
+xpbd, lowest face 0.1 m above the ground (centre 0.15 m) | 0.000125: 9799 mm/s2 | 0.00003125: 9799 mm/s2
+xpbd, lowest face 1 m above the ground (centre 1.05 m) | 0.000125: 9799 mm/s2 | 0.00003125: 9799 mm/s2
+xpbd, lowest face 10 m above the ground (centre 10.05 m) | 0.000125: 9799 mm/s2 | 0.00003125: 9799 mm/s2

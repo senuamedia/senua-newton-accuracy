@@ -1,0 +1,17 @@
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/senua-newton-accuracy/tools/nwt_chain.py:68: RuntimeWarning: overflow encountered in scalar multiply
+  out += [whole(c[0] * 1e6), whole(c[1] * 1e6), whole(bqd[b][0] * 1e6), whole(bqd[b][1] * 1e6),
+Traceback (most recent call last):
+  File "~/work/senua-newton-accuracy/tools/nwt_chain.py", line 183, in <module>
+    sys.exit(main(sys.argv))
+             ^^^^^^^^^^^^^^
+  File "~/work/senua-newton-accuracy/tools/nwt_chain.py", line 172, in main
+    f.write(" ".join(str(x) for x in row(i, jq, jqd, bq, bqd, com, links)) + "\n")
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/work/senua-newton-accuracy/tools/nwt_chain.py", line 68, in row
+    out += [whole(c[0] * 1e6), whole(c[1] * 1e6), whole(bqd[b][0] * 1e6), whole(bqd[b][1] * 1e6),
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "~/work/senua-newton-accuracy/tools/nwt_chain.py", line 53, in whole
+    return int(math.floor(x + 0.5)) if x >= 0.0 else -int(math.floor(-x + 0.5))
+                                                          ^^^^^^^^^^^^^^^^^^^^
+OverflowError: cannot convert float infinity to integer

@@ -1,0 +1,17 @@
+cube_it2 0.002 s | CREEP dt_ns 2000000 steps 500 mean_speed_ums 10862 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it4 0.002 s | CREEP dt_ns 2000000 steps 500 mean_speed_ums 4951 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it8 0.002 s | CREEP dt_ns 2000000 steps 500 mean_speed_ums 2507 friction_over_normal_per_10000 2999 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it16 0.002 s | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1581 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it32 0.002 s | CREEP dt_ns 2000000 steps 500 mean_speed_ums 1531 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000 | most_tilt_urad 0
+plate_it2 0.002 s | CREEP dt_ns 2000000 steps 500 mean_speed_ums 5176 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it2_relax1 0.002 s | CREEP dt_ns 2000000 steps 500 mean_speed_ums 8174 friction_over_normal_per_10000 2999 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it2 0.0005 s | CREEP dt_ns 500000 steps 2000 mean_speed_ums 2715 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it4 0.0005 s | CREEP dt_ns 500000 steps 2000 mean_speed_ums 1237 friction_over_normal_per_10000 2999 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it8 0.0005 s | CREEP dt_ns 500000 steps 2000 mean_speed_ums 626 friction_over_normal_per_10000 2999 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it16 0.0005 s | CREEP dt_ns 500000 steps 2000 mean_speed_ums 393 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it32 0.0005 s | CREEP dt_ns 500000 steps 2000 mean_speed_ums 380 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000 | most_tilt_urad 0
+plate_it2 0.0005 s | CREEP dt_ns 500000 steps 2000 mean_speed_ums 1296 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000 | most_tilt_urad 0
+cube_it2_relax1 0.0005 s | CREEP dt_ns 500000 steps 2000 mean_speed_ums 2043 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000 | most_tilt_urad 0
+CHECK cube at 2 iterations, 0.002 s, byte-identical to run 001's: yes
+CHECK cube at 2 iterations, 0.0005 s, byte-identical to run 001's: yes
+plays that stopped being a number: 0

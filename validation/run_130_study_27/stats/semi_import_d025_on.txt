@@ -1,0 +1,1 @@
+STATS contact dt 0.00025 h0 0 vx0 0 mu 0.3 mass 0.6 radius 0.04 steps 4800 most_tilt_urad 5940 engine newton 1.7.0 solver semi shape_mu 0.3 shape_mu_static 0.7 extra mus=0.7 usd=1

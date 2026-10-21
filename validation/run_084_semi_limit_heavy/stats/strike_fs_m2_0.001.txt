@@ -1,0 +1,1 @@
+STATS joint dt 0.001 mass 2 radius 0.15 arm 0.4 gravity 1 steps 2000 engine newton 1.7.0 solver featherstone extra lo=-1 hi=1

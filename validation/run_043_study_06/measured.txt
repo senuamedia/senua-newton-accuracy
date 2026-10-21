@@ -1,0 +1,21 @@
+stock struck 0.3 0.0008 deepest_urad -849614 turned_back_urad -219703
+stock struck 0.3 0.00016 deepest_urad -849740 turned_back_urad -219205
+stock struck 0.3 0.01 deepest_urad -848765 turned_back_urad -305038
+stock struck 3 0.0008 deepest_urad -967514 turned_back_urad -79375
+stock struck 3 0.00016 deepest_urad -967573 turned_back_urad -79011
+stock struck 3 0.01 deepest_urad -966004 turned_back_urad -86668
+stock bad_plays 0
+off struck 0.3 0.0008 deepest_urad -849614 turned_back_urad -219703
+off struck 0.3 0.00016 deepest_urad -849740 turned_back_urad -219205
+off struck 0.3 0.01 deepest_urad -848765 turned_back_urad -305038
+off struck 3 0.0008 deepest_urad -967514 turned_back_urad -79375
+off struck 3 0.00016 deepest_urad -967573 turned_back_urad -79011
+off struck 3 0.01 deepest_urad -966004 turned_back_urad -86668
+off bad_plays 0
+on struck 0.3 0.0008 deepest_urad -807663 turned_back_urad -595403
+on struck 0.3 0.00016 deepest_urad -808287 turned_back_urad -584862
+on struck 0.3 0.01 deepest_urad  turned_back_urad 
+on struck 3 0.0008 deepest_urad -833737 turned_back_urad -288636
+on struck 3 0.00016 deepest_urad -833911 turned_back_urad -287446
+on struck 3 0.01 deepest_urad -818931 turned_back_urad -289516
+on bad_plays 1

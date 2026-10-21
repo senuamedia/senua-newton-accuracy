@@ -1,0 +1,1 @@
+STATS joint dt 0.001 mass 0.9 radius 0.035 arm 0.35 gravity 1 steps 20 engine newton 1.7.0 solver xpbd extra none

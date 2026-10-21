@@ -1,0 +1,17 @@
+RULE R1_safe_when_off eq 60 60 : HELD
+RULE R2_released_slides all_ge 100000 1176738 1175885 48367 -6397 427638 -6404 588606 587964 45891 -5409 51522 -5613 : FAILED
+RULE R2_released_drops_the_import eq 12 12 : HELD
+RULE R3_held all_in -10 10 3 12 0 0 0 0 : FAILED
+RULE R4_kinetic_on_the_dynamic all_within 2360000 50 2359602 2353231 2359986 2359856 2359985 2359996 : HELD
+RULE R5_breaks_away all_within 4410000 20 4410993 4403044 4401482 4400182 4401469 4400292 : HELD
+RULE R6_xpbd_d1_slides_on_the_dynamic within 108532 108429 50 : HELD
+RULE R6_xpbd_d025_slides_on_the_dynamic within 108719 108711 50 : HELD
+RULE R6_semi_d1_slides_on_the_dynamic within 108598 108620 50 : HELD
+RULE R6_semi_d025_slides_on_the_dynamic within 108919 108919 50 : HELD
+RULE R6_featherstone_d1_slides_on_the_dynamic within 108599 108621 50 : HELD
+RULE R6_featherstone_d025_slides_on_the_dynamic within 108919 108920 50 : HELD
+RULE R7_imported eq 24 24 : HELD
+RULE R7_imported_held all_in -10 10 3 12 0 0 0 0 : FAILED
+RULE R8_the_others_say_so eq 204 204 : HELD
+RULE R9_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 16, held: 13

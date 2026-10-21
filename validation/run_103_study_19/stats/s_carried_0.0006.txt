@@ -1,0 +1,1 @@
+STATS contact dt 0.0006 h0 0 vx0 0.7 mu 0.55 mass 1.2 radius 0.05 steps 833 most_tilt_urad 6940 engine newton 1.7.0 solver vbd extra opt.rigid_contact_history=True matching=sticky

@@ -1,0 +1,16 @@
+strike_stiff_A4_0.0001 stops -1 back_urad -234683
+strike_stiff_A4_0.000025 stops -1 back_urad -234975
+strike_stiff_A15_0.0001 stops -1 back_urad -388254
+strike_stiff_A15_0.000025 stops -1 back_urad -387361
+strike_default_A4_0.0001 stops -1 back_urad -1016313
+strike_default_A4_0.000025 stops -1 back_urad -1016313
+strike_default_A15_0.0001 stops -1 back_urad -748506
+strike_default_A15_0.000025 stops -1 back_urad -748825
+strike_fs_A4_0.0001 stops -1 back_urad -246328
+strike_fs_A4_0.000025 stops -1 back_urad -245169
+strike_fs_A15_0.0001 stops -1 back_urad -412062
+strike_fs_A15_0.000025 stops -1 back_urad -414355
+strike_fs1_A4_0.0001 stops -1 back_urad -238878
+strike_fs1_A4_0.000025 stops -1 back_urad -238141
+strike_fs1_A15_0.0001 stops -1 back_urad -392323
+strike_fs1_A15_0.000025 stops -1 back_urad -393183

@@ -1,0 +1,15 @@
+RULE R1_safe_when_off eq 10 10 : HELD
+RULE R2_released_feedback_too_large_it15 ge 82196 5900 : HELD
+RULE R2_released_momentum_grows_it15 ge 37985910 7000000 : HELD
+RULE R2_released_feedback_too_large_it50 ge 11392 5900 : HELD
+RULE R2_released_momentum_grows_it50 ge 12184240 7000000 : HELD
+RULE R3_feedback_the_cloths_it15 within 590 590 20 : HELD
+RULE R3_feedback_the_cloths_it50 within 590 590 20 : HELD
+RULE R4_box_at_rest all_le 10 0 1 1 0 : HELD
+RULE R5_momentum_kept_it15 within -3491915 -3500000 50 : HELD
+RULE R5_momentum_kept_it50 within -3498785 -3500000 50 : HELD
+RULE R6_held_cloth_no_faster_than_landing all_le 767000 27224 130772 : HELD
+RULE R6_held_cloth_carries_the_box_it15 within 3977 3983 10 : HELD
+RULE R6_held_cloth_carries_the_box_it50 within 3945 3983 10 : HELD
+RULE R7_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 14, held: 14

@@ -1,0 +1,5 @@
+mujoco m 0.1 kg 0.0625 ms | SWING dt_ns 62500 released_at_urad 0 turn_urad -1004792 swing_per_10000 3198 turn_urad -823722 swing_per_10000 576 turn_urad -1001769 swing_per_10000 566 turn_urad -973884 swing_per_10000 88 turns 14
+mujoco m 1 kg 0.0625 ms | SWING dt_ns 62500 released_at_urad 0 turn_urad -1021373 swing_per_10000 3250 turn_urad -453681 swing_per_10000 1806 turn_urad -1014814 swing_per_10000 1786 turn_urad -705432 swing_per_10000 984 turns 14
+featherstone m 0.1 kg 0.0625 ms | SWING dt_ns 62500 released_at_urad 0 turn_urad -1004783 swing_per_10000 3198 turn_urad -912641 swing_per_10000 293 turn_urad -1001186 swing_per_10000 281 turn_urad -994455 swing_per_10000 21 turns 10
+featherstone m 1 kg 0.0625 ms | SWING dt_ns 62500 released_at_urad 0 turn_urad -1021524 swing_per_10000 3251 turn_urad -483722 swing_per_10000 1711 turn_urad -1014475 swing_per_10000 1689 turn_urad -738430 swing_per_10000 878 turns 22
+plays that stopped being a number: 0

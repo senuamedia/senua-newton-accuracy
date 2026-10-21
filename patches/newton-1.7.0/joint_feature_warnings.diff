@@ -1,0 +1,154 @@
+--- a/newton/_src/solvers/featherstone/solver_featherstone.py
++++ b/newton/_src/solvers/featherstone/solver_featherstone.py
+@@ -171,6 +171,10 @@
+             ValueError: If active mimic reduction contains a pair outside the
+                 same assigned articulation.
+         """
++        # Senua AI patch, in design: say which configured joint features this solver does not apply
++        from ..joint_feature_warnings import warn_ignored_joint_features  # noqa: PLC0415
++
++        warn_ignored_joint_features(model, "SolverFeatherstone", ("friction", "effort_limit", "velocity_limit", "enabled", "loop_joints"))
+         super().__init__(model)
+         self._has_joint_mimics = has_supported_joint_mimics(model, "SolverFeatherstone")
+         if self._has_joint_mimics:
+--- a/newton/_src/solvers/joint_feature_warnings.py
++++ b/newton/_src/solvers/joint_feature_warnings.py
+@@ -0,0 +1,86 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: a solver says which of a model's configured joint features it does not apply.
++#
++# Each of Newton's solvers documents joint features it does not support (its class docstring: effort limits, velocity
++# limits, joint friction, armature, joint_enabled, on one solver or another), and Featherstone plays a tree, leaving a
++# loop-closing joint (one kept out of every articulation whose child is another joint's child) out altogether. A model
++# that sets one of them plays as if it were unset, and nothing is said when it is played (runs 056 and 063 of the Senua
++# AI deep dive; newton-physics/newton #2428, whose pull request #3552 warns for the MuJoCo solver's loop-closing
++# joints). Here a solver, when made, warns once, naming each such feature the model sets away from Newton's default and
++# the joints that set it. Nothing a solver does changes. Called from the solvers' constructors only when
++# NEWTON_WARN_IGNORED_JOINT_FEATURES=1 (read once, here); otherwise it returns at once.
++
++import os
++import warnings
++
++import numpy as np
++
++_ON = os.environ.get("NEWTON_WARN_IGNORED_JOINT_FEATURES") == "1"
++
++# Newton's defaults (ModelBuilder.JointDofConfig): a feature is configured where a joint's value differs from them
++_DEFAULTS = {
++    "effort_limit": ("joint_effort_limit", 1.0e6),
++    "velocity_limit": ("joint_velocity_limit", 1.0e6),
++    "friction": ("joint_friction", 0.0),
++    "armature": ("joint_armature", 0.0),
++}
++
++
++def _dof_joints(model, values, default):
++    # the joints with a degree of freedom whose value differs from the default
++    qd_start = model.joint_qd_start.numpy()
++    out = []
++    for j in range(model.joint_count):
++        a, b = int(qd_start[j]), int(qd_start[j + 1])
++        if b > a and np.any(values[a:b] != default):
++            out.append(j)
++    return out
++
++
++def _loop_joints(model):
++    # joints kept out of every articulation whose child body is also the child of a joint in one
++    art = model.joint_articulation.numpy() if model.joint_articulation is not None else None
++    if art is None:
++        return []
++    child = model.joint_child.numpy()
++    in_tree = {int(child[j]) for j in range(model.joint_count) if art[j] >= 0}
++    return [j for j in range(model.joint_count) if art[j] < 0 and int(child[j]) in in_tree]
++
++
++def warn_ignored_joint_features(model, solver_name: str, ignored: tuple[str, ...]):
++    """Warn, once, naming each feature in `ignored` that `model` configures, and the joints that configure it."""
++    if not _ON or model.joint_count == 0:
++        return
++    labels = list(model.joint_label) if getattr(model, "joint_label", None) is not None else []
++
++    def names(joints):
++        shown = [labels[j] if j < len(labels) and labels[j] else str(j) for j in joints[:8]]
++        return ", ".join(shown) + (" and %d more" % (len(joints) - 8) if len(joints) > 8 else "")
++
++    found = []
++    for feature in ignored:
++        if feature in _DEFAULTS:
++            attr, default = _DEFAULTS[feature]
++            values = getattr(model, attr, None)
++            if values is None:
++                continue
++            joints = _dof_joints(model, values.numpy(), default)
++            if joints:
++                found.append("%s (joints %s)" % (feature.replace("_", " "), names(joints)))
++        elif feature == "enabled":
++            enabled = getattr(model, "joint_enabled", None)
++            if enabled is not None:
++                joints = [j for j, e in enumerate(enabled.numpy()) if not bool(e)]
++                if joints:
++                    found.append("joint_enabled=False (joints %s)" % names(joints))
++        elif feature == "loop_joints":
++            joints = _loop_joints(model)
++            if joints:
++                found.append("loop-closing joints, played as if absent (joints %s)" % names(joints))
++    if found:
++        warnings.warn(
++            "%s does not apply these joint features the model configures: %s." % (solver_name, "; ".join(found)),
++            stacklevel=3,
++        )
+--- a/newton/_src/solvers/mujoco/solver_mujoco.py
++++ b/newton/_src/solvers/mujoco/solver_mujoco.py
+@@ -4158,6 +4158,10 @@
+                 :class:`warp.DeterministicMode`, or ``None`` to inherit
+                 ``wp.config.deterministic``.
+         """
++        # Senua AI patch, in design: say which configured joint features this solver does not apply
++        from ..joint_feature_warnings import warn_ignored_joint_features  # noqa: PLC0415
++
++        warn_ignored_joint_features(model, "SolverMuJoCo", ("velocity_limit", "enabled"))
+         super().__init__(model)
+ 
+         # Import and cache MuJoCo modules (only happens once per class)
+--- a/newton/_src/solvers/semi_implicit/solver_semi_implicit.py
++++ b/newton/_src/solvers/semi_implicit/solver_semi_implicit.py
+@@ -105,6 +105,10 @@
+                 ``None`` (default) to inherit the current
+                 ``wp.config.deterministic`` mode.
+         """
++        # Senua AI patch, in design: say which configured joint features this solver does not apply
++        from ..joint_feature_warnings import warn_ignored_joint_features  # noqa: PLC0415
++
++        warn_ignored_joint_features(model, "SolverSemiImplicit", ("armature", "friction", "effort_limit", "velocity_limit"))
+         super().__init__(model=model)
+         effective_deterministic = deterministic if deterministic is not None else wp.config.deterministic
+         deterministic_modules = []
+--- a/newton/_src/solvers/vbd/solver_vbd.py
++++ b/newton/_src/solvers/vbd/solver_vbd.py
+@@ -844,6 +844,10 @@
+                 external_edge_filter_map=particle_external_edge_contact_filtering_map,
+             )
+ 
++        # Senua AI patch, in design: say which configured joint features this solver does not apply
++        from ..joint_feature_warnings import warn_ignored_joint_features  # noqa: PLC0415
++
++        warn_ignored_joint_features(model, "SolverVBD", ("armature", "friction", "effort_limit", "velocity_limit"))
+         super().__init__(
+             model,
+             collision_pipeline=collision_pipeline,
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py
+@@ -176,6 +176,10 @@
+                 ``None`` (default) to inherit the current
+                 ``wp.config.deterministic`` mode.
+         """
++        # Senua AI patch, in design: say which configured joint features this solver does not apply
++        from ..joint_feature_warnings import warn_ignored_joint_features  # noqa: PLC0415
++
++        warn_ignored_joint_features(model, "SolverXPBD", ("armature", "friction", "effort_limit", "velocity_limit"))
+         super().__init__(model=model)
+         effective_deterministic = deterministic if deterministic is not None else wp.config.deterministic
+         module_options = {

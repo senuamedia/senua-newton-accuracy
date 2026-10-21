@@ -1,0 +1,22 @@
+STATS spin_semi_off_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3140353 engine newton 1.6.1 solver semi extra gravity=0 comx=0.05 wz0=5
+STATS spin_featherstone_off_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3133842 engine newton 1.6.1 solver featherstone extra gravity=0 comx=0.05 wz0=5
+STATS spin_vbd_alm_off_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3131292 engine newton 1.6.1 solver vbd_alm extra gravity=0 comx=0.05 wz0=5
+STATS spin_mujoco_off_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3133156 engine newton 1.6.1 solver mujoco extra gravity=0 comx=0.05 wz0=5
+STATS spin_featherstone_at_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3133842 engine newton 1.6.1 solver featherstone extra gravity=0 wz0=5
+STATS spin_semi_off_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3139467 engine newton 1.6.1 solver semi extra gravity=0 comx=0.05 wz0=5
+STATS spin_vbd_alm_off_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3138290 engine newton 1.6.1 solver vbd_alm extra gravity=0 comx=0.05 wz0=5
+STATS spin_featherstone_off_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3141494 engine newton 1.6.1 solver featherstone extra gravity=0 comx=0.05 wz0=5
+STATS spin_semi_off_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3140659 engine newton 1.6.1 solver semi extra gravity=0 comx=0.05 wz0=5
+STATS spin_mujoco_off_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3140282 engine newton 1.6.1 solver mujoco extra gravity=0 comx=0.05 wz0=5
+STATS spin_featherstone_at_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3141494 engine newton 1.6.1 solver featherstone extra gravity=0 wz0=5
+STATS spin_xpbd_off_0.01 contact dt 0.01 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 200 most_tilt_urad 3133815 engine newton 1.6.1 solver xpbd extra gravity=0 comx=0.05 wz0=5
+STATS spin_xpbd_off_0.0025 contact dt 0.0025 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 800 most_tilt_urad 3140598 engine newton 1.6.1 solver xpbd extra gravity=0 comx=0.05 wz0=5
+STATS spin_featherstone_off_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141381 engine newton 1.6.1 solver featherstone extra gravity=0 comx=0.05 wz0=5
+STATS spin_vbd_alm_off_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141498 engine newton 1.6.1 solver vbd_alm extra gravity=0 comx=0.05 wz0=5
+STATS spin_xpbd_off_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141229 engine newton 1.6.1 solver xpbd extra gravity=0 comx=0.05 wz0=5
+STATS spin_featherstone_at_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141381 engine newton 1.6.1 solver featherstone extra gravity=0 wz0=5
+STATS spin_mujoco_off_0.000625 contact dt 0.000625 h0 1 vx0 0 mu 0 mass 1 radius 0.05 steps 3200 most_tilt_urad 3141433 engine newton 1.6.1 solver mujoco extra gravity=0 comx=0.05 wz0=5
+STATS check_drop_xpbd contact dt 0.0025 h0 0.08 vx0 0 mu 0 mass 2 radius 0.04 steps 200 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra none
+STATS check_plate_xpbd contact dt 0.000125 h0 0.002 vx0 0 mu 0.4 mass 1 radius 0.05 steps 10400 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra kick=1 kickat=0.3 hz=0.005
+STATS check_hold_semi contact dt 0.000125 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 16000 most_tilt_urad 7720 engine newton 1.6.1 solver semi extra none
+STATS check_slide_vbd_alm contact dt 0.000125 h0 0 vx0 1 mu 0.4 mass 1 radius 0.05 steps 8000 most_tilt_urad 8053 engine newton 1.6.1 solver vbd_alm extra none

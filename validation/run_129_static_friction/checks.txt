@@ -1,0 +1,11 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE P1_safe_when_off eq 20 20 : HELD
+RULE P2_released_slides all_ge 100000 1176411 1178500 1178479 : HELD
+RULE P3_held all_in -10 10 6 0 0 : HELD
+RULE P4_kinetic_on_the_dynamic all_within 2460000 50 2459769 2459980 2459926 : HELD
+RULE P5_breaks_away all_within 4410000 20 4413304 4398215 4398258 : HELD
+RULE P6_xpbd_slide_on_the_dynamic within 127305 127297 50 : HELD
+RULE P6_semi_slide_on_the_dynamic within 127689 127693 50 : HELD
+RULE P6_featherstone_slide_on_the_dynamic within 127690 127694 50 : HELD
+RULE P7_mujoco_says_so eq 1 1 : HELD
+checks: 10, held: 10

@@ -1,0 +1,106 @@
+gap chain featherstone 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 7734224 largest_um 170032 summed_speed_difference_mm_s 79584
+gap chain featherstone 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 1404959 largest_um 39983 summed_speed_difference_mm_s 41736
+gap chain featherstone 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 361169 largest_um 17363 summed_speed_difference_mm_s 12444
+gap chain featherstone 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 303202 largest_um 14652 summed_speed_difference_mm_s 9396
+gap chain featherstone 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 95501 largest_um 6882 summed_speed_difference_mm_s 2882
+gap chain featherstone 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 20620 largest_um 2531 summed_speed_difference_mm_s 894
+gap chain featherstone_patched 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 6041432 largest_um 152403 summed_speed_difference_mm_s 62947
+gap chain featherstone_patched 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 651438 largest_um 22137 summed_speed_difference_mm_s 12311
+gap chain featherstone_patched 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 17338 largest_um 1379 summed_speed_difference_mm_s 317
+gap chain featherstone_patched 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 9176 largest_um 879 summed_speed_difference_mm_s 199
+gap chain featherstone_patched 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 11713 largest_um 1561 summed_speed_difference_mm_s 195
+gap chain featherstone_patched 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 2223 largest_um 317 summed_speed_difference_mm_s 33
+gap chain semi 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 7241120 largest_um 170126 summed_speed_difference_mm_s 79915
+gap chain semi 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 1361061 largest_um 48170 summed_speed_difference_mm_s 34942
+gap chain semi 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 821920 largest_um 17720 summed_speed_difference_mm_s 13627
+gap chain semi 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 621634 largest_um 15894 summed_speed_difference_mm_s 11256
+gap chain semi 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 86280 largest_um 5854 summed_speed_difference_mm_s 4115
+gap chain semi 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 20486 largest_um 2472 summed_speed_difference_mm_s 894
+gap chain semi_patched 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 100 summed_height_difference_um 7817885 largest_um 152134 summed_speed_difference_mm_s 61978
+gap chain semi_patched 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 100 summed_height_difference_um 569333 largest_um 22194 summed_speed_difference_mm_s 13247
+gap chain semi_patched 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 100 summed_height_difference_um 17138 largest_um 1378 summed_speed_difference_mm_s 405
+gap chain semi_patched 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 100 summed_height_difference_um 9374 largest_um 878 summed_speed_difference_mm_s 218
+gap chain semi_patched 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 100 summed_height_difference_um 11730 largest_um 1561 summed_speed_difference_mm_s 196
+gap chain semi_patched 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 100 summed_height_difference_um 2224 largest_um 318 summed_speed_difference_mm_s 33
+gap drop featherstone 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 50 summed_height_difference_um 3159783 largest_um 137308 summed_speed_difference_mm_s 0
+gap drop featherstone 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 50 summed_height_difference_um 31711 largest_um 3206 summed_speed_difference_mm_s 0
+gap drop featherstone 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 50 summed_height_difference_um 9156 largest_um 914 summed_speed_difference_mm_s 0
+gap drop featherstone 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 50 summed_height_difference_um 5177 largest_um 702 summed_speed_difference_mm_s 0
+gap drop featherstone 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 50 summed_height_difference_um 5932 largest_um 1052 summed_speed_difference_mm_s 0
+gap drop featherstone 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 50 summed_height_difference_um 1614 largest_um 236 summed_speed_difference_mm_s 0
+gap drop featherstone_patched 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 50 summed_height_difference_um 3159783 largest_um 137308 summed_speed_difference_mm_s 0
+gap drop featherstone_patched 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 50 summed_height_difference_um 31711 largest_um 3206 summed_speed_difference_mm_s 0
+gap drop featherstone_patched 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 50 summed_height_difference_um 9156 largest_um 914 summed_speed_difference_mm_s 0
+gap drop featherstone_patched 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 50 summed_height_difference_um 5177 largest_um 702 summed_speed_difference_mm_s 0
+gap drop featherstone_patched 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 50 summed_height_difference_um 5932 largest_um 1052 summed_speed_difference_mm_s 0
+gap drop featherstone_patched 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 50 summed_height_difference_um 1614 largest_um 236 summed_speed_difference_mm_s 0
+gap drop semi 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 50 summed_height_difference_um 3159790 largest_um 137309 summed_speed_difference_mm_s 0
+gap drop semi 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 50 summed_height_difference_um 31714 largest_um 3206 summed_speed_difference_mm_s 0
+gap drop semi 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 50 summed_height_difference_um 9156 largest_um 914 summed_speed_difference_mm_s 0
+gap drop semi 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 50 summed_height_difference_um 5177 largest_um 702 summed_speed_difference_mm_s 0
+gap drop semi 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 50 summed_height_difference_um 5932 largest_um 1052 summed_speed_difference_mm_s 0
+gap drop semi 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 50 summed_height_difference_um 1614 largest_um 236 summed_speed_difference_mm_s 0
+gap drop semi_patched 1/1 against 1/2 | GAP base_ns 10000000 dt_ns 10000000 against dt_ns 5000000 instants 50 summed_height_difference_um 3159790 largest_um 137309 summed_speed_difference_mm_s 0
+gap drop semi_patched 1/2 against 1/4 | GAP base_ns 10000000 dt_ns 5000000 against dt_ns 2500000 instants 50 summed_height_difference_um 31714 largest_um 3206 summed_speed_difference_mm_s 0
+gap drop semi_patched 1/4 against 1/8 | GAP base_ns 10000000 dt_ns 2500000 against dt_ns 1250000 instants 50 summed_height_difference_um 9156 largest_um 914 summed_speed_difference_mm_s 0
+gap drop semi_patched 1/8 against 1/16 | GAP base_ns 10000000 dt_ns 1250000 against dt_ns 625000 instants 50 summed_height_difference_um 5177 largest_um 702 summed_speed_difference_mm_s 0
+gap drop semi_patched 1/16 against 1/32 | GAP base_ns 10000000 dt_ns 625000 against dt_ns 312500 instants 50 summed_height_difference_um 5932 largest_um 1052 summed_speed_difference_mm_s 0
+gap drop semi_patched 1/32 against 1/64 | GAP base_ns 10000000 dt_ns 312500 against dt_ns 156250 instants 50 summed_height_difference_um 1614 largest_um 236 summed_speed_difference_mm_s 0
+bounce chain featherstone 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 173935648 drop_nm 80000000 rebound_per_10000 21741
+bounce chain featherstone 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 24347908 drop_nm 80000000 rebound_per_10000 3043
+bounce chain featherstone 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 4 rebound_nm 1110703 drop_nm 80000000 rebound_per_10000 138
+bounce chain featherstone 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 10 rebound_nm 17935954 drop_nm 80000000 rebound_per_10000 2241
+bounce chain featherstone 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 17 rebound_nm 18917606 drop_nm 80000000 rebound_per_10000 2364
+bounce chain featherstone 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 34 rebound_nm 19134250 drop_nm 80000000 rebound_per_10000 2391
+bounce chain featherstone 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 68 rebound_nm 18930718 drop_nm 80000000 rebound_per_10000 2366
+bounce chain featherstone_patched 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 161460368 drop_nm 80000000 rebound_per_10000 20182
+bounce chain featherstone_patched 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 21447006 drop_nm 80000000 rebound_per_10000 2680
+bounce chain featherstone_patched 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 5 rebound_nm 687603 drop_nm 80000000 rebound_per_10000 85
+bounce chain featherstone_patched 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 11 rebound_nm 1481898 drop_nm 80000000 rebound_per_10000 185
+bounce chain featherstone_patched 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 22 rebound_nm 2209723 drop_nm 80000000 rebound_per_10000 276
+bounce chain featherstone_patched 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 43 rebound_nm 3565062 drop_nm 80000000 rebound_per_10000 445
+bounce chain featherstone_patched 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 87 rebound_nm 3779441 drop_nm 80000000 rebound_per_10000 472
+bounce chain semi 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 173935600 drop_nm 80000000 rebound_per_10000 21741
+bounce chain semi 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 24336346 drop_nm 80000000 rebound_per_10000 3042
+bounce chain semi 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 4 rebound_nm 1113325 drop_nm 80000000 rebound_per_10000 139
+bounce chain semi 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 10 rebound_nm 18371634 drop_nm 80000000 rebound_per_10000 2296
+bounce chain semi 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 17 rebound_nm 18922680 drop_nm 80000000 rebound_per_10000 2365
+bounce chain semi 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 34 rebound_nm 19126448 drop_nm 80000000 rebound_per_10000 2390
+bounce chain semi 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 68 rebound_nm 18922764 drop_nm 80000000 rebound_per_10000 2365
+bounce chain semi_patched 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 161460464 drop_nm 80000000 rebound_per_10000 20182
+bounce chain semi_patched 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 21493082 drop_nm 80000000 rebound_per_10000 2686
+bounce chain semi_patched 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 5 rebound_nm 686012 drop_nm 80000000 rebound_per_10000 85
+bounce chain semi_patched 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 11 rebound_nm 1481362 drop_nm 80000000 rebound_per_10000 185
+bounce chain semi_patched 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 22 rebound_nm 2208914 drop_nm 80000000 rebound_per_10000 276
+bounce chain semi_patched 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 43 rebound_nm 3563736 drop_nm 80000000 rebound_per_10000 445
+bounce chain semi_patched 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 87 rebound_nm 3778100 drop_nm 80000000 rebound_per_10000 472
+bounce drop featherstone 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 135489856 drop_nm 80000000 rebound_per_10000 16936
+bounce drop featherstone 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 3261041 drop_nm 80000000 rebound_per_10000 407
+bounce drop featherstone 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 5 rebound_nm 92305 drop_nm 80000000 rebound_per_10000 11
+bounce drop featherstone 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 11 rebound_nm 830300 drop_nm 80000000 rebound_per_10000 103
+bounce drop featherstone 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 23 rebound_nm 1257975 drop_nm 80000000 rebound_per_10000 157
+bounce drop featherstone 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 45 rebound_nm 2011090 drop_nm 80000000 rebound_per_10000 251
+bounce drop featherstone 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 91 rebound_nm 2140116 drop_nm 80000000 rebound_per_10000 267
+bounce drop featherstone_patched 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 135489856 drop_nm 80000000 rebound_per_10000 16936
+bounce drop featherstone_patched 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 3261041 drop_nm 80000000 rebound_per_10000 407
+bounce drop featherstone_patched 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 5 rebound_nm 92305 drop_nm 80000000 rebound_per_10000 11
+bounce drop featherstone_patched 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 11 rebound_nm 830300 drop_nm 80000000 rebound_per_10000 103
+bounce drop featherstone_patched 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 23 rebound_nm 1257975 drop_nm 80000000 rebound_per_10000 157
+bounce drop featherstone_patched 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 45 rebound_nm 2011090 drop_nm 80000000 rebound_per_10000 251
+bounce drop featherstone_patched 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 91 rebound_nm 2140116 drop_nm 80000000 rebound_per_10000 267
+bounce drop semi 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 135490000 drop_nm 80000000 rebound_per_10000 16936
+bounce drop semi 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 3261052 drop_nm 80000000 rebound_per_10000 407
+bounce drop semi 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 5 rebound_nm 92305 drop_nm 80000000 rebound_per_10000 11
+bounce drop semi 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 11 rebound_nm 830296 drop_nm 80000000 rebound_per_10000 103
+bounce drop semi 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 23 rebound_nm 1257978 drop_nm 80000000 rebound_per_10000 157
+bounce drop semi 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 45 rebound_nm 2011094 drop_nm 80000000 rebound_per_10000 251
+bounce drop semi 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 91 rebound_nm 2140116 drop_nm 80000000 rebound_per_10000 267
+bounce drop semi_patched 1/1 | BOUNCE dt_ns 10000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 135490000 drop_nm 80000000 rebound_per_10000 16936
+bounce drop semi_patched 1/2 | BOUNCE dt_ns 5000000 speed_in_ums 1274000 steps_to_turn 1 rebound_nm 3261052 drop_nm 80000000 rebound_per_10000 407
+bounce drop semi_patched 1/4 | BOUNCE dt_ns 2500000 speed_in_ums 1249500 steps_to_turn 5 rebound_nm 92305 drop_nm 80000000 rebound_per_10000 11
+bounce drop semi_patched 1/8 | BOUNCE dt_ns 1250000 speed_in_ums 1249499 steps_to_turn 11 rebound_nm 830296 drop_nm 80000000 rebound_per_10000 103
+bounce drop semi_patched 1/16 | BOUNCE dt_ns 625000 speed_in_ums 1249497 steps_to_turn 23 rebound_nm 1257978 drop_nm 80000000 rebound_per_10000 157
+bounce drop semi_patched 1/32 | BOUNCE dt_ns 312500 speed_in_ums 1252558 steps_to_turn 45 rebound_nm 2011094 drop_nm 80000000 rebound_per_10000 251
+bounce drop semi_patched 1/64 | BOUNCE dt_ns 156250 speed_in_ums 1252558 steps_to_turn 91 rebound_nm 2140116 drop_nm 80000000 rebound_per_10000 267
+CHECK featherstone drop, patched against released: 7 of 7 files byte-identical
+CHECK semi drop, patched against released: 7 of 7 files byte-identical

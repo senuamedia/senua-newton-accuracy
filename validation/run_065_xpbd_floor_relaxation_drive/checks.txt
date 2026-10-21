@@ -1,0 +1,33 @@
+RULE A0_safe_when_off eq 7 7 : HELD
+RULE A1_free_stock_stopped all_eq 0 0 : HELD
+RULE A1_free_on_kept all_within 50 50 50 : HELD
+RULE A2_push_stock_1ms_stopped all_eq 0 0 : HELD
+RULE A2_push_stock_4ms_moves all_within 50000 1000 50000 : HELD
+RULE A2_push_on all_within 50000 1000 50001 50000 : HELD
+RULE A3_turn_stock_stopped all_eq 0 0 : HELD
+RULE A3_turn_on_kept all_within 50 10 50 : HELD
+RULE A4_floor_hidden_stock all_eq 0 0 0 : HELD
+RULE A4_floor_shown_on_lo all_ge 50 68 104 : HELD
+RULE A4_floor_shown_on_hi all_le 200 68 104 : HELD
+RULE A4_2ms_unchanged all_within 1531 100 1531 : HELD
+RULE B1_torque_stock_wrong_0.0001 all_ge 7450 8670 : HELD
+RULE B1_torque_on_wrong_0.0001 all_ge 7450 8670 : HELD
+RULE B2_torque_right_0.0001 all_within 4967 100 4979 4979 : HELD
+RULE B3_gravity_right_0.0001 all_within -24338 100 -24385 -24385 -24385 -24385 : HELD
+RULE C1_compliance_soft_it1_0.0001 all_ge 165000 173011 : HELD
+RULE C1_compliance_stiff_it16_0.0001 all_le 0 -100950 : HELD
+RULE C2_pd_right_0.0001 all_within 161563 400 161520 161524 161522 161527 161529 : HELD
+RULE C3_effort_pd_0.0001 all_within 190066 400 190058 : HELD
+RULE C4_effort_ignored_compliance_0.0001 eq 1 1 : HELD
+RULE B1_torque_stock_wrong_0.00005 all_ge 7450 8648 : HELD
+RULE B1_torque_on_wrong_0.00005 all_ge 7450 8659 : HELD
+RULE B2_torque_right_0.00005 all_within 4967 100 4972 4972 : HELD
+RULE B3_gravity_right_0.00005 all_within -24338 100 -24361 -24361 -24361 -24361 : HELD
+RULE C1_compliance_soft_it1_0.00005 all_ge 165000 173024 : HELD
+RULE C1_compliance_stiff_it16_0.00005 all_le 0 -101087 : HELD
+RULE C2_pd_right_0.00005 all_within 161563 400 161547 161549 161543 161540 161542 : HELD
+RULE C3_effort_pd_0.00005 all_within 190066 400 190067 : HELD
+RULE C4_effort_ignored_compliance_0.00005 eq 1 1 : HELD
+RULE B4_torque_4317_held_0.00005 all_le 497 11 11 : HELD
+RULE B5_torque_4317_right_0.0001 all_within 4967 100 4964 4964 : HELD
+checks: 32, held: 32

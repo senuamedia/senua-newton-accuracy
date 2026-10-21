@@ -1,0 +1,259 @@
+--- a/newton/_src/solvers/featherstone/solver_featherstone.py
++++ b/newton/_src/solvers/featherstone/solver_featherstone.py
+@@ -24,6 +24,7 @@
+     eval_triangle_forces,
+ )
+ from ..solver import SolverBase
++from ..friction_combine import shape_priority  # Senua AI patch, in design
+ from . import kernels
+ from .kernels import (
+     accumulate_free_distance_joint_f_to_body_force,
+@@ -727,6 +728,7 @@
+                             model.shape_material_kf,
+                             model.shape_material_ka,
+                             model.shape_material_mu,
++                            shape_priority(model),
+                             model.shape_body,
+                             contacts.rigid_contact_count,
+                             contacts.rigid_contact_point0,
+--- a/newton/_src/solvers/friction_combine.py
++++ b/newton/_src/solvers/friction_combine.py
+@@ -0,0 +1,47 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: one friction combination for every solver.
++#
++# Two shapes in contact each carry a friction coefficient, and Newton's solvers combine them differently: XPBD,
++# SemiImplicit and Featherstone take their mean, VBD their geometric mean, and the MuJoCo solver MuJoCo's rule, the
++# larger of the two, or the higher-priority geom's when the MuJoCo solver's custom attributes give the two shapes
++# different priorities (mujoco:geom_priority) (run 059 of the Senua AI deep dive: one scene slides 92.5 mm on XPBD and
++# 56.9 mm on the MuJoCo solver). The MuJoCo solver can follow no other rule: MuJoCo combines a contact's friction
++# itself, with its own contacts and with Newton's. With NEWTON_FRICTION_COMBINE=1 (read once, here) Newton's own
++# solvers follow MuJoCo's rule for body contacts too: the larger coefficient (sliding, torsional and rolling each), or
++# the higher-priority shape's when the model carries MuJoCo's geom priority and the two differ. Unset, nothing changes.
++
++import os
++
++import warp as wp
++
++FRICTION_COMBINE = wp.constant(os.environ.get("NEWTON_FRICTION_COMBINE") == "1")
++
++_EMPTY = {}
++
++
++def shape_priority(model) -> wp.array:
++    """The model's MuJoCo geom priority, per shape, when the switch is set and the model carries it; else empty."""
++    if FRICTION_COMBINE:
++        ns = getattr(model, "mujoco", None)
++        prio = getattr(ns, "geom_priority", None) if ns is not None else None
++        if prio is not None:
++            return prio
++    key = str(model.device)
++    if key not in _EMPTY:
++        _EMPTY[key] = wp.zeros(0, dtype=int, device=model.device)
++    return _EMPTY[key]
++
++
++@wp.func
++def combine_mu(mu_a: float, mu_b: float, priority: wp.array[int], shape_a: int, shape_b: int) -> float:
++    """MuJoCo's rule: the higher-priority shape's coefficient when the priorities differ, else the larger."""
++    if priority.shape[0] > 0:
++        pa = priority[shape_a]
++        pb = priority[shape_b]
++        if pa > pb:
++            return mu_a
++        if pb > pa:
++            return mu_b
++    return wp.max(mu_a, mu_b)
+--- a/newton/_src/solvers/semi_implicit/kernels_contact.py
++++ b/newton/_src/solvers/semi_implicit/kernels_contact.py
+@@ -2,6 +2,7 @@
+ # SPDX-License-Identifier: Apache-2.0
+ 
+ import warp as wp
++from ..friction_combine import FRICTION_COMBINE, combine_mu, shape_priority  # Senua AI patch, in design
+ 
+ from ...geometry import ParticleFlags
+ from ...geometry.kernels import triangle_closest_point_barycentric
+@@ -388,6 +389,7 @@
+     shape_material_kf: wp.array[float],
+     shape_material_ka: wp.array[float],
+     shape_material_mu: wp.array[float],
++    shape_priority: wp.array[int],
+     shape_body: wp.array[int],
+     contact_count: wp.array[int],
+     contact_point0: wp.array[wp.vec3],
+@@ -448,6 +450,9 @@
+         kf /= float(mat_nonzero)
+         ka /= float(mat_nonzero)
+         mu /= float(mat_nonzero)
++    if wp.static(FRICTION_COMBINE):  # Senua AI patch, in design: MuJoCo's rule (friction_combine.py)
++        if shape_a >= 0 and shape_b >= 0:
++            mu = combine_mu(shape_material_mu[shape_a], shape_material_mu[shape_b], shape_priority, shape_a, shape_b)
+ 
+     # per-contact stiffness/damping/friction
+     if rigid_contact_stiffness:
+@@ -568,6 +573,7 @@
+     shape_material_kf: wp.array[float],
+     shape_material_ka: wp.array[float],
+     shape_material_mu: wp.array[float],
++    shape_priority: wp.array[int],
+     shape_body: wp.array[int],
+     contact_count: wp.array[int],
+     contact_point0: wp.array[wp.vec3],
+@@ -598,6 +604,7 @@
+         shape_material_kf,
+         shape_material_ka,
+         shape_material_mu,
++        shape_priority,
+         shape_body,
+         contact_count,
+         contact_point0,
+@@ -689,6 +696,7 @@
+                 model.shape_material_kf,
+                 model.shape_material_ka,
+                 model.shape_material_mu,
++                shape_priority(model),
+                 model.shape_body,
+                 contacts.rigid_contact_count,
+                 contacts.rigid_contact_point0,
+--- a/newton/_src/solvers/vbd/rigid_vbd_kernels.py
++++ b/newton/_src/solvers/vbd/rigid_vbd_kernels.py
+@@ -30,6 +30,8 @@
+ 
+ import warp as wp
+ 
++from newton._src.solvers.friction_combine import FRICTION_COMBINE, combine_mu  # Senua AI patch, in design
++
+ from newton._src.core.types import MAXVAL
+ from newton._src.geometry.kernels import triangle_closest_point
+ from newton._src.math import orthonormal_basis, quat_velocity
+@@ -4706,6 +4708,7 @@
+     shape_material_ke: wp.array[float],
+     shape_material_kd: wp.array[float],
+     shape_material_mu: wp.array[float],
++    shape_priority: wp.array[int],
+     k_start: float,
+     # Outputs
+     contact_penalty_k: wp.array[float],
+@@ -4738,6 +4741,8 @@
+         shape_material_kd[shape_id_1],
+         shape_material_mu[shape_id_1],
+     )
++    if wp.static(FRICTION_COMBINE):  # Senua AI patch, in design: MuJoCo's rule (friction_combine.py)
++        avg_mu = combine_mu(shape_material_mu[shape_id_0], shape_material_mu[shape_id_1], shape_priority, shape_id_0, shape_id_1)
+ 
+     contact_material_kd[i] = avg_kd
+     contact_material_mu[i] = avg_mu
+@@ -4758,6 +4763,7 @@
+     shape_material_ke: wp.array[float],
+     shape_material_kd: wp.array[float],
+     shape_material_mu: wp.array[float],
++    shape_priority: wp.array[int],
+     legacy_hard_contacts: int,
+     contact_compliant_alm: int,
+     restore_compliant_tangent_warmstart: int,
+@@ -4814,6 +4820,8 @@
+         shape_material_kd[s1],
+         shape_material_mu[s1],
+     )
++    if wp.static(FRICTION_COMBINE):  # Senua AI patch, in design: MuJoCo's rule (friction_combine.py)
++        avg_mu = combine_mu(shape_material_mu[s0], shape_material_mu[s1], shape_priority, s0, s1)
+     contact_material_ke[i] = avg_ke
+     contact_material_kd[i] = avg_kd
+     contact_material_mu[i] = avg_mu
+--- a/newton/_src/solvers/vbd/solver_vbd.py
++++ b/newton/_src/solvers/vbd/solver_vbd.py
+@@ -35,6 +35,7 @@
+ from ...utils.mesh import build_vertex_adjacency_with_warp
+ from ..coupled.interface import CouplingInterface
+ from ..solver import SolverBase
++from ..friction_combine import shape_priority  # Senua AI patch, in design
+ from ..xpbd import kernels as xpbd_kernels
+ from ..xpbd.kernels import apply_joint_forces, project_joint_mimics
+ from . import particle_vbd_kernels, rigid_vbd_kernels, vbd_coupling_kernels
+@@ -3320,6 +3321,7 @@
+                             model.shape_material_ke,
+                             model.shape_material_kd,
+                             model.shape_material_mu,
++                            shape_priority(model),
+                             self.rigid_contact_hard,
+                             self.rigid_compliant_alm,
+                             restore_compliant_tangent_warmstart,
+@@ -3355,6 +3357,7 @@
+                             model.shape_material_ke,
+                             model.shape_material_kd,
+                             model.shape_material_mu,
++                            shape_priority(model),
+                             self.rigid_contact_k_start_value,
+                         ],
+                         outputs=[
+--- a/newton/_src/solvers/xpbd/kernels.py
++++ b/newton/_src/solvers/xpbd/kernels.py
+@@ -2,6 +2,7 @@
+ # SPDX-License-Identifier: Apache-2.0
+ 
+ import warp as wp
++from ..friction_combine import FRICTION_COMBINE, combine_mu  # Senua AI patch, in design
+ 
+ from ...geometry import ParticleFlags
+ from ...math import (
+@@ -2477,6 +2478,7 @@
+     shape_material_mu: wp.array[float],
+     shape_material_mu_torsional: wp.array[float],
+     shape_material_mu_rolling: wp.array[float],
++    shape_priority: wp.array[int],
+     relaxation: float,
+     dt: float,
+     deltas: wp.array[wp.spatial_vector],
+@@ -2570,6 +2572,15 @@
+         mu /= float(mat_nonzero)
+         mu_torsional /= float(mat_nonzero)
+         mu_rolling /= float(mat_nonzero)
++    if wp.static(FRICTION_COMBINE):  # Senua AI patch, in design: MuJoCo's rule (friction_combine.py), each coefficient
++        if shape_a >= 0 and shape_b >= 0:
++            mu = combine_mu(shape_material_mu[shape_a], shape_material_mu[shape_b], shape_priority, shape_a, shape_b)
++            mu_torsional = combine_mu(
++                shape_material_mu_torsional[shape_a], shape_material_mu_torsional[shape_b], shape_priority, shape_a, shape_b
++            )
++            mu_rolling = combine_mu(
++                shape_material_mu_rolling[shape_a], shape_material_mu_rolling[shape_b], shape_priority, shape_a, shape_b
++            )
+ 
+     r_a = bx_a - wp.transform_point(X_wb_a, com_a)
+     r_b = bx_b - wp.transform_point(X_wb_b, com_b)
+@@ -2716,6 +2727,7 @@
+     shape_material_mu: wp.array[float],
+     shape_material_mu_torsional: wp.array[float],
+     shape_material_mu_rolling: wp.array[float],
++    shape_priority: wp.array[int],
+     relaxation: float,
+     dt: float,
+     deltas: wp.array[wp.spatial_vector],
+@@ -2748,6 +2760,7 @@
+         shape_material_mu,
+         shape_material_mu_torsional,
+         shape_material_mu_rolling,
++        shape_priority,
+         relaxation,
+         dt,
+         deltas,
+--- a/newton/_src/solvers/xpbd/solver_xpbd.py
++++ b/newton/_src/solvers/xpbd/solver_xpbd.py
+@@ -10,6 +10,7 @@
+ from ...sim.joint_mimic import has_supported_joint_mimics
+ from ..coupled.interface import CouplingInterface
+ from ..solver import SolverBase
++from ..friction_combine import shape_priority  # Senua AI patch, in design
+ from . import kernels, restitution_kernels
+ from .kernels import (
+     accumulate_weighted_contact_impulse,
+@@ -792,6 +793,7 @@
+                                 model.shape_material_mu,
+                                 model.shape_material_mu_torsional,
+                                 model.shape_material_mu_rolling,
++                                shape_priority(model),
+                                 self.rigid_contact_relaxation,
+                                 dt,
+                             ],

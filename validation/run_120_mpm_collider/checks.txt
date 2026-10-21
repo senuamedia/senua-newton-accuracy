@@ -1,0 +1,6 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE P1_slab_slides_at_no_margin ge 542717 500000 : HELD
+RULE P2_slab_slides_at_every_margin all_ge 10000 542717 286917 21399 5895 510196 160809 : FAILED
+RULE P3_cup_leaks_at_no_margin ge 578 100 : HELD
+RULE P4_cup_holds_at_half_a_voxel eq 0 0 : HELD
+checks: 5, held: 4

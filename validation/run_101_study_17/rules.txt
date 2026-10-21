@@ -1,0 +1,12 @@
+RULE R1_fault_there_vbd all_ge 1000 24971 133865 400648 : HELD
+RULE R1_fault_there_vbd_alm ge 308 10 : HELD
+RULE R2_held_vbd all_in -10 10 0 0 0 : HELD
+RULE R3_slide_kept_vbd_0.0015 within 138500 140751 100 : FAILED
+RULE R3_slide_kept_vbd_0.0003 within 96788 154235 100 : FAILED
+RULE R3_slide_kept_vbd_0.00008 within 93308 208432 100 : FAILED
+RULE R2_held_vbd_alm all_in -10 10 0 0 0 : HELD
+RULE R3_slide_kept_vbd_alm_0.0015 within 124665 124666 100 : HELD
+RULE R3_slide_kept_vbd_alm_0.0003 within 125253 125249 100 : HELD
+RULE R3_slide_kept_vbd_alm_0.00008 within 121676 121676 100 : HELD
+RULE R4_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 11, held: 8

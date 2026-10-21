@@ -1,0 +1,196 @@
+--- a/newton/_src/solvers/featherstone/limit_kernels.py
++++ b/newton/_src/solvers/featherstone/limit_kernels.py
+@@ -0,0 +1,81 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: Featherstone's joint limit kept from pulling, and integrated implicitly.
++#
++# Newton's joint limit (joint_force, semi_implicit/kernels_body.py) is a spring limit_ke (limit - q) and a damper
++# -limit_kd qd, applied whenever the joint is past its limit, evaluated at the step's start. Two departures follow
++# (findings F16, F20):
++# - It pulls: the damper acts until the angle is back at the limit, so it draws the joint back as it leaves (runs 036,
++#   042). A limit is one-sided: its force may push the joint out, never pull it in (Schwager and Poeschel 2007, the
++#   no-tension spring-dashpot, as Study 3 and Study 6 held contacts and the MuJoCo solver's limit to).
++# - It is explicit: Featherstone integrates it by semi-implicit Euler, stable only while w^2 h^2 + 2 g h < 4
++#   (w^2 = ke / I, g = kd / I), microseconds on light links (run 055).
++# Here the limit force is computed after the stock joint forces (which are given the limit's stiffness and damping as
++# zero, so their drive is still turned off past a limit, as before) and added to tau:
++# - NEWTON_FEATHERSTONE_LIMIT=1: the same spring and damper, explicit, never pulling (0 where it would);
++# - NEWTON_FEATHERSTONE_LIMIT=2: also linearly implicit (backward Euler for the spring and damper, Baraff and Witkin,
++#   Large steps in cloth simulation, SIGGRAPH 1998, section 4): with q' = q + h qd' and qd' = qd + h qdd,
++#   (H + h kd + h^2 ke) qdd = tau + ke (limit - q - h qd) - kd qd, so the spring is read at the predicted position and
++#   h kd + h^2 ke is added to the joint's diagonal of the joint-space inertia before its Cholesky factorization (as an
++#   armature is). Unconditionally stable for the spring and damper; where the implicit force would pull, the limit is
++#   left out of that step (force and diagonal 0).
++# Read once, when the solver is made; otherwise never imported.
++
++import warp as wp
++
++from ...sim import JointType
++
++
++@wp.kernel
++def eval_limit_forces(
++    joint_type: wp.array[int],
++    joint_q_start: wp.array[int],
++    joint_qd_start: wp.array[int],
++    joint_dof_dim: wp.array2d[int],
++    joint_q: wp.array[float],
++    joint_qd: wp.array[float],
++    joint_limit_lower: wp.array[float],
++    joint_limit_upper: wp.array[float],
++    joint_limit_ke: wp.array[float],
++    joint_limit_kd: wp.array[float],
++    dt: float,
++    implicit: int,
++    # outputs: tau gains the limit force; armature (a copy of the joint armature) gains the implicit diagonal
++    tau: wp.array[float],
++    armature: wp.array[float],
++):
++    i = wp.tid()
++    type = joint_type[i]
++    if type != JointType.PRISMATIC and type != JointType.REVOLUTE and type != JointType.D6:
++        return
++    dof_start = joint_qd_start[i]
++    coord_start = joint_q_start[i]
++    axis_count = joint_dof_dim[i, 0] + joint_dof_dim[i, 1]
++    for k in range(axis_count):
++        j = dof_start + k
++        q = joint_q[coord_start + k]
++        qd = joint_qd[j]
++        lower = joint_limit_lower[j]
++        upper = joint_limit_upper[j]
++        ke = joint_limit_ke[j]
++        kd = joint_limit_kd[j]
++        f = 0.0
++        d = 0.0
++        if q < lower or q > upper:
++            limit = lower
++            if q > upper:
++                limit = upper
++            x = limit - q
++            if implicit == 1:
++                x = x - dt * qd
++            f = ke * x - kd * qd
++            # one-sided: the force pushes the joint back inside its range, never pulls it
++            if q < lower and f < 0.0:
++                f = 0.0
++            if q > upper and f > 0.0:
++                f = 0.0
++            if implicit == 1 and f != 0.0:
++                d = dt * kd + dt * dt * ke
++        tau[j] = tau[j] + f
++        armature[j] = armature[j] + d
+--- a/newton/_src/solvers/featherstone/solver_featherstone.py
++++ b/newton/_src/solvers/featherstone/solver_featherstone.py
+@@ -1,6 +1,8 @@
+ # SPDX-FileCopyrightText: Copyright (c) 2025 The Newton Developers
+ # SPDX-License-Identifier: Apache-2.0
+ 
++import os
++
+ import numpy as np
+ import warp as wp
+ 
+@@ -217,6 +219,12 @@
+         self.friction_smoothing = friction_smoothing
+         self.use_tile_gemm = use_tile_gemm
+         self.fuse_cholesky = fuse_cholesky
++        # Senua AI patch, in design: the joint limit kept from pulling ("1") and also integrated implicitly
++        # ("2"), read once here
++        limit = os.environ.get("NEWTON_FEATHERSTONE_LIMIT")
++        self._limit_mode = 2 if limit == "2" else (1 if limit == "1" else 0)
++        self._limit_zero = None
++        self._limit_armature = None
+ 
+         self._step = 0
+         self._mass_matrix_dirty = False
+@@ -767,6 +775,9 @@
+                 if model.articulation_count:
+                     # evaluate joint torques
+                     state_aug.body_ft_s.zero_()
++                    if self._limit_mode != 0 and self._limit_zero is None:  # Senua AI patch, in design
++                        self._limit_zero = wp.zeros_like(model.joint_limit_ke)
++                        self._limit_armature = wp.zeros_like(model.joint_limit_ke)
+                     wp.launch(
+                         eval_rigid_tau,
+                         dim=model.articulation_count,
+@@ -790,8 +801,8 @@
+                             model.joint_target_kd,
+                             model.joint_limit_lower,
+                             model.joint_limit_upper,
+-                            model.joint_limit_ke,
+-                            model.joint_limit_kd,
++                            model.joint_limit_ke if self._limit_mode == 0 else self._limit_zero,
++                            model.joint_limit_kd if self._limit_mode == 0 else self._limit_zero,
+                             model.joint_damping,
+                             state_aug.joint_S_s,
+                             state_aug.body_q_com,
+@@ -805,6 +816,30 @@
+                         ],
+                         device=model.device,
+                     )
++                    if self._limit_mode != 0:  # Senua AI patch, in design
++                        from .limit_kernels import eval_limit_forces  # noqa: PLC0415
++
++                        wp.copy(self._limit_armature, self.joint_armature_effective)
++                        wp.launch(
++                            eval_limit_forces,
++                            dim=model.joint_count,
++                            inputs=[
++                                model.joint_type,
++                                model.joint_q_start,
++                                model.joint_qd_start,
++                                model.joint_dof_dim,
++                                state_in.joint_q,
++                                state_aug.joint_qd_internal_in,
++                                model.joint_limit_lower,
++                                model.joint_limit_upper,
++                                model.joint_limit_ke,
++                                model.joint_limit_kd,
++                                dt,
++                                1 if self._limit_mode == 2 else 0,
++                            ],
++                            outputs=[state_aug.joint_tau, self._limit_armature],
++                            device=model.device,
++                        )
+ 
+                     # Optionally populate ``body_parent_f`` (incoming
+                     # joint wrench per body in world frame at COM) from the
+@@ -830,7 +865,7 @@
+                     # print("body_qd:")
+                     # print(state_in.body_qd.numpy())
+ 
+-                    if self._mass_matrix_dirty or self._step % self.update_mass_matrix_interval == 0:
++                    if self._mass_matrix_dirty or self._step % self.update_mass_matrix_interval == 0 or self._limit_mode == 2:
+                         # build J
+                         wp.launch(
+                             eval_rigid_jacobian,
+@@ -865,7 +900,7 @@
+                             # reshape arrays
+                             M_tiled = self.M.reshape((-1, 6 * self.joint_count, 6 * self.joint_count))
+                             J_tiled = self.J.reshape((-1, 6 * self.joint_count, self.dof_count))
+-                            R_tiled = self.joint_armature_effective.reshape((-1, self.dof_count))
++                            R_tiled = (self.joint_armature_effective if self._limit_mode != 2 else self._limit_armature).reshape((-1, self.dof_count))
+                             H_tiled = self.H.reshape((-1, self.dof_count, self.dof_count))
+                             L_tiled = self.L.reshape((-1, self.dof_count, self.dof_count))
+                             assert H_tiled.shape == (model.articulation_count, 18, 18)
+@@ -949,7 +984,7 @@
+ 
+                         if not (self.use_tile_gemm and self.fuse_cholesky and not self._has_joint_mimics):
+                             solve_H = self.H
+-                            solve_armature = self.joint_armature_effective
++                            solve_armature = self.joint_armature_effective if self._limit_mode != 2 else self._limit_armature
+                             if self._has_joint_mimics:
+                                 self.H_mimic.zero_()
+                                 wp.launch(
+@@ -964,7 +999,7 @@
+                                         model.joint_qd_start,
+                                         model.joint_mimic_joint,
+                                         model.joint_mimic_coeffs,
+-                                        self.joint_armature_effective,
++                                        self.joint_armature_effective if self._limit_mode != 2 else self._limit_armature,
+                                         self.H,
+                                     ],
+                                     outputs=[self.H_mimic],

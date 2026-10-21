@@ -1,0 +1,27 @@
+stock none 0.0016 angle_urad 4741710 speed_urads 2927742
+stock inside 0.0016 angle_urad 6276453 speed_urads 1284320750000
+stock reach 0.0016 angle_urad 6276453 speed_urads 1284320750000
+stock below 0.0016 angle_urad 1328257 speed_urads -2293820
+stock none 0.00032 angle_urad 4789042 speed_urads 2987611
+stock inside 0.00032 angle_urad 5325380 speed_urads 19643442000000
+stock reach 0.00032 angle_urad 5325380 speed_urads 19643442000000
+stock below 0.00032 angle_urad 1169757 speed_urads -2393952
+stock nan_plays 0
+off none 0.0016 angle_urad 4739404 speed_urads 2925281
+off inside 0.0016 angle_urad 2674193 speed_urads 1281885500000
+off reach 0.0016 angle_urad 2674193 speed_urads 1281885500000
+off below 0.0016 angle_urad 1309404 speed_urads -2386743
+off none 0.00032 angle_urad 4788918 speed_urads 2984823
+off inside 0.00032 angle_urad 4348319 speed_urads 18640158000000
+off reach 0.00032 angle_urad 4348319 speed_urads 18640158000000
+off below 0.00032 angle_urad 1123258 speed_urads -2488582
+off nan_plays 0
+on none 0.0016 angle_urad 4739404 speed_urads 2925281
+on inside 0.0016 angle_urad 2674193 speed_urads 1281885500000
+on reach 0.0016 angle_urad 2674193 speed_urads 1281885500000
+on below 0.0016 angle_urad 1309404 speed_urads -2386743
+on none 0.00032 angle_urad 4788918 speed_urads 2984823
+on inside 0.00032 angle_urad 4348319 speed_urads 18640158000000
+on reach 0.00032 angle_urad 4348319 speed_urads 18640158000000
+on below 0.00032 angle_urad 1123258 speed_urads -2488582
+on nan_plays 0

@@ -1,0 +1,1 @@
+STATS joint dt 0.001 mass 0.05 radius 0.01 arm 0.02 gravity 1 steps 150 engine newton 1.7.0 solver mujoco extra lo=-0.5 hi=0.5

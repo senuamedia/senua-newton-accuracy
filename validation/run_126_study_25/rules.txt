@@ -1,0 +1,15 @@
+RULE R1_safe_when_off eq 6 6 : HELD
+RULE R2_warp_creeps_as_released all_ge 100 1337 1337 : HELD
+RULE R3_held all_in -10 10 0 0 : HELD
+RULE R4_hold_as_mujoco_c_0.002 near 0 0 10 : HELD
+RULE R4_slide_as_mujoco_c_0.002 within 122621 122621 100 : HELD
+RULE R4_weight_as_mujoco_c_0.002 within 13720 13720 100 : HELD
+RULE R5_slide_kept_0.002 within 122621 122628 20 : HELD
+RULE R5_weight_kept_0.002 within 13720 13720 100 : HELD
+RULE R4_hold_as_mujoco_c_0.0005 near 0 0 10 : HELD
+RULE R4_slide_as_mujoco_c_0.0005 within 123419 123419 100 : HELD
+RULE R4_weight_as_mujoco_c_0.0005 within 13720 13720 100 : HELD
+RULE R5_slide_kept_0.0005 within 123419 123427 20 : HELD
+RULE R5_weight_kept_0.0005 within 13720 13720 100 : HELD
+RULE R6_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 14, held: 14

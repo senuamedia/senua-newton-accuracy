@@ -1,0 +1,48 @@
+rev7_semi_stock_n1 FINAL dt_ns 1000000 angle_urad -5566345 speed_urads 25131
+rev2.5_semi_stock_n1 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semi_stock_n1 FINAL dt_ns 1000000 angle_urad 200001 speed_urads 434 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 392
+rev7_semirep_stock_n1 FINAL dt_ns 1000000 angle_urad -5566345 speed_urads 25133
+rev2.5_semirep_stock_n1 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semirep_stock_n1 FINAL dt_ns 1000000 angle_urad 200001 speed_urads 434 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 392
+rev7_semi_stock_n1000 FINAL dt_ns 1000000 angle_urad 4881333 speed_urads 17123911
+rev2.5_semi_stock_n1000 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semi_stock_n1000 FINAL dt_ns 1000000 angle_urad 431101 speed_urads 490375 dof2 FINAL dt_ns 1000000 angle_urad 555760 speed_urads 234063
+rev7_semirep_stock_n1000 FINAL dt_ns 1000000 angle_urad 5049680 speed_urads 17556019
+rev2.5_semirep_stock_n1000 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semirep_stock_n1000 FINAL dt_ns 1000000 angle_urad 435242 speed_urads 503825 dof2 FINAL dt_ns 1000000 angle_urad 558159 speed_urads 239534
+rev7_semi_off_n1 FINAL dt_ns 1000000 angle_urad -5566345 speed_urads 25131
+rev2.5_semi_off_n1 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semi_off_n1 FINAL dt_ns 1000000 angle_urad 200001 speed_urads 434 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 392
+rev7_semirep_off_n1 FINAL dt_ns 1000000 angle_urad -5566345 speed_urads 25133
+rev2.5_semirep_off_n1 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semirep_off_n1 FINAL dt_ns 1000000 angle_urad 200001 speed_urads 434 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 392
+rev7_semi_off_n1000 FINAL dt_ns 1000000 angle_urad 4881333 speed_urads 17123911
+rev2.5_semi_off_n1000 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semi_off_n1000 FINAL dt_ns 1000000 angle_urad 431101 speed_urads 490375 dof2 FINAL dt_ns 1000000 angle_urad 555760 speed_urads 234063
+rev7_semirep_off_n1000 FINAL dt_ns 1000000 angle_urad 5049680 speed_urads 17556019
+rev2.5_semirep_off_n1000 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semirep_off_n1000 FINAL dt_ns 1000000 angle_urad 435242 speed_urads 503825 dof2 FINAL dt_ns 1000000 angle_urad 558159 speed_urads 239534
+rev7_semi_angle_n1 FINAL dt_ns 1000000 angle_urad -5566370 speed_urads 0
+rev2.5_semi_angle_n1 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semi_angle_n1 FINAL dt_ns 1000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 0
+rev7_semirep_angle_n1 FINAL dt_ns 1000000 angle_urad -5566370 speed_urads 0
+rev2.5_semirep_angle_n1 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semirep_angle_n1 FINAL dt_ns 1000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 0
+rev7_semi_angle_n1000 FINAL dt_ns 1000000 angle_urad -5566370 speed_urads -2
+rev2.5_semi_angle_n1000 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semi_angle_n1000 FINAL dt_ns 1000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 0
+rev7_semirep_angle_n1000 FINAL dt_ns 1000000 angle_urad -5566370 speed_urads -2
+rev2.5_semirep_angle_n1000 FINAL dt_ns 1000000 angle_urad 2500000 speed_urads 0
+d6_semirep_angle_n1000 FINAL dt_ns 1000000 angle_urad 200000 speed_urads 0 dof2 FINAL dt_ns 1000000 angle_urad 400000 speed_urads 0
+strike_stock_m0.1_0.00025 back_urad none
+strike_stock_m0.1_0.0000625 back_urad none
+strike_stock_m1_0.00025 back_urad none
+strike_stock_m1_0.0000625 back_urad -826183
+strike_off_m0.1_0.00025 back_urad none
+strike_off_m0.1_0.0000625 back_urad none
+strike_off_m1_0.00025 back_urad none
+strike_off_m1_0.0000625 back_urad -826183
+strike_limit_m0.1_0.00025 back_urad none
+strike_limit_m0.1_0.0000625 back_urad none
+strike_limit_m1_0.00025 back_urad none
+strike_limit_m1_0.0000625 back_urad -824450

@@ -1,0 +1,46 @@
+free_s1_0.00032 | plays | FINAL dt_ns 320000 angle_urad 4391593 speed_urads 2988098 | SWING dt_ns 320000 released_at_urad 200000 turns 0
+free_s1_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 4354696 speed_urads 2938457 | SWING dt_ns 1600000 released_at_urad 200001 turns 0
+free_s2_0.00032 | plays | FINAL dt_ns 320000 angle_urad 4391593 speed_urads 2988098 | SWING dt_ns 320000 released_at_urad 200000 turns 0
+free_s2_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 4354696 speed_urads 2938457 | SWING dt_ns 1600000 released_at_urad 200001 turns 0
+off_r0.4_L2.7_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1295834 speed_urads -2540492 | SWING dt_ns 320000 released_at_urad 200000 turn_urad 2705606 swing_per_10000 7975 turns 1
+off_r0.4_L2.7_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1452595 speed_urads -2512662 | SWING dt_ns 1600000 released_at_urad 200001 turn_urad 2726897 swing_per_10000 8043 turns 1
+off_r0.4_L3.05_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1586140 speed_urads -2651849 | SWING dt_ns 320000 released_at_urad 550001 turn_urad 3055625 swing_per_10000 7975 turns 1
+off_r0.4_L3.05_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1763912 speed_urads -2611773 | SWING dt_ns 1600000 released_at_urad 550001 turn_urad 3077676 swing_per_10000 8045 turns 1
+s1_r0.4_L3.3_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1843135 speed_urads -2639175 | SWING dt_ns 320000 released_at_urad 800000 turn_urad 3305638 swing_per_10000 7975 turns 1
+s1_r0.4_L3.3_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 2018207 speed_urads -2600797 | SWING dt_ns 1600000 released_at_urad 800001 turn_urad 3327996 swing_per_10000 8046 turns 1
+s1_r0.4_L3.8_0.00032 | plays | FINAL dt_ns 320000 angle_urad 2383033 speed_urads -2558203 | SWING dt_ns 320000 released_at_urad 1300001 turn_urad 3806426 swing_per_10000 7978 turns 1
+s1_r0.4_L3.8_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 2517427 speed_urads -2556216 | SWING dt_ns 1600000 released_at_urad 1300000 turn_urad 3831904 swing_per_10000 8059 turns 1
+s1_r0.4_L4.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 3050587 speed_urads -2624950 | SWING dt_ns 320000 released_at_urad 2000001 turn_urad 4505734 swing_per_10000 7975 turns 1
+s1_r0.4_L4.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 3226552 speed_urads -2582386 | SWING dt_ns 1600000 released_at_urad 2000000 turn_urad 4528053 swing_per_10000 8046 turns 1
+s2_arm0.1_r0.4_L2.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1399060 speed_urads -1960064 | SWING dt_ns 320000 released_at_urad 1 turn_urad 2501928 swing_per_10000 7963 turns 1
+s2_arm0.1_r0.4_L2.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1454690 speed_urads -1929152 | SWING dt_ns 1600000 released_at_urad 1 turn_urad 2509430 swing_per_10000 7987 turns 1
+s2_arm0.3_r0.4_L2.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1102679 speed_urads -2523431 | SWING dt_ns 320000 released_at_urad 1 turn_urad 2506355 swing_per_10000 7977 turns 1
+s2_arm0.3_r0.4_L2.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1281982 speed_urads -2431606 | SWING dt_ns 1600000 released_at_urad 0 turn_urad 2530866 swing_per_10000 8055 turns 1
+s2_arm0.3_r1_L2.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 3848259 speed_urads -6816673500000 | SWING dt_ns 320000 released_at_urad 1 turn_urad 2888573 swing_per_10000 9194 turn_urad 547364 swing_per_10000 7452 turn_urad 1036049 swing_per_10000 1555 turn_urad 845414 swing_per_10000 606 turns 7
+s2_arm0.3_r1_L2.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1290916 speed_urads 1338437750000 | SWING dt_ns 1600000 released_at_urad 0 turn_urad 3140891 swing_per_10000 9997 turn_urad 1567827 swing_per_10000 5007 turns 2
+s2_arm0_r0.4_L2.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 2285949 speed_urads -378328 | SWING dt_ns 320000 released_at_urad 0 turn_urad 2500185 swing_per_10000 7958 turns 1
+s2_arm0_r0.4_L2.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 2288787 speed_urads -375907 | SWING dt_ns 1600000 released_at_urad 0 turn_urad 2501094 swing_per_10000 7960 turns 1
+s2_arm0_r1_L2.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 2499335 speed_urads -1153 | SWING dt_ns 320000 released_at_urad 0 turn_urad 2500000 swing_per_10000 7957 turns 1
+s2_arm0_r1_L2.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 2289221 speed_urads -371742 | SWING dt_ns 1600000 released_at_urad 0 turn_urad 2499769 swing_per_10000 7956 turns 1
+s2_r0.2_L2.95_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1502261 speed_urads -2621675 | SWING dt_ns 320000 released_at_urad 450001 turn_urad 2955750 swing_per_10000 7975 turns 1
+s2_r0.2_L2.95_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1678283 speed_urads -2578444 | SWING dt_ns 1600000 released_at_urad 450001 turn_urad 2978030 swing_per_10000 8046 turns 1
+s2_r0.2_L2.9_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1462051 speed_urads -2603531 | SWING dt_ns 320000 released_at_urad 400001 turn_urad 2905793 swing_per_10000 7975 turns 1
+s2_r0.2_L2.9_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1632905 speed_urads -2568052 | SWING dt_ns 1600000 released_at_urad 400001 turn_urad 2928546 swing_per_10000 8048 turns 1
+s2_r0.2_L3.05_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1590709 speed_urads -2643429 | SWING dt_ns 320000 released_at_urad 550001 turn_urad 3055666 swing_per_10000 7975 turns 1
+s2_r0.2_L3.05_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1767769 speed_urads -2604131 | SWING dt_ns 1600000 released_at_urad 550001 turn_urad 3077870 swing_per_10000 8046 turns 1
+s2_r0.4_L2.7_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1295834 speed_urads -2540492 | SWING dt_ns 320000 released_at_urad 200000 turn_urad 2705606 swing_per_10000 7975 turns 1
+s2_r0.4_L2.7_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1452595 speed_urads -2512662 | SWING dt_ns 1600000 released_at_urad 200001 turn_urad 2726897 swing_per_10000 8043 turns 1
+s2_r0.4_L2.8_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1365686 speed_urads -2596387 | SWING dt_ns 320000 released_at_urad 300001 turn_urad 2805416 swing_per_10000 7974 turns 1
+s2_r0.4_L2.8_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1540789 speed_urads -2544438 | SWING dt_ns 1600000 released_at_urad 300001 turn_urad 2826848 swing_per_10000 8043 turns 1
+s2_r0.4_L2.95_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1498147 speed_urads -2630202 | SWING dt_ns 320000 released_at_urad 450001 turn_urad 2955694 swing_per_10000 7975 turns 1
+s2_r0.4_L2.95_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1674674 speed_urads -2586984 | SWING dt_ns 1600000 released_at_urad 450001 turn_urad 2977767 swing_per_10000 8045 turns 1
+s2_r0.4_L2.9_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1457671 speed_urads -2612459 | SWING dt_ns 320000 released_at_urad 400001 turn_urad 2905745 swing_per_10000 7975 turns 1
+s2_r0.4_L2.9_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1629502 speed_urads -2573566 | SWING dt_ns 1600000 released_at_urad 400000 turn_urad 2928285 swing_per_10000 8047 turns 1
+s2_r0.4_L3.05_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1586140 speed_urads -2651849 | SWING dt_ns 320000 released_at_urad 550001 turn_urad 3055625 swing_per_10000 7975 turns 1
+s2_r0.4_L3.05_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 1763912 speed_urads -2611773 | SWING dt_ns 1600000 released_at_urad 550001 turn_urad 3077676 swing_per_10000 8045 turns 1
+s2_r0.4_L3.3_0.00032 | plays | FINAL dt_ns 320000 angle_urad 1843135 speed_urads -2639175 | SWING dt_ns 320000 released_at_urad 800000 turn_urad 3305638 swing_per_10000 7975 turns 1
+s2_r0.4_L3.3_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 2018207 speed_urads -2600797 | SWING dt_ns 1600000 released_at_urad 800001 turn_urad 3327996 swing_per_10000 8046 turns 1
+s2_r0.4_L3.8_0.00032 | plays | FINAL dt_ns 320000 angle_urad 2383033 speed_urads -2558203 | SWING dt_ns 320000 released_at_urad 1300001 turn_urad 3806426 swing_per_10000 7978 turns 1
+s2_r0.4_L3.8_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 2517427 speed_urads -2556216 | SWING dt_ns 1600000 released_at_urad 1300000 turn_urad 3831904 swing_per_10000 8059 turns 1
+s2_r0.4_L4.5_0.00032 | plays | FINAL dt_ns 320000 angle_urad 3050587 speed_urads -2624950 | SWING dt_ns 320000 released_at_urad 2000001 turn_urad 4505734 swing_per_10000 7975 turns 1
+s2_r0.4_L4.5_0.0016 | plays | FINAL dt_ns 1600000 angle_urad 3226552 speed_urads -2582386 | SWING dt_ns 1600000 released_at_urad 2000000 turn_urad 4528053 swing_per_10000 8046 turns 1

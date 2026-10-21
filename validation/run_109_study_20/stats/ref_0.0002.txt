@@ -1,0 +1,1 @@
+STATS chain dt 1e-05 mass1 0.9 mass2 0.5 radius 0.035 arm1 0.2 len1 0.42 arm2 0.18 gravity 0 steps 260000 engine mujoco 3.15.0 integrator rk4 limit lo1=-1 hi1=2.4 solreflimit=0.0002,1 solimplimit=0.99,0.999,0.001 bodies 1,2

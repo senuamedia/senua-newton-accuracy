@@ -1,0 +1,4 @@
+RULE R1_numbers all_eq -1 -1 -1 -1 -1 : HELD
+RULE R2_strike_A4 all_in -253220 -213220 -234683 -234975 : HELD
+RULE R2_strike_A15 all_in -407852 -367852 -388254 -387361 : HELD
+rules: 3, held: 3

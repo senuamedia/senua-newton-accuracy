@@ -1,0 +1,260 @@
+--- a/newton/_src/solvers/featherstone/coulomb_friction.py
++++ b/newton/_src/solvers/featherstone/coulomb_friction.py
+@@ -26,6 +26,8 @@
+ 
+ from ...sim import Contacts, Model, State
+ from ..semi_implicit.kernels_contact_coulomb import (
++    _SPECULATIVE,
++    speculative_normal_sweep,
+     CoulombFrictionArrays,
+     eval_body_contact_coulomb,
+     solve_contact_friction_accumulated,
+@@ -134,7 +136,18 @@
+             False,
+             friction_smoothing,
+         ],
+-        outputs=[body_f, arrays.fn, arrays.nrm, arrays.ra, arrays.rb, arrays.mu, arrays.bodies, arrays.count],
++        outputs=[
++            body_f,
++            arrays.fn,
++            arrays.nrm,
++            arrays.ra,
++            arrays.rb,
++            arrays.mu,
++            arrays.bodies,
++            arrays.count,
++            arrays.sep,
++            arrays.spec_count,
++        ],
+         device=model.device,
+     )
+ 
+@@ -200,6 +213,8 @@
+     for _ in range(solver._coulomb_sweeps):
+         eval_fk_with_velocity_conversion(model, state_out.joint_q, qd, state_out)
+         arrays.dp.zero_()
++        if _SPECULATIVE:  # Senua AI patch, in design: the speculative normal first, from the joints' speeds the sweep starts from
++            speculative_normal_sweep(model, state_out, contacts, arrays, dt)
+         wp.launch(
+             kernel=solve_contact_friction_accumulated,
+             dim=contacts.rigid_contact_max,
+--- a/newton/_src/solvers/semi_implicit/kernels_contact_coulomb.py
++++ b/newton/_src/solvers/semi_implicit/kernels_contact_coulomb.py
+@@ -25,6 +25,8 @@
+ # NEWTON_CONTACT_DAMPING_NO_PULL=1 the force pass damps the normal contact in both phases, kept from pulling, as that
+ # patch's pass does (Study 3); unset, it is the second form's.
+ 
++import os
++
+ import warp as wp
+ 
+ from ...sim import Contacts, Model, State
+@@ -33,6 +35,13 @@
+ # the contact damping patch's switch, read once when kernels_contact is imported
+ _NO_PULL = wp.constant(1 if _CONTACT_DAMPING_NO_PULL else 0)
+ 
++# Senua AI patch, in design: with NEWTON_SPECULATIVE_NORMAL=1 (read once, here) a contact the force pass finds still
++# apart at the step's start (separation d > 0, where the penalty contact applies nothing) is recorded, and the pass
++# after the step's integration gives it the normal impulse that keeps it apart at the step's end, its closing speed
++# cut to d / dt (Catto, speculative contacts, GDC 2013), its total over the sweeps never pulling: a body a step
++# carries past a thin wall stops at it. Unset, nothing is recorded and nothing changes.
++_SPECULATIVE = os.environ.get("NEWTON_SPECULATIVE_NORMAL") == "1"
++
+ 
+ @wp.kernel
+ def solve_contact_friction(
+@@ -164,6 +173,8 @@
+     rec_mu: wp.array[float],
+     rec_bodies: wp.array[wp.vec2i],
+     rec_count: wp.array[int],
++    rec_sep: wp.array[float],
++    rec_spec_count: wp.array[int],
+     tid: int,
+ ):
+ 
+@@ -239,6 +250,18 @@
+ 
+     d = wp.dot(n, bx_a - bx_b)
+ 
++    if wp.static(_SPECULATIVE):  # Senua AI patch, in design: a contact still apart recorded for the pass's normal
++        if d > 0.0:
++            rec_sep[tid] = d
++            rec_nrm[tid] = n
++            rec_ra[tid] = r_a
++            rec_rb[tid] = r_b
++            rec_bodies[tid] = wp.vec2i(body_a, body_b)
++            if body_a >= 0:
++                wp.atomic_add(rec_spec_count, body_a, 1)
++            if body_b >= 0:
++                wp.atomic_add(rec_spec_count, body_b, 1)
++
+     if d >= ka:
+         return
+ 
+@@ -367,6 +390,8 @@
+     rec_mu: wp.array[float],
+     rec_bodies: wp.array[wp.vec2i],
+     rec_count: wp.array[int],
++    rec_sep: wp.array[float],
++    rec_spec_count: wp.array[int],
+ ):
+     tid = wp.tid()
+     surface_velocity = wp.vec3(0.0)
+@@ -404,6 +429,8 @@
+         rec_mu,
+         rec_bodies,
+         rec_count,
++        rec_sep,
++        rec_spec_count,
+         tid,
+     )
+ 
+@@ -423,11 +450,18 @@
+             self.bodies = wp.zeros(n, dtype=wp.vec2i)
+             self.count = wp.zeros(model.body_count, dtype=int)
+             self.dp = wp.zeros(model.body_count, dtype=wp.spatial_vector)
++            # Senua AI patch, in design: the speculative normal's records (a contact's separation, -1 where none)
++            self.sep = wp.full(n, -1.0, dtype=float)
++            self.spec_count = wp.zeros(model.body_count, dtype=int)
++            self.pn = wp.zeros(n, dtype=float)
+ 
+     def clear(self):
+         self.fn.zero_()
+         self.count.zero_()
+         self.dp.zero_()
++        self.sep.fill_(-1.0)
++        self.spec_count.zero_()
++        self.pn.zero_()
+ 
+ 
+ def eval_body_contact_forces_coulomb(
+@@ -469,12 +503,25 @@
+             force_in_world_frame,
+             friction_smoothing,
+         ],
+-        outputs=[body_f_out, arrays.fn, arrays.nrm, arrays.ra, arrays.rb, arrays.mu, arrays.bodies, arrays.count],
++        outputs=[
++            body_f_out,
++            arrays.fn,
++            arrays.nrm,
++            arrays.ra,
++            arrays.rb,
++            arrays.mu,
++            arrays.bodies,
++            arrays.count,
++            arrays.sep,
++            arrays.spec_count,
++        ],
+         device=model.device,
+     )
+ 
+ 
+ def friction_pass(model: Model, state: State, contacts: Contacts, arrays: CoulombFrictionArrays, dt: float):
++    if _SPECULATIVE:  # Senua AI patch, in design
++        speculative_normal_sweep(model, state, contacts, arrays, dt)
+     wp.launch(
+         kernel=solve_contact_friction,
+         dim=contacts.rigid_contact_max,
+@@ -593,6 +640,8 @@
+     pt.zero_()
+     for _ in range(iterations):
+         arrays.dp.zero_()
++        if _SPECULATIVE:  # Senua AI patch, in design: the normal first, from the velocities the sweep starts from
++            speculative_normal_sweep(model, state, contacts, arrays, dt)
+         wp.launch(
+             kernel=solve_contact_friction_accumulated,
+             dim=contacts.rigid_contact_max,
+@@ -622,3 +671,93 @@
+             inputs=[state.body_q, state.body_qd, model.body_com, model.body_inv_mass, model.body_inv_inertia, arrays.dp, dt],
+             device=model.device,
+         )
++
++
++@wp.kernel
++def solve_contact_speculative_normal(
++    body_q: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_inv_mass: wp.array[float],
++    body_inv_inertia: wp.array[wp.mat33],
++    contact_count: wp.array[int],
++    contact_sep: wp.array[float],
++    contact_nrm: wp.array[wp.vec3],
++    contact_ra: wp.array[wp.vec3],
++    contact_rb: wp.array[wp.vec3],
++    contact_bodies: wp.array[wp.vec2i],
++    body_spec_count: wp.array[int],
++    dt: float,
++    # the normal impulse each contact has applied so far this step
++    contact_pn: wp.array[float],
++    # output: this sweep's impulse on each body, linear and angular, world frame
++    body_dp: wp.array[wp.spatial_vector],
++):
++    """Senua AI patch, in design: the normal impulse that keeps a contact still apart at the step's start apart at its
++    end, its closing speed cut to d / dt, shared among the body's such contacts, its total never pulling."""
++    tid = wp.tid()
++    if tid >= contact_count[0]:
++        return
++    sep = contact_sep[tid]
++    if sep < 0.0:
++        return
++    body_a = contact_bodies[tid][0]
++    body_b = contact_bodies[tid][1]
++    n = contact_nrm[tid]
++    r_a = contact_ra[tid]
++    r_b = contact_rb[tid]
++    v = wp.vec3(0.0)
++    w_eff = 0.0
++    shared = 1
++    if body_a >= 0:
++        qd = body_qd[body_a]
++        v += wp.spatial_top(qd) + wp.cross(wp.spatial_bottom(qd), r_a)
++        shared = wp.max(shared, body_spec_count[body_a])
++        rot = wp.quat_to_matrix(wp.transform_get_rotation(body_q[body_a]))
++        inv_I = rot * body_inv_inertia[body_a] * wp.transpose(rot)
++        rn = wp.cross(r_a, n)
++        w_eff += body_inv_mass[body_a] + wp.dot(rn, inv_I * rn)
++    if body_b >= 0:
++        qd = body_qd[body_b]
++        v -= wp.spatial_top(qd) + wp.cross(wp.spatial_bottom(qd), r_b)
++        shared = wp.max(shared, body_spec_count[body_b])
++        rot = wp.quat_to_matrix(wp.transform_get_rotation(body_q[body_b]))
++        inv_I = rot * body_inv_inertia[body_b] * wp.transpose(rot)
++        rn = wp.cross(r_b, n)
++        w_eff += body_inv_mass[body_b] + wp.dot(rn, inv_I * rn)
++    if w_eff <= 0.0:
++        return
++    # the separation changes at n . (v_a - v_b); apart at the step's end while that is no less than -sep / dt
++    j = (-sep / dt - wp.dot(n, v)) / (w_eff * float(shared))
++    old = contact_pn[tid]
++    new = wp.max(old + j, 0.0)
++    contact_pn[tid] = new
++    p = n * (new - old)
++    if body_a >= 0:
++        wp.atomic_add(body_dp, body_a, wp.spatial_vector(p, wp.cross(r_a, p)))
++    if body_b >= 0:
++        wp.atomic_sub(body_dp, body_b, wp.spatial_vector(p, wp.cross(r_b, p)))
++
++
++def speculative_normal_sweep(model: Model, state: State, contacts: Contacts, arrays: CoulombFrictionArrays, dt: float):
++    """Senua AI patch, in design: one sweep of the speculative normal, its impulses added to the pass's body impulses."""
++    wp.launch(
++        kernel=solve_contact_speculative_normal,
++        dim=contacts.rigid_contact_max,
++        inputs=[
++            state.body_q,
++            state.body_qd,
++            model.body_inv_mass,
++            model.body_inv_inertia,
++            contacts.rigid_contact_count,
++            arrays.sep,
++            arrays.nrm,
++            arrays.ra,
++            arrays.rb,
++            arrays.bodies,
++            arrays.spec_count,
++            dt,
++            arrays.pn,
++        ],
++        outputs=[arrays.dp],
++        device=model.device,
++    )

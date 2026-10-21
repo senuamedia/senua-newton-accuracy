@@ -1,0 +1,10 @@
+CHECK a cube play is byte-identical to run 001's: yes
+plate_featherstone_0.01_0.000125 | slid_um 690 came_back_um 61 | 301-302 ms mean_acceleration_mm_s2 -182633 | 302-305 ms mean_acceleration_mm_s2 -3921 | 310-320 ms mean_acceleration_mm_s2 -47 | 330-350 ms mean_acceleration_mm_s2 0
+plate_featherstone_1.0_0.000125 | slid_um 42315 came_back_um 24 | 301-302 ms mean_acceleration_mm_s2 -8266 | 302-305 ms mean_acceleration_mm_s2 -8504 | 310-320 ms mean_acceleration_mm_s2 -8869 | 330-350 ms mean_acceleration_mm_s2 -13124
+plate_mujoco_0.000125 | slid_um 127663 came_back_um 0 | 301-302 ms mean_acceleration_mm_s2 0 | 302-305 ms mean_acceleration_mm_s2 0 | 310-320 ms mean_acceleration_mm_s2 -3410 | 330-350 ms mean_acceleration_mm_s2 -3354
+plate_semi_0.01_0.00003125 | slid_um 710 came_back_um 59 | 301-302 ms mean_acceleration_mm_s2 -2464 | 302-305 ms mean_acceleration_mm_s2 -1652 | 310-320 ms mean_acceleration_mm_s2 510 | 330-350 ms mean_acceleration_mm_s2 0
+plate_semi_0.01_0.000125 | slid_um 690 came_back_um 61 | 301-302 ms mean_acceleration_mm_s2 -182637 | 302-305 ms mean_acceleration_mm_s2 -3921 | 310-320 ms mean_acceleration_mm_s2 -47 | 330-350 ms mean_acceleration_mm_s2 0
+plate_semi_0.1_0.000125 | slid_um 9733 came_back_um 47 | 301-302 ms mean_acceleration_mm_s2 -51731 | 302-305 ms mean_acceleration_mm_s2 -56293 | 310-320 ms mean_acceleration_mm_s2 -46333 | 330-350 ms mean_acceleration_mm_s2 116
+plate_semi_1.0_0.00003125 | slid_um 41971 came_back_um 20 | 301-302 ms mean_acceleration_mm_s2 -8545 | 302-305 ms mean_acceleration_mm_s2 -8736 | 310-320 ms mean_acceleration_mm_s2 -9018 | 330-350 ms mean_acceleration_mm_s2 -14235
+plate_semi_1.0_0.000125 | slid_um 42315 came_back_um 24 | 301-302 ms mean_acceleration_mm_s2 -8266 | 302-305 ms mean_acceleration_mm_s2 -8504 | 310-320 ms mean_acceleration_mm_s2 -8869 | 330-350 ms mean_acceleration_mm_s2 -13124
+plate_xpbd_0.000125 | slid_um 127470 came_back_um 0 | 301-302 ms mean_acceleration_mm_s2 -3920 | 302-305 ms mean_acceleration_mm_s2 -3920 | 310-320 ms mean_acceleration_mm_s2 -3919 | 330-350 ms mean_acceleration_mm_s2 -3919

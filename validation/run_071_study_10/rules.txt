@@ -1,0 +1,25 @@
+RULE R1_safe_when_off_plays eq 4 4 : HELD
+RULE R1_safe_when_off_suite eq 39 39 : HELD
+RULE R2_fault_there_17 all_eq 0 0 0 : HELD
+RULE R3_kept_17_free all_within 30 30 30 : HELD
+RULE R3_kept_17_push all_within 52500 1000 52499 52500 52500 : HELD
+RULE R4_turn_stock all_eq 0 0 : HELD
+RULE R4_turn_on all_within 40 10 40 : HELD
+RULE R5_nothing_else_17 eq 10 10 : HELD
+RULE R6_fault_there_25 all_ge 4249 4959 : HELD
+RULE R7_right_25_torque all_within 2832 100 2852 2852 2852 2836 2836 : HELD
+RULE R7_right_25_gravity all_within -22207 100 -22317 -22317 -22317 -22229 -22229 -22229 : HELD
+RULE R8_fault_there_26 all_le 0 -126952 -127989 : HELD
+RULE R9_right_26 all_within 93289 400 93131 93144 93148 93146 93261 93256 93259 93258 : HELD
+RULE R10_effort_pd all_within 130577 400 130517 130570 : HELD
+RULE R10_effort_ignored_released eq 2 2 : HELD
+RULE R11_fault_there_7 all_ge 100000000 797854937500 32717518000000 : HELD
+RULE R12_kept_7_xpbd_angle_0.0016 near 4830459 4830459 10 : HELD
+RULE R12_kept_7_xpbd_speed_0.0016 near 3401958 3401958 10 : HELD
+RULE R13_kept_7_vbd_angle_0.0016 near 4835398 4835398 10 : HELD
+RULE R13_kept_7_vbd_speed_0.0016 near 3408980 3408980 10 : HELD
+RULE R12_kept_7_xpbd_angle_0.0004 near 4883209 4883210 10 : HELD
+RULE R12_kept_7_xpbd_speed_0.0004 near 3475455 3475455 10 : HELD
+RULE R13_kept_7_vbd_angle_0.0004 near 4878652 4878652 10 : HELD
+RULE R13_kept_7_vbd_speed_0.0004 near 3466458 3466458 10 : HELD
+rules: 24, held: 24

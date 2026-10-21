@@ -1,0 +1,12 @@
+spin_mujoco_euler_0.000625 | creep mean_speed_ums 336 | stop largest_speed_last_third_ums 734 slid_um 686
+spin_mujoco_euler_0.0025 | creep mean_speed_ums 1431 | stop largest_speed_last_third_ums 3117 slid_um 3196
+spin_mujoco_euler_0.01 | creep mean_speed_ums 5754 | stop largest_speed_last_third_ums 12498 slid_um 13122
+spin_mujoco_rk4_0.000625 | creep mean_speed_ums -19 | stop largest_speed_last_third_ums 45 slid_um 0
+spin_mujoco_rk4_0.0025 | creep mean_speed_ums -6 | stop largest_speed_last_third_ums 12 slid_um 0
+spin_mujoco_rk4_0.01 | creep mean_speed_ums -1 | stop largest_speed_last_third_ums 3 slid_um 0
+spin_vbd_alm_off_0.00015625 | creep mean_speed_ums -4562 | stop largest_speed_last_third_ums 7129 slid_um 1
+spin_vbd_alm_off_0.000625 | creep mean_speed_ums -201 | stop largest_speed_last_third_ums 352 slid_um 0
+spin_vbd_alm_on2_0.00015625 | creep mean_speed_ums 656 | stop largest_speed_last_third_ums 787 slid_um 762
+spin_vbd_alm_on2_0.000625 | creep mean_speed_ums 56 | stop largest_speed_last_third_ums 95 slid_um 0
+CHECK VBD-ALM off at 0.625 ms byte-identical to run 030's: yes
+plays that stopped being a number: 0

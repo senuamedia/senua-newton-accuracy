@@ -1,0 +1,204 @@
+xpbd_hold_d1_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1176738 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_import_d1_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 1000000 steps 600 mean_speed_ums 588606 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_hold_d1_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1176788 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_import_d1_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 588329 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_kinetic_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 0 speed_urads 2359602
+xpbd_break_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -4 speed_urads 4410086
+xpbd_slide_d1_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 272 largest_speed_last_third_ums 106 slid_um 108429 came_back_um 0
+xpbd_hold_d1_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1176788 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_import_d1_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 588329 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_kinetic_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 0 speed_urads 2359602
+xpbd_break_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -4 speed_urads 4410086
+xpbd_slide_d1_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 272 largest_speed_last_third_ums 106 slid_um 108429 came_back_um 0
+xpbd_hold_d1_on stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 3 friction_over_normal_per_10000 4999 friction_limit_per_10000 3000
+xpbd_import_d1_on stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 3 friction_over_normal_per_10000 3998 friction_limit_per_10000 3000
+xpbd_kinetic_d1_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 0 speed_urads 2359602
+xpbd_break_d1_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 0 speed_urads 4410993
+xpbd_slide_d1_on stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 275 largest_speed_last_third_ums 110 slid_um 108532 came_back_um 1
+xpbd_hold_d025_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1175885 friction_over_normal_per_10000 3001 friction_limit_per_10000 3000
+xpbd_import_d025_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 250000 steps 2400 mean_speed_ums 587964 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_hold_d025_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1174974 friction_over_normal_per_10000 3005 friction_limit_per_10000 3000
+xpbd_import_d025_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 588064 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_kinetic_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -4 speed_urads 2353231
+xpbd_break_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -4 speed_urads 4403341
+xpbd_slide_d025_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1088 largest_speed_last_third_ums 13 slid_um 108711 came_back_um 3
+xpbd_hold_d025_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1174974 friction_over_normal_per_10000 3005 friction_limit_per_10000 3000
+xpbd_import_d025_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 588064 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+xpbd_kinetic_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -4 speed_urads 2353231
+xpbd_break_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -4 speed_urads 4403341
+xpbd_slide_d025_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1088 largest_speed_last_third_ums 13 slid_um 108711 came_back_um 3
+xpbd_hold_d025_on stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 12 friction_over_normal_per_10000 5000 friction_limit_per_10000 3000
+xpbd_import_d025_on stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 12 friction_over_normal_per_10000 3998 friction_limit_per_10000 3000
+xpbd_kinetic_d025_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -4 speed_urads 2353231
+xpbd_break_d025_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad 0 speed_urads 4403044
+xpbd_slide_d025_on stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1091 largest_speed_last_third_ums 391 slid_um 108719 came_back_um 0
+semi_hold_d1_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 48367 friction_over_normal_per_10000 5162 friction_limit_per_10000 3000
+semi_import_d1_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 1000000 steps 600 mean_speed_ums 45891 friction_over_normal_per_10000 3931 friction_limit_per_10000 3000
+semi_hold_d1_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177951 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_import_d1_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 590268 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_kinetic_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588298 speed_urads 2359986
+semi_break_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588343 speed_urads 4409992
+semi_slide_d1_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 272 largest_speed_last_third_ums 173 slid_um 108620 came_back_um 179
+semi_hold_d1_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177951 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_import_d1_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 590268 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_kinetic_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588298 speed_urads 2359986
+semi_break_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588343 speed_urads 4409992
+semi_slide_d1_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 272 largest_speed_last_third_ums 173 slid_um 108620 came_back_um 179
+semi_hold_d1_on stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 0 friction_over_normal_per_10000 5000 friction_limit_per_10000 3000
+semi_import_d1_on stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 0 friction_over_normal_per_10000 4000 friction_limit_per_10000 3000
+semi_kinetic_d1_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588298 speed_urads 2359986
+semi_break_d1_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588331 speed_urads 4401482
+semi_slide_d1_on stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 269 largest_speed_last_third_ums 172 slid_um 108598 came_back_um 188
+semi_hold_d025_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums -6397 friction_over_normal_per_10000 5017 friction_limit_per_10000 3000
+semi_import_d025_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 250000 steps 2400 mean_speed_ums -5409 friction_over_normal_per_10000 4005 friction_limit_per_10000 3000
+semi_hold_d025_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176784 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_import_d025_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 589497 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_kinetic_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588126 speed_urads 2359856
+semi_break_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588123 speed_urads 4409988
+semi_slide_d025_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1088 largest_speed_last_third_ums 174 slid_um 108919 came_back_um 179
+semi_hold_d025_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176784 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_import_d025_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 589497 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+semi_kinetic_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588126 speed_urads 2359856
+semi_break_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588123 speed_urads 4409988
+semi_slide_d025_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1088 largest_speed_last_third_ums 174 slid_um 108919 came_back_um 179
+semi_hold_d025_on stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 0 friction_over_normal_per_10000 5000 friction_limit_per_10000 3000
+semi_import_d025_on stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 0 friction_over_normal_per_10000 4000 friction_limit_per_10000 3000
+semi_kinetic_d025_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588126 speed_urads 2359856
+semi_break_d025_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588115 speed_urads 4400182
+semi_slide_d025_on stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1087 largest_speed_last_third_ums 174 slid_um 108919 came_back_um 179
+featherstone_hold_d1_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 427638 friction_over_normal_per_10000 5460 friction_limit_per_10000 3000
+featherstone_import_d1_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 1000000 steps 600 mean_speed_ums 51522 friction_over_normal_per_10000 4048 friction_limit_per_10000 3000
+featherstone_hold_d1_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177956 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_import_d1_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 590272 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_kinetic_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588298 speed_urads 2359985
+featherstone_break_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588343 speed_urads 4409978
+featherstone_slide_d1_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 272 largest_speed_last_third_ums 173 slid_um 108621 came_back_um 179
+featherstone_hold_d1_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177956 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_import_d1_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 590272 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_kinetic_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588298 speed_urads 2359985
+featherstone_break_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588343 speed_urads 4409978
+featherstone_slide_d1_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 272 largest_speed_last_third_ums 173 slid_um 108621 came_back_um 179
+featherstone_hold_d1_on stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 0 friction_over_normal_per_10000 5000 friction_limit_per_10000 3000
+featherstone_import_d1_on stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 0 friction_over_normal_per_10000 4000 friction_limit_per_10000 3000
+featherstone_kinetic_d1_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588298 speed_urads 2359985
+featherstone_break_d1_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588331 speed_urads 4401469
+featherstone_slide_d1_on stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 269 largest_speed_last_third_ums 172 slid_um 108599 came_back_um 188
+featherstone_hold_d025_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums -6404 friction_over_normal_per_10000 5005 friction_limit_per_10000 3000
+featherstone_import_d025_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 250000 steps 2400 mean_speed_ums -5613 friction_over_normal_per_10000 4010 friction_limit_per_10000 3000
+featherstone_hold_d025_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176795 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_import_d025_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 589487 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_kinetic_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588126 speed_urads 2359996
+featherstone_break_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588119 speed_urads 4410078
+featherstone_slide_d025_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1088 largest_speed_last_third_ums 174 slid_um 108920 came_back_um 179
+featherstone_hold_d025_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176795 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_import_d025_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 589487 friction_over_normal_per_10000 3000 friction_limit_per_10000 3000
+featherstone_kinetic_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588126 speed_urads 2359996
+featherstone_break_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588119 speed_urads 4410078
+featherstone_slide_d025_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1088 largest_speed_last_third_ums 174 slid_um 108920 came_back_um 179
+featherstone_hold_d025_on stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 0 friction_over_normal_per_10000 5000 friction_limit_per_10000 3000
+featherstone_import_d025_on stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 0 friction_over_normal_per_10000 4000 friction_limit_per_10000 3000
+featherstone_kinetic_d025_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588126 speed_urads 2359996
+featherstone_break_d025_on stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588119 speed_urads 4400292
+featherstone_slide_d025_on stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1087 largest_speed_last_third_ums 174 slid_um 108919 came_back_um 179
+mujoco_hold_d1_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177027 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+mujoco_import_d1_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 1000000 steps 600 mean_speed_ums 589432 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_hold_d1_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177027 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+mujoco_import_d1_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 589432 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_kinetic_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 443693 speed_urads 2362638
+mujoco_break_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 1601010 speed_urads 4463781
+mujoco_slide_d1_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 317 largest_speed_last_third_ums 6 slid_um 108578 came_back_um 1
+mujoco_hold_d1_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177027 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+mujoco_import_d1_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 589432 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_kinetic_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 443693 speed_urads 2362638
+mujoco_break_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad 1601010 speed_urads 4463781
+mujoco_slide_d1_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 317 largest_speed_last_third_ums 6 slid_um 108578 came_back_um 1
+mujoco_hold_d1_on stops -1 static_warnings 1 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1177027 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+mujoco_import_d1_on stops -1 static_warnings 1 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 589432 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_kinetic_d1_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 1000000 angle_urad 443693 speed_urads 2362638
+mujoco_break_d1_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 1000000 angle_urad 1601010 speed_urads 4463781
+mujoco_slide_d1_on stops -1 static_warnings 1 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 317 largest_speed_last_third_ums 6 slid_um 108578 came_back_um 1
+mujoco_hold_d025_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176376 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_import_d025_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 250000 steps 2400 mean_speed_ums 589484 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_hold_d025_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176376 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_import_d025_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 589484 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_kinetic_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad 80083 speed_urads 2359325
+mujoco_break_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad 328615 speed_urads 4407146
+mujoco_slide_d025_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1283 largest_speed_last_third_ums 0 slid_um 108924 came_back_um 0
+mujoco_hold_d025_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176376 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_import_d025_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 589484 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_kinetic_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad 80083 speed_urads 2359325
+mujoco_break_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad 328615 speed_urads 4407146
+mujoco_slide_d025_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1283 largest_speed_last_third_ums 0 slid_um 108924 came_back_um 0
+mujoco_hold_d025_on stops -1 static_warnings 1 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1176376 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_import_d025_on stops -1 static_warnings 1 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 589484 friction_over_normal_per_10000 2999 friction_limit_per_10000 3000
+mujoco_kinetic_d025_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 250000 angle_urad 80083 speed_urads 2359325
+mujoco_break_d025_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 250000 angle_urad 328615 speed_urads 4407146
+mujoco_slide_d025_on stops -1 static_warnings 1 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1283 largest_speed_last_third_ums 0 slid_um 108924 came_back_um 0
+vbd_alm_hold_d1_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1204808 friction_over_normal_per_10000 3003 friction_limit_per_10000 3000
+vbd_alm_import_d1_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 1000000 steps 600 mean_speed_ums 619688 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+vbd_alm_hold_d1_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1204808 friction_over_normal_per_10000 3003 friction_limit_per_10000 3000
+vbd_alm_import_d1_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 619688 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+vbd_alm_kinetic_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588488 speed_urads 2464890
+vbd_alm_break_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588458 speed_urads 4442454
+vbd_alm_slide_d1_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 312 largest_speed_last_third_ums 194 slid_um 138290 came_back_um 178
+vbd_alm_hold_d1_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1204808 friction_over_normal_per_10000 3003 friction_limit_per_10000 3000
+vbd_alm_import_d1_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 619688 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+vbd_alm_kinetic_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588488 speed_urads 2464890
+vbd_alm_break_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588458 speed_urads 4442454
+vbd_alm_slide_d1_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 312 largest_speed_last_third_ums 194 slid_um 138290 came_back_um 178
+vbd_alm_hold_d1_on stops -1 static_warnings 1 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1204808 friction_over_normal_per_10000 3003 friction_limit_per_10000 3000
+vbd_alm_import_d1_on stops -1 static_warnings 1 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 619688 friction_over_normal_per_10000 2998 friction_limit_per_10000 3000
+vbd_alm_kinetic_d1_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588488 speed_urads 2464890
+vbd_alm_break_d1_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 1000000 angle_urad -588458 speed_urads 4442454
+vbd_alm_slide_d1_on stops -1 static_warnings 1 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 312 largest_speed_last_third_ums 194 slid_um 138290 came_back_um 178
+vbd_alm_hold_d025_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1217451 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_alm_import_d025_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 250000 steps 2400 mean_speed_ums 620329 friction_over_normal_per_10000 3023 friction_limit_per_10000 3000
+vbd_alm_hold_d025_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1217451 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_alm_import_d025_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 620329 friction_over_normal_per_10000 3023 friction_limit_per_10000 3000
+vbd_alm_kinetic_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588033 speed_urads 2462864
+vbd_alm_break_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588171 speed_urads 4120827
+vbd_alm_slide_d025_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1262 largest_speed_last_third_ums 238 slid_um 139335 came_back_um 179
+vbd_alm_hold_d025_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1217451 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_alm_import_d025_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 620329 friction_over_normal_per_10000 3023 friction_limit_per_10000 3000
+vbd_alm_kinetic_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588033 speed_urads 2462864
+vbd_alm_break_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -588171 speed_urads 4120827
+vbd_alm_slide_d025_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1262 largest_speed_last_third_ums 238 slid_um 139335 came_back_um 179
+vbd_alm_hold_d025_on stops -1 static_warnings 1 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1217451 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_alm_import_d025_on stops -1 static_warnings 1 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 620329 friction_over_normal_per_10000 3023 friction_limit_per_10000 3000
+vbd_alm_kinetic_d025_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 250000 angle_urad -588033 speed_urads 2462864
+vbd_alm_break_d025_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 250000 angle_urad -588171 speed_urads 4120827
+vbd_alm_slide_d025_on stops -1 static_warnings 1 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step 1262 largest_speed_last_third_ums 238 slid_um 139335 came_back_um 179
+vbd_hold_d1_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1219195 friction_over_normal_per_10000 3001 friction_limit_per_10000 3000
+vbd_import_d1_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 1000000 steps 600 mean_speed_ums 636212 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_hold_d1_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1219195 friction_over_normal_per_10000 3001 friction_limit_per_10000 3000
+vbd_import_d1_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 636212 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_kinetic_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -1125786 speed_urads 2571106
+vbd_break_d1_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -1125764 speed_urads 4457236
+vbd_slide_d1_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 353 largest_speed_last_third_ums 1356 slid_um 157666 came_back_um 214
+vbd_hold_d1_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1219195 friction_over_normal_per_10000 3001 friction_limit_per_10000 3000
+vbd_import_d1_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 636212 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_kinetic_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -1125786 speed_urads 2571106
+vbd_break_d1_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 1000000 angle_urad -1125764 speed_urads 4457236
+vbd_slide_d1_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 353 largest_speed_last_third_ums 1356 slid_um 157666 came_back_um 214
+vbd_hold_d1_on stops -1 static_warnings 1 imported_mu_static - CREEP dt_ns 1000000 steps 600 mean_speed_ums 1219195 friction_over_normal_per_10000 3001 friction_limit_per_10000 3000
+vbd_import_d1_on stops -1 static_warnings 1 imported_mu_static 0.7 CREEP dt_ns 1000000 steps 600 mean_speed_ums 636212 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_kinetic_d1_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 1000000 angle_urad -1125786 speed_urads 2571106
+vbd_break_d1_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 1000000 angle_urad -1125764 speed_urads 4457236
+vbd_slide_d1_on stops -1 static_warnings 1 imported_mu_static - STOP dt_ns 1000000 first_stopped_at_step 353 largest_speed_last_third_ums 1356 slid_um 157666 came_back_um 214
+vbd_hold_d025_stock stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1261723 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_import_d025_stock stops -1 static_warnings 0 imported_mu_static none CREEP dt_ns 250000 steps 2400 mean_speed_ums 661297 friction_over_normal_per_10000 3025 friction_limit_per_10000 3000
+vbd_hold_d025_chain stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1261723 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_import_d025_chain stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 661297 friction_over_normal_per_10000 3025 friction_limit_per_10000 3000
+vbd_kinetic_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -1172368 speed_urads 2560138
+vbd_break_d025_chain stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -1172375 speed_urads 4145146
+vbd_slide_d025_chain stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step -1 largest_speed_last_third_ums 1788 slid_um 163872 came_back_um 0
+vbd_hold_d025_off stops -1 static_warnings 0 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1261723 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_import_d025_off stops -1 static_warnings 0 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 661297 friction_over_normal_per_10000 3025 friction_limit_per_10000 3000
+vbd_kinetic_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -1172368 speed_urads 2560138
+vbd_break_d025_off stops -1 static_warnings 0 imported_mu_static - FINAL dt_ns 250000 angle_urad -1172375 speed_urads 4145146
+vbd_slide_d025_off stops -1 static_warnings 0 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step -1 largest_speed_last_third_ums 1788 slid_um 163872 came_back_um 0
+vbd_hold_d025_on stops -1 static_warnings 1 imported_mu_static - CREEP dt_ns 250000 steps 2400 mean_speed_ums 1261723 friction_over_normal_per_10000 2994 friction_limit_per_10000 3000
+vbd_import_d025_on stops -1 static_warnings 1 imported_mu_static 0.7 CREEP dt_ns 250000 steps 2400 mean_speed_ums 661297 friction_over_normal_per_10000 3025 friction_limit_per_10000 3000
+vbd_kinetic_d025_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 250000 angle_urad -1172368 speed_urads 2560138
+vbd_break_d025_on stops -1 static_warnings 1 imported_mu_static - FINAL dt_ns 250000 angle_urad -1172375 speed_urads 4145146
+vbd_slide_d025_on stops -1 static_warnings 1 imported_mu_static - STOP dt_ns 250000 first_stopped_at_step -1 largest_speed_last_third_ums 1788 slid_um 163872 came_back_um 0

@@ -1,0 +1,15 @@
+RULE R1_safe_when_off eq 19 19 : HELD
+RULE R2_spin_drifts_as_released ge 201 100 : HELD
+RULE R2_chain_loss_grows_as_released ge 258054 13680 : HELD
+RULE R2_chain_far_worse_as_released ge 495421 68400 : HELD
+RULE R3_centre_still all_in -3 3 0 0 0 0 0 0 : HELD
+RULE R4_loss_falls_with_the_step all_ge 0 16790 8060 : HELD
+RULE R5_10m_as_the_origin_at_0.0015 all_within 24420 3 21038 : HELD
+RULE R5_10m_as_the_origin_at_0.000375 all_within 6410 3 5243 : HELD
+RULE R5_10m_as_the_origin_at_0.00009375 all_within 952 3 3281 : FAILED
+RULE R5_100m_falls_with_the_step all_ge 0 7644 9641 : HELD
+RULE R6_hold_still all_in -10 10 0 0 : HELD
+RULE R6_slide_kept_at_0.0015 all_within 101160 100 101163 : HELD
+RULE R6_slide_kept_at_0.000075 all_within 103396 100 101903 : FAILED
+RULE R7_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 14, held: 12

@@ -1,0 +1,18 @@
+ref_0.002 t 0.2 stops -1 j1_urad 320000 j1_urads 1600000 j2_urads 0
+ref_0.002 t 0.3 stops -1 j1_urad 480000 j1_urads 1600000 j2_urads 0
+c_stock_0.005 t 0.2 stops -1 j1_urad 318253 j1_urads 1592674 j2_urads 2259
+c_stock_0.005 t 0.3 stops -1 j1_urad 477666 j1_urads 1595405 j2_urads -10639
+c_stock64_0.005 t 0.2 stops -1 j1_urad 319597 j1_urads 1596078 j2_urads 131
+c_stock64_0.005 t 0.3 stops -1 j1_urad 479090 j1_urads 1594022 j2_urads -271
+c_off_0.005 t 0.2 stops -1 j1_urad 318253 j1_urads 1592674 j2_urads 2259
+c_off_0.005 t 0.3 stops -1 j1_urad 477666 j1_urads 1595405 j2_urads -10639
+c_on_0.005 t 0.2 stops -1 j1_urad 319597 j1_urads 1596078 j2_urads 131
+c_on_0.005 t 0.3 stops -1 j1_urad 479090 j1_urads 1594022 j2_urads -271
+a1_stock_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 993447 speed_urads 2475166
+a2_stock_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 1780718 speed_urads 3415014
+a1_stock64_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 995177 speed_urads 2476047
+a2_stock64_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 1786946 speed_urads 3436015
+a1_off_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 993447 speed_urads 2475166
+a2_off_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 1780718 speed_urads 3415014
+a1_on_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 995177 speed_urads 2476047
+a2_on_0.004 t end stops -1 FINAL dt_ns 4000000 angle_urad 1786946 speed_urads 3436015

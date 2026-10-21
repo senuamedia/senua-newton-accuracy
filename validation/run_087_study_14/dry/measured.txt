@@ -1,0 +1,8 @@
+strike_stiff_A4_0.0005 stops -1 back_urad none
+strike_stiff_A15_0.0005 stops -1 back_urad -920196
+strike_default_A4_0.0005 stops -1 back_urad -1016243
+strike_default_A15_0.0005 stops -1 back_urad -745849
+strike_fs_A4_0.0005 stops -1 back_urad none
+strike_fs_A15_0.0005 stops -1 back_urad -412594
+strike_fs1_A4_0.0005 stops -1 back_urad none
+strike_fs1_A15_0.0005 stops -1 back_urad -393583

@@ -1,0 +1,51 @@
+reference t 1.8 j1_urad 3300000 j1_urads 0 j2_urads 6832725
+reference t 2.0 j1_urad 3300000 j1_urads 0 j2_urads 6832725
+reference t 2.1 j1_urad 3300000 j1_urads 0 j2_urads 6832725
+reference t 2.2 j1_urad 3278638 j1_urads -582785 j2_urads 6111049
+reference t 2.5 j1_urad 2792553 j1_urads -3218964 j2_urads 11605056
+chain_it16_0.0025 t 1.8 j1_urad 3300001 j1_urads 0 j2_urads 6575573
+chain_it16_0.0025 t 2.0 j1_urad 3300001 j1_urads -4993 j2_urads 6339250
+chain_it16_0.0025 t 2.1 j1_urad 3299960 j1_urads -1055 j2_urads 6379073
+chain_it16_0.0025 t 2.2 j1_urad 3295311 j1_urads -222685 j2_urads 6030571
+chain_it16_0.0025 t 2.5 j1_urad 2959107 j1_urads -2001940 j2_urads 7332232
+chain_it16_0.000625 t 1.8 j1_urad 3300000 j1_urads 0 j2_urads 6624972
+chain_it16_0.000625 t 2.0 j1_urad 3300000 j1_urads 0 j2_urads 6593681
+chain_it16_0.000625 t 2.1 j1_urad 3299995 j1_urads 1921 j2_urads 6579104
+chain_it16_0.000625 t 2.2 j1_urad 3288464 j1_urads -400238 j2_urads 6057059
+chain_it16_0.000625 t 2.5 j1_urad 2882051 j1_urads -2517606 j2_urads 9091773
+chain_it16_0.00015625 t 1.8 j1_urad 3299604 j1_urads 25824 j2_urads 6564207
+chain_it16_0.00015625 t 2.0 j1_urad 3299999 j1_urads -390 j2_urads 6615709
+chain_it16_0.00015625 t 2.1 j1_urad 3299994 j1_urads 0 j2_urads 6609484
+chain_it16_0.00015625 t 2.2 j1_urad 3285940 j1_urads -449795 j2_urads 6049101
+chain_it16_0.00015625 t 2.5 j1_urad 2859833 j1_urads -2686935 j2_urads 9695086
+chain_it16_0.0000390625 t 1.8 j1_urad 3299997 j1_urads -8019 j2_urads 6787777
+chain_it16_0.0000390625 t 2.0 j1_urad 3299999 j1_urads -8665 j2_urads 6785199
+chain_it16_0.0000390625 t 2.1 j1_urad 3299987 j1_urads 2393 j2_urads 6795245
+chain_it16_0.0000390625 t 2.2 j1_urad 3282276 j1_urads -531628 j2_urads 6140297
+chain_it16_0.0000390625 t 2.5 j1_urad 2816583 j1_urads -3043289 j2_urads 10991033
+chain_it64_0.0025 t 1.8 j1_urad 3299993 j1_urads -106 j2_urads 6577373
+chain_it64_0.0025 t 2.0 j1_urad 3299984 j1_urads 0 j2_urads 6445184
+chain_it64_0.0025 t 2.1 j1_urad 3299935 j1_urads -1196 j2_urads 6380953
+chain_it64_0.0025 t 2.2 j1_urad 3295232 j1_urads -225136 j2_urads 6026365
+chain_it64_0.0025 t 2.5 j1_urad 2958395 j1_urads -2005475 j2_urads 7341124
+chain_it64_0.000625 t 1.8 j1_urad 3299999 j1_urads 0 j2_urads 6738544
+chain_it64_0.000625 t 2.0 j1_urad 3299999 j1_urads -352 j2_urads 6705882
+chain_it64_0.000625 t 2.1 j1_urad 3299995 j1_urads -269 j2_urads 6688333
+chain_it64_0.000625 t 2.2 j1_urad 3284856 j1_urads -470643 j2_urads 6093324
+chain_it64_0.000625 t 2.5 j1_urad 2846581 j1_urads -2780998 j2_urads 10019444
+chain_it64_0.00015625 t 1.8 j1_urad 3300000 j1_urads 2392 j2_urads 6765633
+chain_it64_0.00015625 t 2.0 j1_urad 3299999 j1_urads 2519 j2_urads 6774662
+chain_it64_0.00015625 t 2.1 j1_urad 3299998 j1_urads 0 j2_urads 6772760
+chain_it64_0.00015625 t 2.2 j1_urad 3282285 j1_urads -524159 j2_urads 6143595
+chain_it64_0.00015625 t 2.5 j1_urad 2817173 j1_urads -3034986 j2_urads 10938506
+chain_it64_0.0000390625 t 1.8 j1_urad 3299999 j1_urads 7520 j2_urads 6844830
+chain_it64_0.0000390625 t 2.0 j1_urad 3299998 j1_urads 7725 j2_urads 6791377
+chain_it64_0.0000390625 t 2.1 j1_urad 3299983 j1_urads 9986 j2_urads 6775489
+chain_it64_0.0000390625 t 2.2 j1_urad 3280251 j1_urads -531900 j2_urads 6105348
+chain_it64_0.0000390625 t 2.5 j1_urad 2811868 j1_urads -3045072 j2_urads 10990515
+arm_it2_0.0016 t end FINAL dt_ns 1600000 angle_urad 2499178 speed_urads -736
+arm_it2_0.00032 t end FINAL dt_ns 320000 angle_urad 2499960 speed_urads 0
+arm_it16_0.0016 t end FINAL dt_ns 1600000 angle_urad 2499265 speed_urads -1187
+arm_it16_0.00032 t end FINAL dt_ns 320000 angle_urad 2499882 speed_urads 0
+arm_it64_0.0016 t end FINAL dt_ns 1600000 angle_urad 2499583 speed_urads -259
+arm_it64_0.00032 t end FINAL dt_ns 320000 angle_urad 2497757 speed_urads -4200

@@ -1,0 +1,17 @@
+RULE R1_safe_when_off eq 12 12 : HELD
+RULE R2_fault_there_drive all_ge 10000 100521 12566 100531 12566 : HELD
+RULE R3_held_speed all_in -100 100 0 4 0 1 0 5 0 1 : HELD
+RULE R3_held_still_semi_0.002 near 4966371 4966371 1000 : HELD
+RULE R3_held_still_semi_0.00025 near 4966371 4966371 1000 : HELD
+RULE R3_held_still_semirep_0.002 near 4966371 4966371 1000 : HELD
+RULE R3_held_still_semirep_0.00025 near 4966371 4966371 1000 : HELD
+RULE R4_fault_there_d6 all_ge 220000 1021744 557614 1044147 564172 : HELD
+RULE R5_d6_held_semi_0.001 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semi_0.001 near 400000 400000 1000 : HELD
+RULE R5_d6_held_semi_0.0005 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semi_0.0005 near 400000 400000 1000 : HELD
+RULE R5_d6_held_semirep_0.001 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semirep_0.001 near 400000 400000 1000 : HELD
+RULE R5_d6_held_semirep_0.0005 near 200000 200000 1000 : HELD
+RULE R5_d6_held_dof2_semirep_0.0005 near 400000 400000 1000 : HELD
+rules: 16, held: 16

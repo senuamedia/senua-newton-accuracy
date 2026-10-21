@@ -1,0 +1,697 @@
+--- a/newton/_src/solvers/semi_implicit/kernels_body_joint.py
++++ b/newton/_src/solvers/semi_implicit/kernels_body_joint.py
+@@ -0,0 +1,660 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: SemiImplicit's joint angle and joint limit.
++#
++# SemiImplicit plays a joint as forces between two free bodies (eval_body_joints, kernels_body.py), the joint's angle
++# read from their relative rotation each step. Three departures follow (findings F16, F22):
++# - A single rotational DOF is read by wp.quat_twist_angle_signed, in [-2 pi, 2 pi] on the quaternion's branch: a drive
++#   whose target is past a full turn (7.0 rad) reads the joint two turns away (7 - 4 pi) and pulls it a whole turn back.
++# - A D6 with two or three rotational DOFs is read by quat_decompose, whose angles are about the joint frame's own X, Y
++#   and Z, whatever the joint's axes are: a D6 about Y and Z has its Y drive read the angle about X.
++# - The limit applies its damper until the angle is back at the limit, pulling the joint back as it leaves.
++# Here a copy of eval_body_joints with:
++# - NEWTON_SEMI_JOINT_ANGLE=1: a single rotational DOF's angle measured within pi of a reference, the middle of its
++#   limit range or, where the range is 2 pi wide or wider, its drive's target (pull request #4316's rule for XPBD:
++#   joint_angle_reference and wrap_angle_near, copied); the relative rotation of a D6's two or three rotational DOFs
++#   expressed in the basis of the joint's own axes (a change of basis) before it is decomposed, so each angle is read
++#   about the axis its drive and limit act on;
++# - NEWTON_SEMI_JOINT_LIMIT=1: the limit's spring and damper never pulling (the no-tension spring-dashpot of Schwager and
++#   Poeschel 2007, as Study 11 held Featherstone's limit to).
++# Every other line is the stock kernel's. Read once, when this module is imported, which SolverSemiImplicit does only
++# when one of the switches is set.
++
++import os
++
++import warp as wp
++
++from ...math import quat_decompose
++from ...sim import (
++    Control,
++    JointType,
++    Model,
++    State,
++)
++from .kernels_body import eval_joint_mimic_forces
++
++ANGLE = wp.constant(1 if os.environ.get("NEWTON_SEMI_JOINT_ANGLE") == "1" else 0)
++LIMIT = wp.constant(1 if os.environ.get("NEWTON_SEMI_JOINT_LIMIT") == "1" else 0)
++
++
++@wp.func
++def joint_angle_reference(limit_lower: float, limit_upper: float) -> float:
++    # pull request #4316's: the middle of a range narrower than 2 pi, else 0
++    if limit_upper >= limit_lower and limit_upper - limit_lower < 2.0 * wp.pi:
++        return 0.5 * (limit_lower + limit_upper)
++    return 0.0
++
++
++@wp.func
++def wrap_angle_near(angle: float, reference: float) -> float:
++    # pull request #4316's: angle + 2 pi k in [reference - pi, reference + pi)
++    two_pi = 2.0 * wp.pi
++    d = angle - reference + wp.pi
++    return reference - wp.pi + (d - two_pi * wp.floor(d / two_pi))
++
++
++@wp.func
++def joint_angle_measured(q: float, limit_lower: float, limit_upper: float, target: float) -> float:
++    if ANGLE == 0:
++        return q
++    reference = target
++    if limit_upper >= limit_lower and limit_upper - limit_lower < 2.0 * wp.pi:
++        reference = joint_angle_reference(limit_lower, limit_upper)
++    return wrap_angle_near(q, reference)
++
++
++@wp.func
++def quat_decompose_in_axes(q: wp.quat, axis_0: wp.vec3, axis_1: wp.vec3, axis_2: wp.vec3) -> wp.vec3:
++    if ANGLE == 0:
++        return quat_decompose(q)
++    # the rotation q expressed in the basis (axis_0, axis_1, axis_2): B^-1 q B, B taking x, y, z to the axes
++    b = wp.quat_from_matrix(wp.matrix_from_cols(wp.normalize(axis_0), wp.normalize(axis_1), wp.normalize(axis_2)))
++    return quat_decompose(wp.quat_inverse(b) * q * b)
++
++
++@wp.func
++def joint_force_patched(
++    q: float,
++    qd: float,
++    joint_target_q: float,
++    joint_target_qd: float,
++    target_ke: float,
++    target_kd: float,
++    limit_lower: float,
++    limit_upper: float,
++    limit_ke: float,
++    limit_kd: float,
++    damping: float,
++) -> float:
++    """Newton's joint_force (kernels_body.py), its limit kept from pulling when NEWTON_SEMI_JOINT_LIMIT=1."""
++
++    limit_f = 0.0
++    damping_f = 0.0
++    target_f = 0.0
++
++    target_f = target_ke * (joint_target_q - q) + target_kd * (joint_target_qd - qd)
++
++    # When limit violated: apply limit restoration forces and disable target control
++    if q < limit_lower:
++        limit_f = limit_ke * (limit_lower - q)
++        damping_f = -limit_kd * qd
++        target_f = 0.0
++        if LIMIT == 1 and limit_f + damping_f < 0.0:
++            damping_f = -limit_f
++    elif q > limit_upper:
++        limit_f = limit_ke * (limit_upper - q)
++        damping_f = -limit_kd * qd
++        target_f = 0.0
++        if LIMIT == 1 and limit_f + damping_f > 0.0:
++            damping_f = -limit_f
++
++    passive_f = -damping * qd
++
++    return limit_f + damping_f + target_f + passive_f
++
++
++@wp.kernel
++def eval_body_joints_patched(
++    body_q: wp.array[wp.transform],
++    body_qd: wp.array[wp.spatial_vector],
++    body_com: wp.array[wp.vec3],
++    joint_qd_start: wp.array[int],
++    joint_target_q_start: wp.array[int],
++    joint_type: wp.array[int],
++    joint_enabled: wp.array[bool],
++    joint_child: wp.array[int],
++    joint_parent: wp.array[int],
++    joint_X_p: wp.array[wp.transform],
++    joint_X_c: wp.array[wp.transform],
++    joint_axis: wp.array[wp.vec3],
++    joint_dof_dim: wp.array2d[int],
++    joint_f: wp.array[float],
++    joint_target_q: wp.array[float],
++    joint_target_qd: wp.array[float],
++    joint_target_ke: wp.array[float],
++    joint_target_kd: wp.array[float],
++    joint_limit_lower: wp.array[float],
++    joint_limit_upper: wp.array[float],
++    joint_limit_ke: wp.array[float],
++    joint_limit_kd: wp.array[float],
++    joint_damping: wp.array[float],
++    joint_mimic_joint: wp.array[int],
++    joint_mimic_coeffs: wp.array[wp.vec2],
++    joint_attach_ke: float,
++    joint_attach_kd: float,
++    joint_mimic_ke: float,
++    joint_mimic_kd: float,
++    body_f: wp.array[wp.spatial_vector],
++):
++    tid = wp.tid()
++    type = joint_type[tid]
++
++    c_child = joint_child[tid]
++    c_parent = joint_parent[tid]
++
++    if not joint_enabled[tid]:
++        return
++
++    qd_start = joint_qd_start[tid]
++    target_q_start = joint_target_q_start[tid]
++    if type == JointType.FREE or type == JointType.DISTANCE:
++        wrench = wp.spatial_vector(
++            joint_f[qd_start + 0],
++            joint_f[qd_start + 1],
++            joint_f[qd_start + 2],
++            joint_f[qd_start + 3],
++            joint_f[qd_start + 4],
++            joint_f[qd_start + 5],
++        )
++
++        wp.atomic_add(body_f, c_child, wrench)
++        return
++
++    X_pj = joint_X_p[tid]
++    X_cj = joint_X_c[tid]
++
++    X_wp = X_pj
++    r_p = wp.vec3()
++    w_p = wp.vec3()
++    v_p = wp.vec3()
++
++    # parent transform and moment arm
++    if c_parent >= 0:
++        X_wp = body_q[c_parent] * X_wp
++        r_p = wp.transform_get_translation(X_wp) - wp.transform_point(body_q[c_parent], body_com[c_parent])
++
++        twist_p = body_qd[c_parent]
++
++        w_p = wp.spatial_bottom(twist_p)
++        v_p = wp.spatial_top(twist_p) + wp.cross(w_p, r_p)
++
++    # child transform and moment arm
++    X_wc = body_q[c_child] * X_cj
++    r_c = wp.transform_get_translation(X_wc) - wp.transform_point(body_q[c_child], body_com[c_child])
++
++    twist_c = body_qd[c_child]
++
++    w_c = wp.spatial_bottom(twist_c)
++    v_c = wp.spatial_top(twist_c) + wp.cross(w_c, r_c)
++
++    lin_axis_count = joint_dof_dim[tid, 0]
++    ang_axis_count = joint_dof_dim[tid, 1]
++
++    x_p = wp.transform_get_translation(X_wp)
++    x_c = wp.transform_get_translation(X_wc)
++
++    q_p = wp.transform_get_rotation(X_wp)
++    q_c = wp.transform_get_rotation(X_wc)
++
++    # translational error
++    x_err = x_c - x_p
++    r_err = wp.quat_inverse(q_p) * q_c
++    v_err = v_c - v_p
++    w_err = w_c - w_p
++
++    # total force/torque on the parent
++    t_total = wp.vec3()
++    f_total = wp.vec3()
++
++    # reduce angular damping stiffness for stability
++    angular_damping_scale = 0.01
++
++    if type == JointType.FIXED:
++        ang_err = wp.normalize(wp.vec3(r_err[0], r_err[1], r_err[2])) * wp.acos(r_err[3]) * 2.0
++
++        f_total += x_err * joint_attach_ke + v_err * joint_attach_kd
++        t_total += (
++            wp.transform_vector(X_wp, ang_err) * joint_attach_ke + w_err * joint_attach_kd * angular_damping_scale
++        )
++
++    if type == JointType.PRISMATIC:
++        axis = joint_axis[qd_start]
++
++        # world space joint axis
++        axis_p = wp.transform_vector(X_wp, axis)
++
++        # evaluate joint coordinates
++        q = wp.dot(x_err, axis_p)
++        qd = wp.dot(v_err, axis_p)
++
++        f_total = axis_p * (
++            -joint_f[qd_start]
++            - joint_force_patched(
++                q,
++                qd,
++                joint_target_q[target_q_start],
++                joint_target_qd[qd_start],
++                joint_target_ke[qd_start],
++                joint_target_kd[qd_start],
++                joint_limit_lower[qd_start],
++                joint_limit_upper[qd_start],
++                joint_limit_ke[qd_start],
++                joint_limit_kd[qd_start],
++                joint_damping[qd_start],
++            )
++        )
++
++        # attachment dynamics
++        ang_err = wp.normalize(wp.vec3(r_err[0], r_err[1], r_err[2])) * wp.acos(r_err[3]) * 2.0
++
++        # project off any displacement along the joint axis
++        f_total += (x_err - q * axis_p) * joint_attach_ke + (v_err - qd * axis_p) * joint_attach_kd
++        t_total += (
++            wp.transform_vector(X_wp, ang_err) * joint_attach_ke + w_err * joint_attach_kd * angular_damping_scale
++        )
++
++    if type == JointType.REVOLUTE:
++        axis = joint_axis[qd_start]
++
++        axis_p = wp.transform_vector(X_wp, axis)
++        axis_c = wp.transform_vector(X_wc, axis)
++
++        q = wp.quat_twist_angle_signed(axis, r_err)
++        q = joint_angle_measured(q, joint_limit_lower[qd_start], joint_limit_upper[qd_start], joint_target_q[target_q_start])
++        qd = wp.dot(w_err, axis_p)
++
++        t_total = axis_p * (
++            -joint_f[qd_start]
++            - joint_force_patched(
++                q,
++                qd,
++                joint_target_q[target_q_start],
++                joint_target_qd[qd_start],
++                joint_target_ke[qd_start],
++                joint_target_kd[qd_start],
++                joint_limit_lower[qd_start],
++                joint_limit_upper[qd_start],
++                joint_limit_ke[qd_start],
++                joint_limit_kd[qd_start],
++                joint_damping[qd_start],
++            )
++        )
++
++        # attachment dynamics
++        swing_err = wp.cross(axis_p, axis_c)
++
++        f_total += x_err * joint_attach_ke + v_err * joint_attach_kd
++        t_total += swing_err * joint_attach_ke + (w_err - qd * axis_p) * joint_attach_kd * angular_damping_scale
++
++    if type == JointType.BALL:
++        ang_err = wp.normalize(wp.vec3(r_err[0], r_err[1], r_err[2])) * wp.acos(r_err[3]) * 2.0
++
++        # TODO joint limits
++        # TODO expose target_kd or target_ke for ball joints
++        # t_total += target_kd * w_err + target_ke * wp.transform_vector(X_wp, ang_err)
++        f_total += x_err * joint_attach_ke + v_err * joint_attach_kd
++        axis_0 = wp.transform_vector(X_wp, joint_axis[qd_start + 0])
++        axis_1 = wp.transform_vector(X_wp, joint_axis[qd_start + 1])
++        axis_2 = wp.transform_vector(X_wp, joint_axis[qd_start + 2])
++        t_total += axis_0 * (-joint_f[qd_start + 0] + joint_damping[qd_start + 0] * wp.dot(axis_0, w_err))
++        t_total += axis_1 * (-joint_f[qd_start + 1] + joint_damping[qd_start + 1] * wp.dot(axis_1, w_err))
++        t_total += axis_2 * (-joint_f[qd_start + 2] + joint_damping[qd_start + 2] * wp.dot(axis_2, w_err))
++
++    if type == JointType.D6:
++        pos = wp.vec3(0.0)
++        vel = wp.vec3(0.0)
++        if lin_axis_count >= 1:
++            axis_0 = wp.transform_vector(X_wp, joint_axis[qd_start + 0])
++            q0 = wp.dot(x_err, axis_0)
++            qd0 = wp.dot(v_err, axis_0)
++
++            f_total += axis_0 * (
++                -joint_f[qd_start]
++                - joint_force_patched(
++                    q0,
++                    qd0,
++                    joint_target_q[target_q_start + 0],
++                    joint_target_qd[qd_start + 0],
++                    joint_target_ke[qd_start + 0],
++                    joint_target_kd[qd_start + 0],
++                    joint_limit_lower[qd_start + 0],
++                    joint_limit_upper[qd_start + 0],
++                    joint_limit_ke[qd_start + 0],
++                    joint_limit_kd[qd_start + 0],
++                    joint_damping[qd_start + 0],
++                )
++            )
++
++            pos += q0 * axis_0
++            vel += qd0 * axis_0
++
++        if lin_axis_count >= 2:
++            axis_1 = wp.transform_vector(X_wp, joint_axis[qd_start + 1])
++            q1 = wp.dot(x_err, axis_1)
++            qd1 = wp.dot(v_err, axis_1)
++
++            f_total += axis_1 * (
++                -joint_f[qd_start + 1]
++                - joint_force_patched(
++                    q1,
++                    qd1,
++                    joint_target_q[target_q_start + 1],
++                    joint_target_qd[qd_start + 1],
++                    joint_target_ke[qd_start + 1],
++                    joint_target_kd[qd_start + 1],
++                    joint_limit_lower[qd_start + 1],
++                    joint_limit_upper[qd_start + 1],
++                    joint_limit_ke[qd_start + 1],
++                    joint_limit_kd[qd_start + 1],
++                    joint_damping[qd_start + 1],
++                )
++            )
++
++            pos += q1 * axis_1
++            vel += qd1 * axis_1
++
++        if lin_axis_count == 3:
++            axis_2 = wp.transform_vector(X_wp, joint_axis[qd_start + 2])
++            q2 = wp.dot(x_err, axis_2)
++            qd2 = wp.dot(v_err, axis_2)
++
++            f_total += axis_2 * (
++                -joint_f[qd_start + 2]
++                - joint_force_patched(
++                    q2,
++                    qd2,
++                    joint_target_q[target_q_start + 2],
++                    joint_target_qd[qd_start + 2],
++                    joint_target_ke[qd_start + 2],
++                    joint_target_kd[qd_start + 2],
++                    joint_limit_lower[qd_start + 2],
++                    joint_limit_upper[qd_start + 2],
++                    joint_limit_ke[qd_start + 2],
++                    joint_limit_kd[qd_start + 2],
++                    joint_damping[qd_start + 2],
++                )
++            )
++
++            pos += q2 * axis_2
++            vel += qd2 * axis_2
++
++        f_total += (x_err - pos) * joint_attach_ke + (v_err - vel) * joint_attach_kd
++
++        if ang_axis_count == 0:
++            ang_err = wp.normalize(wp.vec3(r_err[0], r_err[1], r_err[2])) * wp.acos(r_err[3]) * 2.0
++            t_total += (
++                wp.transform_vector(X_wp, ang_err) * joint_attach_ke + w_err * joint_attach_kd * angular_damping_scale
++            )
++
++        i_0 = lin_axis_count + qd_start + 0
++        i_1 = lin_axis_count + qd_start + 1
++        i_2 = lin_axis_count + qd_start + 2
++        i_0_q = lin_axis_count + target_q_start + 0
++        i_1_q = lin_axis_count + target_q_start + 1
++        i_2_q = lin_axis_count + target_q_start + 2
++        qdi_start = qd_start + lin_axis_count
++
++        if ang_axis_count == 1:
++            axis = joint_axis[i_0]
++
++            axis_p = wp.transform_vector(X_wp, axis)
++            axis_c = wp.transform_vector(X_wc, axis)
++
++            q = wp.quat_twist_angle_signed(axis, r_err)
++            q = joint_angle_measured(q, joint_limit_lower[i_0], joint_limit_upper[i_0], joint_target_q[i_0_q])
++            qd = wp.dot(w_err, axis_p)
++
++            t_total = axis_p * (
++                -joint_f[qdi_start]
++                - joint_force_patched(
++                    q,
++                    qd,
++                    joint_target_q[i_0_q],
++                    joint_target_qd[i_0],
++                    joint_target_ke[i_0],
++                    joint_target_kd[i_0],
++                    joint_limit_lower[i_0],
++                    joint_limit_upper[i_0],
++                    joint_limit_ke[i_0],
++                    joint_limit_kd[i_0],
++                    joint_damping[i_0],
++                )
++            )
++
++            # attachment dynamics
++            swing_err = wp.cross(axis_p, axis_c)
++
++            t_total += swing_err * joint_attach_ke + (w_err - qd * axis_p) * joint_attach_kd * angular_damping_scale
++
++        if ang_axis_count == 2:
++            q_pc = wp.quat_inverse(q_p) * q_c
++
++            # decompose to a compound rotation each axis
++            angles = quat_decompose_in_axes(q_pc, joint_axis[i_0], joint_axis[i_1], wp.cross(joint_axis[i_0], joint_axis[i_1]))
++
++            orig_axis_0 = joint_axis[i_0]
++            orig_axis_1 = joint_axis[i_1]
++            orig_axis_2 = wp.cross(orig_axis_0, orig_axis_1)
++
++            # reconstruct rotation axes
++            axis_0 = orig_axis_0
++            q_0 = wp.quat_from_axis_angle(axis_0, angles[0])
++
++            axis_1 = wp.quat_rotate(q_0, orig_axis_1)
++            q_1 = wp.quat_from_axis_angle(axis_1, angles[1])
++
++            axis_2 = wp.quat_rotate(q_1 * q_0, orig_axis_2)
++
++            axis_0 = wp.transform_vector(X_wp, axis_0)
++            axis_1 = wp.transform_vector(X_wp, axis_1)
++            axis_2 = wp.transform_vector(X_wp, axis_2)
++
++            # joint dynamics
++
++            t_total += axis_0 * (
++                -joint_f[qdi_start]
++                - joint_force_patched(
++                    angles[0],
++                    wp.dot(axis_0, w_err),
++                    joint_target_q[i_0_q],
++                    joint_target_qd[i_0],
++                    joint_target_ke[i_0],
++                    joint_target_kd[i_0],
++                    joint_limit_lower[i_0],
++                    joint_limit_upper[i_0],
++                    joint_limit_ke[i_0],
++                    joint_limit_kd[i_0],
++                    joint_damping[i_0],
++                )
++            )
++            t_total += axis_1 * (
++                -joint_f[qdi_start + 1]
++                - joint_force_patched(
++                    angles[1],
++                    wp.dot(axis_1, w_err),
++                    joint_target_q[i_1_q],
++                    joint_target_qd[i_1],
++                    joint_target_ke[i_1],
++                    joint_target_kd[i_1],
++                    joint_limit_lower[i_1],
++                    joint_limit_upper[i_1],
++                    joint_limit_ke[i_1],
++                    joint_limit_kd[i_1],
++                    joint_damping[i_1],
++                )
++            )
++
++            # last axis (fixed)
++            t_total += axis_2 * -joint_force_patched(
++                angles[2],
++                wp.dot(axis_2, w_err),
++                0.0,
++                0.0,
++                joint_attach_ke,
++                joint_attach_kd * angular_damping_scale,
++                0.0,
++                0.0,
++                0.0,
++                0.0,
++                0.0,
++            )
++
++        if ang_axis_count == 3:
++            q_pc = wp.quat_inverse(q_p) * q_c
++
++            # decompose to a compound rotation each axis
++            angles = quat_decompose_in_axes(q_pc, joint_axis[i_0], joint_axis[i_1], joint_axis[i_2])
++
++            orig_axis_0 = joint_axis[i_0]
++            orig_axis_1 = joint_axis[i_1]
++            orig_axis_2 = joint_axis[i_2]
++
++            # reconstruct rotation axes
++            axis_0 = orig_axis_0
++            q_0 = wp.quat_from_axis_angle(axis_0, angles[0])
++
++            axis_1 = wp.quat_rotate(q_0, orig_axis_1)
++            q_1 = wp.quat_from_axis_angle(axis_1, angles[1])
++
++            axis_2 = wp.quat_rotate(q_1 * q_0, orig_axis_2)
++
++            axis_0 = wp.transform_vector(X_wp, axis_0)
++            axis_1 = wp.transform_vector(X_wp, axis_1)
++            axis_2 = wp.transform_vector(X_wp, axis_2)
++
++            t_total += axis_0 * (
++                -joint_f[qdi_start]
++                - joint_force_patched(
++                    angles[0],
++                    wp.dot(axis_0, w_err),
++                    joint_target_q[i_0_q],
++                    joint_target_qd[i_0],
++                    joint_target_ke[i_0],
++                    joint_target_kd[i_0],
++                    joint_limit_lower[i_0],
++                    joint_limit_upper[i_0],
++                    joint_limit_ke[i_0],
++                    joint_limit_kd[i_0],
++                    joint_damping[i_0],
++                )
++            )
++            t_total += axis_1 * (
++                -joint_f[qdi_start + 1]
++                - joint_force_patched(
++                    angles[1],
++                    wp.dot(axis_1, w_err),
++                    joint_target_q[i_1_q],
++                    joint_target_qd[i_1],
++                    joint_target_ke[i_1],
++                    joint_target_kd[i_1],
++                    joint_limit_lower[i_1],
++                    joint_limit_upper[i_1],
++                    joint_limit_ke[i_1],
++                    joint_limit_kd[i_1],
++                    joint_damping[i_1],
++                )
++            )
++            t_total += axis_2 * (
++                -joint_f[qdi_start + 2]
++                - joint_force_patched(
++                    angles[2],
++                    wp.dot(axis_2, w_err),
++                    joint_target_q[i_2_q],
++                    joint_target_qd[i_2],
++                    joint_target_ke[i_2],
++                    joint_target_kd[i_2],
++                    joint_limit_lower[i_2],
++                    joint_limit_upper[i_2],
++                    joint_limit_ke[i_2],
++                    joint_limit_kd[i_2],
++                    joint_damping[i_2],
++                )
++            )
++
++    eval_joint_mimic_forces(
++        tid,
++        body_q,
++        body_qd,
++        body_com,
++        joint_qd_start,
++        joint_type,
++        joint_enabled,
++        joint_child,
++        joint_parent,
++        joint_X_p,
++        joint_X_c,
++        joint_axis,
++        joint_dof_dim,
++        joint_mimic_joint,
++        joint_mimic_coeffs,
++        joint_mimic_ke,
++        joint_mimic_kd,
++        body_f,
++    )
++
++    # write joint forces
++    if c_parent >= 0:
++        wp.atomic_add(body_f, c_parent, wp.spatial_vector(f_total, t_total + wp.cross(r_p, f_total)))
++
++    wp.atomic_sub(body_f, c_child, wp.spatial_vector(f_total, t_total + wp.cross(r_c, f_total)))
++
++
++def eval_body_joint_forces_patched(
++    model: Model,
++    state: State,
++    control: Control,
++    body_f: wp.array,
++    joint_attach_ke: float,
++    joint_attach_kd: float,
++    joint_mimic_ke: float,
++    joint_mimic_kd: float,
++):
++    if model.joint_count:
++        wp.launch(
++            kernel=eval_body_joints_patched,
++            dim=model.joint_count,
++            inputs=[
++                state.body_q,
++                state.body_qd,
++                model.body_com,
++                model.joint_qd_start,
++                model.joint_target_q_start,
++                model.joint_type,
++                model.joint_enabled,
++                model.joint_child,
++                model.joint_parent,
++                model.joint_X_p,
++                model.joint_X_c,
++                model.joint_axis,
++                model.joint_dof_dim,
++                control.joint_f,
++                control.joint_target_q,
++                control.joint_target_qd,
++                model.joint_target_ke,
++                model.joint_target_kd,
++                model.joint_limit_lower,
++                model.joint_limit_upper,
++                model.joint_limit_ke,
++                model.joint_limit_kd,
++                model.joint_damping,
++                model.joint_mimic_joint,
++                model.joint_mimic_coeffs,
++                joint_attach_ke,
++                joint_attach_kd,
++                joint_mimic_ke,
++                joint_mimic_kd,
++            ],
++            outputs=[body_f],
++            device=model.device,
++        )
+--- a/newton/_src/solvers/semi_implicit/solver_semi_implicit.py
++++ b/newton/_src/solvers/semi_implicit/solver_semi_implicit.py
+@@ -2,6 +2,7 @@
+ # SPDX-License-Identifier: Apache-2.0
+ 
+ import math
++import os
+ 
+ import warp as wp
+ 
+@@ -125,6 +126,14 @@
+         self.friction_smoothing = friction_smoothing
+         self.joint_attach_ke = joint_attach_ke
+         self.joint_attach_kd = joint_attach_kd
++        # Senua AI patch, in design: SemiImplicit's joint angle and joint limit, read once here
++        self._eval_body_joint_forces = eval_body_joint_forces
++        if os.environ.get("NEWTON_SEMI_JOINT_ANGLE") == "1" or os.environ.get("NEWTON_SEMI_JOINT_LIMIT") == "1":
++            from . import kernels_body_joint  # noqa: PLC0415
++
++            if model.joint_count > 0:
++                self._set_module_options(options, module=kernels_body_joint)
++            self._eval_body_joint_forces = kernels_body_joint.eval_body_joint_forces_patched
+         for name, value in (("joint_mimic_ke", joint_mimic_ke), ("joint_mimic_kd", joint_mimic_kd)):
+             if not math.isfinite(value) or value < 0.0:
+                 raise ValueError(f"{name} must be finite and non-negative, got {value}")
+@@ -205,7 +214,7 @@
+             eval_tetrahedra_forces(model, state_in, control, particle_f)
+ 
+             # body joints
+-            eval_body_joint_forces(
++            self._eval_body_joint_forces(
+                 model,
+                 state_in,
+                 control,

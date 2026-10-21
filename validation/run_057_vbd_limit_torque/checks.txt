@@ -1,0 +1,82 @@
+RULE T_torqueh_vbd_0.004 all_within 19868 100 20662 : FAILED
+RULE N_torqueh_vbd_0.004_number eq 1 1 : HELD
+RULE T_torquel_vbd_0.004 all_within 21429 100 22286 : FAILED
+RULE N_torquel_vbd_0.004_number eq 1 1 : HELD
+RULE L_limith_vbd_0.004_angle all_within -500000 100 -500430 : HELD
+RULE L_limith_vbd_0.004_still all_le 10000 22 : HELD
+RULE N_limith_vbd_0.004_number eq 1 1 : HELD
+RULE T_torqueh_featherstone_0.004 all_within 19868 100 20662 : FAILED
+RULE N_torqueh_featherstone_0.004_number eq 1 1 : HELD
+RULE T_torquel_featherstone_0.004 all_within 21429 100 22286 : FAILED
+RULE N_torquel_featherstone_0.004_number eq 1 1 : HELD
+RULE L_limith_featherstone_0.004_angle all_within -500000 100 -487894 : FAILED
+RULE L_limith_featherstone_0.004_still all_le 10000 1135687 : FAILED
+RULE N_limith_featherstone_0.004_number eq 1 1 : HELD
+RULE T_torqueh_mujoco_0.004 all_within 19868 100 20662 : FAILED
+RULE N_torqueh_mujoco_0.004_number eq 1 1 : HELD
+RULE T_torquel_mujoco_0.004 all_within 21429 100 22286 : FAILED
+RULE N_torquel_mujoco_0.004_number eq 1 1 : HELD
+RULE L_limith_mujoco_0.004_angle all_within -500000 100 -477514 : FAILED
+RULE L_limith_mujoco_0.004_still all_le 10000 3667159 : FAILED
+RULE N_limith_mujoco_0.004_number eq 1 1 : HELD
+RULE L_limitl_vbd_0.004_angle all_within -500000 100 -500001 : HELD
+RULE L_limitl_vbd_0.004_still all_le 10000 0 : HELD
+RULE N_limitl_vbd_0.004_number eq 1 1 : HELD
+RULE L_limitl_mujoco_0.004_angle all_within -500000 100 -506941 : FAILED
+RULE L_limitl_mujoco_0.004_still all_le 10000 7909 : HELD
+RULE N_limitl_mujoco_0.004_number eq 1 1 : HELD
+RULE T_torqueh_vbd_0.002 all_within 19868 100 20265 : FAILED
+RULE N_torqueh_vbd_0.002_number eq 1 1 : HELD
+RULE T_torquel_vbd_0.002 all_within 21429 100 21857 : FAILED
+RULE N_torquel_vbd_0.002_number eq 1 1 : HELD
+RULE L_limith_vbd_0.002_angle all_within -500000 100 -500430 : HELD
+RULE L_limith_vbd_0.002_still all_le 10000 0 : HELD
+RULE N_limith_vbd_0.002_number eq 1 1 : HELD
+RULE T_torqueh_featherstone_0.002 all_within 19868 100 20265 : FAILED
+RULE N_torqueh_featherstone_0.002_number eq 1 1 : HELD
+RULE T_torquel_featherstone_0.002 all_within 21429 100 21857 : FAILED
+RULE N_torquel_featherstone_0.002_number eq 1 1 : HELD
+RULE L_limith_featherstone_0.002_angle all_within -500000 100 -445317 : FAILED
+RULE L_limith_featherstone_0.002_still all_le 10000 1622709 : FAILED
+RULE N_limith_featherstone_0.002_number eq 1 1 : HELD
+RULE T_torqueh_mujoco_0.002 all_within 19868 100 20265 : FAILED
+RULE N_torqueh_mujoco_0.002_number eq 1 1 : HELD
+RULE T_torquel_mujoco_0.002 all_within 21429 100 21857 : FAILED
+RULE N_torquel_mujoco_0.002_number eq 1 1 : HELD
+RULE L_limith_mujoco_0.002_angle all_within -500000 100 -481817 : FAILED
+RULE L_limith_mujoco_0.002_still all_le 10000 3705081 : FAILED
+RULE N_limith_mujoco_0.002_number eq 1 1 : HELD
+RULE L_limitl_vbd_0.002_angle all_within -500000 100 -500001 : HELD
+RULE L_limitl_vbd_0.002_still all_le 10000 15 : HELD
+RULE N_limitl_vbd_0.002_number eq 1 1 : HELD
+RULE L_limitl_mujoco_0.002_angle all_within -500000 100 -501677 : HELD
+RULE L_limitl_mujoco_0.002_still all_le 10000 2424 : HELD
+RULE N_limitl_mujoco_0.002_number eq 1 1 : HELD
+RULE T_torqueh_vbd_0.0008 all_within 19868 100 20027 : HELD
+RULE N_torqueh_vbd_0.0008_number eq 1 1 : HELD
+RULE T_torquel_vbd_0.0008 all_within 21429 100 21600 : HELD
+RULE N_torquel_vbd_0.0008_number eq 1 1 : HELD
+RULE L_limith_vbd_0.0008_angle all_within -500000 100 -502732 : HELD
+RULE L_limith_vbd_0.0008_still all_le 10000 234470 : FAILED
+RULE N_limith_vbd_0.0008_number eq 1 1 : HELD
+RULE T_torqueh_featherstone_0.0008 all_within 19868 100 20026 : HELD
+RULE N_torqueh_featherstone_0.0008_number eq 1 1 : HELD
+RULE T_torquel_featherstone_0.0008 all_within 21429 100 21600 : HELD
+RULE N_torquel_featherstone_0.0008_number eq 1 1 : HELD
+RULE L_limith_featherstone_0.0008_angle all_within -500000 100 -413187 : FAILED
+RULE L_limith_featherstone_0.0008_still all_le 10000 1397954 : FAILED
+RULE N_limith_featherstone_0.0008_number eq 1 1 : HELD
+RULE T_torqueh_mujoco_0.0008 all_within 19868 100 20026 : HELD
+RULE N_torqueh_mujoco_0.0008_number eq 1 1 : HELD
+RULE T_torquel_mujoco_0.0008 all_within 21429 100 21600 : HELD
+RULE N_torquel_mujoco_0.0008_number eq 1 1 : HELD
+RULE L_limith_mujoco_0.0008_angle all_within -500000 100 -479382 : FAILED
+RULE L_limith_mujoco_0.0008_still all_le 10000 3657342 : FAILED
+RULE N_limith_mujoco_0.0008_number eq 1 1 : HELD
+RULE L_limitl_vbd_0.0008_angle all_within -500000 100 -500001 : HELD
+RULE L_limitl_vbd_0.0008_still all_le 10000 0 : HELD
+RULE N_limitl_vbd_0.0008_number eq 1 1 : HELD
+RULE L_limitl_mujoco_0.0008_angle all_within -500000 100 -500437 : HELD
+RULE L_limitl_mujoco_0.0008_still all_le 10000 33 : HELD
+RULE N_limitl_mujoco_0.0008_number eq 1 1 : HELD
+checks: 81, held: 55

@@ -1,0 +1,6 @@
+cloth_fb0_it10 harvested_mN -74077 cloth_mN 441 box_top_speed_ums 15940
+cloth_fb0_it40 harvested_mN -18300 cloth_mN 442 box_top_speed_ums 15940
+cloth_fb0_it100 harvested_mN -5593 cloth_mN 440 box_top_speed_ums 15940
+cloth_fb1_it10 harvested_mN -45996 cloth_mN 439 box_top_speed_ums 47202
+cloth_fb1_it40 harvested_mN -17060 cloth_mN 442 box_top_speed_ums 15940
+cloth_fb1_it100 harvested_mN -3223 cloth_mN 441 box_top_speed_ums 15940

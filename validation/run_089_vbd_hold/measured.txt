@@ -1,0 +1,12 @@
+hold_vbd_stock_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 12396 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold_vbd_stock_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 58208 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold_vbd_stock_0.000125 CREEP dt_ns 125000 steps 8000 mean_speed_ums 223151 friction_over_normal_per_10000 2989 friction_limit_per_10000 5000
+hold_vbd_alm_stock_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+hold_vbd_alm_stock_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+hold_vbd_alm_stock_0.000125 CREEP dt_ns 125000 steps 8000 mean_speed_ums 74 friction_over_normal_per_10000 2998 friction_limit_per_10000 5000
+hold_vbd_carried_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 12396 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold_vbd_carried_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 58146 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold_vbd_carried_0.000125 CREEP dt_ns 125000 steps 8000 mean_speed_ums 249144 friction_over_normal_per_10000 3014 friction_limit_per_10000 5000
+hold_vbd_alm_carried_0.002 CREEP dt_ns 2000000 steps 500 mean_speed_ums 1 friction_over_normal_per_10000 2999 friction_limit_per_10000 5000
+hold_vbd_alm_carried_0.0005 CREEP dt_ns 500000 steps 2000 mean_speed_ums 0 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000
+hold_vbd_alm_carried_0.000125 CREEP dt_ns 125000 steps 8000 mean_speed_ums 265 friction_over_normal_per_10000 3000 friction_limit_per_10000 5000

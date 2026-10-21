@@ -1,0 +1,5 @@
+ M newton/_src/solvers/xpbd/solver_xpbd.py
+?? newton/_src/solvers/xpbd/joint_angle_unwrap_kernels.py
+8b1ddbf0c4729798881ea1cbe6ff9db2ef979ab15f6923ccc20d7d595ab2ab74  newton/_src/solvers/xpbd/solver_xpbd.py
+355a75984ba479386850c239d4cd98c8361d50703090eaa37cb3c0238881fe36  newton/_src/solvers/xpbd/joint_angle_unwrap_kernels.py
+ce91cd9c2cf818fb888593a8319b44d80e184e26c3feaa1b828e6c51450b3cab  newton/_src/solvers/xpbd/kernels.py

@@ -1,0 +1,1 @@
+STATS contact dt 0.0004 h0 0.06 vx0 0 mu 0 mass 1.4 radius 0.035 steps 1500 most_tilt_urad 0 engine newton 1.6.1 solver xpbd extra opt.enable_restitution=True

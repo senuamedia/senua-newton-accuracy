@@ -1,0 +1,343 @@
+--- a/newton/_src/sim/builder.py
++++ b/newton/_src/sim/builder.py
+@@ -809,7 +809,12 @@
+         ka: float = 0.0
+         """The contact adhesion distance [m]."""
+         mu: float = 1.0
+-        """The coefficient of friction."""
++        """The coefficient of friction [dimensionless]; the dynamic (kinetic) coefficient when
++        :attr:`mu_static` is set."""
++        mu_static: float | None = None
++        """The coefficient of static friction [dimensionless], the break-away threshold for sticking
++        contacts. ``None`` uses :attr:`mu` (no static/dynamic distinction). Must be ``>= mu``.
++        Only solvers that model stick-slip friction use it; others use :attr:`mu`."""
+         restitution: float = 0.0
+         """The coefficient of restitution.
+ 
+@@ -953,6 +958,8 @@
+                 )
+             if not math.isfinite(self.density) or self.density < 0.0:
+                 raise ValueError(f"density must be finite and >= 0 (got {self.density}).")
++            if self.mu_static is not None and (not math.isfinite(self.mu_static) or self.mu_static < self.mu):
++                raise ValueError(f"mu_static must be finite and >= mu (got mu_static={self.mu_static}, mu={self.mu}).")
+ 
+             if self.sdf_target_voxel_size is not None and (
+                 not math.isfinite(self.sdf_target_voxel_size) or self.sdf_target_voxel_size <= 0.0
+@@ -1655,6 +1662,8 @@
+         """Friction coefficients accumulated for :attr:`Model.shape_material_mu`."""
+         self.shape_material_restitution: list[float] = []
+         """Restitution coefficients accumulated for :attr:`Model.shape_material_restitution`."""
++        self.shape_material_mu_static: list[float] = []
++        """Static friction coefficients accumulated for :attr:`Model.shape_material_mu_static` (negative: same as mu)."""
+         self.shape_material_mu_torsional: list[float] = []
+         """Torsional friction coefficients accumulated for :attr:`Model.shape_material_mu_torsional`."""
+         self.shape_material_mu_rolling: list[float] = []
+@@ -7919,6 +7928,7 @@
+         self.shape_material_kf.append(cfg.kf)
+         self.shape_material_ka.append(cfg.ka)
+         self.shape_material_mu.append(cfg.mu)
++        self.shape_material_mu_static.append(-1.0 if cfg.mu_static is None else cfg.mu_static)
+         self.shape_material_restitution.append(cfg.restitution)
+         self.shape_material_mu_torsional.append(cfg.mu_torsional)
+         self.shape_material_mu_rolling.append(cfg.mu_rolling)
+@@ -8957,6 +8967,11 @@
+                             kf=self.shape_material_kf[shape],
+                             ka=self.shape_material_ka[shape],
+                             mu=self.shape_material_mu[shape],
++                            mu_static=(
++                                None
++                                if self.shape_material_mu_static[shape] < 0.0
++                                else self.shape_material_mu_static[shape]
++                            ),
+                             restitution=self.shape_material_restitution[shape],
+                             mu_torsional=self.shape_material_mu_torsional[shape],
+                             mu_rolling=self.shape_material_mu_rolling[shape],
+@@ -13581,6 +13596,9 @@
+             m.shape_material_restitution = wp.array(
+                 self.shape_material_restitution, dtype=wp.float32, requires_grad=requires_grad
+             )
++            m.shape_material_mu_static = wp.array(
++                self.shape_material_mu_static, dtype=wp.float32, requires_grad=requires_grad
++            )
+             m.shape_material_mu_torsional = wp.array(
+                 self.shape_material_mu_torsional, dtype=wp.float32, requires_grad=requires_grad
+             )
+@@ -15124,6 +15142,7 @@
+     "shape_material_kf": wp.float32,
+     "shape_material_ka": wp.float32,
+     "shape_material_mu": wp.float32,
++    "shape_material_mu_static": wp.float32,
+     "shape_material_restitution": wp.float32,
+     "shape_material_mu_torsional": wp.float32,
+     "shape_material_mu_rolling": wp.float32,
+--- a/newton/_src/sim/model.py
++++ b/newton/_src/sim/model.py
+@@ -334,6 +334,7 @@
+         "shape_material_kf": AttributeSpec(AttributeFrequency.SHAPE),
+         "shape_material_ka": AttributeSpec(AttributeFrequency.SHAPE),
+         "shape_material_mu": AttributeSpec(AttributeFrequency.SHAPE),
++        "shape_material_mu_static": AttributeSpec(AttributeFrequency.SHAPE),
+         "shape_material_restitution": AttributeSpec(AttributeFrequency.SHAPE),
+         "shape_material_mu_torsional": AttributeSpec(AttributeFrequency.SHAPE),
+         "shape_material_mu_rolling": AttributeSpec(AttributeFrequency.SHAPE),
+@@ -704,7 +705,14 @@
+         self.shape_material_ka: wp.array[wp.float32] | None = None
+         """Shape contact adhesion distance [m], shape [shape_count], float."""
+         self.shape_material_mu: wp.array[wp.float32] | None = None
+-        """Shape coefficient of friction [dimensionless], shape [shape_count], float."""
++        """Shape coefficient of friction [dimensionless], shape [shape_count], float. The dynamic (kinetic)
++        coefficient for solvers that model stick-slip friction (see :attr:`shape_material_mu_static`)."""
++        self.shape_material_mu_static: wp.array[wp.float32] | None = None
++        """Shape coefficient of static friction [dimensionless], shape [shape_count], float.
++        A negative value (the default) means "same as :attr:`shape_material_mu`", so code that edits
++        ``shape_material_mu`` directly keeps a single friction coefficient. Set via
++        :attr:`ModelBuilder.ShapeConfig.mu_static` or a USD ``physics:staticFriction``. Solvers use
++        ``max(shape_material_mu_static, shape_material_mu)`` when it is non-negative."""
+         self.shape_material_restitution: wp.array[wp.float32] | None = None
+         """Shape coefficient of restitution [dimensionless], shape [shape_count], float."""
+         self.shape_material_mu_torsional: wp.array[wp.float32] | None = None
+--- a/newton/_src/solvers/kamino/_src/core/conversions.py
++++ b/newton/_src/solvers/kamino/_src/core/conversions.py
+@@ -216,9 +216,18 @@
+         wp.atomic_min(first_shape, material, shape)
+ 
+ 
++@wp.func
++def effective_static_friction(friction: wp.float32, static_friction: wp.float32) -> wp.float32:
++    """Static friction a shape material resolves to: negative means "same as mu", otherwise never below mu."""
++    if static_friction < 0.0:
++        return friction
++    return wp.max(static_friction, friction)
++
++
+ @wp.kernel
+ def validate_material_update_kernel(
+     shape_friction: wp.array[wp.float32],
++    shape_static_friction: wp.array[wp.float32],
+     shape_restitution: wp.array[wp.float32],
+     geom_material: wp.array[wp.int32],
+     first_shape: wp.array[wp.int32],
+@@ -232,6 +241,8 @@
+     representative = first_shape[material]
+     if (
+         shape_friction[shape] != shape_friction[representative]
++        or effective_static_friction(shape_friction[shape], shape_static_friction[shape])
++        != effective_static_friction(shape_friction[representative], shape_static_friction[representative])
+         or shape_restitution[shape] != shape_restitution[representative]
+     ):
+         wp.atomic_min(conflict_material, 0, material)
+@@ -241,6 +252,7 @@
+ def update_materials_kernel(
+     # Inputs:
+     shape_friction: wp.array[wp.float32],
++    shape_static_friction: wp.array[wp.float32],
+     shape_restitution: wp.array[wp.float32],
+     first_shape: wp.array[wp.int32],
+     shape_count: int,
+@@ -260,12 +272,13 @@
+     shape = first_shape[material]
+     if shape < shape_count:
+         friction = shape_friction[shape]
++        friction_static = effective_static_friction(friction, shape_static_friction[shape])
+         restitution[material] = shape_restitution[shape]
+-        static_friction[material] = friction
++        static_friction[material] = friction_static
+         dynamic_friction[material] = friction
+         if material == 0:
+             pair_restitution[0] = shape_restitution[shape]
+-            pair_static_friction[0] = friction
++            pair_static_friction[0] = friction_static
+             pair_dynamic_friction[0] = friction
+ 
+ 
+@@ -1426,7 +1439,8 @@
+     """Update Kamino's material properties in place from Newton shape materials.
+ 
+     Recomputes per-material friction and restitution from
+-    ``model.shape_material_mu`` and ``model.shape_material_restitution`` while
++    ``model.shape_material_mu``, ``model.shape_material_mu_static`` and
++    ``model.shape_material_restitution`` while
+     preserving the material arrays referenced by Kamino's collision detector.
+ 
+     Args:
+@@ -1449,6 +1463,7 @@
+         inputs=[
+             # Inputs:
+             model.shape_material_mu,
++            model.shape_material_mu_static,
+             model.shape_material_restitution,
+             model_kamino.geoms.material,
+             first_shape,
+@@ -1472,6 +1487,7 @@
+         inputs=[
+             # Inputs:
+             model.shape_material_mu,
++            model.shape_material_mu_static,
+             model.shape_material_restitution,
+             first_shape,
+             model.shape_count,
+@@ -2182,17 +2198,22 @@
+         NumPy array of material indices for each geom.
+     """
+     # Set up material parameter dictionary
+-    material_param_indices: dict[tuple[float, float], int] = {}
++    material_param_indices: dict[tuple[float, float, float], int] = {}
+     for i, material in enumerate(materials_manager.materials):
+         # Adding already existing (default) materials from material manager, making sure the values
+         # undergo the same transformation as any material parameters in the Newton model (conversion
+         # to np.float32)
+-        mu = float(np.float32(material.static_friction))
++        mu = float(np.float32(material.dynamic_friction))
++        mu_static = float(np.float32(material.static_friction))
+         restitution = float(np.float32(material.restitution))
+-        material_param_indices[(mu, restitution)] = i
++        material_param_indices[(mu, mu_static, restitution)] = i
+ 
+     # Newton material parameters
+     shape_friction = model.shape_material_mu.numpy().tolist()
++    # Negative mu_static means "same as mu"; otherwise never let it fall below mu.
++    mu_np = model.shape_material_mu.numpy()
++    mu_static_np = model.shape_material_mu_static.numpy()
++    shape_static_friction = np.where(mu_static_np < 0.0, mu_np, np.maximum(mu_static_np, mu_np)).tolist()
+     shape_restitution = model.shape_material_restitution.numpy().tolist()
+     # Mapping from geom to material index
+     geom_material = np.zeros((model.shape_count,), dtype=int)
+@@ -2201,14 +2222,14 @@
+ 
+     for s in range(model.shape_count):
+         # Check if material with these parameters already exists
+-        material_desc = (shape_friction[s], shape_restitution[s])
++        material_desc = (shape_friction[s], shape_static_friction[s], shape_restitution[s])
+         if material_desc in material_param_indices:
+             material_id = material_param_indices[material_desc]
+         else:
+             material = MaterialDescriptor(
+                 name=f"{model.shape_label[s]}_material",
+                 restitution=shape_restitution[s],
+-                static_friction=shape_friction[s],
++                static_friction=shape_static_friction[s],
+                 dynamic_friction=shape_friction[s],
+                 # wid=shape_world_np[s],
+             )
+--- a/newton/_src/usd/_resolution_policy.py
++++ b/newton/_src/usd/_resolution_policy.py
+@@ -443,7 +443,7 @@
+     defaults: ModelBuilder.ShapeConfig,
+     *,
+     verbose: bool,
+-) -> dict[str, float]:
++) -> dict[str, float | None]:
+     """Select contact response values from shape, material, and builder settings."""
+     # Contact response precedence:
+     #   per-shape mjc:solref (non-legacy) > material > legacy per-shape > default
+@@ -457,6 +457,9 @@
+     has_solref = mjc_has_priority and usd.get_attribute(prim, "mjc:solref") is not None
+     shape_contact = {
+         "mu": material.dynamicFriction,
++        # UsdPhysics defaults an unauthored staticFriction to 0; treat any static coefficient
++        # not above the dynamic one as "no distinction".
++        "mu_static": (material.staticFriction if material.staticFriction > material.dynamicFriction else None),
+         "restitution": material.restitution,
+         "mu_torsional": material.torsionalFriction,
+         "mu_rolling": material.rollingFriction,
+--- a/newton/tests/kamino/test_kamino_solver_kamino_notify.py
++++ b/newton/tests/kamino/test_kamino_solver_kamino_notify.py
+@@ -531,6 +531,22 @@
+         for actual, expected in zip(arrays[3:], pair_values, strict=True):
+             np.testing.assert_array_equal(actual.numpy(), expected)
+ 
++    def test_static_friction_sentinel_and_explicit_equal_value_share_material(self):
++        """An unset mu_static and an explicit mu_static equal to mu are the same material on update."""
++        model = _build_revolute(shape_materials=((0.2, 0.1), (0.2, 0.1)))
++        model.shape_material_mu_static.assign(np.array([-1.0, 0.2], dtype=np.float32))
++        solver = SolverKamino(model, SolverKamino.Config(use_collision_detector=True))
++        materials = solver._model_kamino.materials
++        geoms = solver._model_kamino.geoms
++        self.assertEqual(len(set(geoms.material.numpy().tolist())), 1)
++
++        solver.notify_model_changed(newton.ModelFlags.SHAPE_PROPERTIES)
++
++        model.shape_material_mu_static.assign(np.array([0.5, 0.5], dtype=np.float32))
++        solver.notify_model_changed(newton.ModelFlags.SHAPE_PROPERTIES)
++        np.testing.assert_allclose(materials.static_friction.numpy(), [DEFAULT_FRICTION, 0.5])
++        np.testing.assert_allclose(materials.dynamic_friction.numpy(), [DEFAULT_FRICTION, 0.2])
++
+     def test_default_material_update_propagates_to_default_pair(self):
+         """Updating material zero keeps its explicit self-pair synchronized."""
+         model = _build_revolute(shape_materials=((DEFAULT_FRICTION, DEFAULT_RESTITUTION),))
+--- a/newton/tests/kamino/utils/checks.py
++++ b/newton/tests/kamino/utils/checks.py
+@@ -453,7 +453,7 @@
+         )
+ 
+     # Inverse transform: `material` indexes into `ModelKamino.materials`,
+-    # deduplicated by (static friction, restitution); every collidable shape's
++    # deduplicated by (dynamic friction, static friction, restitution); every collidable shape's
+     # material properties must match the Newton shape properties it was
+     # registered from.
+     if "material" not in excluded:
+@@ -461,6 +461,9 @@
+         has_material = geom_material >= 0
+         material_idx = geom_material[has_material]
+         shape_mu = model_newton.shape_material_mu.numpy()[has_material]
++        # A negative shape_material_mu_static means "same as mu"; otherwise it is clamped to >= mu.
++        shape_mu_static = model_newton.shape_material_mu_static.numpy()[has_material]
++        shape_mu_static = np.where(shape_mu_static < 0.0, shape_mu, np.maximum(shape_mu_static, shape_mu))
+         shape_restitution = model_newton.shape_material_restitution.numpy()[has_material]
+ 
+         static_friction = model_kamino.materials.static_friction.numpy()
+@@ -468,10 +471,10 @@
+         restitution = model_kamino.materials.restitution.numpy()
+         np.testing.assert_allclose(
+             static_friction[material_idx],
+-            shape_mu,
++            shape_mu_static,
+             rtol=rtol.get("material", 1e-6),
+             atol=atol.get("material", 1e-6),
+-            err_msg="MaterialsModel.static_friction does not match Model.shape_material_mu.",
++            err_msg="MaterialsModel.static_friction does not match Model.shape_material_mu_static.",
+         )
+         np.testing.assert_allclose(
+             dynamic_friction[material_idx],
+--- a/newton/tests/test_import_usd.py
++++ b/newton/tests/test_import_usd.py
+@@ -5340,6 +5340,8 @@
+ 
+         # Check friction (mu is dynamicFriction)
+         self.assertAlmostEqual(model.shape_material_mu.numpy()[shape_idx], 0.5, places=4)
++        # staticFriction above dynamicFriction is kept as the static coefficient
++        self.assertAlmostEqual(model.shape_material_mu_static.numpy()[shape_idx], 0.6, places=4)
+ 
+         # Check restitution
+         self.assertAlmostEqual(model.shape_material_restitution.numpy()[shape_idx], 0.3, places=4)
+--- a/newton/tests/test_model.py
++++ b/newton/tests/test_model.py
+@@ -2225,6 +2225,28 @@
+                 with self.assertRaisesRegex(ValueError, "density must be finite and >= 0"):
+                     cfg.validate(shape_type=newton.GeoType.SPHERE)
+ 
++    def test_shape_config_rejects_invalid_mu_static(self):
++        """Reject a static friction coefficient below mu or non-finite."""
++        for mu_static in (0.3, float("nan"), float("inf")):
++            with self.subTest(mu_static=mu_static):
++                cfg = newton.ModelBuilder.ShapeConfig(mu=0.5, mu_static=mu_static)
++
++                with self.assertRaisesRegex(ValueError, "mu_static must be finite and >= mu"):
++                    cfg.validate(shape_type=newton.GeoType.SPHERE)
++
++    def test_shape_material_mu_static_defaults_to_same_as_mu(self):
++        """Unset mu_static is stored as the "same as mu" sentinel and survives replication."""
++        builder = newton.ModelBuilder()
++        body = builder.add_body()
++        builder.add_shape_sphere(body, radius=0.1, cfg=newton.ModelBuilder.ShapeConfig(mu=0.4))
++        builder.add_shape_sphere(body, radius=0.1, cfg=newton.ModelBuilder.ShapeConfig(mu=0.4, mu_static=0.9))
++        scene = newton.ModelBuilder()
++        scene.replicate(builder, world_count=2)
++        model = scene.finalize()
++
++        np.testing.assert_allclose(model.shape_material_mu.numpy(), [0.4, 0.4, 0.4, 0.4])
++        np.testing.assert_allclose(model.shape_material_mu_static.numpy(), [-1.0, 0.9, -1.0, 0.9])
++
+     def test_shape_config_rejects_invalid_sdf_target_voxel_size(self):
+         """Reject non-positive and non-finite target voxel sizes."""
+         for target_voxel_size in (0.0, -0.01, float("nan"), float("inf"), float("-inf")):

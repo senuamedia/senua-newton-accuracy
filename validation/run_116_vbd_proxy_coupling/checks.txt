@@ -1,0 +1,17 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE P1_safe_when_off eq 12 12 : HELD
+RULE C0_as_run_112 eq 4 4 : HELD
+RULE P2_released_tall_harvest_too_large_it10 ge 73882 4400 : HELD
+RULE P2_realized_tall_harvest_the_cloths_it10 within 330 440 20 : FAILED
+RULE P2_released_tall_harvest_too_large_it40 ge 13100 4400 : HELD
+RULE P2_realized_tall_harvest_the_cloths_it40 within 419 440 20 : HELD
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+rule: unknown kind or the wrong count of numbers
+RULE P4_realized_hammock_carries_the_box_it10 within 6685 1960 10 : FAILED
+RULE P4_realized_hammock_carries_the_box_it40 within 8646 1960 10 : FAILED
+RULE P5_released_throw_momentum_grows_it10 ge 13910612 6750000 : HELD
+RULE P5_released_throw_momentum_grows_it40 ge 5982233 6750000 : FAILED
+RULE P5_realized_throw_momentum_kept_it10 within -289566 -4500000 20 : FAILED
+RULE P5_realized_throw_momentum_kept_it40 within -617081 -4500000 20 : FAILED
+checks: 16, held: 7

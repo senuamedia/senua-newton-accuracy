@@ -1,0 +1,13 @@
+RULE K0_numbers_0.002 all_eq -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE K1_drop_0.002 all_within 9800 100 9800 : HELD
+RULE K2_push_0.002 all_within 50000 1000 50000 50000 : HELD
+RULE K3_slide_0.002 all_within 101354 100 101354 : HELD
+RULE K5_torque_0.002 all_within 5166 100 5166 : HELD
+RULE K6_chain_0.002 all_within 1009410 1000 1009408 : HELD
+RULE K0_numbers_0.0005 all_eq -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE K1_drop_0.0005 all_within 9800 100 9800 : HELD
+RULE K2_push_0.0005 all_within 50000 1000 50001 50001 : HELD
+RULE K3_slide_0.0005 all_within 102176 100 102176 : HELD
+RULE K5_torque_0.0005 all_within 5017 100 5017 : HELD
+RULE K6_chain_0.0005 all_within 1002383 1000 1002383 : HELD
+checks: 12, held: 12

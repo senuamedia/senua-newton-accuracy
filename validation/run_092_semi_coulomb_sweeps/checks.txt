@@ -1,0 +1,7 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C0_k1_is_run_090 eq 6 6 : HELD
+RULE C1_hold_held_k64 all_in -10 10 1 0 0 : HELD
+RULE C2_slide_coulomb_k64 all_within 102041 100 101529 102279 102467 : HELD
+RULE C3_T06_passes_k64 eq 0 1 : FAILED
+RULE C3_nothing_lost_k64 eq 1 0 : FAILED
+checks: 6, held: 4

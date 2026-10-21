@@ -1,0 +1,26 @@
+RULE V_featherstone_limit_applied all_within 1000000 100 3973875 : FAILED
+RULE V_featherstone_free all_within 3973510 100 3973875 : HELD
+RULE E_featherstone_limit_applied all_within 79470 100 1662881 : FAILED
+RULE E_featherstone_free all_within 1663626 100 1662881 : HELD
+RULE W_featherstone_said_nothing eq 2 0 : FAILED
+RULE V_mujoco_limit_applied all_within 1000000 100 3973875 : FAILED
+RULE V_mujoco_free all_within 3973510 100 3973875 : HELD
+RULE E_mujoco_limit_applied all_within 79470 100 79510 : HELD
+RULE E_mujoco_free all_within 1663626 100 1662881 : HELD
+RULE W_mujoco_said_nothing eq 2 0 : FAILED
+RULE V_xpbd_limit_applied all_within 1000000 100 6910794 : FAILED
+RULE V_xpbd_free all_within 3973510 100 6910794 : FAILED
+RULE E_xpbd_limit_applied all_within 79470 100 1803264 : FAILED
+RULE E_xpbd_free all_within 1663626 100 1803264 : FAILED
+RULE W_xpbd_said_nothing eq 2 0 : FAILED
+RULE V_semi_limit_applied all_within 1000000 100 3960963 : FAILED
+RULE V_semi_free all_within 3973510 100 3960963 : HELD
+RULE E_semi_limit_applied all_within 79470 100 1690838 : FAILED
+RULE E_semi_free all_within 1663626 100 1690838 : FAILED
+RULE W_semi_said_nothing eq 2 0 : FAILED
+RULE V_vbd_limit_applied all_within 1000000 100 3666878 : FAILED
+RULE V_vbd_free all_within 3973510 100 3666878 : FAILED
+RULE E_vbd_limit_applied all_within 79470 100 1660148 : FAILED
+RULE E_vbd_free all_within 1663626 100 1660148 : HELD
+RULE W_vbd_said_nothing eq 6 0 : FAILED
+checks: 25, held: 7

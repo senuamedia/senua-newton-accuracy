@@ -1,0 +1,14 @@
+slope_default_sub8 stops -1 STOP dt_ns 5208333 first_stopped_at_step 90 largest_speed_last_third_ums 172 slid_um 21399 came_back_um 9
+slope_default_sub32 stops -1 STOP dt_ns 1302083 first_stopped_at_step -1 largest_speed_last_third_ums 453114 slid_um 281986 came_back_um 0
+slope_tol_sub8 stops -1 STOP dt_ns 5208333 first_stopped_at_step 92 largest_speed_last_third_ums 136 slid_um 20888 came_back_um 4
+slope_tol_sub32 stops -1 STOP dt_ns 1302083 first_stopped_at_step -1 largest_speed_last_third_ums 448257 slid_um 281433 came_back_um 0
+slope_iter_sub8 stops -1 STOP dt_ns 5208333 first_stopped_at_step 91 largest_speed_last_third_ums 242 slid_um 21622 came_back_um 20
+slope_iter_sub32 stops -1 STOP dt_ns 1302083 first_stopped_at_step -1 largest_speed_last_third_ums 432243 slid_um 280063 came_back_um 0
+slope_q1_sub8 stops -1 the file is missing or not whole
+slope_q1_sub32 stops -1 the file is missing or not whole
+slope_gimp_sub8 stops -1 the file is missing or not whole
+slope_gimp_sub32 stops -1 the file is missing or not whole
+slope_pic_sub8 stops -1 the file is missing or not whole
+slope_pic_sub32 stops -1 the file is missing or not whole
+slope_back_sub8 stops -1 the file is missing or not whole
+slope_back_sub32 stops -1 the file is missing or not whole

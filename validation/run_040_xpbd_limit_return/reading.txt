@@ -1,0 +1,11 @@
+released 0.0016 s | angle_urad 1328257 speed_urads -2293820
+relax1 0.0016 s | angle_urad -5212550 speed_urads 933890250000
+it8 0.0016 s | angle_urad 1415856 speed_urads -2020478
+relax1_it8 0.0016 s | angle_urad -5496236 speed_urads 3344187500000
+released 0.00032 s | angle_urad 1169757 speed_urads -2393952
+relax1 0.00032 s | angle_urad -2086721 speed_urads 30221332000000
+it8 0.00032 s | angle_urad 1340232 speed_urads -2067798
+relax1_it8 0.00032 s | angle_urad -5341596 speed_urads 64697024000000
+CHECK released 0.0016 s byte-identical to Study 5's below play: yes
+CHECK released 0.00032 s byte-identical to Study 5's below play: yes
+plays that stopped being a number: 0

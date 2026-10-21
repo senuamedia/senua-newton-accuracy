@@ -1,0 +1,1 @@
+STATS chain dt 0.0004 mass1 0.95 mass2 1.05 radius 0.04 arm1 0.23 len1 0.46 arm2 0.24 gravity 0 dofs 2 steps 5000 engine newton 1.7.0 solver xpbd extra iterations=2

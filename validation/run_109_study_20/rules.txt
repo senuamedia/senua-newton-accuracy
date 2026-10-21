@@ -1,0 +1,14 @@
+RULE R1_safe_when_off eq 7 7 : HELD
+RULE R2_fault_there all_le -500000 -1931201 -1932844 -2675941 -2589085 : HELD
+RULE R3_arms_held_a1 all_within 2200000 44 2199462 2199999 : HELD
+RULE R3_arms_held_a2 all_within 2900000 58 2899999 2898397 : HELD
+RULE R3_arms_slow all_in -100000 100000 -1139 0 0 -4343 : HELD
+RULE R4_reference_converged near 1854220 1854185 5000 : HELD
+RULE R5_reference_on_the_limit all_in 2399000 2401000 2400000 2400000 : HELD
+RULE R5_reference_link2 within 5218623 5240000 100 : HELD
+RULE R6_fault_there_chain all_ge 10000 23338 37198 39112 : HELD
+RULE R7_on_the_limit all_in 2399000 2401000 2400000 2400000 2400000 2399998 : HELD
+RULE R8_nearer_as_the_step_shrinks all_ge 0 70773 40088 : HELD
+RULE R8_near_at_the_smallest_step le 28670 50000 : HELD
+RULE R9_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 13, held: 13

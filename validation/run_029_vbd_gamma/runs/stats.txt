@@ -1,0 +1,6 @@
+STATS hold_vbd_0.000125_g1.0 contact dt 0.000125 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 16000 most_tilt_urad 12119 engine newton 1.6.1 solver vbd extra opt.rigid_avbd_gamma=1.0
+STATS hold_vbd_alm_0.000125_g1.0 contact dt 0.000125 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 16000 most_tilt_urad 7751 engine newton 1.6.1 solver vbd_alm extra opt.rigid_avbd_gamma=1.0
+STATS hold_vbd_alm_0.00003125_g1.0 contact dt 3.125e-05 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 64000 most_tilt_urad 9518 engine newton 1.6.1 solver vbd_alm extra opt.rigid_avbd_gamma=1.0
+STATS hold_vbd_0.00003125_g1.0 contact dt 3.125e-05 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 64000 most_tilt_urad 8286 engine newton 1.6.1 solver vbd extra opt.rigid_avbd_gamma=1.0
+STATS hold_vbd_alm_0.000125_g0.999 contact dt 0.000125 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 16000 most_tilt_urad 7751 engine newton 1.6.1 solver vbd_alm extra opt.rigid_avbd_gamma=0.999
+STATS hold_vbd_0.000125_g0.999 contact dt 0.000125 h0 0 vx0 0 mu 0.5 mass 1 radius 0.05 steps 16000 most_tilt_urad 12119 engine newton 1.6.1 solver vbd extra opt.rigid_avbd_gamma=0.999

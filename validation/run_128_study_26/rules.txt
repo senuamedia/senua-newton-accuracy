@@ -1,0 +1,45 @@
+RULE R1_safe_when_off eq 40 40 : HELD
+RULE R2_fault_there all_ge 0 11468 17146 : HELD
+RULE R3_xpbd_A_none within 43202 43202 100 : HELD
+RULE R3_xpbd_A_eq within 43202 43202 100 : HELD
+RULE R3_xpbd_A_cube within 92906 92906 100 : HELD
+RULE R3_xpbd_A_plane within 43202 43202 100 : HELD
+RULE R3_xpbd_B_none within 54046 54046 100 : HELD
+RULE R3_xpbd_B_eq within 54046 54046 100 : HELD
+RULE R3_xpbd_B_cube within 54046 54046 100 : HELD
+RULE R3_xpbd_B_plane within 217291 217291 100 : HELD
+RULE R3_semi_A_none within 68157 68157 100 : HELD
+RULE R3_semi_A_eq within 68157 68157 100 : HELD
+RULE R3_semi_A_cube within 42882 42882 100 : HELD
+RULE R3_semi_A_plane within 68157 68157 100 : HELD
+RULE R3_semi_B_none within 123259 123259 100 : HELD
+RULE R3_semi_B_eq within 123259 123259 100 : HELD
+RULE R3_semi_B_cube within 123259 123259 100 : HELD
+RULE R3_semi_B_plane within 57003 57003 100 : HELD
+RULE R3_featherstone_A_none within 100036 100036 100 : HELD
+RULE R3_featherstone_A_eq within 100036 100036 100 : HELD
+RULE R3_featherstone_A_cube within 41967 41967 100 : HELD
+RULE R3_featherstone_A_plane within 100036 100036 100 : HELD
+RULE R3_featherstone_B_none within 66289 66289 100 : HELD
+RULE R3_featherstone_B_eq within 66289 66289 100 : HELD
+RULE R3_featherstone_B_cube within 66289 66289 100 : HELD
+RULE R3_featherstone_B_plane within 58281 58281 100 : HELD
+RULE R3_vbd_A_none within 81153 81153 100 : HELD
+RULE R3_vbd_A_eq within 81153 81153 100 : HELD
+RULE R3_vbd_A_cube within 140626 140626 100 : HELD
+RULE R3_vbd_A_plane within 81153 81153 100 : HELD
+RULE R3_vbd_B_none within 95030 95030 100 : HELD
+RULE R3_vbd_B_eq within 95030 95030 100 : HELD
+RULE R3_vbd_B_cube within 95030 95030 100 : HELD
+RULE R3_vbd_B_plane within 272562 272562 100 : HELD
+RULE R3_mujoco_A_none within 43779 43779 100 : HELD
+RULE R3_mujoco_A_eq within 43779 43779 100 : HELD
+RULE R3_mujoco_A_cube within 93063 93063 100 : HELD
+RULE R3_mujoco_A_plane within 43779 43779 100 : HELD
+RULE R3_mujoco_B_none within 54534 54534 100 : HELD
+RULE R3_mujoco_B_eq within 54534 54534 100 : HELD
+RULE R3_mujoco_B_cube within 54534 54534 100 : HELD
+RULE R3_mujoco_B_plane within 217387 217387 100 : HELD
+RULE R4_mujoco_kept eq 8 8 : HELD
+RULE R5_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 44, held: 44

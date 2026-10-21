@@ -1,0 +1,12 @@
+RULE R1_safe_when_off eq 28 28 : HELD
+RULE R2_stock_slide_short all_le 114966 84061 83859 : HELD
+RULE R2_stock_plate_over all_ge 4410 15198 15210 : HELD
+RULE R3_slide all_within 191610 50 191783 191783 : HELD
+RULE R3_plate all_within 83333 100 83230 83230 83230 83230 : HELD
+RULE R4_impact all_within 2500 100 2500 2500 : HELD
+RULE R5_width_free_semi eq 1 1 : HELD
+RULE R5_width_free_featherstone eq 1 1 : HELD
+RULE R6_no_tip all_le 30000 7994 7994 : HELD
+RULE R7_nothing_else eq 6 6 : HELD
+RULE R8_no_nan eq 0 0 : HELD
+rules: 11, held: 11

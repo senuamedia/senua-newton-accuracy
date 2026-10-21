@@ -1,0 +1,4 @@
+STATS featherstone_m0.1 joint dt 6.25e-05 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 32000 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS featherstone_m1 joint dt 6.25e-05 mass 1 radius 0.04 arm 0.4 gravity 1 steps 32000 engine newton 1.6.1 solver featherstone extra lo=-1 hi=1
+STATS mujoco_m1 joint dt 6.25e-05 mass 1 radius 0.04 arm 0.4 gravity 1 steps 32000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1
+STATS mujoco_m0.1 joint dt 6.25e-05 mass 0.1 radius 0.04 arm 0.4 gravity 1 steps 32000 engine newton 1.6.1 solver mujoco extra lo=-1 hi=1

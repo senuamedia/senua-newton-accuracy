@@ -1,0 +1,11 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE P1_safe_when_off eq 6 6 : HELD
+RULE P2_warp_creeps_as_released all_ge 100 1241 1241 : HELD
+RULE P3_warp_held_with_noslip all_in -10 10 0 0 : HELD
+RULE P4_hold_as_cpu_0.001 near 0 0 10 : HELD
+RULE P4_slide_as_cpu_0.001 within 54488 54488 100 : HELD
+RULE P4_weight_as_cpu_0.001 within 7840 7840 100 : HELD
+RULE P4_hold_as_cpu_0.004 near 0 0 10 : HELD
+RULE P4_slide_as_cpu_0.004 within 53077 53077 100 : HELD
+RULE P4_weight_as_cpu_0.004 within 7840 7840 100 : HELD
+checks: 10, held: 10

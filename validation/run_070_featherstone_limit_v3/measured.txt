@@ -1,0 +1,44 @@
+l1_light_stock_0.0041666667 stops 14 the file is missing or not whole back_urad none
+l1_light_stock_0.001 stops 53 the file is missing or not whole back_urad none
+l1_light_stock_0.00025 stops 202 the file is missing or not whole back_urad none
+l1_light_stock_0.00002 stops 2839 the file is missing or not whole back_urad none
+l1_light_stock_0.000005 stops -1 FINAL dt_ns 5000 angle_urad -270572 speed_urads -18754787 back_urad 152087
+l1_light_stock_0.000002 stops -1 FINAL dt_ns 2000 angle_urad -500015 speed_urads 14280 back_urad none
+l3_strike_stock_m0.1_0.00025 stops -1 back_urad -890426
+l3_strike_stock_m0.1_0.0000625 stops -1 back_urad -912641
+l3_strike_stock_m1_0.00025 stops -1 back_urad -483534
+l3_strike_stock_m1_0.0000625 stops -1 back_urad -483722
+l5_chain_stock_0.002 stops -1 CHAIN dt_ns 2000000 gravity 0 steps 1000 kinetic_start_nj 1251830216 kinetic_end_nj 1263610278 kinetic_most_nj 1263611118 kinetic_end_per_million_of_start 1009410 energy_drift_ppm_of_most_kinetic 9322 energy_largest_drift_ppm 9323 energy_lost_ppm_of_most_kinetic -9322 momentum_start_u 1318278150 momentum_end_u 1326459906 momentum_drift_ppm 6206 momentum_largest_drift_ppm 6206 angle1_urad 3540691 speed1_urads 2452323 angle2_urad 324712 speed2_urads -2012068
+l1_light_off_0.0041666667 stops 14 the file is missing or not whole back_urad none
+l1_light_off_0.001 stops 53 the file is missing or not whole back_urad none
+l1_light_off_0.00025 stops 202 the file is missing or not whole back_urad none
+l1_light_off_0.00002 stops 2839 the file is missing or not whole back_urad none
+l1_light_off_0.000005 stops -1 FINAL dt_ns 5000 angle_urad -270572 speed_urads -18754787 back_urad 152087
+l1_light_off_0.000002 stops -1 FINAL dt_ns 2000 angle_urad -500015 speed_urads 14280 back_urad none
+l3_strike_off_m0.1_0.00025 stops -1 back_urad -890426
+l3_strike_off_m0.1_0.0000625 stops -1 back_urad -912641
+l3_strike_off_m1_0.00025 stops -1 back_urad -483534
+l3_strike_off_m1_0.0000625 stops -1 back_urad -483722
+l5_chain_off_0.002 stops -1 CHAIN dt_ns 2000000 gravity 0 steps 1000 kinetic_start_nj 1251830216 kinetic_end_nj 1263610278 kinetic_most_nj 1263611118 kinetic_end_per_million_of_start 1009410 energy_drift_ppm_of_most_kinetic 9322 energy_largest_drift_ppm 9323 energy_lost_ppm_of_most_kinetic -9322 momentum_start_u 1318278150 momentum_end_u 1326459906 momentum_drift_ppm 6206 momentum_largest_drift_ppm 6206 angle1_urad 3540691 speed1_urads 2452323 angle2_urad 324712 speed2_urads -2012068
+l1_light_1_0.0041666667 stops 14 the file is missing or not whole back_urad none
+l1_light_1_0.001 stops 53 the file is missing or not whole back_urad none
+l1_light_1_0.00025 stops 202 the file is missing or not whole back_urad none
+l1_light_1_0.00002 stops 2839 the file is missing or not whole back_urad none
+l1_light_1_0.000005 stops -1 FINAL dt_ns 5000 angle_urad -270572 speed_urads -18754787 back_urad 152087
+l1_light_1_0.000002 stops -1 FINAL dt_ns 2000 angle_urad -500015 speed_urads 14280 back_urad none
+l3_strike_1_m0.1_0.00025 stops -1 back_urad -805148
+l3_strike_1_m0.1_0.0000625 stops -1 back_urad -825620
+l3_strike_1_m1_0.00025 stops -1 back_urad -449751
+l3_strike_1_m1_0.0000625 stops -1 back_urad -455779
+l5_chain_1_0.002 stops -1 CHAIN dt_ns 2000000 gravity 0 steps 1000 kinetic_start_nj 1251830216 kinetic_end_nj 1263610278 kinetic_most_nj 1263611118 kinetic_end_per_million_of_start 1009410 energy_drift_ppm_of_most_kinetic 9322 energy_largest_drift_ppm 9323 energy_lost_ppm_of_most_kinetic -9322 momentum_start_u 1318278150 momentum_end_u 1326459906 momentum_drift_ppm 6206 momentum_largest_drift_ppm 6206 angle1_urad 3540691 speed1_urads 2452323 angle2_urad 324712 speed2_urads -2012068
+l1_light_3_0.0041666667 stops -1 FINAL dt_ns 4166667 angle_urad -500001 speed_urads 7 back_urad -342056
+l1_light_3_0.001 stops -1 FINAL dt_ns 1000000 angle_urad -500001 speed_urads 17 back_urad -473977
+l1_light_3_0.00025 stops -1 FINAL dt_ns 250000 angle_urad -500001 speed_urads 75 back_urad -497700
+l1_light_3_0.00002 stops -1 FINAL dt_ns 20000 angle_urad -500002 speed_urads 1436 back_urad none
+l1_light_3_0.000005 stops -1 FINAL dt_ns 5000 angle_urad -500007 speed_urads 5905 back_urad none
+l1_light_3_0.000002 stops -1 FINAL dt_ns 2000 angle_urad -500016 speed_urads 14786 back_urad none
+l3_strike_3_m0.1_0.00025 stops -1 back_urad -843263
+l3_strike_3_m0.1_0.0000625 stops -1 back_urad -836205
+l3_strike_3_m1_0.00025 stops -1 back_urad -517140
+l3_strike_3_m1_0.0000625 stops -1 back_urad -474045
+l5_chain_3_0.002 stops -1 CHAIN dt_ns 2000000 gravity 0 steps 1000 kinetic_start_nj 1251830216 kinetic_end_nj 1263610278 kinetic_most_nj 1263611118 kinetic_end_per_million_of_start 1009410 energy_drift_ppm_of_most_kinetic 9322 energy_largest_drift_ppm 9323 energy_lost_ppm_of_most_kinetic -9322 momentum_start_u 1318278150 momentum_end_u 1326459906 momentum_drift_ppm 6206 momentum_largest_drift_ppm 6206 angle1_urad 3540691 speed1_urads 2452323 angle2_urad 324712 speed2_urads -2012068

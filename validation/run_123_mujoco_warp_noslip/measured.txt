@@ -1,0 +1,36 @@
+hold_stock_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+hold_off_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+slide_stock_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 353 largest_speed_last_third_ums 0 slid_um 54500 came_back_um 0
+slide_off_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 353 largest_speed_last_third_ums 0 slid_um 54500 came_back_um 0
+drop_stock_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+drop_off_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+hold_warp_elliptic_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 0 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+hold_cpu_elliptic_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 0 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+slide_warp_elliptic_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 323 largest_speed_last_third_ums 0 slid_um 54488 came_back_um 0
+slide_cpu_elliptic_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 323 largest_speed_last_third_ums 0 slid_um 54488 came_back_um 0
+drop_warp_elliptic_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+drop_cpu_elliptic_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+hold_warp_pyramidal_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 2320 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+hold_cpu_pyramidal_0.001 stops -1 CREEP dt_ns 1000000 steps 800 mean_speed_ums 2320 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+slide_warp_pyramidal_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 151 largest_speed_last_third_ums 0 slid_um 54531 came_back_um 117
+slide_cpu_pyramidal_0.001 stops -1 STOP dt_ns 1000000 first_stopped_at_step 151 largest_speed_last_third_ums 0 slid_um 54532 came_back_um 117
+drop_warp_pyramidal_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+drop_cpu_pyramidal_0.001 stops -1 REST dt_ns 1000000 mean_ground_force_mN 7840 weight_mN 7840
+hold_stock_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+hold_off_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 1241 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+slide_stock_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 40 largest_speed_last_third_ums 0 slid_um 53085 came_back_um 18
+slide_off_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 40 largest_speed_last_third_ums 0 slid_um 53085 came_back_um 18
+drop_stock_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+drop_off_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+hold_warp_elliptic_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 0 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+hold_cpu_elliptic_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 0 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+slide_warp_elliptic_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 40 largest_speed_last_third_ums 0 slid_um 53077 came_back_um 24
+slide_cpu_elliptic_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 40 largest_speed_last_third_ums 0 slid_um 53077 came_back_um 24
+drop_warp_elliptic_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+drop_cpu_elliptic_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+hold_warp_pyramidal_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 2320 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+hold_cpu_pyramidal_0.004 stops -1 CREEP dt_ns 4000000 steps 200 mean_speed_ums 2320 friction_over_normal_per_10000 4200 friction_limit_per_10000 6000
+slide_warp_pyramidal_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 37 largest_speed_last_third_ums 0 slid_um 53260 came_back_um 155
+slide_cpu_pyramidal_0.004 stops -1 STOP dt_ns 4000000 first_stopped_at_step 37 largest_speed_last_third_ums 0 slid_um 53260 came_back_um 155
+drop_warp_pyramidal_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840
+drop_cpu_pyramidal_0.004 stops -1 REST dt_ns 4000000 mean_ground_force_mN 7840 weight_mN 7840

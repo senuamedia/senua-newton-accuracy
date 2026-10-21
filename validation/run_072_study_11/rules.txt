@@ -1,0 +1,22 @@
+RULE R1_safe_when_off_15 eq 2 2 : HELD
+RULE R2_fault_there_15 all_ge 100 1241 1241 : HELD
+RULE R3_held_15 all_in -10 10 0 0 : HELD
+RULE R4_slide_kept_0.001 within 54488 54499 100 : HELD
+RULE R6_cpu_contacts_24_0.001 within 7840 7840 100 : HELD
+RULE R8_cpu_joint_force_24_0.001 within 2903 2903 100 : HELD
+RULE R4_slide_kept_0.004 within 53077 53085 100 : HELD
+RULE R6_cpu_contacts_24_0.004 within 7840 7840 100 : HELD
+RULE R8_cpu_joint_force_24_0.004 within 3116 3116 100 : HELD
+RULE R5_weight_kept all_within 7840 100 7840 7840 : HELD
+RULE R7_cpu_forces_24 all_within 60000 1000 60001 60001 60000 60000 : HELD
+RULE R9_cpu_plays_24 all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE R10_safe_when_off_16 eq 4 4 : HELD
+RULE R11_fault_there_16_m0.3_0.0002 all_le -582466 -630349 : HELD
+RULE R11_fault_there_16_m2_0.0002 all_le -337277 -349005 : HELD
+RULE R12_kept_16_m0.3_0.0002 all_in -592466 -552466 -569985 : HELD
+RULE R12_kept_16_m2_0.0002 all_in -347277 -307277 -330839 : HELD
+RULE R11_fault_there_16_m0.3_0.00005 all_le -582466 -630731 : HELD
+RULE R11_fault_there_16_m2_0.00005 all_le -337277 -351133 : HELD
+RULE R12_kept_16_m0.3_0.00005 all_in -592466 -552466 -578979 : HELD
+RULE R12_kept_16_m2_0.00005 all_in -347277 -307277 -333957 : HELD
+rules: 21, held: 21

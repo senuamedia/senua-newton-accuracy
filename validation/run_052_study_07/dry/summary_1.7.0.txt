@@ -1,0 +1,20 @@
+1.7.0: 2420 same, 9 differ, 0 missing, 491 set aside, 0 new
+  play featherstone: 122 same, 0 differ
+  play mujoco: 182 same, 9 differ
+  play other: 314 same, 0 differ
+  play semi: 145 same, 0 differ
+  play vbd: 211 same, 0 differ
+  play vbd_alm: 30 same, 0 differ
+  play xpbd: 322 same, 0 differ
+  stats featherstone: 130 same, 0 differ
+  stats mujoco: 147 same, 0 differ
+  stats other: 15 same, 0 differ
+  stats semi: 119 same, 0 differ
+  stats vbd: 225 same, 0 differ
+  stats vbd_alm: 31 same, 0 differ
+  stats xpbd: 300 same, 0 differ
+  reading mujoco: 14 same, 0 differ
+  reading other: 56 same, 0 differ
+  reading semi: 3 same, 0 differ
+  reading vbd: 13 same, 0 differ
+  reading xpbd: 41 same, 0 differ

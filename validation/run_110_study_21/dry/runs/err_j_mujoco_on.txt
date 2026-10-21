@@ -1,0 +1,3 @@
+Warp CUDA warning: Could not find or load the NVIDIA CUDA driver. GPU execution will not be available.
+~/work/rec99/tools/nwt_joint.py:144: UserWarning: SolverMuJoCo does not apply these joint features the model configures: velocity limit (joints j).
+  solver = solvers[solver_name](model, **kw)

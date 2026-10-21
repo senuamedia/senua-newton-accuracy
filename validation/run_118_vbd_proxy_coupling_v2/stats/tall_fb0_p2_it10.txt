@@ -1,0 +1,1 @@
+STATS cloth coupled_dt 0.004 secs 0.6 cloth_mass 0.045 box_mass 0.5 iterations 10 feedback 0 steps 150 engine newton 1.7.0 extra box_hz=0.08

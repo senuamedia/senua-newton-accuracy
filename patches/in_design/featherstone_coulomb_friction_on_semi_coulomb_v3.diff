@@ -1,0 +1,332 @@
+--- a/newton/_src/solvers/featherstone/coulomb_friction.py
++++ b/newton/_src/solvers/featherstone/coulomb_friction.py
+@@ -0,0 +1,213 @@
++# SPDX-FileCopyrightText: Copyright (c) 2026 The Newton Developers
++# SPDX-License-Identifier: Apache-2.0
++#
++# Senua AI patch, in design: Featherstone's contact friction as Coulomb's law at the step's end.
++#
++# Featherstone's contact pass is SemiImplicit's (semi_implicit/kernels_contact.py, eval_body_contact), its friction a
++# force integrated explicitly: below mu N / kf it is viscous, so a load inside the friction limit creeps (issue 6), and
++# its kf settles only for steps under about 1.25 m / (10 kf) (issue 9). Here, as in SemiImplicit's Coulomb friction
++# patch (semi_implicit/kernels_contact_coulomb.py), the friction is taken out of the force pass and, after the step's
++# integration, each contact is given the tangential impulse that stops its slip, shared among its body's contacts, its
++# total over the step within mu times the normal impulse the force pass applied there, the pass made K times a step.
++# A body's impulses act on the joints as its forces do in eval_rigid_tau: each body's impulse wrench, taken about its
++# solve origin and summed over the bodies beyond each joint, projected on the joint's motion subspace; the change of
++# the joints' speeds solves the step's own joint-space inertia (its Cholesky factor, as for the accelerations), and the
++# joints' coordinates follow that change over the step, as the semi-implicit position update does. Launched only when
++# the solver is made with NEWTON_FEATHERSTONE_COULOMB_FRICTION=K (an integer, the sweeps a step; read once) and the
++# model has no joint mimics; otherwise never imported.
++
++import warp as wp
++
++from ...sim import Contacts, Model, State
++from ..semi_implicit.kernels_contact_coulomb import (
++    CoulombFrictionArrays,
++    eval_body_contact_coulomb,
++    solve_contact_friction_accumulated,
++)
++from .kernels import eval_dense_solve_batched, eval_fk_with_velocity_conversion, integrate_generalized_joints
++
++
++@wp.kernel
++def eval_impulse_tau(
++    articulation_start: wp.array[int],
++    articulation_end: wp.array[int],
++    joint_parent: wp.array[int],
++    joint_child: wp.array[int],
++    joint_qd_start: wp.array[int],
++    joint_S_s: wp.array[wp.spatial_vector],
++    body_q_com: wp.array[wp.transform],
++    body_solve_origin: wp.array[wp.vec3],
++    body_dp: wp.array[wp.spatial_vector],
++    # outputs
++    body_acc_s: wp.array[wp.spatial_vector],
++    tau: wp.array[float],
++):
++    # one thread per articulation, its joints from the leaves back, as eval_rigid_tau
++    index = wp.tid()
++    start = articulation_start[index]
++    end = articulation_end[index]
++    for offset in range(end - start):
++        i = end - offset - 1
++        parent = joint_parent[i]
++        child = joint_child[i]
++        dp = body_dp[child]
++        impulse = wp.spatial_top(dp)
++        x_com_s = wp.transform_get_translation(body_q_com[child]) - body_solve_origin[child]
++        w_s = body_acc_s[child] + wp.spatial_vector(impulse, wp.spatial_bottom(dp) + wp.cross(x_com_s, impulse))
++        for dof in range(joint_qd_start[i], joint_qd_start[i + 1]):
++            tau[dof] = wp.dot(joint_S_s[dof], w_s)
++        if parent >= 0:
++            body_acc_s[parent] = body_acc_s[parent] + w_s
++
++
++@wp.kernel
++def add_joint_qd(joint_qd: wp.array[float], dqd: wp.array[float]):
++    i = wp.tid()
++    joint_qd[i] = joint_qd[i] + dqd[i]
++
++
++class FeatherstoneCoulombFriction:
++    """The pass's records and scratch, sized from the model and its contacts."""
++
++    def __init__(self, model: Model, contacts: Contacts):
++        self.records = CoulombFrictionArrays(model, contacts)
++        n = model.joint_dof_count
++        with wp.ScopedDevice(model.device):
++            self.pt = wp.zeros(contacts.rigid_contact_max, dtype=wp.vec3)
++            self.acc = wp.zeros(model.body_count, dtype=wp.spatial_vector)
++            self.tau = wp.zeros(n, dtype=float)
++            self.dqd = wp.zeros(n, dtype=float)
++            self.tmp = wp.zeros(n, dtype=float)
++            self.zero_qdd = wp.zeros(n, dtype=float)
++            self.qd_scratch = wp.zeros(n, dtype=float)
++            self.q_scratch = wp.zeros(model.joint_coord_count, dtype=float)
++
++
++def force_pass(
++    model: Model, body_q, body_qd, contacts: Contacts, pass_arrays: FeatherstoneCoulombFriction, friction_smoothing, body_f
++):
++    """The stock contact pass's launch, its friction left out and each contact recorded."""
++    arrays = pass_arrays.records
++    arrays.clear()
++    wp.launch(
++        kernel=eval_body_contact_coulomb,
++        dim=contacts.rigid_contact_max,
++        inputs=[
++            body_q,
++            body_qd,
++            model.body_com,
++            model.shape_material_ke,
++            model.shape_material_kd,
++            model.shape_material_kf,
++            model.shape_material_ka,
++            model.shape_material_mu,
++            model.shape_body,
++            contacts.rigid_contact_count,
++            contacts.rigid_contact_point0,
++            contacts.rigid_contact_point1,
++            contacts.rigid_contact_surface_velocity,
++            contacts.rigid_contact_normal,
++            contacts.rigid_contact_shape0,
++            contacts.rigid_contact_shape1,
++            contacts.rigid_contact_margin0,
++            contacts.rigid_contact_margin1,
++            contacts.rigid_contact_stiffness,
++            contacts.rigid_contact_damping,
++            contacts.rigid_contact_friction,
++            False,
++            friction_smoothing,
++        ],
++        outputs=[body_f, arrays.fn, arrays.nrm, arrays.ra, arrays.rb, arrays.mu, arrays.bodies, arrays.count],
++        device=model.device,
++    )
++
++
++def friction_sweeps(solver, model: Model, state_out: State, state_aug, contacts: Contacts, pass_arrays, dt: float):
++    """The friction pass made `solver._coulomb_sweeps` times, after the step's integration and before its forward
++    kinematics; each sweep from the joints' speeds the one before left."""
++    arrays = pass_arrays.records
++    pass_arrays.pt.zero_()
++    qd = state_aug.joint_qd_internal_out
++    for _ in range(solver._coulomb_sweeps):
++        eval_fk_with_velocity_conversion(model, state_out.joint_q, qd, state_out)
++        arrays.dp.zero_()
++        wp.launch(
++            kernel=solve_contact_friction_accumulated,
++            dim=contacts.rigid_contact_max,
++            inputs=[
++                state_out.body_q,
++                state_out.body_qd,
++                model.body_com,
++                model.body_inv_mass,
++                model.body_inv_inertia,
++                contacts.rigid_contact_count,
++                arrays.fn,
++                arrays.nrm,
++                arrays.ra,
++                arrays.rb,
++                arrays.mu,
++                arrays.bodies,
++                arrays.count,
++                dt,
++                pass_arrays.pt,
++            ],
++            outputs=[arrays.dp],
++            device=model.device,
++        )
++        pass_arrays.acc.zero_()
++        pass_arrays.tau.zero_()
++        wp.launch(
++            kernel=eval_impulse_tau,
++            dim=model.articulation_count,
++            inputs=[
++                model.articulation_start,
++                model.articulation_end,
++                model.joint_parent,
++                model.joint_child,
++                model.joint_qd_start,
++                state_aug.joint_S_s,
++                state_aug.body_q_com,
++                state_aug.body_solve_origin,
++                arrays.dp,
++            ],
++            outputs=[pass_arrays.acc, pass_arrays.tau],
++            device=model.device,
++        )
++        pass_arrays.dqd.zero_()
++        wp.launch(
++            eval_dense_solve_batched,
++            dim=model.articulation_count,
++            inputs=[
++                solver.articulation_H_start,
++                solver.articulation_H_rows,
++                solver.articulation_dof_start,
++                solver.H,
++                solver.L,
++                pass_arrays.tau,
++            ],
++            outputs=[pass_arrays.dqd, pass_arrays.tmp],
++            device=model.device,
++        )
++        wp.launch(add_joint_qd, dim=model.joint_dof_count, inputs=[qd, pass_arrays.dqd], device=model.device)
++        # the joints' coordinates follow the change of their speeds over the step
++        wp.copy(pass_arrays.q_scratch, state_out.joint_q)
++        wp.launch(
++            kernel=integrate_generalized_joints,
++            dim=model.joint_count,
++            inputs=[
++                model.joint_type,
++                model.joint_parent,
++                model.joint_child,
++                model.joint_q_start,
++                model.joint_qd_start,
++                model.joint_dof_dim,
++                model.joint_X_c,
++                model.body_com,
++                pass_arrays.q_scratch,
++                pass_arrays.dqd,
++                pass_arrays.zero_qdd,
++                dt,
++            ],
++            outputs=[state_out.joint_q, pass_arrays.qd_scratch],
++            device=model.device,
++        )
+--- a/newton/_src/solvers/featherstone/solver_featherstone.py
++++ b/newton/_src/solvers/featherstone/solver_featherstone.py
+@@ -217,6 +217,15 @@
+         self.angular_damping = angular_damping
+         self.update_mass_matrix_interval = update_mass_matrix_interval
+         self.friction_smoothing = friction_smoothing
++        # Senua AI patch, in design: contact friction as Coulomb's law at the step's end, K sweeps a step, read once here
++        self._coulomb_sweeps = int(os.environ.get("NEWTON_FEATHERSTONE_COULOMB_FRICTION", "0"))
++        self._coulomb_arrays = None
++        if self._coulomb_sweeps > 0:
++            from ..semi_implicit import kernels_contact_coulomb  # noqa: PLC0415
++            from . import coulomb_friction  # noqa: PLC0415
++
++            self._set_module_options(borrowed_options, module=kernels_contact_coulomb)
++            self._set_module_options(borrowed_options, module=coulomb_friction)
+         self.use_tile_gemm = use_tile_gemm
+         self.fuse_cholesky = fuse_cholesky
+ 
+@@ -729,37 +738,52 @@
+                         )
+ 
+                         kernel = eval_body_contact_normal if kernel is eval_body_contact else eval_body_contact_unit_normal
+-                    wp.launch(
+-                        kernel=kernel,
+-                        dim=contacts.rigid_contact_max,
+-                        inputs=[
++                    if self._coulomb_sweeps > 0 and not self._has_joint_mimics:  # Senua AI patch, in design
++                        from . import coulomb_friction  # noqa: PLC0415
++
++                        if self._coulomb_arrays is None or self._coulomb_arrays.pt.shape[0] != contacts.rigid_contact_max:
++                            self._coulomb_arrays = coulomb_friction.FeatherstoneCoulombFriction(model, contacts)
++                        coulomb_friction.force_pass(
++                            model,
+                             state_in.body_q,
+                             state_aug.body_qd_fk,
+-                            model.body_com,
+-                            model.shape_material_ke,
+-                            model.shape_material_kd,
+-                            model.shape_material_kf,
+-                            model.shape_material_ka,
+-                            model.shape_material_mu,
+-                            model.shape_body,
+-                            contacts.rigid_contact_count,
+-                            contacts.rigid_contact_point0,
+-                            contacts.rigid_contact_point1,
+-                            contacts.rigid_contact_surface_velocity,
+-                            contacts.rigid_contact_normal,
+-                            contacts.rigid_contact_shape0,
+-                            contacts.rigid_contact_shape1,
+-                            contacts.rigid_contact_margin0,
+-                            contacts.rigid_contact_margin1,
+-                            contacts.rigid_contact_stiffness,
+-                            contacts.rigid_contact_damping,
+-                            contacts.rigid_contact_friction,
+-                            False,
++                            contacts,
++                            self._coulomb_arrays,
+                             self.friction_smoothing,
+-                        ],
+-                        outputs=[body_f],
+-                        device=model.device,
+-                    )
++                            body_f,
++                        )
++                    else:
++                        wp.launch(
++                            kernel=kernel,
++                            dim=contacts.rigid_contact_max,
++                            inputs=[
++                                state_in.body_q,
++                                state_aug.body_qd_fk,
++                                model.body_com,
++                                model.shape_material_ke,
++                                model.shape_material_kd,
++                                model.shape_material_kf,
++                                model.shape_material_ka,
++                                model.shape_material_mu,
++                                model.shape_body,
++                                contacts.rigid_contact_count,
++                                contacts.rigid_contact_point0,
++                                contacts.rigid_contact_point1,
++                                contacts.rigid_contact_surface_velocity,
++                                contacts.rigid_contact_normal,
++                                contacts.rigid_contact_shape0,
++                                contacts.rigid_contact_shape1,
++                                contacts.rigid_contact_margin0,
++                                contacts.rigid_contact_margin1,
++                                contacts.rigid_contact_stiffness,
++                                contacts.rigid_contact_damping,
++                                contacts.rigid_contact_friction,
++                                False,
++                                self.friction_smoothing,
++                            ],
++                            outputs=[body_f],
++                            device=model.device,
++                        )
+ 
+                 if self.has_kinematic_bodies and body_f is not None:
+                     wp.launch(
+@@ -1110,6 +1134,16 @@
+                     device=model.device,
+                 )
+ 
++                if (  # Senua AI patch, in design: the friction pass after the integration
++                    self._coulomb_arrays is not None
++                    and contacts is not None
++                    and contacts.rigid_contact_max
++                    and not self._has_joint_mimics
++                ):
++                    from . import coulomb_friction  # noqa: PLC0415
++
++                    coulomb_friction.friction_sweeps(self, model, state_out, state_aug, contacts, self._coulomb_arrays, dt)
++
+                 if self.has_kinematic_joints:
+                     wp.launch(
+                         copy_kinematic_joint_state,

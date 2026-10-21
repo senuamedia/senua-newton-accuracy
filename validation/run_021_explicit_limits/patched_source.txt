@@ -1,0 +1,9 @@
+713fecd Backport Kamino test stabilization to 1.6 (#4523)
+ M newton/_src/solvers/featherstone/solver_featherstone.py
+ M newton/_src/solvers/semi_implicit/kernels_contact.py
+?? newton/_src/solvers/semi_implicit/kernels_contact_normal.py
+?? newton/_src/solvers/semi_implicit/kernels_contact_unit.py
+97d94dfc7689ce7d04b014479104f6f4746f4b14fba12c16509e3d21c3364d64  newton/_src/solvers/semi_implicit/kernels_contact.py
+83d5a6581e684bd982757c891d449b50b3cea401a4318737e1802ea18a1adf05  newton/_src/solvers/semi_implicit/kernels_contact_unit.py
+534d9d103412e7f32addadb8ccdb84a4e5b7557ddc1eea75a5cff556976d2ac5  newton/_src/solvers/semi_implicit/kernels_contact_normal.py
+943d8de9104edacd8ece5d1fbf59c2a379775f2341c4158537776dbe1738a35e  newton/_src/solvers/featherstone/solver_featherstone.py

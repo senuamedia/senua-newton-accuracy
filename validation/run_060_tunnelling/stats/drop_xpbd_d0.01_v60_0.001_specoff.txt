@@ -1,0 +1,1 @@
+STATS contact dt 0.001 h0 0.05 vx0 0 mu 0.5 mass 1 radius 0.05 steps 100 most_tilt_urad 0 engine newton 1.7.0 solver xpbd extra slab=0.01 vz0=-60

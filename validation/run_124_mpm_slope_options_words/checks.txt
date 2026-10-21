@@ -1,0 +1,9 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 632 -1 -1 : FAILED
+RULE P1_default_slides_at_16_substeps ge 209558 10000 : HELD
+RULE P2_q1_holds_at_both all_le 10000 97173 281164 : FAILED
+RULE P2_gimp_holds_at_both all_le 10000 14860 262474 : FAILED
+RULE P2_pic_holds_at_both all_le 10000 13818 109136 : FAILED
+RULE P2_back_holds_at_both all_le 10000 21399 281986 : FAILED
+RULE P2_nodrag_holds_at_both all_le 10000 21428 206993 : FAILED
+RULE P2_nowarm_holds_at_both all_le 10000 21308 287978 : FAILED
+checks: 8, held: 1

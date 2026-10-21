@@ -1,0 +1,10 @@
+RULE R1_safe_when_off eq 32 32 : HELD
+RULE R2_rebound_there all_ge 20 184 285 184 285 : HELD
+RULE R3_no_rebound all_le 10 0 0 0 0 0 0 0 0 0 0 : HELD
+RULE R4_slide all_within 3500 100 3499 3500 3499 3500 : HELD
+RULE R5_rest all_within 29400 100 29400 29400 29400 29400 : HELD
+RULE R6_lift all_ge 0 0 0 0 0 : HELD
+RULE R7_hold all_within 1985 100 1985 1984 1985 1984 : HELD
+RULE R8_other_solvers eq 1 1 : HELD
+RULE R9_no_nan eq 0 0 : HELD
+rules: 9, held: 9

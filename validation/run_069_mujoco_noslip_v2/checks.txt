@@ -1,0 +1,13 @@
+RULE N0_safe_when_off eq 6 6 : HELD
+RULE N1_fault_there_0.002 all_ge 500 1293 765 : HELD
+RULE N1_held_hi_0.002 all_le 10 1293 0 : FAILED
+RULE N1_held_lo_0.002 all_ge -10 1293 0 : HELD
+RULE N4_slide_kept_0.002 all_within 101354 100 101339 : HELD
+RULE N5_weight_0.002 all_within 9800 100 9800 : HELD
+RULE N1_fault_there_0.0005 all_ge 500 1293 765 : HELD
+RULE N1_held_hi_0.0005 all_le 10 1293 0 : FAILED
+RULE N1_held_lo_0.0005 all_ge -10 1293 0 : HELD
+RULE N4_slide_kept_0.0005 all_within 102037 100 102026 : HELD
+RULE N5_weight_0.0005 all_within 9800 100 9800 : HELD
+RULE N2_warp_refuses eq 1 1 : HELD
+checks: 12, held: 10

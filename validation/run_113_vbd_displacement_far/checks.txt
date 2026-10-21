@@ -1,0 +1,5 @@
+RULE C0_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+RULE C0_same_as_run_111 eq 3 3 : HELD
+RULE P1_released_far_worse ge 792485 51360 : HELD
+RULE P2_patch_far_alike all_ge 0 37702 4931 -6077 : FAILED
+checks: 4, held: 3

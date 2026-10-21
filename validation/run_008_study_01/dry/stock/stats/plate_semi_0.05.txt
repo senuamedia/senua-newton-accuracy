@@ -1,0 +1,1 @@
+STATS contact dt 0.00025 h0 0.002 vx0 0 mu 0.4 mass 1 radius 0.05 steps 5200 most_tilt_urad 12974 engine newton 1.6.1 solver semi extra opt.friction_smoothing=0.05 kick=1 kickat=0.3 hz=0.005

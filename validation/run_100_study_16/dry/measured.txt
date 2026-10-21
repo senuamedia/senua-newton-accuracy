@@ -1,0 +1,6 @@
+f_stock_0.004 stops -1 energy_drift_ppm 157 energy_largest_drift_ppm 303 momentum_drift_ppm -18 kinetic_end_per_million 1000157
+w_stock_0.004 stops -1 energy_drift_ppm -4348 energy_largest_drift_ppm 7851 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+f_off_0.004 stops -1 energy_drift_ppm 157 energy_largest_drift_ppm 303 momentum_drift_ppm -18 kinetic_end_per_million 1000157
+w_off_0.004 stops -1 energy_drift_ppm -4348 energy_largest_drift_ppm 7851 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999
+f_rk4_0.004 stops -1 energy_drift_ppm 0 energy_largest_drift_ppm 2 momentum_drift_ppm 0 kinetic_end_per_million 999999
+w_rk4_0.004 stops -1 energy_drift_ppm 0 energy_largest_drift_ppm 4 momentum_drift_ppm 999999999 kinetic_end_per_million 999999999

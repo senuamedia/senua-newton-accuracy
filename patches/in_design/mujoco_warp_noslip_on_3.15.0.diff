@@ -1,0 +1,596 @@
+--- a/mujoco_warp/_src/forward.py
++++ b/mujoco_warp/_src/forward.py
+@@ -23,6 +23,7 @@
+ from mujoco_warp._src import history
+ from mujoco_warp._src import island
+ from mujoco_warp._src import math
++from mujoco_warp._src import noslip  # Senua AI patch, in design
+ from mujoco_warp._src import passive
+ from mujoco_warp._src import sensor
+ from mujoco_warp._src import sleep
+@@ -2084,6 +2085,7 @@
+   fwd_acceleration(m, d, factorize=True)
+ 
+   solver.solve(m, d)
++  noslip.solve(m, d)  # Senua AI patch, in design: runs only with opt.noslip_iterations > 0
+   if m.opt.integrator == IntegratorType.DISCRETE:
+     _launch_discrete_free_gyro(m, d, d.qacc, d.qacc, False)
+   if m.opt.run_rne_postconstraint or (not (m.opt.disableflags & DisableBit.SENSOR) and m.sensor_rne_postconstraint):
+@@ -2140,6 +2142,7 @@
+   fwd_actuation(m, d)
+   fwd_acceleration(m, d)
+   solver.solve(m, d)
++  noslip.solve(m, d)  # Senua AI patch, in design: runs only with opt.noslip_iterations > 0
+   if m.opt.integrator == IntegratorType.DISCRETE:
+     _launch_discrete_free_gyro(m, d, d.qacc, d.qacc, False)
+   if m.opt.run_rne_postconstraint or (not (m.opt.disableflags & DisableBit.SENSOR) and m.sensor_rne_postconstraint):
+--- a/mujoco_warp/_src/io.py
++++ b/mujoco_warp/_src/io.py
+@@ -348,8 +348,10 @@
+   if (mjm.opt.enableflags & mujoco.mjtEnableBit.mjENBL_SLEEP) and (mjm.eq_type == mujoco.mjtEq.mjEQ_FLEX).any():
+     raise NotImplementedError("Flex equality constraints are not supported with sleeping enabled.")
+ 
+-  if mjm.opt.noslip_iterations > 0:
+-    raise NotImplementedError(f"noslip solver not implemented.")
++  if mjm.opt.noslip_iterations > 0 and (
++    mjm.opt.integrator == mujoco.mjtIntegrator.mjINT_DISCRETE or (mjm.opt.enableflags & mujoco.mjtEnableBit.mjENBL_SLEEP)
++  ):  # Senua AI patch, in design: noslip.py runs MuJoCo's noslip solver, but not with these
++    raise NotImplementedError("noslip solver not implemented with the discrete integrator or sleeping.")
+ 
+   if (mjm.body_plugin != -1).any():
+     raise NotImplementedError("Body plugins not supported.")
+--- a/mujoco_warp/_src/noslip.py
++++ b/mujoco_warp/_src/noslip.py
+@@ -0,0 +1,541 @@
++# Copyright 2025 The Newton Developers
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++# ==============================================================================
++
++"""Senua AI patch, in design: MuJoCo's noslip solver for MuJoCo Warp.
++
++MuJoCo's noslip solver (engine_solver.c, solNoSlip) runs after the main solve: a projected Gauss-Seidel over the
++constraint forces in friction dimensions (dry friction rows, and the friction rows of each pyramidal or elliptic
++contact, the normal force held), on A = J M^-1 J' without the constraint regularization, so a soft contact's slip is
++removed. MuJoCo Warp 3.15 refuses noslip_iterations > 0. This module ports solNoSlip and its helpers (residual,
++extractBlock with the regularization subtracted, costChange, mju_QCQP2, mju_QCQP3, mju_QCQP, projectEllipsoid) and
++dualFinish, per world: the residual of row i is J_i qacc - aref_i, J_i qacc being J_i (qacc_smooth + M^-1 J' f), and
++the block entries J_i M^-1 J_k' come from M^-1 J' computed once a step with MuJoCo Warp's own mass solve. It runs only
++when opt.noslip_iterations > 0; with MuJoCo's default 0 nothing here is called.
++"""
++
++import warp as wp
++
++from mujoco_warp._src import smooth
++from mujoco_warp._src import types
++from mujoco_warp._src.types import ConstraintType
++from mujoco_warp._src.types import vec5
++
++_MINVAL = float(types.MJ_MINVAL)
++mat55 = wp.types.matrix(shape=(5, 5), dtype=float)
++
++
++@wp.kernel
++def _dense_rows_from_dense(
++  nv: int,
++  nefc_in: wp.array[int],
++  efc_J_in: wp.array3d[float],
++  rows_out: wp.array3d[float],
++):
++  worldid, rowid, dofid = wp.tid()
++  if rowid < nefc_in[worldid] and dofid < nv:
++    rows_out[worldid, rowid, dofid] = efc_J_in[worldid, rowid, dofid]
++  else:
++    rows_out[worldid, rowid, dofid] = 0.0
++
++
++@wp.kernel
++def _dense_rows_from_sparse(
++  nv: int,
++  nefc_in: wp.array[int],
++  efc_J_rownnz_in: wp.array2d[int],
++  efc_J_rowadr_in: wp.array2d[int],
++  efc_J_colind_in: wp.array3d[int],
++  efc_J_in: wp.array3d[float],
++  rows_out: wp.array3d[float],
++):
++  worldid, rowid = wp.tid()
++  for dofid in range(nv):
++    rows_out[worldid, rowid, dofid] = 0.0
++  if rowid < nefc_in[worldid]:
++    adr = efc_J_rowadr_in[worldid, rowid]
++    for k in range(efc_J_rownnz_in[worldid, rowid]):
++      rows_out[worldid, rowid, efc_J_colind_in[worldid, 0, adr + k]] = efc_J_in[worldid, 0, adr + k]
++
++
++@wp.kernel
++def _row_out(rowid: int, rows_in: wp.array3d[float], vec_out: wp.array2d[float]):
++  worldid, dofid = wp.tid()
++  vec_out[worldid, dofid] = rows_in[worldid, rowid, dofid]
++
++
++@wp.kernel
++def _row_in(rowid: int, vec_in: wp.array2d[float], rows_out: wp.array3d[float]):
++  worldid, dofid = wp.tid()
++  rows_out[worldid, rowid, dofid] = vec_in[worldid, dofid]
++
++
++@wp.func
++def _dot_rows(a: wp.array3d[float], b: wp.array3d[float], worldid: int, i: int, k: int, nv: int) -> float:
++  s = float(0.0)
++  for c in range(nv):
++    s += a[worldid, i, c] * b[worldid, k, c]
++  return s
++
++
++@wp.func
++def _row_dot_vec(a: wp.array3d[float], worldid: int, i: int, v: wp.array2d[float], nv: int) -> float:
++  s = float(0.0)
++  for c in range(nv):
++    s += a[worldid, i, c] * v[worldid, c]
++  return s
++
++
++@wp.func
++def _add_row(qacc: wp.array2d[float], x: wp.array3d[float], worldid: int, i: int, scale: float, nv: int):
++  for c in range(nv):
++    qacc[worldid, c] = qacc[worldid, c] + x[worldid, i, c] * scale
++
++
++@wp.func
++def _qcqp2(A: wp.mat33, b: wp.vec3, d: wp.vec3, r: float):
++  # mju_QCQP2: minimize 0.5 x'Ax + b'x subject to sum (x_j / d_j)^2 <= r^2, n = 2
++  b1 = b[0] * d[0]
++  b2 = b[1] * d[1]
++  A11 = A[0, 0] * d[0] * d[0]
++  A22 = A[1, 1] * d[1] * d[1]
++  A12 = A[0, 1] * d[0] * d[1]
++  la = float(0.0)
++  v1 = float(0.0)
++  v2 = float(0.0)
++  ok = int(1)
++  for _it in range(20):
++    det = (A11 + la) * (A22 + la) - A12 * A12
++    if det < 1.0e-10:
++      ok = 0
++      break
++    detinv = 1.0 / det
++    P11 = (A22 + la) * detinv
++    P22 = (A11 + la) * detinv
++    P12 = -A12 * detinv
++    v1 = -P11 * b1 - P12 * b2
++    v2 = -P12 * b1 - P22 * b2
++    val = v1 * v1 + v2 * v2 - r * r
++    if val < 1.0e-10:
++      break
++    deriv = -2.0 * (P11 * v1 * v1 + 2.0 * P12 * v1 * v2 + P22 * v2 * v2)
++    delta = -val / deriv
++    if delta < 1.0e-10:
++      break
++    la += delta
++  if ok == 0:
++    return wp.vec3(0.0), 0
++  active = int(0)
++  if la != 0.0:
++    active = 1
++  return wp.vec3(v1 * d[0], v2 * d[1], 0.0), active
++
++
++@wp.func
++def _qcqp3(A: wp.mat33, b: wp.vec3, d: wp.vec3, r: float):
++  # mju_QCQP3, n = 3
++  b1 = b[0] * d[0]
++  b2 = b[1] * d[1]
++  b3 = b[2] * d[2]
++  A11 = A[0, 0] * d[0] * d[0]
++  A22 = A[1, 1] * d[1] * d[1]
++  A33 = A[2, 2] * d[2] * d[2]
++  A12 = A[0, 1] * d[0] * d[1]
++  A13 = A[0, 2] * d[0] * d[2]
++  A23 = A[1, 2] * d[1] * d[2]
++  la = float(0.0)
++  v1 = float(0.0)
++  v2 = float(0.0)
++  v3 = float(0.0)
++  ok = int(1)
++  for _it in range(20):
++    P11 = (A22 + la) * (A33 + la) - A23 * A23
++    P22 = (A11 + la) * (A33 + la) - A13 * A13
++    P33 = (A11 + la) * (A22 + la) - A12 * A12
++    P12 = A13 * A23 - A12 * (A33 + la)
++    P13 = A12 * A23 - A13 * (A22 + la)
++    P23 = A12 * A13 - A23 * (A11 + la)
++    det = (A11 + la) * P11 + A12 * P12 + A13 * P13
++    if det < 1.0e-10:
++      ok = 0
++      break
++    detinv = 1.0 / det
++    P11 *= detinv
++    P22 *= detinv
++    P33 *= detinv
++    P12 *= detinv
++    P13 *= detinv
++    P23 *= detinv
++    v1 = -P11 * b1 - P12 * b2 - P13 * b3
++    v2 = -P12 * b1 - P22 * b2 - P23 * b3
++    v3 = -P13 * b1 - P23 * b2 - P33 * b3
++    val = v1 * v1 + v2 * v2 + v3 * v3 - r * r
++    if val < 1.0e-10:
++      break
++    deriv = -2.0 * (P11 * v1 * v1 + P22 * v2 * v2 + P33 * v3 * v3) - 4.0 * (P12 * v1 * v2 + P13 * v1 * v3 + P23 * v2 * v3)
++    delta = -val / deriv
++    if delta < 1.0e-10:
++      break
++    la += delta
++  if ok == 0:
++    return wp.vec3(0.0), 0
++  active = int(0)
++  if la != 0.0:
++    active = 1
++  return wp.vec3(v1 * d[0], v2 * d[1], v3 * d[2]), active
++
++
++@wp.func
++def _chol_solve5(L: mat55, b: vec5, n: int) -> vec5:
++  # solve (L L') x = b for the lower factor L of an n x n matrix, n <= 5
++  y = vec5(0.0)
++  for i in range(n):
++    s = b[i]
++    for k in range(i):
++      s -= L[i, k] * y[k]
++    y[i] = s / L[i, i]
++  x = vec5(0.0)
++  for ii in range(n):
++    i = n - 1 - ii
++    s = y[i]
++    for k in range(i + 1, n):
++      s -= L[k, i] * x[k]
++    x[i] = s / L[i, i]
++  return x
++
++
++@wp.func
++def _qcqp_n(A: mat55, b: vec5, d: vec5, r: float, n: int):
++  # mju_QCQP, n <= 5 (mju_cholFactor with mindiag 1e-10)
++  As = mat55()
++  bs = vec5(0.0)
++  for i in range(n):
++    bs[i] = b[i] * d[i]
++    for j in range(n):
++      As[i, j] = A[i, j] * d[i] * d[j]
++  la = float(0.0)
++  res = vec5(0.0)
++  ok = int(1)
++  for _it in range(20):
++    L = mat55()
++    rank = int(0)
++    for j in range(n):
++      s = As[j, j] + la
++      for k in range(j):
++        s -= L[j, k] * L[j, k]
++      if s < 1.0e-10:
++        break
++      L[j, j] = wp.sqrt(s)
++      rank += 1
++      for i in range(j + 1, n):
++        t = As[i, j]
++        for k in range(j):
++          t -= L[i, k] * L[j, k]
++        L[i, j] = t / L[j, j]
++    if rank < n:
++      ok = 0
++      break
++    res = -_chol_solve5(L, bs, n)
++    val = float(0.0)
++    for i in range(n):
++      val += res[i] * res[i]
++    val -= r * r
++    if val < 1.0e-10:
++      break
++    tmp = _chol_solve5(L, res, n)
++    deriv = float(0.0)
++    for i in range(n):
++      deriv += res[i] * tmp[i]
++    deriv *= -2.0
++    delta = -val / deriv
++    if delta < 1.0e-10:
++      break
++    la += delta
++  if ok == 0:
++    return vec5(0.0), 0
++  for i in range(n):
++    res[i] = res[i] * d[i]
++  active = int(0)
++  if la != 0.0:
++    active = 1
++  return res, active
++
++
++@wp.kernel
++def _noslip_pgs(
++  nv: int,
++  maxiter: int,
++  tolerance: float,
++  meaninertia_in: wp.array[float],
++  nefc_in: wp.array[int],
++  efc_type_in: wp.array2d[int],
++  efc_id_in: wp.array2d[int],
++  efc_D_in: wp.array2d[float],
++  efc_aref_in: wp.array2d[float],
++  efc_frictionloss_in: wp.array2d[float],
++  contact_dim_in: wp.array[int],
++  contact_friction_in: wp.array[vec5],
++  contact_efc_address_in: wp.array2d[int],
++  rows_in: wp.array3d[float],
++  minv_rows_in: wp.array3d[float],
++  efc_force_out: wp.array2d[float],
++  qacc_work: wp.array2d[float],
++):
++  worldid = wp.tid()
++  nefc = nefc_in[worldid]
++  scale = 1.0 / (meaninertia_in[worldid % meaninertia_in.shape[0]] * float(wp.max(1, nv)))
++
++  for it in range(maxiter):
++    improvement = float(0.0)
++
++    # correct for cost change at iter 0
++    if it == 0:
++      for i in range(nefc):
++        f = efc_force_out[worldid, i]
++        improvement += 0.5 * f * f / wp.max(_MINVAL, efc_D_in[worldid, i])
++
++    # one sweep: dry friction
++    for i in range(nefc):
++      t = efc_type_in[worldid, i]
++      if t == int(ConstraintType.FRICTION_DOF) or t == int(ConstraintType.FRICTION_TENDON):
++        res_f = _row_dot_vec(rows_in, worldid, i, qacc_work, nv) - efc_aref_in[worldid, i]
++        a = _dot_rows(rows_in, minv_rows_in, worldid, i, i, nv)
++        arinv = 1.0 / wp.max(_MINVAL, a)
++        old_f = efc_force_out[worldid, i]
++        f = old_f - res_f * arinv
++        floss = efc_frictionloss_in[worldid, i]
++        if f < -floss:
++          f = -floss
++        elif f > floss:
++          f = floss
++        efc_force_out[worldid, i] = f
++        delta_f = f - old_f
++        improvement -= 0.5 * delta_f * delta_f / arinv + delta_f * res_f
++        _add_row(qacc_work, minv_rows_in, worldid, i, delta_f, nv)
++
++    # one sweep: contact friction
++    for i in range(nefc):
++      t = efc_type_in[worldid, i]
++      if t != int(ConstraintType.CONTACT_PYRAMIDAL) and t != int(ConstraintType.CONTACT_ELLIPTIC):
++        continue
++      conid = efc_id_in[worldid, i]
++      if contact_efc_address_in[conid, 0] != i:
++        continue
++      dim = contact_dim_in[conid]
++      mu = contact_friction_in[conid]
++
++      if t == int(ConstraintType.CONTACT_PYRAMIDAL):
++        # pairs of opposing pyramid edges
++        for e in range(dim - 1):
++          j0 = contact_efc_address_in[conid, 2 * e]
++          j1 = contact_efc_address_in[conid, 2 * e + 1]
++          if j0 < 0 or j1 < 0:
++            continue
++          res0 = _row_dot_vec(rows_in, worldid, j0, qacc_work, nv) - efc_aref_in[worldid, j0]
++          res1 = _row_dot_vec(rows_in, worldid, j1, qacc_work, nv) - efc_aref_in[worldid, j1]
++          old0 = efc_force_out[worldid, j0]
++          old1 = efc_force_out[worldid, j1]
++          A00 = wp.max(1.0e-10, _dot_rows(rows_in, minv_rows_in, worldid, j0, j0, nv))
++          A01 = _dot_rows(rows_in, minv_rows_in, worldid, j0, j1, nv)
++          A10 = _dot_rows(rows_in, minv_rows_in, worldid, j1, j0, nv)
++          A11 = wp.max(1.0e-10, _dot_rows(rows_in, minv_rows_in, worldid, j1, j1, nv))
++          bc0 = res0 - (A00 * old0 + A01 * old1)
++          bc1 = res1 - (A10 * old0 + A11 * old1)
++          mid = 0.5 * (old0 + old1)
++          K1 = A00 + A11 - A01 - A10
++          K0 = mid * (A00 - A11) + bc0 - bc1
++          f0 = mid
++          f1 = mid
++          if K1 >= _MINVAL:
++            y = -K0 / K1
++            if y < -mid:
++              f0 = 0.0
++              f1 = 2.0 * mid
++            elif y > mid:
++              f0 = 2.0 * mid
++              f1 = 0.0
++            else:
++              f0 = mid + y
++              f1 = mid - y
++          d0 = f0 - old0
++          d1 = f1 - old1
++          change = 0.5 * (d0 * (A00 * d0 + A01 * d1) + d1 * (A10 * d0 + A11 * d1)) + d0 * res0 + d1 * res1
++          if change > 1.0e-10:
++            d0 = 0.0
++            d1 = 0.0
++            change = 0.0
++          efc_force_out[worldid, j0] = old0 + d0
++          efc_force_out[worldid, j1] = old1 + d1
++          improvement -= change
++          _add_row(qacc_work, minv_rows_in, worldid, j0, d0, nv)
++          _add_row(qacc_work, minv_rows_in, worldid, j1, d1, nv)
++
++      else:
++        # elliptic: the friction block, the normal force held
++        n = dim - 1
++        bad = int(0)
++        for k in range(n):
++          if contact_efc_address_in[conid, 1 + k] < 0:
++            bad = 1
++        if bad == 1 or n < 1:
++          continue
++        res_v = vec5(0.0)
++        old_v = vec5(0.0)
++        Ac = mat55()
++        for j in range(n):
++          rj = contact_efc_address_in[conid, 1 + j]
++          res_v[j] = _row_dot_vec(rows_in, worldid, rj, qacc_work, nv) - efc_aref_in[worldid, rj]
++          old_v[j] = efc_force_out[worldid, rj]
++          for k in range(n):
++            rk = contact_efc_address_in[conid, 1 + k]
++            Ac[j, k] = _dot_rows(rows_in, minv_rows_in, worldid, rj, rk, nv)
++          Ac[j, j] = wp.max(1.0e-10, Ac[j, j])
++        bc = vec5(0.0)
++        for j in range(n):
++          s = res_v[j]
++          for k in range(n):
++            s -= Ac[j, k] * old_v[k]
++          bc[j] = s
++        fn = efc_force_out[worldid, i]
++        v = vec5(0.0)
++        if fn >= _MINVAL:
++          active = int(0)
++          if n == 2:
++            A3 = wp.mat33(Ac[0, 0], Ac[0, 1], 0.0, Ac[1, 0], Ac[1, 1], 0.0, 0.0, 0.0, 0.0)
++            v3, active = _qcqp2(A3, wp.vec3(bc[0], bc[1], 0.0), wp.vec3(mu[0], mu[1], 1.0), fn)
++            v[0] = v3[0]
++            v[1] = v3[1]
++          elif n == 3:
++            A3 = wp.mat33(Ac[0, 0], Ac[0, 1], Ac[0, 2], Ac[1, 0], Ac[1, 1], Ac[1, 2], Ac[2, 0], Ac[2, 1], Ac[2, 2])
++            v3, active = _qcqp3(A3, wp.vec3(bc[0], bc[1], bc[2]), wp.vec3(mu[0], mu[1], mu[2]), fn)
++            v[0] = v3[0]
++            v[1] = v3[1]
++            v[2] = v3[2]
++          else:
++            v, active = _qcqp_n(Ac, bc, mu, fn, n)
++          if active == 1:
++            # projectEllipsoid, not feasible: put v on the ellipsoid
++            s = float(0.0)
++            for j in range(n):
++              s += v[j] * v[j] / (mu[j] * mu[j])
++            scl = wp.sqrt(fn * fn / wp.max(_MINVAL, s))
++            for j in range(n):
++              v[j] = v[j] * scl
++        delta_v = vec5(0.0)
++        for j in range(n):
++          delta_v[j] = v[j] - old_v[j]
++        change = float(0.0)
++        for j in range(n):
++          s = float(0.0)
++          for k in range(n):
++            s += Ac[j, k] * delta_v[k]
++          change += 0.5 * delta_v[j] * s + delta_v[j] * res_v[j]
++        if change > 1.0e-10:
++          for j in range(n):
++            delta_v[j] = 0.0
++          change = 0.0
++        for j in range(n):
++          rj = contact_efc_address_in[conid, 1 + j]
++          efc_force_out[worldid, rj] = old_v[j] + delta_v[j]
++          _add_row(qacc_work, minv_rows_in, worldid, rj, delta_v[j], nv)
++        improvement -= change
++
++    improvement *= scale
++    if improvement < tolerance:
++      break
++
++
++@wp.kernel
++def _qfrc_from_force(
++  nv: int,
++  nefc_in: wp.array[int],
++  rows_in: wp.array3d[float],
++  efc_force_in: wp.array2d[float],
++  qfrc_constraint_out: wp.array2d[float],
++):
++  worldid, dofid = wp.tid()
++  s = float(0.0)
++  for i in range(nefc_in[worldid]):
++    s += rows_in[worldid, i, dofid] * efc_force_in[worldid, i]
++  qfrc_constraint_out[worldid, dofid] = s
++
++
++@wp.kernel
++def _ma_from_qfrc(qfrc_smooth_in: wp.array2d[float], qfrc_constraint_in: wp.array2d[float], ma_out: wp.array2d[float]):
++  # M qacc, with qacc = qacc_smooth + M^-1 qfrc_constraint: the implicit integrators read it (efc.Ma)
++  worldid, dofid = wp.tid()
++  ma_out[worldid, dofid] = qfrc_smooth_in[worldid, dofid] + qfrc_constraint_in[worldid, dofid]
++
++
++@wp.kernel
++def _add_smooth(qacc_smooth_in: wp.array2d[float], qacc_out: wp.array2d[float]):
++  worldid, dofid = wp.tid()
++  qacc_out[worldid, dofid] = qacc_out[worldid, dofid] + qacc_smooth_in[worldid, dofid]
++
++
++def solve(m: types.Model, d: types.Data):
++  """MuJoCo's noslip solver after the main solve, then dualFinish (qfrc_constraint = J' f, qacc = qacc_smooth +
++  M^-1 qfrc_constraint), and M qacc for the implicit integrators (efc.Ma), per world."""
++  if m.opt.noslip_iterations <= 0 or d.njmax == 0 or m.nv == 0:
++    return
++  nrow = int(d.nefc.numpy().max()) if d.nworld > 0 else 0
++  if nrow == 0:
++    return
++  nrow = min(nrow, d.njmax)
++  rows = wp.zeros((d.nworld, nrow, m.nv), dtype=float, device=d.qacc.device)
++  if m.is_sparse:
++    wp.launch(
++      _dense_rows_from_sparse,
++      dim=(d.nworld, nrow),
++      inputs=[m.nv, d.nefc, d.efc.J_rownnz, d.efc.J_rowadr, d.efc.J_colind, d.efc.J],
++      outputs=[rows],
++    )
++  else:
++    wp.launch(_dense_rows_from_dense, dim=(d.nworld, nrow, m.nv), inputs=[m.nv, d.nefc, d.efc.J], outputs=[rows])
++  # M^-1 J' row by row, with MuJoCo Warp's own mass solve (the factor fwd_acceleration made)
++  minv_rows = wp.zeros((d.nworld, nrow, m.nv), dtype=float, device=d.qacc.device)
++  y = wp.zeros((d.nworld, m.nv), dtype=float, device=d.qacc.device)
++  x = wp.zeros((d.nworld, m.nv), dtype=float, device=d.qacc.device)
++  for r in range(nrow):
++    wp.launch(_row_out, dim=(d.nworld, m.nv), inputs=[r, rows], outputs=[y])
++    smooth.solve_m(m, d, x, y)
++    wp.launch(_row_in, dim=(d.nworld, m.nv), inputs=[r, x], outputs=[minv_rows])
++  qacc_work = wp.clone(d.qacc)
++  wp.launch(
++    _noslip_pgs,
++    dim=d.nworld,
++    inputs=[
++      m.nv,
++      int(m.opt.noslip_iterations),
++      float(m.opt.noslip_tolerance),
++      m.stat.meaninertia,
++      d.nefc,
++      d.efc.type,
++      d.efc.id,
++      d.efc.D,
++      d.efc.aref,
++      d.efc.frictionloss,
++      d.contact.dim,
++      d.contact.friction,
++      d.contact.efc_address,
++      rows,
++      minv_rows,
++    ],
++    outputs=[d.efc.force, qacc_work],
++  )
++  # dualFinish
++  wp.launch(_qfrc_from_force, dim=(d.nworld, m.nv), inputs=[m.nv, d.nefc, rows, d.efc.force], outputs=[d.qfrc_constraint])
++  smooth.solve_m(m, d, d.qacc, d.qfrc_constraint)
++  wp.launch(_add_smooth, dim=(d.nworld, m.nv), inputs=[d.qacc_smooth], outputs=[d.qacc])
++  wp.launch(_ma_from_qfrc, dim=(d.nworld, m.nv), inputs=[d.qfrc_smooth, d.qfrc_constraint], outputs=[d.efc.Ma])
+--- a/mujoco_warp/_src/types.py
++++ b/mujoco_warp/_src/types.py
+@@ -969,6 +969,8 @@
+   enableflags: int
+   sdf_initpoints: int
+   sdf_iterations: int
++  noslip_iterations: int  # Senua AI patch, in design: MuJoCo's noslip solver (noslip.py)
++  noslip_tolerance: float
+   # warp only fields:
+   impratio_invsqrt: array("*", float)
+   broadphase: BroadphaseType

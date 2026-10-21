@@ -1,0 +1,2 @@
+CONTACT dt_ns 1000000 h0_nm 0 vx0_ums 0 mu_ppm 0 mass_g 1000 steps 1
+0 -4466332 37697 0 0 0

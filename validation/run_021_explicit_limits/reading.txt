@@ -1,0 +1,33 @@
+== A. the drop: rebound per 10,000 and steps to turn; with both switches against the release, byte for byte
+semi 1 kg 0.0025 s | release rebound_per_10000 0 steps_to_turn 1 | both rebound_per_10000 0 steps_to_turn 1 | files differs
+semi 1 kg 0.005 s | release rebound_per_10000 14555 steps_to_turn 1 | both rebound_per_10000 14555 steps_to_turn 1 | files identical
+semi 1 kg 0.01 s | release rebound_per_10000 131959 steps_to_turn 1 | both rebound_per_10000 131959 steps_to_turn 1 | files identical
+semi 2 kg 0.0025 s | release rebound_per_10000 11 steps_to_turn 5 | both rebound_per_10000 0 steps_to_turn 5 | files differs
+semi 2 kg 0.005 s | release rebound_per_10000 407 steps_to_turn 1 | both rebound_per_10000 0 steps_to_turn 1 | files differs
+semi 2 kg 0.01 s | release rebound_per_10000 16936 steps_to_turn 1 | both rebound_per_10000 16936 steps_to_turn 1 | files identical
+semi 4 kg 0.0025 s | release rebound_per_10000 180 steps_to_turn 9 | both rebound_per_10000 0 steps_to_turn 9 | files differs
+semi 4 kg 0.005 s | release rebound_per_10000 440 steps_to_turn 4 | both rebound_per_10000 0 steps_to_turn 4 | files differs
+semi 4 kg 0.01 s | release rebound_per_10000 218 steps_to_turn 1 | both rebound_per_10000 0 steps_to_turn 1 | files differs
+featherstone 1 kg 0.0025 s | release rebound_per_10000 0 steps_to_turn 1 | both rebound_per_10000 0 steps_to_turn 1 | files differs
+featherstone 1 kg 0.005 s | release rebound_per_10000 14555 steps_to_turn 1 | both rebound_per_10000 14555 steps_to_turn 1 | files identical
+featherstone 1 kg 0.01 s | release rebound_per_10000 131960 steps_to_turn 1 | both rebound_per_10000 131960 steps_to_turn 1 | files identical
+featherstone 2 kg 0.0025 s | release rebound_per_10000 11 steps_to_turn 5 | both rebound_per_10000 0 steps_to_turn 5 | files differs
+featherstone 2 kg 0.005 s | release rebound_per_10000 407 steps_to_turn 1 | both rebound_per_10000 0 steps_to_turn 1 | files differs
+featherstone 2 kg 0.01 s | release rebound_per_10000 16936 steps_to_turn 1 | both rebound_per_10000 16936 steps_to_turn 1 | files identical
+featherstone 4 kg 0.0025 s | release rebound_per_10000 180 steps_to_turn 9 | both rebound_per_10000 0 steps_to_turn 9 | files differs
+featherstone 4 kg 0.005 s | release rebound_per_10000 440 steps_to_turn 4 | both rebound_per_10000 0 steps_to_turn 4 | files differs
+featherstone 4 kg 0.01 s | release rebound_per_10000 218 steps_to_turn 1 | both rebound_per_10000 0 steps_to_turn 1 | files differs
+== B. the suite's hold on SemiImplicit: mean speed, um/s (push over four corners' kf: 1,470)
+0.000625 s | rel -5538 | unit 2644 | both 2704 | normal -14709
+0.00044 s | rel -1502 | unit 1902 | both 1874 | normal -9748
+0.00036 s | rel -658 | unit 1509 | both 1510 | normal -2183
+0.00015625 s | rel 1470 | unit 1470 | both 1470 | normal 1470
+== B3. the 0.625 ms holds against run 020's kept suites
+rel against r020_off_semi hold_16: identical
+unit against r020_offu_semi hold_16: identical
+both against r020_onu_semi hold_16: identical
+normal against r020_on_semi hold_16: identical
+== C. run 001's hold on SemiImplicit: mean speed, um/s (push over four corners' kf: 735)
+0.00022 s | rel -3105 | unit 953 | both 936
+0.00018 s | rel -952 | unit 757 | both 757
+== plays: 58; that stopped being a number: 0

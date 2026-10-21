@@ -1,0 +1,13 @@
+RULE R1_safe_when_off eq 7 7 : HELD
+RULE R2_full_relaxation_diverges all_ge 4672612780 63836720687 693866950639 : HELD
+RULE R3_falls_with_the_step_it8 falls 21486 11052 5014 1784 552 : HELD
+RULE R3_falls_with_the_step_it32 falls 21341 9770 3332 1144 489 : HELD
+RULE R4_half_of_released_it8_0.0004 le 5014 5956 : HELD
+RULE R4_half_of_released_it8_0.0002 le 1784 5228 : HELD
+RULE R4_half_of_released_it8_0.0001 le 552 4793 : HELD
+RULE R4_half_of_released_it32_0.0004 le 3332 5956 : HELD
+RULE R4_half_of_released_it32_0.0002 le 1144 5228 : HELD
+RULE R4_half_of_released_it32_0.0001 le 489 4793 : HELD
+RULE R5_one_joint_unchanged eq 2 2 : HELD
+RULE R6_numbers all_eq -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 : HELD
+rules: 12, held: 12

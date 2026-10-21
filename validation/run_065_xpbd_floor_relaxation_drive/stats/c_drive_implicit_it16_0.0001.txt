@@ -1,0 +1,1 @@
+STATS joint dt 0.0001 mass 1 radius 0.05 arm 0.5 gravity 0 steps 1000 engine newton 1.7.0 solver xpbd extra iterations=16 opt.joint_drive_mode=implicit drivek=10 target=0

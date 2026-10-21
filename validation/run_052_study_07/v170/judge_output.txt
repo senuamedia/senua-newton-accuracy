@@ -1,0 +1,24 @@
+1.7.0: 2204 same, 136 differ, 89 missing, 491 set aside, 0 new
+  play featherstone: 122 same, 0 differ
+  play mujoco: 102 same, 89 differ
+  play other: 302 same, 11 differ
+  play semi: 145 same, 0 differ
+  play vbd: 209 same, 2 differ
+  play vbd_alm: 30 same, 0 differ
+  play xpbd: 322 same, 0 differ
+  stats featherstone: 112 same, 2 differ
+  stats mujoco: 116 same, 7 differ
+  stats other: 0 same, 0 differ
+  stats semi: 117 same, 1 differ
+  stats vbd: 207 same, 2 differ
+  stats vbd_alm: 31 same, 0 differ
+  stats xpbd: 287 same, 5 differ
+  reading mujoco: 9 same, 5 differ
+  reading other: 43 same, 9 differ
+  reading semi: 1 same, 2 differ
+  reading vbd: 13 same, 0 differ
+  reading xpbd: 36 same, 1 differ
+RULE R1_the_record_plays eq 89 0 : FAILED
+RULE R2_unchanged_kernels_play_the_same eq 23 0 : FAILED
+RULE R3_the_validated_studies_hold eq 0 0 : HELD
+RULE R4_study_5_as_it_was eq 0 0 : HELD

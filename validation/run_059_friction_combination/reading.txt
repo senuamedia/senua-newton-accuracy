@@ -1,0 +1,16 @@
+c0_slide_xpbd STOP dt_ns 250000 first_stopped_at_step 1181 largest_speed_last_third_ums 0 slid_um 191445 came_back_um 0
+c0_slide_semi STOP dt_ns 250000 first_stopped_at_step 669 largest_speed_last_third_ums 17683 slid_um 84071 came_back_um 17487
+one0.2_xpbd STOP dt_ns 500000 first_stopped_at_step 1021 largest_speed_last_third_ums 215007 slid_um 254848 came_back_um 0
+one0.55_xpbd STOP dt_ns 500000 first_stopped_at_step 373 largest_speed_last_third_ums 0 slid_um 92519 came_back_um 0
+one0.9_xpbd STOP dt_ns 500000 first_stopped_at_step 230 largest_speed_last_third_ums 0 slid_um 56454 came_back_um 1
+mix_xpbd STOP dt_ns 500000 first_stopped_at_step 373 largest_speed_last_third_ums 0 slid_um 92519 came_back_um 0
+mixreg_xpbd STOP dt_ns 500000 first_stopped_at_step 373 largest_speed_last_third_ums 0 slid_um 92519 came_back_um 0
+mixcube_xpbd STOP dt_ns 500000 first_stopped_at_step 373 largest_speed_last_third_ums 0 slid_um 92519 came_back_um 0
+mixground_xpbd STOP dt_ns 500000 first_stopped_at_step 373 largest_speed_last_third_ums 0 slid_um 92519 came_back_um 0
+one0.2_mujoco STOP dt_ns 500000 first_stopped_at_step -1 largest_speed_last_third_ums 213981 slid_um 254964 came_back_um 0
+one0.55_mujoco STOP dt_ns 500000 first_stopped_at_step 406 largest_speed_last_third_ums 3 slid_um 92756 came_back_um 58
+one0.9_mujoco STOP dt_ns 500000 first_stopped_at_step 789 largest_speed_last_third_ums 0 slid_um 56866 came_back_um 0
+mix_mujoco STOP dt_ns 500000 first_stopped_at_step 789 largest_speed_last_third_ums 0 slid_um 56866 came_back_um 0
+mixreg_mujoco STOP dt_ns 500000 first_stopped_at_step 789 largest_speed_last_third_ums 0 slid_um 56866 came_back_um 0
+mixcube_mujoco STOP dt_ns 500000 first_stopped_at_step -1 largest_speed_last_third_ums 213981 slid_um 254964 came_back_um 0
+mixground_mujoco STOP dt_ns 500000 first_stopped_at_step 789 largest_speed_last_third_ums 0 slid_um 56866 came_back_um 0

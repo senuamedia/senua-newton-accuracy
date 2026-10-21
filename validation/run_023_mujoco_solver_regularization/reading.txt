@@ -1,0 +1,20 @@
+pyr_0.001_imp1, step 0.0025 | nan_at_step 51 | extra opt.cone=pyramidal
+pyr_0.001_imp1, step 0.00015625 | nan_at_step 818 | extra opt.cone=pyramidal
+pyr_0.01_imp1, step 0.0025 | plays | extra opt.cone=pyramidal
+pyr_0.01_imp1, step 0.00015625 | plays | extra opt.cone=pyramidal
+pyr_0.001_imp0.01, step 0.0025 | plays | extra opt.cone=pyramidal opt.impratio=0.01
+pyr_0.001_imp0.01, step 0.00015625 | plays | extra opt.cone=pyramidal opt.impratio=0.01
+pyr_0.0001_imp0.0001, step 0.0025 | plays | extra opt.cone=pyramidal opt.impratio=0.0001
+pyr_0.0001_imp0.0001, step 0.00015625 | plays | extra opt.cone=pyramidal opt.impratio=0.0001
+pyr_0.01_imp100, step 0.0025 | nan_at_step 51 | extra opt.cone=pyramidal opt.impratio=100
+pyr_0.01_imp100, step 0.00015625 | nan_at_step 818 | extra opt.cone=pyramidal opt.impratio=100
+pyr_0.1_imp10000, step 0.0025 | nan_at_step 53 | extra opt.cone=pyramidal opt.impratio=10000
+pyr_0.1_imp10000, step 0.00015625 | nan_at_step 818 | extra opt.cone=pyramidal opt.impratio=10000
+ell_0.01_imp1e6, step 0.0025 | plays | extra opt.cone=elliptic opt.impratio=1000000
+ell_0.01_imp1e6, step 0.00015625 | plays | extra opt.cone=elliptic opt.impratio=1000000
+pyr_0.001_imp1_cg, step 0.0025 | plays | extra opt.cone=pyramidal opt.solver=cg
+pyr_0.001_imp1_cg, step 0.00015625 | plays | extra opt.cone=pyramidal opt.solver=cg
+P5 the pyramid at 0.001, impratio 1, step 0.0025, byte-identical to run 012's: yes
+P5 the pyramid at 0.01, impratio 1, step 0.0025, byte-identical to run 012's: yes
+P5 the pyramid at 0.001, impratio 1, step 0.00015625, byte-identical to run 012's: yes
+P5 the pyramid at 0.01, impratio 1, step 0.00015625, byte-identical to run 012's: yes

@@ -1,0 +1,56 @@
+RULE T_stock_vbd_slide_0.0002 all_within 3000 100 2906 : FAILED
+RULE T_stock_vbd_rest_0.0002 all_within 15680 100 15680 : HELD
+RULE T_stock_vbd_lift_0.0002 all_ge 0 -366 : FAILED
+RULE T_stock_vbd_holdhi_0.0002 all_le 10 255312 : FAILED
+RULE T_stock_vbd_holdlo_0.0002 all_ge -10 255312 : HELD
+RULE T_stock_vbd_slide_0.00005 all_within 3000 100 1 : FAILED
+RULE T_stock_vbd_rest_0.00005 all_within 15680 100 15680 : HELD
+RULE T_stock_vbd_lift_0.00005 all_ge 0 -2750 : FAILED
+RULE T_stock_vbd_holdhi_0.00005 all_le 10 781969 : FAILED
+RULE T_stock_vbd_holdlo_0.00005 all_ge -10 781969 : HELD
+RULE T_stock_vbd_alm_slide_0.0002 all_within 3000 100 3039 : FAILED
+RULE T_stock_vbd_alm_rest_0.0002 all_within 15680 100 15680 : HELD
+RULE T_stock_vbd_alm_lift_0.0002 all_ge 0 -366 : FAILED
+RULE T_stock_vbd_alm_holdhi_0.0002 all_le 10 3 : HELD
+RULE T_stock_vbd_alm_holdlo_0.0002 all_ge -10 3 : HELD
+RULE T_stock_vbd_alm_slide_0.00005 all_within 3000 100 234 : FAILED
+RULE T_stock_vbd_alm_rest_0.00005 all_within 15680 100 15680 : HELD
+RULE T_stock_vbd_alm_lift_0.00005 all_ge 0 -2750 : FAILED
+RULE T_stock_vbd_alm_holdhi_0.00005 all_le 10 203 : FAILED
+RULE T_stock_vbd_alm_holdlo_0.00005 all_ge -10 203 : HELD
+RULE T_on_vbd_slide_0.0002 all_within 3000 100 2905 : FAILED
+RULE T_on_vbd_rest_0.0002 all_within 15680 100 15680 : HELD
+RULE T_on_vbd_lift_0.0002 all_ge 0 0 : HELD
+RULE T_on_vbd_holdhi_0.0002 all_le 10 255805 : FAILED
+RULE T_on_vbd_holdlo_0.0002 all_ge -10 255805 : HELD
+RULE T_on_vbd_slide_0.00005 all_within 3000 100 0 : FAILED
+RULE T_on_vbd_rest_0.00005 all_within 15680 100 15680 : HELD
+RULE T_on_vbd_lift_0.00005 all_ge 0 -3 : FAILED
+RULE T_on_vbd_holdhi_0.00005 all_le 10 916115 : FAILED
+RULE T_on_vbd_holdlo_0.00005 all_ge -10 916115 : HELD
+RULE T_on_vbd_alm_slide_0.0002 all_within 3000 100 3039 : FAILED
+RULE T_on_vbd_alm_rest_0.0002 all_within 15680 100 15679 : HELD
+RULE T_on_vbd_alm_lift_0.0002 all_ge 0 0 : HELD
+RULE T_on_vbd_alm_holdhi_0.0002 all_le 10 3 : HELD
+RULE T_on_vbd_alm_holdlo_0.0002 all_ge -10 3 : HELD
+RULE T_on_vbd_alm_slide_0.00005 all_within 3000 100 267 : FAILED
+RULE T_on_vbd_alm_rest_0.00005 all_within 15680 100 15679 : HELD
+RULE T_on_vbd_alm_lift_0.00005 all_ge 0 -3 : FAILED
+RULE T_on_vbd_alm_holdhi_0.00005 all_le 10 224 : FAILED
+RULE T_on_vbd_alm_holdlo_0.00005 all_ge -10 224 : HELD
+TEST vbd slide 0.0002 stock_holds 0 on_holds 0
+TEST vbd rest 0.0002 stock_holds 1 on_holds 1
+TEST vbd lift 0.0002 stock_holds 0 on_holds 1
+TEST vbd hold 0.0002 stock_holds 0 on_holds 0
+TEST vbd slide 0.00005 stock_holds 0 on_holds 0
+TEST vbd rest 0.00005 stock_holds 1 on_holds 1
+TEST vbd lift 0.00005 stock_holds 0 on_holds 0
+TEST vbd hold 0.00005 stock_holds 0 on_holds 0
+TEST vbd_alm slide 0.0002 stock_holds 0 on_holds 0
+TEST vbd_alm rest 0.0002 stock_holds 1 on_holds 1
+TEST vbd_alm lift 0.0002 stock_holds 0 on_holds 1
+TEST vbd_alm hold 0.0002 stock_holds 1 on_holds 1
+TEST vbd_alm slide 0.00005 stock_holds 0 on_holds 0
+TEST vbd_alm rest 0.00005 stock_holds 1 on_holds 1
+TEST vbd_alm lift 0.00005 stock_holds 0 on_holds 0
+TEST vbd_alm hold 0.00005 stock_holds 0 on_holds 0

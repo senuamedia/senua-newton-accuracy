@@ -1,0 +1,1 @@
+STATS joint dt 0.0016 mass 1.5 radius 0.03 arm 0.3 gravity 0 steps 875 engine newton 1.7.0 solver xpbd extra opt.joint_angular_relaxation=1.0 lo=1.5 hi=4.5
